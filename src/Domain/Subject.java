@@ -10,7 +10,7 @@ public class Subject {
     // Members
 
     private static int totalWeekHours;
-    private static int numberAlumnes;
+    private static int numberStudents;
     private static int level;
     private static int[] hoursClasses; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
 
@@ -19,8 +19,6 @@ public class Subject {
 
     /**
      * Class constructor.
-     * @pre
-     * @post
      */
     public Subject(){
 
@@ -28,17 +26,15 @@ public class Subject {
 
     /**
      * Class constructor specifying the member's values.
-     * @pre
-     * @post
-     * @param level
-     * @param numberAlumnes
-     * @param weekHours
-     * @param hoursClasses
+     * @param level Level of the subject in the curriculum.
+     * @param numberStudents Number of students that can be enrolled.
+     * @param weekHours Total of hours required for this subject.
+     * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
      */
-    public Subject(int level, int numberAlumnes, int weekHours, int[] hoursClasses){
+    public Subject(int level, int numberStudents, int weekHours, int[] hoursClasses){
         this.level = level;
         this.totalWeekHours = weekHours;
-        this.numberAlumnes = numberAlumnes;
+        this.numberStudents = numberStudents;
         this.hoursClasses = hoursClasses;
         setHoursClasses(hoursClasses);
     }
@@ -47,72 +43,57 @@ public class Subject {
     // Methods
 
     /**
-     *
-     * @pre
-     * @post
-     * @param weekHours
+     * Set the total of hours required for a given subject.
+     * @param weekHours Total of hours required for this subject.
      */
     public void setWeekHours(int weekHours) {
         this.totalWeekHours = weekHours;
     }
 
     /**
-     *
-     *
-     * @pre
-     * @post
-     * @return
+     * It returns the total subject's hours.
+     * @return Total of hours required.
      */
     public int getWeekHours() {
         return totalWeekHours;
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @param numberAlumnes
+     * Set the number of students that can be enrolled.
+     * @param numberStudents Number of students that can be enrolled.
      */
-    public void setNumberAlumnes(int numberAlumnes) {
-        this.numberAlumnes = numberAlumnes;
+    public void setNumberStudents(int numberStudents) {
+        this.numberStudents = numberStudents;
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @return
+     * It returns the number of students that can be enrolled.
+     * @return Number of students that can be enrolled.
      */
-    public int getNumberAlumnes() {
-        return numberAlumnes;
+    public int getNumberStudents() {
+        return numberStudents;
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @param level
+     * Set the level of the subject in the curriculum.
+     * @param level Level of the subject in the curriculum.
      */
     public void setLevel(int level) {
         this.level = level;
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @return
+     * It returns the level of the subject.
+     * @return Level of the subject in the curriculum.
      */
     public int getLevel() {
         return level;
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @param hoursClasses
-     * @return
+     * Set the distribution of class hours.
+     * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
+     * @return True if the summation of the hours distribution is equal to the total of hours required for this subject.
      */
     public boolean setHoursClasses(int[] hoursClasses) {
         if (hoursClasses[0] + hoursClasses[1] + hoursClasses[2] == totalWeekHours){
@@ -124,17 +105,15 @@ public class Subject {
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @param theoryHours
-     * @param laboratoryHours
-     * @param problemsHours
-     * @return
+     * Set the distribution of class hours.
+     * @param theoryHours Hours of theory.
+     * @param laboratoryHours Hours of Laboratory.
+     * @param problemsHours Hours of problems.
+     * @return True if the summation of the hours distribution is equal to the total of hours required for this subject.
      */
     public boolean setHoursClasses(int theoryHours, int laboratoryHours, int problemsHours){
         if (theoryHours + laboratoryHours + problemsHours == totalWeekHours){
-            hoursClasses[0] = theoryHours; hoursClasses[1] = laboratoryHours; hoursClasses[2] = numberAlumnes;
+            hoursClasses[0] = theoryHours; hoursClasses[1] = laboratoryHours; hoursClasses[2] = numberStudents;
             return true;
         } else {
             return false;
@@ -142,10 +121,8 @@ public class Subject {
     }
 
     /**
-     *
-     * @pre
-     * @post
-     * @return
+     * It returns the distribution of hours.
+     * @return Vector with the distribution of hours in Theory, Laboratory and Problems.
      */
     public int[] getHoursClasses() {
         return hoursClasses;
