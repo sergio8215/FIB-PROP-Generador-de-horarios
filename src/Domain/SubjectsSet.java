@@ -16,6 +16,7 @@ public class SubjectsSet {
 
 
     // Members
+
     typeSet tySet;
     // DEFINICIÓN DEL SET
 
