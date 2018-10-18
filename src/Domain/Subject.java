@@ -46,6 +46,22 @@ public class Subject {
     // Methods
 
     /**
+     * Set the name of the subject.
+     * @param name Name of the subject.
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
+     * It returns the name of the subject.
+     * @return Name of the subject.
+     */
+    public String getName(){
+        return name;
+    }
+
+    /**
      * Set the total of hours required for a given subject.
      * @param weekHours Total of hours required for this subject.
      */
