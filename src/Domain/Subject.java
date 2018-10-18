@@ -9,6 +9,7 @@ public class Subject {
 
     // Members
 
+    private static String name;
     private static int totalWeekHours;
     private static int numberStudents;
     private static int level;
@@ -26,12 +27,14 @@ public class Subject {
 
     /**
      * Class constructor specifying the member's values.
+     * @param name Name of the subject.
      * @param level Level of the subject in the curriculum.
      * @param numberStudents Number of students that can be enrolled.
      * @param weekHours Total of hours required for this subject.
      * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
      */
-    public Subject(int level, int numberStudents, int weekHours, int[] hoursClasses){
+    public Subject(String name, int level, int numberStudents, int weekHours, int[] hoursClasses){
+        this.name = name;
         this.level = level;
         this.totalWeekHours = weekHours;
         this.numberStudents = numberStudents;
