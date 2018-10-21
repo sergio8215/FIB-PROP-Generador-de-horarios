@@ -17,7 +17,7 @@ public class SubjectsSet {
     public enum typeSet {
         ofCurriculum,
         ofSchedule,
-        nothing
+        unespecified
     }
 
 
@@ -50,6 +50,22 @@ public class SubjectsSet {
 
 
     // Methods
+
+    /**
+     * Set the type of the set.
+     * @param set Type of set.
+     */
+    public void setTySet(ArrayList<Subject> set) {
+        this.set = set;
+    }
+
+    /**
+     * Returns the type of the set.
+     * @return Type of the set.
+     */
+    public typeSet getTySet() {
+        return tySet;
+    }
 
     /**
      * Unset the set of subjects.
@@ -179,10 +195,25 @@ public class SubjectsSet {
         return false;
     }
 
+    /**
+     * Compute the difference between two subjects set.
+     * @param set Which the function compute the difference.
+     * @return The difference
+     */
     public SubjectsSet difference(SubjectsSet set) {
-        //
-        // LACK TO IMPLEMENT.
-        //
+        // Definition of the difference: this - set
+        ArrayList<Subject> set1 = this.unset();
+        ArrayList<Subject> set2 = set.unset();
+
+        SubjectsSet diff = new SubjectsSet();
+        diff.setTySet(typeSet.unespecified);
+
+        for (Subject s : set1) {
+            if (!set2.contains(s))  diff.putSubject(s);
+        }
+
+        diff.subjectsSort();
+        return diff;
     }
 
     /**
@@ -208,10 +239,13 @@ public class SubjectsSet {
         return false;
     }
 
+    /**
+     * For a given subject return true if is possible to add it to the set.
+     * @param s Subject to analize.
+     * @return true if is possible to add the subject to the set
+     */
     private boolean canPut(Subject s){
-        //
-        // LACK TO IMPLEMENT.
-        //
+        return true;    // By the moment
     }
 
     /**
