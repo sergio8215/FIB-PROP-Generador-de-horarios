@@ -1,5 +1,5 @@
-package src.Domain;
+package Domain;
 
-public class Asignatura {
+public class Subject {
     
 }
