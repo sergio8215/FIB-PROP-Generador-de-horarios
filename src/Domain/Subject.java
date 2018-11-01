@@ -6,14 +6,24 @@ public class Subject {
      * @author joaquimgomez
      */
 
+    // Auxiliary structures
+
+    public static enum typeShift {
+        morningShift,
+        afternoonShift,
+        bothShifts
+    }
+
 
     // Members
 
     private static String name;
-    private static int totalWeekHours;
+    private static float totalWeekHours;
     private static int numberStudents;
     private static int level;
-    private static int[] hoursClasses; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
+    private static float[] hoursClasses; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
+    private static int[] numberOfGroups; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
+    private static typeShift tyShift;
 
 
     // Constructors
@@ -32,14 +42,18 @@ public class Subject {
      * @param numberStudents Number of students that can be enrolled.
      * @param weekHours Total of hours required for this subject.
      * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
+     * @param numberOfGroups Number of groups and subgroups.
+     * @param tyShift Type of shift.
      */
-    public Subject(String name, int level, int numberStudents, int weekHours, int[] hoursClasses){
+    public Subject(String name, int level, int numberStudents, float weekHours, float[] hoursClasses, int[] numberOfGroups, typeShift tyShift){
         this.name = name;
         this.level = level;
         this.totalWeekHours = weekHours;
         this.numberStudents = numberStudents;
         this.hoursClasses = hoursClasses;
         setHoursClasses(hoursClasses);
+        setNumberOfGroups(numberOfGroups);
+        this.tyShift = tyShift;
     }
 
 
@@ -65,7 +79,7 @@ public class Subject {
      * Set the total of hours required for a given subject.
      * @param weekHours Total of hours required for this subject.
      */
-    public void setWeekHours(int weekHours) {
+    public void setWeekHours(float weekHours) {
         this.totalWeekHours = weekHours;
     }
 
@@ -73,7 +87,7 @@ public class Subject {
      * It returns the total subject's hours.
      * @return Total of hours required.
      */
-    public int getWeekHours() {
+    public float getWeekHours() {
         return totalWeekHours;
     }
 
@@ -114,7 +128,7 @@ public class Subject {
      * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
      * @return True if the summation of the hours distribution is equal to the total of hours required for this subject.
      */
-    public boolean setHoursClasses(int[] hoursClasses) {
+    public boolean setHoursClasses(float[] hoursClasses) {
         if (hoursClasses[0] + hoursClasses[1] + hoursClasses[2] == totalWeekHours){
             this.hoursClasses = hoursClasses;
             return true;
@@ -132,7 +146,7 @@ public class Subject {
      */
     public boolean setHoursClasses(int theoryHours, int laboratoryHours, int problemsHours){
         if (theoryHours + laboratoryHours + problemsHours == totalWeekHours){
-            hoursClasses[0] = theoryHours; hoursClasses[1] = laboratoryHours; hoursClasses[2] = numberStudents;
+            hoursClasses[0] = theoryHours; hoursClasses[1] = laboratoryHours; hoursClasses[2] = problemsHours;
             return true;
         } else {
             return false;
@@ -143,7 +157,48 @@ public class Subject {
      * It returns the distribution of hours.
      * @return Vector with the distribution of hours in Theory, Laboratory and Problems.
      */
-    public int[] getHoursClasses() {
+    public float[] getHoursClasses() {
         return hoursClasses;
+    }
+
+    /**
+     * Set the number of groups and subgroups.
+     * @param numberOfGroups Vector with the number of groups and subgroups.
+     */
+    public void setNumberOfGroups(int[] numberOfGroups) {
+        this.numberOfGroups = numberOfGroups;
+    }
+
+    /**
+     * Set the number of groups and subgroups.
+     * @param groups Number of groups.
+     * @param subgroups Number of subgroups.
+     */
+    public void setNumberOfGroups(int groups, int subgroups){
+        numberOfGroups[0] = groups; numberOfGroups[1] = subgroups;
+    }
+
+    /**
+     * It returns a vector with the number of groups and subgroups.
+     * @return Vector with the number of groups and subgroups.
+     */
+    public int[] getNumberOfGroups() {
+        return numberOfGroups;
+    }
+
+    /**
+     * Set the type of shift.
+     * @param tyShift Type of shift.
+     */
+    public void setTypeShift(typeShift tyShift) {
+        Subject.tyShift = tyShift;
+    }
+
+    /**
+     * It returns the type of shift.
+     * @return Type of the shift.
+     */
+    public static typeShift getTypeShift() {
+        return tyShift;
     }
 }
