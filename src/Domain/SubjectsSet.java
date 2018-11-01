@@ -2,19 +2,19 @@ package src.Domain;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-public class SubjectsSet {
+public final class SubjectsSet {
     /**
      * SubjectsSet class implements a set of subjects to work with them together.
-     * This set all the time keeps the sorting.
      * @author joaquimgomez
      */
 
 
     // Auxiliary Structures
 
-    public enum typeSet {
+    public static enum typeSet {
         ofCurriculum,
         ofSchedule,
         unespecified
@@ -24,7 +24,7 @@ public class SubjectsSet {
     // Members
 
     typeSet tySet;
-    ArrayList<Subject> set; // By the moment.
+    HashMap<String,Subject> set;
 
 
     // Constructors
@@ -33,8 +33,8 @@ public class SubjectsSet {
      * Class constructor
      */
     public SubjectsSet() {
-        tySet = typeSet.nothing;
-        set = new ArrayList<>();
+        tySet = typeSet.unespecified;
+        set = new HashMap<>();
     }
 
     /**
@@ -44,8 +44,9 @@ public class SubjectsSet {
      */
     public SubjectsSet(ArrayList<Subject> subjects, typeSet tySet){
        this.tySet = tySet;
-       set = subjects;
-       subjectsSort();
+       set = new HashMap<>(subjects.size());
+
+       setSet(subjects);
     }
 
 
@@ -53,10 +54,10 @@ public class SubjectsSet {
 
     /**
      * Set the type of the set.
-     * @param set Type of set.
+     * @param tySet Type of set.
      */
-    public void setTySet(ArrayList<Subject> set) {
-        this.set = set;
+    public void setTySet(typeSet tySet) {
+        this.tySet = tySet;
     }
 
     /**
@@ -68,11 +69,20 @@ public class SubjectsSet {
     }
 
     /**
+     * Set the set of subjects.
+     * @param subjects Set of subjects.
+     */
+    public void setSet(ArrayList<Subject> subjects) {
+        for (Subject s : subjects)   set.put(s.getName(), s);
+    }
+
+    /**
      * Unset the set of subjects.
-     * @return ArrayList with the subjects of the set.
+     * @return ArrayList with the subjects of the set (sorted).
      */
     public ArrayList unset() {
-        return set;
+        ArrayList<Subject> tempSet = new ArrayList<Subject>(set.values());
+        return subjectsSort(tempSet);
     }
 
     /**
@@ -81,26 +91,13 @@ public class SubjectsSet {
      * @return Return a ResoultSubjectPair with the resoult.
      */
     public UtilsDomain.ResoultSubjectPair getSubject(String name) {
-        // Binary Search Implementation
-        int start = 0;
-        int end = set.size() - 1;
-
         UtilsDomain.ResoultSubjectPair res;
         res.sub = Subject();
         res.res = false;
 
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-
-            if (set.get(mid).getName().equals(name)) {
-                res.sub = set.get(mid);
-                res.res = true;
-                return res;
-            }
-
-            if (name < set.get(mid).getName())  end = mid - 1;
-
-            if (name > set.get(mid).getName())  start = mid + 1;
+        if (set.containsKey(name)){
+            res.sub = set.get(name);
+            res.res = !res.res;
         }
 
         return res;
@@ -112,26 +109,12 @@ public class SubjectsSet {
      * @return True if the subject could be added.
      */
     public boolean putSubject(Subject s) {
-        // Binary Search Implementation
-        if (canPut(s)) {
-            int start = 0;
-            int end = set.size() - 1;
-
-            while (start <= end) {
-                int mid = start + (end - start) / 2;
-
-                if (compare(s, ">", set.get(mid - 1)) && compare(s, "<", set.get(mid + 1))) {
-                    set.add(mid s);
-                    return true;
-                }
-
-                if (compare(s, "<", set.get(mid)))  end = mid - 1;
-
-                if (compare(s, ">", set.get(mid)))  start = mid + 1;
-            }
+        if (set.containsKey(s.getName()))   return false;
+        else if (!canPut(s))    return false;
+        else {
+            set.put(s.getName(), s);
+            return true;
         }
-
-        return false;
     }
 
     /**
@@ -140,24 +123,10 @@ public class SubjectsSet {
      * @return True if the subject could be deleted.
      */
     public boolean popSubject(String name) {
-        // Binary Search Implementation
-        int start = 0;
-        int end = set.size() - 1;
+        if (!set.containsKey(name))     return false;
 
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-
-            if (set.get(mid).getName().equals(name)) {
-                set.remove(mid);
-                return true;
-            }
-
-            if (name < set.get(mid).getName())  end = mid - 1;
-
-            if (name > set.get(mid).getName())  start = mid + 1;
-        }
-
-        return false;
+        set.remove(name);
+        return true;
     }
 
     /**
@@ -169,26 +138,43 @@ public class SubjectsSet {
     }
 
     /**
+     * It indicates if a given subject is in the set.
+     * @param s Subject to check
+     * @return True if the set has s.
+     */
+    public boolean belongs(Subject s){
+        return set.containsKey(s.getName());
+    }
+
+    /**
+     *
+     * @param sSubject Name of the subject to check.
+     * @return True if the set has the subject.
+     */
+    public boolean belong(String sSubject){
+        return set.containsKey(sSubject);
+    }
+
+    /**
      * It carries out the union of the sets.
      * @param set Set with which the union should be made.
      * @return True if the union could be made.
      */
     public boolean union(SubjectsSet set) {
-        ArrayList<Subject> arraySet = (this.difference(set)).unset();
-        ArrayList<Subject> aux = new ArrayList<>();
+        ArrayList<Subject> arraySet = set.unset();
+        HashMap<String,Subject> auxSet = new HashMap<>();
 
         boolean allCompatible = true;
-        for (Subject s : arraySet) {
-            if (this.canPut(s))     aux.add(s);
+        for (Subject s : arraySet){
+            if (this.canPut(s))     auxSet.put(s.getName(), s);
             else {
                 allCompatible = !allCompatible;
                 break;
             }
         }
 
-        if (allCompatible) {
-            // putSubject check again the compatibility but it doesn't matter.
-            for (int i = 0; i < aux.size(); i++)    this.putSubject(aux.get(i));
+        if (allCompatible){
+            this.set.putAll(auxSet);
             return true;
         }
 
@@ -206,37 +192,12 @@ public class SubjectsSet {
         ArrayList<Subject> set2 = set.unset();
 
         SubjectsSet diff = new SubjectsSet();
-        diff.setTySet(typeSet.unespecified);
 
         for (Subject s : set1) {
             if (!set2.contains(s))  diff.putSubject(s);
         }
 
-        diff.subjectsSort();
         return diff;
-    }
-
-    /**
-     * It indicates if a given subject is in the set.
-     * @param s Subject to check
-     * @return True if the set has s.
-     */
-    public boolean belongs(Subject s){
-        // Binary Search Implementation
-        int start = 0;
-        int end = set.size() - 1;
-
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-
-            if (s.equals(set.get(mid)))     return true;
-
-            if (compare(s, "<", set.get(mid)))  end = mid - 1;
-
-            if (compare(s, ">", set.get(mid)))  start = mid + 1;
-        }
-
-        return false;
     }
 
     /**
@@ -273,7 +234,7 @@ public class SubjectsSet {
      * @param mid Middle point of the sort.
      * @param end End point of the sort.
      */
-    private void merge(int start, int mid, int end) {
+    private static void merge(ArrayList<Subject> set, int start, int mid, int end) {
         ArrayList<Subject> aux = new ArrayList<>();
 
         for (int i = start; i <= end; i++)  aux.add(i, set.get(i));
@@ -296,23 +257,23 @@ public class SubjectsSet {
      * @param start Start point of the sort.
      * @param end End point of the sort.
      */
-    private void rSubjectsSort(int start, int end) {
+    private static void rSubjectsSort(ArrayList<Subject> set, int start, int end) {
         if (start < end){
             int mid = start + (end - start) / 2;
 
-            rSubjectsSort(start, mid);
-            rSubjectsSort(mid + 1, end);
+            rSubjectsSort(set, start, mid);
+            rSubjectsSort(set,mid + 1, end);
 
-            merge(start, mid, end);
+            merge(set, start, mid, end);
         }
     }
 
     /**
      * Sort of the subjects considering the level and the name of these.
      */
-    private void subjectsSort() {
+    public static void subjectsSort(ArrayList<Subject> set) {
         // Mergesort Implementation
         // Worst-case complexity: O(n log n) ; Worst-case space complexity: O(n)
-        rSubjectsSort(0, set.size());
+        rSubjectsSort(set, 0, set.size());
     }
 }
