@@ -26,7 +26,7 @@ public class ClassroomSetClass {
      * @param classroomSet
      */
     public ClassroomSetClass (HashMap<String, ClassroomClass> classroomSet){
-        //TODO: puc copiar així el HashMap??
+        //TODO: puc copiar així el HashMap?? .clone() ??
         this.classroomSet = classroomSet;
         theoryClassroomSet = new HashMap<>();
         labClassroomSet = new HashMap<>();
@@ -98,6 +98,56 @@ public class ClassroomSetClass {
      */
     public void setLabClassroomSet(HashMap<String, LabClassroomClass> labClassroomSet) {
         this.labClassroomSet = labClassroomSet;
+    }
+
+    /**
+     * It indicates if there is a classroom Object with name name
+     * @param name name of a classroom that exists
+     * @return returns true if there is a classroom Object with name name, false otherwise
+     */
+    public boolean exists (String name) {
+        return classroomSet.containsKey(name);
+    }
+
+    /**
+     * It indicates if there is a specific type of classroom Object with name name
+     * @param name name of a classroom that exists
+     * @param typeFlag indicates the type of the classroom
+     * @return returns true if there is a classroom Object of type typeFlag and name name, false otherwise
+     */
+    public boolean exists (String name, int typeFlag){
+        //TODO:enumeration o constants globals??
+        if (typeFlag == UtilsDomain.ClassType.LABORATORY) {
+            return labClassroomSet.containsKey(name);
+        }
+        else {
+            return theoryClassroomSet.containsKey(name);
+        }
+    }
+
+    /**
+     * Getter of a classroom Object by its name
+     * @param name name of a classroom that exists
+     * @return returns the classroom Object with that name
+     */
+    public ClassroomClass getClassroom(String name) {
+        return classroomSet.get(name);
+    }
+
+    /**
+     * Getter of a specific type of classroom Object by its name
+     * @param name name of a classroom that exists
+     * @param typeFlag indicates the type of the classroom
+     * @return returns the classroom Object with that name
+     */
+    public ClassroomClass getClassroom(String name, int typeFlag) {
+        //TODO:enumeration o constants globals??
+        if (typeFlag == UtilsDomain.ClassType.LABORATORY) {
+            return labClassroomSet.get(name);
+        }
+        else {
+            return theoryClassroomSet.get(name);
+        }
     }
 
     /**
