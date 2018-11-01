@@ -80,7 +80,7 @@ public final class SubjectsSet {
      * Unset the set of subjects.
      * @return ArrayList with the subjects of the set (sorted).
      */
-    public ArrayList unset() {
+    public ArrayList<Subject> unset() {
         ArrayList<Subject> tempSet = new ArrayList<Subject>(set.values());
         return subjectsSort(tempSet);
     }
@@ -147,7 +147,7 @@ public final class SubjectsSet {
     }
 
     /**
-     *
+     * It indicates if a given subject (by the name) is in the set.
      * @param sSubject Name of the subject to check.
      * @return True if the set has the subject.
      */
@@ -230,6 +230,7 @@ public final class SubjectsSet {
 
     /**
      * Implementation of merge for the mergesort algorithm.
+     * @param set Set that must be ordered.
      * @param start Start point of the sort.
      * @param mid Middle point of the sort.
      * @param end End point of the sort.
@@ -254,6 +255,7 @@ public final class SubjectsSet {
 
     /**
      * Recursively implementation of the mergesort algorithm.
+     * @param set Set that must be ordered.
      * @param start Start point of the sort.
      * @param end End point of the sort.
      */
@@ -269,6 +271,7 @@ public final class SubjectsSet {
     }
 
     /**
+     * @param set Set that must be ordered.
      * Sort of the subjects considering the level and the name of these.
      */
     public static void subjectsSort(ArrayList<Subject> set) {
