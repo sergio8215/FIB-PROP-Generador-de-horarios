@@ -10,7 +10,7 @@ public abstract class ClassroomClass {
     //ATTRIBUTES
     private String name;
     private int capacity;
-    private int type; //crear ints pels tipus (LABORATORI, TEORIA)
+    private UtilsDomain.ClassroomType type; //crear ints pels tipus (LABORATORI, TEORIA)
     private boolean multimedia;
 
     //CONSTRUCTOR
@@ -22,7 +22,7 @@ public abstract class ClassroomClass {
      * @param t type of the classroom (Laboratory or Theory)
      * @param m if the classroom has a multimedia system
      */
-    ClassroomClass(String n, int cap, int t, boolean m) {
+    ClassroomClass(String n, int cap, UtilsDomain.ClassroomType t, boolean m) {
         name = n;
         capacity = cap;
         type = t;
@@ -67,7 +67,7 @@ public abstract class ClassroomClass {
      * Getter of the type attribute
      * @return returns the type of the classroom
      */
-    public int getType() {
+    public UtilsDomain.ClassroomType getType() {
         return type;
     }
 
@@ -75,7 +75,7 @@ public abstract class ClassroomClass {
      * Setter of the type attribute
      * @param type
      */
-    public void setType(int type) {
+    public void setType(UtilsDomain.ClassroomType type) {
         this.type = type;
     }
 

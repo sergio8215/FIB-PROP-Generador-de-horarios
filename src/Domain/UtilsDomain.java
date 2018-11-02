@@ -6,4 +6,9 @@ public class UtilsDomain {
         LABORATORY,
         PROBLEMS
     }
+
+    public enum ClassroomType {
+        THEORY,
+        LABORATORY
+    }
 }

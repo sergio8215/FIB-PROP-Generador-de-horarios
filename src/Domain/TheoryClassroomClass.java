@@ -12,10 +12,10 @@ public class TheoryClassroomClass extends ClassroomClass {
      * TheoryClassroomClass constructor
      * @param n name of the classroom
      * @param cap capacity of the classroom
-     * @param t type of the classroom
-     * @param m tells us if the classroom has multimedia system
+     * @param m indicates if the classroom has multimedia system
      */
-    TheoryClassroomClass(String n, int cap, int t, boolean m) {
-        super(n, cap, t, m);
+    TheoryClassroomClass(String n, int cap, boolean m) {
+        super(n, cap, UtilsDomain.ClassroomType.THEORY, m);
     }
+
 }
