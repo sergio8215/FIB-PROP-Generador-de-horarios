@@ -18,17 +18,14 @@ public class ProblemsClass extends ClassClass{
     // Constructors
 
     /**
-     * Class constructor.
-     */
-    public ProblemsClass(){
-
-    }
-
-    /**
      * Class constructor specifying the member's values.
+     * @param identifier
      * @param Subidentifier Identificator of the SubClass.
+     * @param subject
+     * @param group
      */
-    public ProblemsClass(int Subidentifier){
+    public ProblemsClass(int identifier, int Subidentifier, Subject subject, int group){
+        super( identifier, subject, group);
         this.Subidentifier = Subidentifier;
     }
 
@@ -36,19 +33,20 @@ public class ProblemsClass extends ClassClass{
     // Methods
 
     /**
-     * Set the identification of a given class.
-     * @param Subidentifier Identificator of the Subclass.
+     * 
+     * @param Subidentifier 
      */
-    public void setIdentifier (int Subidentifier) {
+    public void setSubidentifier(int Subidentifier) {
         this.Subidentifier = Subidentifier;
     }
 
     /**
-     * It returns the identificator of the class.
-     * @return Identificator of the Subclass.
+     * 
+     * @return 
      */
-    public int getIdentifier() {
+    public int getSubidentifier() {
         return Subidentifier;
     }
 
+   
 }

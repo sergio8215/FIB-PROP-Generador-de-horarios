@@ -9,7 +9,7 @@ package Domain;
  *
  * @author Sergio
  */
-public class LaboratoryClass extends ClassClass{
+public class LaboratoryClass extends ClassClass {
 
     // Members
     private int Subidentifier;
@@ -18,17 +18,14 @@ public class LaboratoryClass extends ClassClass{
     // Constructors
 
     /**
-     * Class constructor.
-     */
-    public LaboratoryClass(){
-
-    }
-
-    /**
      * Class constructor specifying the member's values.
+     * @param identifier
      * @param Subidentifier Identificator of the SubClass.
+     * @param subject
+     * @param group
      */
-    public LaboratoryClass(int Subidentifier){
+    public LaboratoryClass(int identifier, int Subidentifier, Subject subject, int group){
+        super(identifier, subject, group);
         this.Subidentifier = Subidentifier;
     }
 
@@ -36,19 +33,19 @@ public class LaboratoryClass extends ClassClass{
     // Methods
 
     /**
-     * Set the identification Subidentifier of a given class.
-     * @param Subidentifier Identificator of the Subclass.
+     * @return 
      */
-    public void setIdentifier(int Subidentifier) {
-        this.Subidentifier = Subidentifier;
+    public int getSubidentifier() {
+        return Subidentifier;
     }
 
     /**
-     * It returns the identificator of the class.
-     * @return Identificator of the Subclass.
+     * @param Subidentifier
      */
-    public int getIdentifier() {
-        return Subidentifier;
+    public void setSubidentifier(int Subidentifier) {
+        this.Subidentifier = Subidentifier;
     }
+
+
 
 }

@@ -7,10 +7,10 @@ package Domain;
 
 
 /**
- *
+ * ClassClass represents the set of students that share a same schedule
  * @author Sergio
  */
-public class ClassClass {
+public abstract class ClassClass {
     
     // Members
     private int identifier;
@@ -20,13 +20,6 @@ public class ClassClass {
     
 
     // Constructors
-
-    /**
-     * Class constructor.
-     */
-    public ClassClass(){
-
-    }
 
     /**
      * Class constructor specifying the member's values.
