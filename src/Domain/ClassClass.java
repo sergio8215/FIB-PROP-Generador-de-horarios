@@ -5,7 +5,6 @@
  */
 package Domain;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -15,8 +14,9 @@ public class ClassClass {
     
     // Members
     private int identifier;
+    private int group;
     private Subject subject;
-    private ArrayList<Constraints> constraints; 
+    
     
 
     // Constructors
@@ -32,32 +32,50 @@ public class ClassClass {
      * Class constructor specifying the member's values.
      * @param identifier Identificator of the Class.
      * @param subject subject of the class.
-     * @param constraints class restrictions.
+     * @param group
      */
-    public ClassClass(int identifier, Subject subject){
+    public ClassClass(int identifier, Subject subject, int group){
         this.identifier = identifier;
         this.subject = subject;
-        this.constraints = constraints;
+        this.group = group;
     }
 
 
     // Methods
 
     /**
+     * Set the Group number of a given class.
+     * @param group group of the class.
+     */
+    public void setGroup(int group) {
+        this.group = group;
+    }
+    
+    
+    /**
      * Set the identification identifier of a given class.
      * @param identifier Identificator of the class.
      */
-    public void setNumber(int identifier) {
+    public void setIdentifier(int identifier) {
         this.identifier = identifier;
     }
 
     /**
+     * It returns the Group number of the class.
+     * @return Group number of the class.
+     */
+    public int getGroup() {
+        return group;
+    }    
+    
+    /**
      * It returns the identificator of the class.
      * @return Identificator of the class.
      */
-    public int getNumber() {
+    public int getIdentifier() {
         return identifier;
     }
+    
     /**
      * Set the subject of a given class.
      * @param subject subjecto of the class.

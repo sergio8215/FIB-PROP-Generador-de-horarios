@@ -14,16 +14,15 @@ public class Session {
 
     //Members
     //store days of the week
-    private static final int MONDAY = 1;
-    private static final int TUESDAY = 2;
-    private static final int WEDNESDAY = 3;
-    private static final int THURSDAY = 4;
-    private static final int FRIDAY = 5;
-    private static final int SATURDAY = 6;
-    private static final int SUNDAY = 7;
-    private int day;
+    
+    public enum Day {
+        MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY, SATURDAY
+    }
+    
     private int hour;
-
+    private Day day;
+    
     //Constructor
     /**
      * Class constructor.
@@ -34,10 +33,10 @@ public class Session {
     /**
      * Class constructor specifying the member's values.
      *
-     * @param Day of the week
-     * @param Hour of the session
+     * @param day
+     * @param hour
      */
-    public Session(int day, int hour) {
+    public Session(Day day, int hour) {
         this.hour = hour;
         this.day = day;
     }
@@ -55,7 +54,7 @@ public class Session {
     /**
      * Set the name of the curriculum.
      *
-     * @param name Name of the curriculum.
+     * @param hour
      */
     public void setHour(int hour) {
         this.hour = hour; // Poner expeción si el valor no esta entre 0 y 23
@@ -66,16 +65,16 @@ public class Session {
      *
      * @return day of the session.
      */
-    public int getDay() {
+    public Day getDay() {
         return day;
     }
 
     /**
      * Set the name of the curriculum.
      *
-     * @param name Name of the curriculum.
+     * @param day
      */
-    public void setDay(int day) {
+    public void setDay(Day day) {
         this.day = day; // Poner expeción si el valor no esta entre 1 y 7
     }
 
