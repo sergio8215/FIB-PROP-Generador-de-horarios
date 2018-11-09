@@ -4,3 +4,9 @@
 *.iml
 
 META-INF/
+/Schedules-Generator/nbproject/private/
+nbproject/
+
+build\.xml
+
+manifest\.mf
