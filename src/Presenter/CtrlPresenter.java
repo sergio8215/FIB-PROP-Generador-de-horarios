@@ -91,7 +91,10 @@ public class CtrlPresenter {
             }
         }
 
-        ctrlD.defaultScennario();
+        String strSubjectsFile = "subjects" + subjectsFile + ".json";
+        String classroomsFile = "classrooms" + classromsFile + ".json";
+
+        ctrlD.createScenario(classroomsFile, strSubjectsFile);
         // RESTRICCIONES
 
     }
@@ -101,9 +104,9 @@ public class CtrlPresenter {
                 "- Set of Subjects: \n" +
                 "  1. ArchivoSubjects1 \n" +
                 "  2. ArchivoSubjects2 \n" +
-                "- Set of Classroms.\n" +
-                "  1. ArchivoClassroms1\n" +
-                "  2. ArchivoClassrom2\n");
+                "- Set of Classrooms.\n" +
+                "  1. ArchivoClassrooms1\n" +
+                "  2. ArchivoClassroom2\n");
         System.out.println("Indicates following the scheme: numOfSubjectsFile numOfClassromsFile");
         System.out.println("Option: ");
     }
