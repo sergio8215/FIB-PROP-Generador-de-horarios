@@ -5,6 +5,7 @@
 			"Cantidad":20,
 			"Tipo": "Laboratory",
 			"Audiovisual": true
+			"Numero_ordenadores"---------------------
 		},
 		{
 			"Aula":"A6202",
@@ -32,6 +33,7 @@
 		"Num_students": 30,
 		"Level": 3,
 		"Max_capacity": 30
+		"Numero_de_clases":---------------------------------------
 		},
 		{
 		"Subject":"IDI",
