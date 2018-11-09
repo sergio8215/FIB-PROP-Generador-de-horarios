@@ -3,6 +3,7 @@ package src.Domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 
 
 public final class SubjectsSet {
@@ -47,6 +48,19 @@ public final class SubjectsSet {
        set = new HashMap<>(subjects.size());
 
        setSet(subjects);
+    }
+
+    /**
+     * Class constuctor for a given set of subjects in string format.
+     * @param setSubjectsMat Matrix with the differents subjects (with string format) to be added to the set.
+     */
+    public SubjectsSet(Vector< Vector<String> > setSubjectsMat){
+        tySet = typeSet.ofCurriculum;
+
+        for (Vector<String> subject : setSubjectsMat) {
+            Subject auxSubject = new Subject(subject);
+            this.putSubject(auxSubject);
+        }
     }
 
 
