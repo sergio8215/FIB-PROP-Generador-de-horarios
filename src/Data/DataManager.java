@@ -1,6 +1,6 @@
+package src.Data;
 
-import Domain.ClassroomClass;
-import Domain.SubjectsSet;
+import src.Domain.SubjectsSet;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,27 +32,25 @@ public class DataManager {
      * @param fileName
      * @throws java.io.IOException
      */
-    public void ImportData(String fileName) throws IOException {
+    public void ImportClassrooms(String fileName) throws IOException {
 
         JSONParser parser = new JSONParser();
-        
+
         try {
             Object obj = parser.parse(new FileReader("./files/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
-           
+
             String  aula;
             Long    cantidad;
             String  tipo;
             Boolean audiovisual;
-          
+
             // loop array to find values of classrooms
             JSONArray aulasList = (JSONArray) rootJSON.get("Aulas List");
             Iterator<JSONObject> iterator = aulasList.iterator();
-            
+
             int i=0;
-            
-            
-            
+
             while (iterator.hasNext()) {
 
                 JSONObject aulas = (JSONObject) iterator.next();
@@ -60,15 +58,34 @@ public class DataManager {
                 cantidad =      (Long) aulas.get("Cantidad");
                 tipo =          (String) aulas.get("Tipo");
                 audiovisual =   (Boolean) aulas.get("Audiovisual");
-                
-                
-                
+
+
+
                 System.out.println("Aula: "+aula);
                 System.out.println("Cantdidad: "+cantidad);
                 System.out.println("Tipo: "+tipo);
                 System.out.println("Audiovisual: "+audiovisual+"\n");
                 i++;
             }
+
+        } catch (FileNotFoundException | ParseException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    /**
+     * Reading from JSON file
+     * @param fileName
+     * @throws java.io.IOException
+     */
+    public void ImportSubjects(String fileName) throws IOException {
+
+        JSONParser parser = new JSONParser();
+        
+        try {
+            Object obj = parser.parse(new FileReader("./files/" + fileName ));
+            JSONObject rootJSON = (JSONObject) obj;
             
             String  subject;
             Long    weekHours;
