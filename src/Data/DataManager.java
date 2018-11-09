@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package source.Domain;
+package src.Data;
 
 /**
  *
  * @author Sergio
  */
-public class Session {
+public class DataManager {
     
 }

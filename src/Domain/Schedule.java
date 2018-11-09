@@ -1,6 +1,8 @@
-package source.Domain;
+package src.Domain;
 
 public class Schedule {
+    String classroomFile;
+    String subjectFile;
 
 
 
