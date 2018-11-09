@@ -1,5 +1,7 @@
 package src.Domain;
 
+import java.util.Vector;
+
 public class Subject {
     /**
      * Subject class represents a subject of a given Curriculum.
@@ -56,6 +58,21 @@ public class Subject {
         this.tyShift = tyShift;
     }
 
+
+    public Subject(Vector<String> vectorMembers) {
+        name = vectorMembers.get(0);
+        totalWeekHours = Float.parseFloat(vectorMembers.get(1));
+        numberStudents = Integer.parseInt(vectorMembers.get(2));
+        level = Integer.parseInt(vectorMembers.get(3));
+        hoursClasses = new float[3];
+        hoursClasses[0] = Float.parseFloat(vectorMembers.get(4));
+        hoursClasses[1] = Float.parseFloat(vectorMembers.get(5));
+        hoursClasses[2] = Float.parseFloat(vectorMembers.get(6));
+        numberOfGroups = new int[2];
+        numberOfGroups[0] = Integer.parseInt(vectorMembers.get(7));
+        numberOfGroups[1] = Integer.parseInt(vectorMembers.get(8));
+        tyShift = typeShift.values()[Integer.parseInt(vectorMembers.get(9))];
+    }
 
     // Methods
 
@@ -198,7 +215,28 @@ public class Subject {
      * It returns the type of shift.
      * @return Type of the shift.
      */
-    public static typeShift getTypeShift() {
+    public typeShift getTypeShift() {
         return tyShift;
+    }
+
+    /**
+     * It returns a vector of strings with the members' values.
+     * @return Vector of strings with the members' values.
+     */
+    public Vector<String> toString() {
+        Vector<String> c = new Vector<>();
+
+        c.add(name);
+        c.add(Float.toString(totalWeekHours));
+        c.add(Integer.toString(numberStudents));
+        c.add(Integer.toString(level));
+        c.add(Float.toString(hoursClasses[0]));
+        c.add(Float.toString(hoursClasses[1]));
+        c.add(Float.toString(hoursClasses[2]));
+        c.add(Integer.toString(numberOfGroups[0]));
+        c.add(Integer.toString(numberOfGroups[1]));
+        c.add(Integer.toString(tyShift.ordinal()));
+
+        return c;
     }
 }
