@@ -1,9 +1,14 @@
-package src.Domain;
+package Domain;
 
 public class UtilsDomain {
     public enum ClassType {
         THEORY,
         LABORATORY,
         PROBLEMS
+    }
+
+    public enum ClassroomType {
+        THEORY,
+        LABORATORY
     }
 }

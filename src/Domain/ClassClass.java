@@ -13,10 +13,14 @@ package Domain;
 public abstract class ClassClass {
     
     // Members
+        
+    public enum ClassType {
+        LABORATORY, THEORY, PROBLEMS
+    }
+    
     private int identifier;
     private int group;
     private Subject subject;
-    
     
 
     // Constructors

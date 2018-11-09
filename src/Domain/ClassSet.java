@@ -14,9 +14,10 @@ import java.util.HashMap;
  */
 public class ClassSet {
     
-    // Members
-    private ArrayList<Constraints> constraints; 
-    private HashMap classSet;
+    // Attributes
+    
+    //private ArrayList<Constraints> constraints; 
+    private HashMap<Integer, ClassClass> classSet;
 
     
     // Constructors
@@ -25,25 +26,34 @@ public class ClassSet {
     * Class constructor.
     */    
     public ClassSet() {
+        classSet = new HashMap<>();
+      //  constraints = new ArrayList<Constraints>;
     }
 
     /**
     * Class constructor specifying the member's values.
-    * @param constraints
-    * @param classSet
+     * @param classes
     */    
-    public ClassSet(ArrayList<Constraints> constraints, HashMap classSet) {
-        this.constraints = constraints;
-        this.classSet = classSet;
+    public ClassSet(ArrayList<ClassClass> classes) {
+       this.classSet = new HashMap<>(classes.size());
+       createSet(classes);
     }
 
     // Methods
+
+    /**
+    *
+    */
+    private void createSet( ArrayList<ClassClass> classes ) {
+        for ( ClassClass c : classes ) classSet.put(c.getIdentifier(), c);
+    }
+
     /**
      * @param constraints
-     */    
+         
     public void setConstraints(ArrayList<Constraints> constraints) {
         this.constraints = constraints;
-    }
+    }*/
 
     /**
      * @param classSet
@@ -54,10 +64,10 @@ public class ClassSet {
     
     /**
      * @return    
-     */    
+        
     public ArrayList<Constraints> getConstraints() {
         return constraints;
-    }
+    }*/ 
     
     /**
      * @return    
