@@ -59,6 +59,10 @@ public class Subject {
     }
 
 
+    /**
+     * Class constructor for a given vector with the members of the class.
+     * @param vectorMembers Vector with the members of the class subject.
+     */
     public Subject(Vector<String> vectorMembers) {
         name = vectorMembers.get(0);
         totalWeekHours = Float.parseFloat(vectorMembers.get(1));
