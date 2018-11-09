@@ -16,7 +16,6 @@ public final class SubjectsSet {
     // Auxiliary Structures
 
     public static enum typeSet {
-        ofCurriculum,
         ofSchedule,
         unespecified
     }
@@ -24,7 +23,7 @@ public final class SubjectsSet {
 
     // Members
 
-    typeSet tySet;
+    typeSet tySet;  // Unused by the moment.
     HashMap<String,Subject> set;
 
 
@@ -52,12 +51,12 @@ public final class SubjectsSet {
 
     /**
      * Class constuctor for a given set of subjects in string format.
-     * @param setSubjectsMat Matrix with the differents subjects (with string format) to be added to the set.
+     * @param subjectsSet Matrix with the differents subjects (with string format) to be added to the set.
      */
-    public SubjectsSet(Vector< Vector<String> > setSubjectsMat){
-        tySet = typeSet.ofCurriculum;
+    public SubjectsSet(Vector< Vector<String> > subjectsSet){
+        tySet = typeSet.unespecified;
 
-        for (Vector<String> subject : setSubjectsMat) {
+        for (Vector<String> subject : subjectsSet) {
             Subject auxSubject = new Subject(subject);
             this.putSubject(auxSubject);
         }
@@ -95,8 +94,23 @@ public final class SubjectsSet {
      * @return ArrayList with the subjects of the set (sorted).
      */
     public ArrayList<Subject> unset() {
-        ArrayList<Subject> tempSet = new ArrayList<Subject>(set.values());
-        return subjectsSort(tempSet);
+        ArrayList<Subject> tempSet = new ArrayList<>(set.values());
+        subjectsSort(tempSet);
+        return tempSet;
+    }
+
+    /**
+     * It returns the set as a vector of vectors (of strings) with the members of the elements of the set.
+     * @return Vector of vectors (of strings) with the members of the elements of the set.
+     */
+    public Vector< Vector<String> > toStr() {
+        ArrayList<Subject> ss = this.unset();
+
+        Vector< Vector<String> > set = new Vector<>(ss.size());
+
+        for (int i = 0; i < ss.size(); i++)     set.set(i, ss.get(i).toStr());
+
+        return set;
     }
 
     /**
@@ -104,14 +118,14 @@ public final class SubjectsSet {
      * @param name Name of the subject.
      * @return Return a ResoultSubjectPair with the resoult.
      */
-    public UtilsDomain.ResoultSubjectPair getSubject(String name) {
-        UtilsDomain.ResoultSubjectPair res;
-        res.sub = Subject();
-        res.res = false;
+    public UtilsDomain.ResoultOfQuery<Subject> getSubject(String name) {
+        UtilsDomain.ResoultOfQuery<Subject> res = new UtilsDomain.ResoultOfQuery<>();
+        res.resoult = new Subject();
+        res.queryTest = false;
 
         if (set.containsKey(name)){
-            res.sub = set.get(name);
-            res.res = !res.res;
+            res.resoult = set.get(name);
+            res.queryTest = !res.queryTest;
         }
 
         return res;
@@ -285,8 +299,8 @@ public final class SubjectsSet {
     }
 
     /**
-     * @param set Set that must be ordered.
      * Sort of the subjects considering the level and the name of these.
+     * @param set Set that must be ordered.
      */
     public static void subjectsSort(ArrayList<Subject> set) {
         // Mergesort Implementation
