@@ -1,6 +1,5 @@
 package src.Data;
 
-import src.Domain.SubjectsSet;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,11 +19,10 @@ import org.json.simple.parser.ParseException;
  */
 public class DataManager {
     
-    SubjectsSet subjects;
-    
+
     
     // Constructor
-    public DataManager(  ){
+    public DataManager( ){
     }
 
     /**
@@ -32,46 +30,45 @@ public class DataManager {
      * @param fileName
      * @throws java.io.IOException
      */
-    public void ImportClassrooms(String fileName) throws IOException {
+    public Vector <Vector< String>> ImportClassrooms(String fileName) throws IOException {
 
         JSONParser parser = new JSONParser();
-
+        Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
         try {
+
             Object obj = parser.parse(new FileReader("./files/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
-            String  aula;
-            Long    cantidad;
-            String  tipo;
-            Boolean audiovisual;
-
             // loop array to find values of classrooms
-            JSONArray aulasList = (JSONArray) rootJSON.get("Aulas List");
-            Iterator<JSONObject> iterator = aulasList.iterator();
+            JSONArray classroomList = (JSONArray) rootJSON.get("Classrooms List");
+            Iterator<JSONObject> iterator = classroomList.iterator();
 
-            int i=0;
+            int i = 0;
 
             while (iterator.hasNext()) {
 
-                JSONObject aulas = (JSONObject) iterator.next();
-                aula =          (String) aulas.get("Aula");
-                cantidad =      (Long) aulas.get("Cantidad");
-                tipo =          (String) aulas.get("Tipo");
-                audiovisual =   (Boolean) aulas.get("Audiovisual");
+                JSONObject classroomJSON = (JSONObject) iterator.next();
 
+                classrooms.add(new Vector<String>());
+                classrooms.elementAt(i).add((String)classroomJSON.get("Classroom"));
+                classrooms.elementAt(i).add((String)classroomJSON.get("Quantity"));
+                classrooms.elementAt(i).add((String)classroomJSON.get("Type"));
+                classrooms.elementAt(i).add((String)classroomJSON.get("Audiovisual"));
+                classrooms.elementAt(i).add((String)classroomJSON.get("Num_computers"));
 
-
-                System.out.println("Aula: "+aula);
-                System.out.println("Cantdidad: "+cantidad);
-                System.out.println("Tipo: "+tipo);
-                System.out.println("Audiovisual: "+audiovisual+"\n");
+                System.out.println("Classroom: "+   classrooms.elementAt(i).get(0));
+                System.out.println("Quantity: "+    classrooms.elementAt(i).get(1));
+                System.out.println("Type: "+        classrooms.elementAt(i).get(2));
+                System.out.println("Audiovisual: "+ classrooms.elementAt(i).get(3));
+                System.out.println("Num Computers: "+classrooms.elementAt(i).get(4)+"\n");
                 i++;
             }
 
         } catch (FileNotFoundException | ParseException ex) {
+            classrooms = null;
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return classrooms;
     }
 
     /**
@@ -79,9 +76,10 @@ public class DataManager {
      * @param fileName
      * @throws java.io.IOException
      */
-    public void ImportSubjects(String fileName) throws IOException {
+    public Vector <Vector< String>> ImportSubjects(String fileName) throws IOException {
 
         JSONParser parser = new JSONParser();
+        Vector <Vector< String>> subjects = new Vector <Vector< String>>();
         
         try {
             Object obj = parser.parse(new FileReader("./files/" + fileName ));
@@ -97,28 +95,34 @@ public class DataManager {
             JSONArray subjectsList = (JSONArray) rootJSON.get("Subjects List");
             Iterator<JSONObject> iterator2 = subjectsList.iterator();
             
-            int j=0;
+            int i=0;
             
             while (iterator2.hasNext()) {
 
-                JSONObject subjectVal = (JSONObject) iterator2.next();
-                subject =       (String) subjectVal.get("Subject");
-                weekHours =     (Long) subjectVal.get("Week_hours");
-                numStudents =   (Long) subjectVal.get("Num_students");
-                level =         (Long) subjectVal.get("Level");
-                maxCapacity =   (Long) subjectVal.get("Max_capacity");
-                
-                System.out.println("Subject: "+subject);
-                System.out.println("Week_hours: "+weekHours);
-                System.out.println("Num_students: "+numStudents);
-                System.out.println("Level: "+level);
-                System.out.println("Max_capacity: "+maxCapacity+"\n");
-                j++;
+                JSONObject subjectJSON = (JSONObject) iterator2.next();
+
+                subjects.add(new Vector<String>());
+                subjects.elementAt(i).add((String)subjectJSON.get("Subject"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Week_hours"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Num_students"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Level"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Max_capacity"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Num_classes"));
+
+                System.out.println("Subject: "+     subjects.elementAt(i).get(0));
+                System.out.println("Week_hours: "+  subjects.elementAt(i).get(1));
+                System.out.println("Num_students: "+subjects.elementAt(i).get(2));
+                System.out.println("Level: "+       subjects.elementAt(i).get(3));
+                System.out.println("Max_capacity: "+       subjects.elementAt(i).get(4));
+                System.out.println("Num_classes: "+subjects.elementAt(i).get(5)+"\n");
+                i++;
             }
 
             
         } catch (FileNotFoundException | ParseException ex) {
+            subjects = null;
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return subjects;
     }
 }

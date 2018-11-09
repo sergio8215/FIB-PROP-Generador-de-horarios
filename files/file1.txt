@@ -1,74 +1,82 @@
 {
-    "Aulas List": [
+    "Classrooms List": [
 		{
-			"Aula":"A6201",
-			"Cantidad":20,
-			"Tipo": "Laboratory",
-			"Audiovisual": true
-			"Numero_ordenadores"---------------------
+			"Classroom":"A6201",
+			"Quantity":"20",
+			"Type": "Laboratory",
+			"Audiovisual": "true",
+			"Num_computers": "10"
 		},
 		{
-			"Aula":"A6202",
-			"Cantidad":50,
-			"Tipo": "Theory",
-			"Audiovisual": true			
+			"Classroom":"A6202",
+			"Quantity":"50",
+			"Type": "Theory",
+			"Audiovisual": "true",
+			"Num_computers": "0"
 		},
 		{
-			"Aula":"A6203",
-			"Cantidad":30,			
-			"Tipo": "Theory",
-			"Audiovisual": true
+			"Classroom":"A6203",
+			"Quantity":"30",			
+			"Type": "Theory",
+			"Audiovisual": "true",
+			"Num_computers": "0"
 		},
 		{
-			"Aula":"A6204",
-			"Cantidad":15,	
-			"Tipo": "Theory",
-			"Audiovisual": true			
+			"Classroom":"A6204",
+			"Quantity":"15",	
+			"Type": "Theory",
+			"Audiovisual": "true",
+			"Num_computers": "0"
 		}
     ],
     "Subjects List": [
 		{
 		"Subject":"EEE",
-		"Week_hours":4,
-		"Num_students": 30,
-		"Level": 3,
-		"Max_capacity": 30
-		"Numero_de_clases":---------------------------------------
+		"Week_hours": "4",
+		"Num_students": "30",
+		"Level": "3",
+		"Max_capacity": "30",
+		"Num_classes": "2"
 		},
 		{
 		"Subject":"IDI",
-		"Week_hours":4,
-		"Num_students": 30,
-		"Level": 4,
-		"Max_capacity": 30
+		"Week_hours": "4",
+		"Num_students": "30",
+		"Level":  "4",
+		"Max_capacity": "30",
+		"Num_classes": "2"
 		},
 		{
 		"Subject":"IES",
-		"Week_hours":4,
-		"Num_students": 30,
-		"Level": 4,
-		"Max_capacity": 30
+		"Week_hours": "4",
+		"Num_students": "30",
+		"Level":  "4",
+		"Max_capacity": "30",
+		"Num_classes": "2"
 		},
 		{
 		"Subject":"XC",
-		"Week_hours":4,
-		"Num_students": 30,
-		"Level": 4,
-		"Max_capacity": 30
+		"Week_hours": "4",
+		"Num_students": "30",
+		"Level":  "4",
+		"Max_capacity": "30",
+		"Num_classes": "2"
 		},
 		{
 		"Subject":"PAR",
-		"Week_hours":4,
-		"Num_students": 30,
-		"Level": 5,
-		"Max_capacity": 30
+		"Week_hours": "4",
+		"Num_students": "30",
+		"Level": "5",
+		"Max_capacity": "30",
+		"Num_classes": "2"
 		},
 		{
 		"Subject":"PROP",
-		"Week_hours":5,
-		"Num_students": 30,
-		"Level": 6,
-		"Max_capacity": 30
+		"Week_hours":"5",
+		"Num_students": "30",
+		"Level": "6",
+		"Max_capacity": "30",
+		"Num_classes": "2"
 		}
     ]
 }
