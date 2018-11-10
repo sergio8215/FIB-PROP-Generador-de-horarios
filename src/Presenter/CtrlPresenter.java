@@ -6,19 +6,19 @@ import java.util.Scanner;
 
 public class CtrlPresenter {
 
-    CtrlDomain ctrlD;
+    CtrlDomain ctrlDomain;
 
     public static void main(String[] args) throws Exception {
 
         System.out.println("SCHEDULE GENERATOR\n");
 
-        ctrlD = CtrlDomain();
+        ctrlDomain = new CtrlDomain();
 
         Scanner s = new Scanner(System.in);
 
         boolean end = false;
         while (!end){
-            menuPrinter();
+            mainMenu();
 
             int opt = s.nextInt();
 
@@ -29,7 +29,13 @@ public class CtrlPresenter {
                     break;
 
                 case 2:
-                    // LOAD SCHEDULE
+                    boolean inputCorrect = false;
+                    while (!inputCorrect) {
+                        System.out.println("Path to the schedule file: ");
+                        String path = s.nextLine();
+
+                        boolean fileExist = ctrlDomain.loadSchedule(path); // PROVISIONAL !!!!!
+                    }
                 case 3:
                     end = !end;
                     break;
@@ -37,15 +43,14 @@ public class CtrlPresenter {
                 default:
                     clearConsole();
                     System.out.println("Input error. Try it again!");
-                    menuPrinter();
+                    mainMenu();
                     opt = s.nextInt();
             }
         }
 
-
     }
 
-    private static void menuPrinter() {
+    private static void mainMenu() {
         System.out.println("1. Generate Schedule.\n");
         System.out.println("2. Load schedule.\n");
         System.out.println("3. Exit.\n");
@@ -65,14 +70,14 @@ public class CtrlPresenter {
 
     }
 
-    private static void scheduleGeneration() throws Exception{ /// MODIFICAR PARA PASAR ESCENARIO
+    private static void scheduleGeneration() throws Exception { /// MODIFICAR PARA PASAR ESCENARIO
 
         final int numFilesSubjects = 2;
         final int numFilesClassroms = 2;
 
         Scanner s = new Scanner(System.in);
 
-        menuScheduleGeneration();
+        scheduleGenerationMenu();
 
         int subjectsFile;
         int classromsFile;
@@ -87,19 +92,19 @@ public class CtrlPresenter {
                 clearConsole();
                 System.out.println("Input error. Try it again. \n");
                 s.nextLine();
-                menuScheduleGeneration();
+                scheduleGenerationMenu();
             }
         }
 
         String strSubjectsFile = "subjects" + subjectsFile + ".json";
         String classroomsFile = "classrooms" + classromsFile + ".json";
 
-        ctrlD.createScenario(classroomsFile, strSubjectsFile);
+        ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
         // RESTRICCIONES
 
     }
 
-    private static void menuScheduleGeneration() {
+    private static void scheduleGenerationMenu() {
         System.out.println("To generate the schedule it is necessary to indicate: \n " +
                 "- Set of Subjects: \n" +
                 "  1. ArchivoSubjects1 \n" +
