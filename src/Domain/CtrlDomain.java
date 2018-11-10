@@ -6,8 +6,10 @@
 package src.Domain;
 
 import src.Data.DataManager;
+import src.Data.MUS;
 
 import java.util.Vector;
+
 
 /**
  *
@@ -89,8 +91,10 @@ public class CtrlDomain {
     }
 
     public void generateSchedule(){
-        schedule = new Schedule();
 
-        //algoritmo + restricciones
+        schedule = ctrlScheduleGenerator.generateSchedule(/*COSAS INIT*/);
+
+
     }
+
 }
