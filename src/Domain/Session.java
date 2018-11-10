@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package src.Domain;
+
+import java.util.Vector;
 
 /**
  * Session class
@@ -19,15 +21,31 @@ public class Session {
         MONDAY, TUESDAY, WEDNESDAY,
         THURSDAY, FRIDAY, SATURDAY
     }
-    
+
+    private static int hoursPerDay = 12;
+    private static int startHour = 8;
+    private static int daysOfTheWeek = 5;
     private int hour;
     private Day day;
-    
+    private Vector<Vector<Integer>> week;
+
     //Constructor
     /**
      * Class constructor.
      */
     public Session() {
+        week = new Vector<Vector<Integer>>(daysOfTheWeek);
+
+        // For each day of the week
+        for ( int i = 0; i < daysOfTheWeek; i++){
+
+            // We create a vector for each day of the week
+            week.add( i, new Vector<>(hoursPerDay));
+            for ( int j = 0 ; j < hoursPerDay; j++ ) {
+                // For each hour we initialize the vector
+                week.elementAt(i).add(startHour + j);
+            }
+        }
     }
 
     /**
@@ -42,6 +60,15 @@ public class Session {
     }
 
     //Methods
+    /**
+     * It returns the days and hours of the week inside a matrix.
+     * @return a matrix with days of the week(first column) and hours.
+     */
+    public Vector<Vector < Integer>> getWeek() {
+        return week;
+    }
+
+
     /**
      * It returns the hour of the session.
      *
