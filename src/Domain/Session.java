@@ -18,8 +18,13 @@ public class Session {
     //store days of the week
     
     public enum Day {
-        MONDAY, TUESDAY, WEDNESDAY,
-        THURSDAY, FRIDAY, SATURDAY
+        MONDAY,     // ordinal value: 0
+        TUESDAY,    // ordinal value: 1
+        WEDNESDAY,  // ordinal value: 2
+        THURSDAY,   // ordinal value: 3
+        FRIDAY,     // ordinal value: 4
+        SATURDAY,   // ordinal value: 5
+        SUNDAY      // ordinal value: 6
     }
 
     private static int hoursPerDay = 12;
@@ -105,4 +110,14 @@ public class Session {
         this.day = day; // Poner expeción si el valor no esta entre 1 y 7
     }
 
+    public static boolean compare( Session s1, String op, Session s2  ) {
+        if (op.equals("<"))     return s1.getHour() < s2.getHour() && s1.getDay().ordinal() < s2.getDay().ordinal();
+        if (op.equals(">"))     return s1.getHour() > s2.getHour() && s1.getDay().ordinal() > s2.getDay().ordinal();
+        if (op.equals("<="))    return s1.getHour() <= s2.getHour() && s1.getDay().ordinal() <= s2.getDay().ordinal();
+        if (op.equals(">="))    return s1.getHour() >= s2.getHour() && s1.getDay().ordinal() >= s2.getDay().ordinal();
+        if (op.equals("!="))    return !s1.equals(s2);
+        if (op.equals("=="))    return s1.equals(s2);
+
+        return false;
+    }
 }
