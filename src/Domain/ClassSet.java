@@ -7,6 +7,7 @@ package src.Domain;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
@@ -89,19 +90,21 @@ public class ClassSet {
             // For each group of the subject we create the respective theory classes, labs and problems classes.
             for (int i = 1; i <= groups; i++){
 
-                int subGroupCount = 1;
+                int subGroupCount = 0;
                 int subgroup;
+                Vector<Integer> hoursOfClass = subject.getHoursClasses();
 
                 // If there is TheoryHours we create the class
-                if ( subject.getTheoryHours() != 0 ) {
-                    subgroup = i*10;
+                if ( hoursOfClass.get(0) != 0 ) {
+                    subgroup = i*10+subGroupCount;
                     identifier = ""+subject.getName()+subgroup;
                     c = new TheoryClass( identifier, subgroup, subject, i*10);
                     this.addClass( identifier, c);
+                    subGroupCount++;
                 }
 
                 // If there is LaboratoryHours we create the class
-                if ( subject.geLaboratoryHours() != 0 ) {
+                if ( hoursOfClass.get(1) != 0 ) {
                     subgroup = i*10+subGroupCount;
                     subGroupCount++;
                     identifier = ""+subject.getName()+subgroup;
@@ -110,7 +113,7 @@ public class ClassSet {
                 }
 
                 // If there is ProblemsHours we create the class
-                if ( subject.getProblemsHours() != 0 ) {
+                if ( hoursOfClass.get(2) != 0 ) {
                     subgroup = i*10+subGroupCount;
                     identifier = ""+subject.getName()+subgroup;
                     c = new ProblemsClass( identifier, subgroup, subject, i*10);
