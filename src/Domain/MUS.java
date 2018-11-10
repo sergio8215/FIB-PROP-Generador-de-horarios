@@ -25,7 +25,7 @@ public class MUS {
     }
 
     /**
-     * Class constructor specifying the member's values (and time zones).
+     * Class constructor specifying the member's values.
      * @param subject Subject of the MUS.
      * @param classroom Classroom of the MUS.
      * @param session Session of the MUS.
@@ -37,7 +37,7 @@ public class MUS {
     }
 
     /**
-     *
+     * Class constructor specifying the member's values (classroom and session as a pair.).
      * @param subject
      * @param classroomSessionpair
      */
@@ -69,16 +69,16 @@ public class MUS {
     }
 
     /**
-     *
-     * @return
+     * It return the classroom of the MUS.
+     * @return Classrooom of the MUS.
      */
     public Classroom getClassroom() {
         return classroom;
     }
 
     /**
-     *
-     * @return
+     * It returns the session of the MUS:
+     * @return Session of the MUS.
      */
     public Session getSession() {
         return session;
@@ -93,30 +93,38 @@ public class MUS {
     }
 
     /**
-     *
-     * @param classroom
+     * Set the classroom of the MUS.
+     * @param classroom Classroom of the MUS.
      */
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
     }
 
     /**
-     *
-     * @param session
+     * Set the session of the MUS:
+     * @param session Session of the mus
      */
     public void setSession(Session session) {
         this.session = session;
     }
 
     /**
-     *
-     * @return
+     * It return a pair with the Classroom and the Session.
+     * @return Pair with the Classroom and the Session.
      */
     public UtilsDomain.Pair<Classroom, Session> getClassroomSessionPair() {
         UtilsDomain.Pair<Classroom, Session> res = new UtilsDomain.Pair<Classroom, Session>(classroom, session);
         return res;
     }
 
+    /**
+     * Assign classroom and session to the MUS.
+     * @param csPair Pair with the Classroom and the Session.
+     */
+    public void assign(Pair<Classroom, Session> csPair) {
+        classroom = csPair.first;
+        session = csPair.second;
+    }
 
     /**
      * It returns the class as a vector of vectos (one per member).
