@@ -103,26 +103,38 @@ public class DataManager {
 
                 subjects.add(new Vector<String>());
                 subjects.elementAt(i).add((String)subjectJSON.get("Subject"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Week_hours"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Num_students"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Level"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Max_capacity"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Num_classes"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Theory_hours"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Laboratory_hours"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Problems_hours"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Shift"));
 
-                System.out.println("Subject: "+     subjects.elementAt(i).get(0));
-                System.out.println("Week_hours: "+  subjects.elementAt(i).get(1));
-                System.out.println("Num_students: "+subjects.elementAt(i).get(2));
-                System.out.println("Level: "+       subjects.elementAt(i).get(3));
-                System.out.println("Max_capacity: "+       subjects.elementAt(i).get(4));
-                System.out.println("Num_classes: "+subjects.elementAt(i).get(5)+"\n");
+
+                System.out.println("Subject: "+         subjects.elementAt(i).get(0));
+                System.out.println("Num_students: "+    subjects.elementAt(i).get(1));
+                System.out.println("Level: "+           subjects.elementAt(i).get(2));
+                System.out.println("Max_capacity: "+    subjects.elementAt(i).get(3));
+                System.out.println("Theory_hours: "+    subjects.elementAt(i).get(4));
+                System.out.println("Laboratory_hours: "+subjects.elementAt(i).get(5));
+                System.out.println("Problems_hours: "+  subjects.elementAt(i).get(6));
+                System.out.println("Shift: "+           subjects.elementAt(i).get(7)+"\n");
                 i++;
             }
 
-            
         } catch (FileNotFoundException | ParseException ex) {
             subjects = null;
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return subjects;
+    }
+
+    public void loadSchedule(  ) {
+
+    }
+
+    public void saveSchedule(  ) {
+
     }
 }

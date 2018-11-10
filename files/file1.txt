@@ -32,51 +32,63 @@
     "Subjects List": [
 		{
 		"Subject":"EEE",
-		"Week_hours": "4",
 		"Num_students": "30",
 		"Level": "3",
 		"Max_capacity": "30",
-		"Num_classes": "2"
+		"Theory_hours":"4",
+		"Laboratory_hours": "2",
+		"Problems_hours": "0",
+		"Shift":"Morning"
 		},
 		{
 		"Subject":"IDI",
-		"Week_hours": "4",
 		"Num_students": "30",
 		"Level":  "4",
 		"Max_capacity": "30",
-		"Num_classes": "2"
+		"Theory_hours":"4",
+		"Laboratory_hours": "2",
+		"Problems_hours": "0",
+		"Shift":"Morning"
 		},
 		{
 		"Subject":"IES",
-		"Week_hours": "4",
 		"Num_students": "30",
 		"Level":  "4",
 		"Max_capacity": "30",
-		"Num_classes": "2"
+		"Theory_hours":"4",
+		"Laboratory_hours": "2",
+		"Problems_hours": "0",
+		"Shift":"Morning"
 		},
 		{
 		"Subject":"XC",
-		"Week_hours": "4",
 		"Num_students": "30",
 		"Level":  "4",
 		"Max_capacity": "30",
-		"Num_classes": "2"
+		"Theory_hours":"4",
+		"Laboratory_hours": "2",
+		"Problems_hours": "0",
+		"Shift":"Morning"
 		},
 		{
 		"Subject":"PAR",
-		"Week_hours": "4",
 		"Num_students": "30",
 		"Level": "5",
 		"Max_capacity": "30",
-		"Num_classes": "2"
+		"Theory_hours":"4",
+		"Laboratory_hours": "2",
+		"Problems_hours": "0",
+		"Shift":"Morning"
 		},
 		{
 		"Subject":"PROP",
-		"Week_hours":"5",
 		"Num_students": "30",
 		"Level": "6",
 		"Max_capacity": "30",
-		"Num_classes": "2"
+		"Theory_hours":"4",
+		"Laboratory_hours": "2",
+		"Problems_hours": "0",
+		"Shift":"Morning"
 		}
     ]
 }
