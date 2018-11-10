@@ -11,7 +11,8 @@ public class MUS {
 
     // Members
     Subject subject;
-    ClassroomSesion classroomSesion;
+    Classroom classroom;
+    Session session;
 
 
     // Constructors
@@ -26,13 +27,24 @@ public class MUS {
     /**
      * Class constructor specifying the member's values (and time zones).
      * @param subject Subject of the MUS.
-     * @param classroomSesion ClassroomSesion of the MUS.
-
+     * @param classroom Classroom of the MUS.
+     * @param session Session of the MUS.
      */
-    public MUS(Subject subject, ClassroomSesion classroomSesion) {
+    public MUS(Subject subject, Classroom classroom, Session session) {
         this.subject = subject;
-        this.classroomSesion = classroomSesion;
+        this.classroom = classroom;
+        this.session = session;
+    }
 
+    /**
+     *
+     * @param subject
+     * @param classroomSessionpair
+     */
+    public MUS(Subject subject, UtilsDomain.Pair<Classroom, Session> classroomSessionpair) {
+        this.subject = subject;
+        this.classroom = classroomSessionpair.first;
+        this.session = classroomSessionpair.second;
     }
 
     /**
@@ -41,7 +53,8 @@ public class MUS {
      */
     public MUS(Vector< Vector<String> > mus) {
         subject = new Subject(mus.get(0));
-        classroomSesion = new ClassroomSesion(mus.get(1));
+        classroom = new Classroom(mus.get(1));
+        session = new Session(mus.get(2));
     }
 
 
@@ -56,11 +69,19 @@ public class MUS {
     }
 
     /**
-     * It returns the classroom-sesion of the MUS.
-     * @return ClassroomSesion of the MUS.
+     *
+     * @return
      */
-    public ClassroomSesion getClassroomSesion() {
-        return classroomSesion;
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Session getSession() {
+        return session;
     }
 
     /**
@@ -72,11 +93,28 @@ public class MUS {
     }
 
     /**
-     * Set the ClassroomSesion of the MUS.
-     * @param classroomSesion Classroom of the MUS.
+     *
+     * @param classroom
      */
-    public void setClassroomSesion(ClassroomSesion classroomSesion) {
-        this.classroomSesion = classroomSesion;
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
+
+    /**
+     *
+     * @param session
+     */
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public UtilsDomain.Pair<Classroom, Session> getClassroomSessionPair() {
+        UtilsDomain.Pair<Classroom, Session> res = new UtilsDomain.Pair<Classroom, Session>(classroom, session);
+        return res;
     }
 
 
@@ -85,10 +123,11 @@ public class MUS {
      * @return Vector of vector (of strings) with the members of the class.
      */
     public Vector< Vector<String> > toStr() {
-        Vector< Vector<String> > mus = new Vector<>(2);
+        Vector< Vector<String> > mus = new Vector<>(3);
 
-        mus.set(0,subject.toStr());
-        mus.set(1,classroomSesion.toStr());
+        mus.set(0, subject.toStr());
+        mus.set(1, classroom.toStr());
+        mus.set(2, session.toStr());
 
         return mus;
     }
