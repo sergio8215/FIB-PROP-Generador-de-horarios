@@ -1,5 +1,7 @@
 package src.Domain;
 
+import java.util.Vector;
+
 public class LabClassroomClass extends ClassroomClass {
 
     /**
@@ -20,8 +22,18 @@ public class LabClassroomClass extends ClassroomClass {
      * @param nComputers number of computers in the classroom
      */
     public LabClassroomClass (String name, int capacity, boolean multimedia, int nComputers ) {
-        super(name, capacity, UtilsDomain.ClassroomType.LABORATORY, multimedia);
+        super(name, capacity, ClassroomType.LABORATORY, multimedia);
         numComputers = nComputers;
+    }
+
+    //GETTERS & SETTERS
+
+    public int getNumComputers() {
+        return numComputers;
+    }
+
+    public void setNumComputers(int numComputers) {
+        this.numComputers = numComputers;
     }
 
     //METHODS
@@ -33,5 +45,12 @@ public class LabClassroomClass extends ClassroomClass {
      */
     public int realCapacity(int ppc) {
         return Math.min(this.getCapacity(), numComputers*ppc);
+    }
+
+    @Override
+    public Vector<String> toStr() {
+        Vector<String> vec = super.toStr();
+        vec.add(String.valueOf(numComputers));
+        return vec;
     }
 }

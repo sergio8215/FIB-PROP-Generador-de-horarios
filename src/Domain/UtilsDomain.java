@@ -7,8 +7,5 @@ public class UtilsDomain {
         PROBLEMS
     }
 
-    public enum ClassroomType {
-        THEORY,
-        LABORATORY
-    }
+
 }

@@ -6,6 +6,9 @@ import java.util.*;
 
 public class ClassroomSetClass {
 
+    //constructror con solo Classrooms
+    //
+
     /**
      * Represents an association of classrooms of type LABORATORY and THEORY
      * @author mireia
@@ -18,6 +21,27 @@ public class ClassroomSetClass {
 
     //CONSTRUCTOR ----------------------------------------------------
 
+
+    public ClassroomSetClass(ArrayList<ClassroomClass> cc) {
+        theoryClassroomSet = new HashMap<>();
+        labClassroomSet = new HashMap<>();
+
+        for(int i = 0; i < cc.size(); i++) {
+            ClassroomClass classroom = cc.get(i);
+            if(classroom.getType() == ClassroomClass.ClassroomType.LABORATORY) {
+                LabClassroomClass lab = new LabClassroomClass(
+                        classroom.getName(),
+                        classroom.getCapacity(),
+                        classroom.isMultimedia(),
+                        getNumComputers());
+            }
+            else {
+
+            }
+        }
+    }
+
+
     /**
      * ClassroomSetClass constructor
      * @param theory list which contains all the theory classrooms
@@ -29,21 +53,20 @@ public class ClassroomSetClass {
 
         boolean finishLab = false;
         int i = 0;
-        while(i < theory.size() && i < lab.size()) {
+        while (i < theory.size() && i < lab.size()) {
             theoryClassroomSet.put(theory.get(i).getName(), theory.get(i));
             labClassroomSet.put(lab.get(i).getName(), lab.get(i));
             ++i;
             if (lab.size() == i) finishLab = true;
         }
 
-        if(finishLab) {
-            while(i < theory.size()) {
+        if (finishLab) {
+            while (i < theory.size()) {
                 theoryClassroomSet.put(theory.get(i).getName(), theory.get(i));
                 ++i;
             }
-        }
-        else {
-            while(i < lab.size()) {
+        } else {
+            while (i < lab.size()) {
                 labClassroomSet.put(lab.get(i).getName(), lab.get(i));
                 ++i;
             }
@@ -54,7 +77,7 @@ public class ClassroomSetClass {
     //TODO: ajuntar una llista o un altre hashmap amb el que tinc (i actualitzar hashmaps de lab i teoria)
     //TODO: add a new classroom object (and add it to lab or theory set too)
 
-    //ATTRIBUTES GETTERS & SETTERS ---------------------------------
+    //GETTERS & SETTERS ---------------------------------
 
     /**
      * Getter of the theoryClassroomSet attribute
@@ -233,5 +256,21 @@ public class ClassroomSetClass {
         return sortByCapacity(classroomValues);
     }
 
+    public Vector< Vector< String> > toMyString() {
+        int size = labClassroomSet.size() + theoryClassroomSet.size();
+        Vector< Vector< String> > vec = new Vector< Vector< String> > (size);
+        Iterator itLab = labClassroomSet.values().iterator();
+        while(itLab.hasNext()) {
+            LabClassroomClass lab = (LabClassroomClass)itLab.next();
+            vec.add(lab.toMyString());
+        }
+
+        Iterator itTheo = theoryClassroomSet.values().iterator();
+        while(itTheo.hasNext()) {
+            TheoryClassroomClass theo = (TheoryClassroomClass) itTheo.next();
+            vec.add(theo.toMyString());
+        }
+    }
+h
 
 }

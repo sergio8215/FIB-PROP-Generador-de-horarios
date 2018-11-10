@@ -1,5 +1,7 @@
 package src.Domain;
 
+import java.util.Vector;
+
 public class TheoryClassroomClass extends ClassroomClass {
 
     /**
@@ -15,7 +17,13 @@ public class TheoryClassroomClass extends ClassroomClass {
      * @param m indicates if the classroom has multimedia system
      */
     TheoryClassroomClass(String n, int cap, boolean m) {
-        super(n, cap, UtilsDomain.ClassroomType.THEORY, m);
+        super(n, cap, ClassroomType.THEORY, m);
     }
 
+    //METHODS
+
+    @Override
+    public Vector<String> toStr() {
+        return super.toStr();
+    }
 }
