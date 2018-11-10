@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package src.Domain;
 
 /**
  *
@@ -12,7 +12,7 @@ package Domain;
 public class TheoryClass extends ClassClass{
 
     // Members
-    private int Subidentifier;
+    private int Subgroup;
     
 
     // Constructors
@@ -20,32 +20,32 @@ public class TheoryClass extends ClassClass{
     /**
      * Class constructor specifying the member's values.
      * @param identifier
-     * @param Subidentifier Identificator of the SubClass.
+     * @param Subgroup Identificator of the SubClass.
      * @param subject
      * @param group
      */
-    public TheoryClass(int identifier, int Subidentifier, Subject subject, int group){
-        super( identifier, subject, group );
-        this.Subidentifier = Subidentifier;
+    public TheoryClass(String identifier, int Subgroup, Subject subject, int group){
+        super( identifier, subject, group, ClassType.THEORY );
+        this.Subgroup = Subgroup;
     }
 
 
     // Methods
-    
+
     /**
      * 
-     * @param Subidentifier 
+     * @param Subgroup
      */
-    public void setSubidentifier(int Subidentifier) {
-        this.Subidentifier = Subidentifier;
+    public void setSubgroup(int Subgroup) {
+        this.Subgroup = Subgroup;
     }
     
     /**
      * 
      * @return 
      */
-    public int getSubidentifier() {
-        return Subidentifier;
+    public int getSubgroup() {
+        return Subgroup;
     }
 
 }

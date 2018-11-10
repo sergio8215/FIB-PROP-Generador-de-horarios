@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package src.Domain;
 
 
 /**
@@ -18,23 +18,25 @@ public abstract class ClassClass {
         LABORATORY, THEORY, PROBLEMS
     }
     
-    private int identifier;
+    private String identifier;
     private int group;
     private Subject subject;
+    private ClassType type;
     
 
     // Constructors
 
     /**
      * Class constructor specifying the member's values.
-     * @param identifier Identificator of the Class.
+     * @param identifier Identification of the Class.
      * @param subject subject of the class.
      * @param group
      */
-    public ClassClass(int identifier, Subject subject, int group){
+    public ClassClass(String identifier, Subject subject, int group, ClassType type){
         this.identifier = identifier;
         this.subject = subject;
         this.group = group;
+        this.type = type;
     }
 
 
@@ -51,9 +53,9 @@ public abstract class ClassClass {
     
     /**
      * Set the identification identifier of a given class.
-     * @param identifier Identificator of the class.
+     * @param identifier Identification of the class.
      */
-    public void setIdentifier(int identifier) {
+    public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
 
@@ -66,10 +68,10 @@ public abstract class ClassClass {
     }    
     
     /**
-     * It returns the identificator of the class.
-     * @return Identificator of the class.
+     * It returns the identification of the class.
+     * @return Identification of the class.
      */
-    public int getIdentifier() {
+    public String getIdentifier() {
         return identifier;
     }
     
@@ -82,11 +84,18 @@ public abstract class ClassClass {
     }
 
     /**
-     * It returns the identificator of the class.
-     * @return Identificator of the class.
+     * It returns the identification of the class.
+     * @return Identification of the class.
      */
     public Subject getSubject() {
         return subject;
     }
 
+    /**
+     * It returns the type of the class.
+     * @return type of the class.
+     */
+    public ClassType getType() {
+        return type;
+    }
 }

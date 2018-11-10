@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package src.Domain;
 
 /**
  *
@@ -12,7 +12,7 @@ package Domain;
 public class LaboratoryClass extends ClassClass {
 
     // Members
-    private int Subidentifier;
+    private int Subgroup;
     
 
     // Constructors
@@ -20,13 +20,13 @@ public class LaboratoryClass extends ClassClass {
     /**
      * Class constructor specifying the member's values.
      * @param identifier
-     * @param Subidentifier Identificator of the SubClass.
+     * @param Subgroup Identificator of the SubClass.
      * @param subject
      * @param group
      */
-    public LaboratoryClass(int identifier, int Subidentifier, Subject subject, int group){
-        super(identifier, subject, group);
-        this.Subidentifier = Subidentifier;
+    public LaboratoryClass(String identifier, int Subgroup, Subject subject, int group){
+        super(identifier, subject, group, ClassType.LABORATORY);
+        this.Subgroup = Subgroup;
     }
 
 
@@ -35,15 +35,15 @@ public class LaboratoryClass extends ClassClass {
     /**
      * @return 
      */
-    public int getSubidentifier() {
-        return Subidentifier;
+    public int getSubgroup() {
+        return Subgroup;
     }
 
     /**
-     * @param Subidentifier
+     * @param Subgroup
      */
-    public void setSubidentifier(int Subidentifier) {
-        this.Subidentifier = Subidentifier;
+    public void setSubgroup(int Subgroup) {
+        this.Subgroup = Subgroup;
     }
 
 
