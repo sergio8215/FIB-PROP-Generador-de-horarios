@@ -10,7 +10,7 @@ public class Subject {
 
     // Auxiliary structures
 
-    public static enum typeShift {
+    public enum typeShift {
         morningShift,
         afternoonShift,
         bothShifts
@@ -231,7 +231,7 @@ public class Subject {
      * It returns the max capacity of the subject.
      * @return Max capacity of the subject.
      */
-    public static int getMaxCapacity() {
+    public int getMaxCapacity() {
         return maxCapacity;
     }
 
@@ -239,8 +239,56 @@ public class Subject {
      * Set the max capacity of the subject.
      * @param maxCapacity Max capacity of the subject.
      */
-    public static void setMaxCapacity(int maxCapacity) {
+    public void setMaxCapacity(int maxCapacity) {
         Subject.maxCapacity = maxCapacity;
+    }
+
+    /**
+     * It returns the theory hours.
+     * @return Theory hours.
+     */
+    public int getTheoryHours() {
+        return hoursClasses[0];
+    }
+
+    /**
+     * It returns the laboratory hours.
+     * @return Laboratory hours.
+     */
+    public int getLaboratoryHours() {
+        return hoursClasses[1];
+    }
+
+    /**
+     * It returns the problems hours.
+     * @return Problems hours.
+     */
+    public int getProblemsHours() {
+        return hoursClasses[2];
+    }
+
+    /**
+     * Set the theory hours.
+     * @param theoryHours Theory hours.
+     */
+    public void setTheoryHours(int theoryHours) {
+        hoursClasses[0] = theoryHours;
+    }
+
+    /**
+     * Set the laboratory hours.
+     * @param laboratoryHours Laboratory hours.
+     */
+    public void setLaboratoryHours(int laboratoryHours) {
+        hoursClasses[1] = laboratoryHours;
+    }
+
+    /**
+     * Set the problems hours.
+     * @param problemsHours Problems hours.
+     */
+    public void setProblemsHours(int problemsHours) {
+        hoursClasses[2] = problemsHours;
     }
 
     /**
@@ -248,19 +296,19 @@ public class Subject {
      * @return Vector of strings with the members' values.
      */
     public Vector<String> toString() {
-        Vector<String> c = new Vector<>();
+        Vector<String> c = new Vector<>(11);
 
-        c.add(name);
-        c.add(Integer.toString(totalWeekHours));
-        c.add(Integer.toString(numberStudents));
-        c.add(Integer.toString(level));
-        c.add(Integer.toString(hoursClasses[0]));
-        c.add(Integer.toString(hoursClasses[1]));
-        c.add(Integer.toString(hoursClasses[2]));
-        c.add(Integer.toString(numberOfGroups[0]));
-        c.add(Integer.toString(numberOfGroups[1]));
-        c.add(Integer.toString(maxCapacity));
-        c.add(Integer.toString(tyShift.ordinal()));
+        c.set(0, name);
+        c.set(1, Integer.toString(totalWeekHours));
+        c.set(2, Integer.toString(numberStudents));
+        c.set(3, Integer.toString(level));
+        c.set(4, Integer.toString(hoursClasses[0]));
+        c.set(5, Integer.toString(hoursClasses[1]));
+        c.set(6, Integer.toString(hoursClasses[2]));
+        c.set(7, Integer.toString(numberOfGroups[0]));
+        c.set(8, Integer.toString(numberOfGroups[1]));
+        c.set(9, Integer.toString(maxCapacity));
+        c.set(10, Integer.toString(tyShift.ordinal()));
 
         return c;
     }
