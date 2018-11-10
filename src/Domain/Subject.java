@@ -295,7 +295,7 @@ public class Subject {
      * It returns a vector of strings with the members' values.
      * @return Vector of strings with the members' values.
      */
-    public Vector<String> toString() {
+    public Vector<String> toStr() {
         Vector<String> c = new Vector<>(11);
 
         c.set(0, name);
