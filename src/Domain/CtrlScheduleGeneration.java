@@ -5,14 +5,17 @@ import java.util.LinkedList;
 public class CtrlScheduleGeneration {
 
     Schedule schedule;
+    ClassroomSession classroomSession;
 
 
-    public CtrlScheduleGeneration() {
+    public CtrlScheduleGeneration();
 
+    public CtrlScheduleGeneration(ClassroomSession classroomSession) {
+        this.classroomSession = classroomSession;
     }
 
-    public Schedule generateSchedule(/**/) {
-        schedule = chronologicalBacktracking(/* VARS*/);
+    public Schedule generateSchedule(LinkedList<MUS> vars) {
+        schedule = chronologicalBacktracking(vars, schedule);
         return schedule;
     }
 
@@ -22,11 +25,11 @@ public class CtrlScheduleGeneration {
             MUS currentVar = futureVars.pollFirst();
 
             for (int i = 0; i < currentVar.values().size(); i++){ 	// i = id/posición pair classroom-sesion
-                currentVar.assign(i);
+                currentVar.assign(classroomSession.getPair(i));
                 solution.add(currentVar);
 
                 if (solution.valid()) {
-                    solution = chronologicalBacktracking(futureVars, solution);
+                    solution = chronologicalBacktracking(futureVars.clone(), new Schedule(solution));
 
                     if (!solution.isFail()) {
                         return solution;
@@ -40,7 +43,8 @@ public class CtrlScheduleGeneration {
 
             }
 
-            return solution.fail();
+            solution.fail();
+            return solution;
         }
     }
 }
