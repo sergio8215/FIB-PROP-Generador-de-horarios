@@ -17,18 +17,22 @@ public class CtrlScheduleGeneration {
     // Constructors
 
     /**
-     * Empty class constructor.
+     * Basic Class constructor
+     * @param crFile name of the file that is going to generate the Schedule's classrooms
+     * @param sFile name of the file that is going to generate the Schedule's subjects
      */
-    public CtrlScheduleGeneration() {
-        schedule = new Schedule();
+    public CtrlScheduleGeneration(String crFile, String sFile) {
+        schedule = new Schedule(crFile, sFile);
     }
 
     /**
      * Class constructor specifying the member value of classroomSession..
-     * @param classroomSession Classroom-Sessions.
+     * @param crFile name of the file that is going to generate the Schedule's classrooms
+     * @param sFile name of the file that is going to generate the Schedule's subjects
+     * @param classroomSession classroomSession Classroom-Sessions.
      */
-    public CtrlScheduleGeneration(ClassroomSession classroomSession) {
-        schedule = new Schedule();
+    public CtrlScheduleGeneration(String crFile, String sFile, ClassroomSession classroomSession) {
+        schedule = new Schedule(crFile, sFile);
         this.classroomSession = classroomSession;
     }
 
@@ -41,7 +45,8 @@ public class CtrlScheduleGeneration {
      * @return Generates Schedule.
      */
     public Schedule generateSchedule(LinkedList<MUS> vars) {
-        schedule = chronologicalBacktracking(vars.clone(), schedule);
+        LinkedList<MUS> aux = vars.clone();
+        schedule = chronologicalBacktracking(aux, schedule);
         return schedule;
     }
 
@@ -61,7 +66,8 @@ public class CtrlScheduleGeneration {
                 solution.add(currentVar);
 
                 if (solution.valid()) {
-                    solution = chronologicalBacktracking(futureVars.clone(), new Schedule(solution));
+                    LinkedList<MUS> aux = futureVars.clone();
+                    solution = chronologicalBacktracking(aux, new Schedule(solution));
 
                     if (!solution.isFail()) {
                         return solution;

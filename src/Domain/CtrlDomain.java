@@ -23,6 +23,8 @@ public class CtrlDomain {
     private SubjectSetClass subjectsSet;
     private ClassSet classSet;
     private ClassroomSession classroomSession;
+    private String classroomFile;
+    private String subjectFile;
 
     public CtrlDomain(){
         dManager = new DataManager();
@@ -53,6 +55,8 @@ public class CtrlDomain {
         if (c && s ) {
             classSet = new ClassSet(subjectsSet);
             classroomSession = new ClassroomSession(classSet, new Session());
+            this.classroomFile = classroomFile;
+            this.subjectFile = subjectFile;
             return true;
         }
         else return false;
@@ -92,7 +96,7 @@ public class CtrlDomain {
 
     public void generateSchedule(){
 
-        schedule = ctrlScheduleGenerator.generateSchedule(/*COSAS INIT*/);
+        schedule = ctrlScheduleGenerator.generateSchedule(classroomFile, subjectFile);
 
 
     }
