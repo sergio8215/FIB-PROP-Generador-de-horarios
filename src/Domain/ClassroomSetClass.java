@@ -2,6 +2,7 @@ package src.Domain;
 
 import src.Domain.comparators.ClassroomCapacityComparator;
 
+import java.awt.*;
 import java.util.*;
 
 public class ClassroomSetClass {
@@ -212,6 +213,14 @@ public class ClassroomSetClass {
     //PUBLIC METHODS
 
     /**
+     * Counts how may classrooms do we have
+     * @return returns the number of classrooms
+     */
+    public int getNumClassrooms(){
+        return labClassroomSet.size() + theoryClassroomSet.size();
+    }
+
+    /**
      * It checks if there is a Classroom Object with name name
      * @param name name of a classroom to check
      * @return returns true if there is a classroom Object with name name, false otherwise
@@ -219,13 +228,6 @@ public class ClassroomSetClass {
     public boolean exists (String name) {
         return labExists(name) || theoryExists(name);
     }
-
-
-    /**
-     * Getter of a Classroom Object by its name
-     * @param name name of a classroom
-     * @return returns the Classroom Object with that name, or null if it doesn't exist
-     */
 
     /**
      * Getter of a Classroom Object by its name
@@ -266,6 +268,12 @@ public class ClassroomSetClass {
         }
     }
 
+    public ArrayList<ClassroomClass> getClassroomValues(){
+        ArrayList<ClassroomClass> cc1 = new ArrayList<>(labClassroomSet.values());
+        ArrayList<ClassroomClass> cc2 = new ArrayList<>(theoryClassroomSet.values());
+        return classroomUnion(cc1, cc2);
+    }
+
     /**
      * Sorts all the Classroom Objects by their capacity
      * @return List of all the classroom Objects sorted by ascendent capacity
@@ -300,7 +308,7 @@ public class ClassroomSetClass {
      * @return returns a Vector of Vectors of Strings with all the classroomSet attributes transformed into Strings
      */
     public Vector< Vector< String> > toStr() {
-        int size = labClassroomSet.size() + theoryClassroomSet.size();
+        int size = getNumClassrooms();
         Vector< Vector< String> > vec = new Vector< Vector< String> > (size);
         Iterator itLab = labClassroomSet.values().iterator();
         while(itLab.hasNext()) {
