@@ -7,5 +7,8 @@ public class UtilsDomain {
         PROBLEMS
     }
 
-
+    public static final class ResultOfQuery<T> {
+        public boolean queryTest;
+        public T resoult;
+    }
 }

@@ -37,6 +37,10 @@ public abstract class ClassroomClass {
         multimedia = m;
     }
 
+    /**
+     * ClassroomClass constructor from String
+     * @param parse Vector of String Objects which encodes the attributes of this ClassroomClass instance
+     */
     public ClassroomClass(Vector<String> parse) {
         name = parse.get(0);
         capacity = Integer.parseInt(parse.get(1));
@@ -88,7 +92,7 @@ public abstract class ClassroomClass {
 
     /**
      * Setter of the type attribute
-     * @param type
+     * @param type the type of the classroom
      */
     public void setType(ClassroomType type) {
         this.type = type;
@@ -104,7 +108,7 @@ public abstract class ClassroomClass {
 
     /**
      * Setter of the multimedia attribute
-     * @param multimedia
+     * @param multimedia indicates if the class has multimedia system
      */
     public void setMultimedia(boolean multimedia) {
         this.multimedia = multimedia;
@@ -112,21 +116,37 @@ public abstract class ClassroomClass {
 
     //PRIVATE METHODS
 
+    /**
+     * Converts the type of this ClassroomClass instance into a legible  String
+     * @return returns an String with the type of the ClassroomClass instance
+     */
     private String typeToString() {
         if(type == ClassroomType.LABORATORY) return "Laboratory";
-        else return "Theaory";
+        else return "Theory";
     }
 
+    /**
+     * Converts the multimedia attribute into a legible String
+     * @return returns an String with the attribute multimedia of this ClassroomClass instance
+     */
     private String multimediaToString(){
         if(multimedia) return "true";
         else return "false";
     }
 
+    /**
+     * Converts an String into a boolean that shows if the Classroom instance has multimedia system
+     * @param m String that encodes the multimedia attribute
+     */
     private void multimediaFromString(String m){
         if(m.equals("true")) multimedia = true;
         else multimedia = false;
     }
 
+    /**
+     * Converts an String into a ClassroomType
+     * @param t String that encodes the type attribute
+     */
     private void typeFromString(String t){
         if(t.equals("Laboratory")) type = ClassroomType.LABORATORY;
         else type = ClassroomType.THEORY;
@@ -134,6 +154,10 @@ public abstract class ClassroomClass {
 
     //PUBLIC METHODS
 
+    /**
+     * Transforms the Classroom Object into a Vector of Strings
+     * @return returns a Vector of Strings with the attributes encoded
+     */
     public Vector<String> toStr() {
 
         Vector<String> vec = new Vector<String> (4,1);

@@ -14,14 +14,17 @@ public class ClassroomSetClass {
      * @author mireia
      */
 
-    //ATTRIBUTES -----------------------------------------------------
+    //ATTRIBUTES
 
     private HashMap<String, TheoryClassroomClass> theoryClassroomSet;
     private HashMap<String, LabClassroomClass> labClassroomSet;
 
-    //CONSTRUCTOR ----------------------------------------------------
+    //CONSTRUCTOR
 
-
+    /**
+     * ClassroomSetClass Constructor
+     * @param cc
+     */
     public ClassroomSetClass(ArrayList<ClassroomClass> cc) {
         theoryClassroomSet = new HashMap<>();
         labClassroomSet = new HashMap<>();
@@ -29,14 +32,13 @@ public class ClassroomSetClass {
         for(int i = 0; i < cc.size(); i++) {
             ClassroomClass classroom = cc.get(i);
             if(classroom.getType() == ClassroomClass.ClassroomType.LABORATORY) {
-                LabClassroomClass lab = new LabClassroomClass(
-                        classroom.getName(),
-                        classroom.getCapacity(),
-                        classroom.isMultimedia(),
-                        getNumComputers());
+
+                LabClassroomClass lab = (LabClassroomClass) classroom;
+                labClassroomSet.put(lab.getName(), lab);
             }
             else {
-
+                TheoryClassroomClass theo = (TheoryClassroomClass) classroom;
+                theoryClassroomSet.put(theo.getName(), theo);
             }
         }
     }
@@ -73,11 +75,26 @@ public class ClassroomSetClass {
         }
     }
 
-    //TODO: obtenir una aula concreta pel nom
-    //TODO: ajuntar una llista o un altre hashmap amb el que tinc (i actualitzar hashmaps de lab i teoria)
-    //TODO: add a new classroom object (and add it to lab or theory set too)
+    /**
+     * ClassroomSetClass constructor from String
+     * @param vec matrix of Strings that encodes the ClassroomSetClass Object
+     */
+    public ClassroomSetClass(Vector< Vector<String> > vec) {
+        theoryClassroomSet = new HashMap<>();
+        labClassroomSet = new HashMap<>();
 
-    //GETTERS & SETTERS ---------------------------------
+        for(int i = 0; i < vec.size(); ++i) {
+            Vector<String> v = vec.get(i);
+            if(v.get(2).equals("Laboratory")) {
+                labClassroomSet.put(v.get(0), new LabClassroomClass(v));
+            }
+            else{
+                theoryClassroomSet.put(v.get(0), new TheoryClassroomClass(v));
+            }
+        }
+    }
+
+    //GETTERS & SETTERS
 
     /**
      * Getter of the theoryClassroomSet attribute
@@ -115,8 +132,7 @@ public class ClassroomSetClass {
         }
     }
 
-
-    //PRIVATE METHODS ---------------------------------------------
+    //PRIVATE METHODS
 
     /**
      * Checks if there is a LabClassroom Object with name name
@@ -193,8 +209,7 @@ public class ClassroomSetClass {
         return res;
     }
 
-
-    //METHODS -----------------------------------------------------
+    //PUBLIC METHODS
 
     /**
      * It checks if there is a Classroom Object with name name
@@ -205,15 +220,34 @@ public class ClassroomSetClass {
         return labExists(name) || theoryExists(name);
     }
 
+
     /**
      * Getter of a Classroom Object by its name
      * @param name name of a classroom
      * @return returns the Classroom Object with that name, or null if it doesn't exist
      */
-    public ClassroomClass getClassroom(String name) {
+
+    /**
+     * Getter of a Classroom Object by its name
+     * @param name name of a classroom
+     * @return returns an Object with two elements. If the first is true, name exists and it's returned in the second element. If the first element is false, there's no such classroom object and the second element is irrelevant.
+     */
+    public UtilsDomain.ResultOfQuery getClassroom(String name) {
+        UtilsDomain.ResultOfQuery res = new UtilsDomain.ResultOfQuery();
+        res.queryTest = false;
+
         ClassroomClass lcc = getLabClassroom(name);
-        if(lcc != null) return lcc;
-        return getTheoryClassroom(name);
+        if(lcc != null) {
+            res.queryTest = true;
+            res.resoult = lcc;
+        }
+        ClassroomClass tcc = getTheoryClassroom(name);
+        if(tcc != null) {
+            res.queryTest = true;
+            res.resoult = tcc;
+        }
+
+        return res;
     }
 
     /**
@@ -221,9 +255,14 @@ public class ClassroomSetClass {
      * @param cc ArrayList of Classrooms to add
      */
     public void addClassroomSet(ArrayList<ClassroomClass> cc) {
-        for(int i = 0; i < cc.size(); ++i) {
-            //TODO: wtf
-            addClassroom(cc.get(i));
+        for (ClassroomClass aCc : cc) {
+            if (aCc.getType() == ClassroomClass.ClassroomType.LABORATORY) {
+                LabClassroomClass lab = (LabClassroomClass) aCc;
+                labClassroomSet.put(lab.getName(), lab);
+            } else {
+                TheoryClassroomClass theo = (TheoryClassroomClass) aCc;
+                theoryClassroomSet.put(theo.getName(), theo);
+            }
         }
     }
 
@@ -256,21 +295,25 @@ public class ClassroomSetClass {
         return sortByCapacity(classroomValues);
     }
 
-    public Vector< Vector< String> > toMyString() {
+    /**
+     * Transforms the ClassroomSetClass Object into a matrix of Strings
+     * @return returns a Vector of Vectors of Strings with all the classroomSet attributes transformed into Strings
+     */
+    public Vector< Vector< String> > toStr() {
         int size = labClassroomSet.size() + theoryClassroomSet.size();
         Vector< Vector< String> > vec = new Vector< Vector< String> > (size);
         Iterator itLab = labClassroomSet.values().iterator();
         while(itLab.hasNext()) {
             LabClassroomClass lab = (LabClassroomClass)itLab.next();
-            vec.add(lab.toMyString());
+            vec.add(lab.toStr());
         }
 
         Iterator itTheo = theoryClassroomSet.values().iterator();
         while(itTheo.hasNext()) {
             TheoryClassroomClass theo = (TheoryClassroomClass) itTheo.next();
-            vec.add(theo.toMyString());
+            vec.add(theo.toStr());
         }
+        return vec;
     }
-h
 
 }

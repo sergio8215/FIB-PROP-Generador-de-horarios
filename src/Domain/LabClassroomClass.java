@@ -10,6 +10,7 @@ public class LabClassroomClass extends ClassroomClass {
      */
 
     //ATTRIBUTES
+
     private int numComputers;
 
     //CONSTRUCTOR
@@ -26,12 +27,29 @@ public class LabClassroomClass extends ClassroomClass {
         numComputers = nComputers;
     }
 
+    /**
+     * LabClassroomClass constructor from String
+     * @param parse Vector of String Objects which encode the attributes of this LabClassroomClass instance
+     */
+    public LabClassroomClass(Vector<String> parse) {
+        super(parse);
+        numComputers = Integer.parseInt(parse.get(4));
+    }
+
     //GETTERS & SETTERS
 
+    /**
+     * Getter of the numComputers attribute
+     * @return returns the numComputers attribute
+     */
     public int getNumComputers() {
         return numComputers;
     }
 
+    /**
+     * Setter of the numCOmputers attribute
+     * @param numComputers the number of computers of the classroom
+     */
     public void setNumComputers(int numComputers) {
         this.numComputers = numComputers;
     }
@@ -47,6 +65,10 @@ public class LabClassroomClass extends ClassroomClass {
         return Math.min(this.getCapacity(), numComputers*ppc);
     }
 
+    /**
+     * Converts the labClassroom Object into a Vector of Strings
+     * @return returns a Vector of Strings that represents the labClassroom instance
+     */
     @Override
     public Vector<String> toStr() {
         Vector<String> vec = super.toStr();
