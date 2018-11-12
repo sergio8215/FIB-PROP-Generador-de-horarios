@@ -35,7 +35,7 @@ public class CtrlScheduleGeneration {
      * @return Generates Schedule.
      */
     public Schedule generateSchedule(LinkedList<MUS> vars, ClassroomSession classroomSession) {
-        this.vars = vars.clone();
+        this.vars = (LinkedList<MUS>) vars.clone();
         this.classroomSession = classroomSession;
 
         filterUnaryConstraints(this.vars);
