@@ -14,7 +14,7 @@ import java.util.Vector;
 
 /**
  *
- * @author Sergio & mireia
+ * @author Sergio & Mireia
  */
 public class CtrlDomain {
 
@@ -27,12 +27,21 @@ public class CtrlDomain {
     private String classroomFile;
     private String subjectFile;
 
+
+    /**
+     * CtrlDomain constructor
+     */
     public CtrlDomain(){
         dManager = new DataManager();
     }
 
     //PRIVATE METHODS
 
+    /**
+     * Method to import Classrooms from JSON file
+     * @param file name of the file to import
+     * @return true if the import is successful
+     */
     private boolean importClassroom(String file){
 
         Vector<Vector<String >> classRooms = dManager.importClassrooms(file);
@@ -43,6 +52,11 @@ public class CtrlDomain {
         else return false;
     }
 
+    /**
+     * Method to import Subject from JSON file
+     * @param file name of the file to import
+     * @return true if the import is successful
+     */
     private boolean importSubject(String file){
         Vector< Vector <String > > subjects = dManager.importSubjects(file);
         if (subjects != null){
@@ -54,6 +68,12 @@ public class CtrlDomain {
 
     //PUBLIC METHODS
 
+    /**
+     * Creates the Scenario for the Schedule
+     * @param classroomFile name of the Classroom file to import
+     * @param subjectFile name of the subjects file to import
+     * @return true if the import is successful
+     */
     public boolean createScenario(String classroomFile, String subjectFile) {
         boolean c = importClassroom(classroomFile);
         boolean s = importSubject(subjectFile);
@@ -67,15 +87,18 @@ public class CtrlDomain {
         else return false;
     }
 
+
     /**
-     * list of all the subjects
+     * List of all the subjects of the created Scenario
+     * @return A list of subjects
      */
     public Vector<String> showSubject() {
         return subjectsSet.toString();
     }
 
     /**
-     * list of all the classrooms
+     * List of all the Classrooms of the created Scenario
+     * @return A list of Classrooms
      */
     public void showClassroom(){
         return classroomsSet.toString();
@@ -86,19 +109,36 @@ public class CtrlDomain {
     public void manageUMH() {}
     */
 
+    /**
+     * Load a schedule from a file
+     * @param scheduleFile name of the schedule file to import
+     */
     public void loadSchedule(String scheduleFile) {
         schedule = new Schedule(dManager.loadSchedule(scheduleFile));
     }
 
+    /**
+     * Saves the generated schedule
+     */
     public void saveSchedule() {
         dManager.saveSchedule(schedule.toString());
     }
 
-    public void showSchedule() {
+    /**
+     *  Show the generated schedule
+     */
+    public UtilsDomain.ResultOfQuery<> showSchedule() {
+        UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
+        s.queryTest = !schedule.empty();
+        s.result = schedule;
+        return s;
         //hacer cuando tengamos el schedule implementado
         //filtrar por quatris, asignaturas, horarios, etc
     }
 
+    /**
+     * Generates the scheduler based on the generated scenario
+     */
     public void generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
