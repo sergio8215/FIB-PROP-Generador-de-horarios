@@ -36,7 +36,6 @@ public class CtrlScheduleGeneration {
         this.classroomSession = classroomSession;
     }
 
-
     // Methods
 
     /**
@@ -61,7 +60,7 @@ public class CtrlScheduleGeneration {
         else {
             MUS currentVar = futureVars.pollFirst();
 
-            for (int i = 0; i < currentVar.values().size(); i++){ 	// i = id/posición pair classroom-sesion
+            for (int i = 0; i < classroomSession.size(); i++){ 	// i = id/posición pair classroom-sesion
                 currentVar.assign(classroomSession.getPair(i));
                 solution.add(currentVar);
 

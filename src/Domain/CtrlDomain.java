@@ -8,12 +8,13 @@ package src.Domain;
 import src.Data.DataManager;
 import src.Data.MUS;
 
+import java.util.LinkedList;
 import java.util.Vector;
 
 
 /**
  *
- * @author Sergio
+ * @author Sergio & mireia
  */
 public class CtrlDomain {
 
@@ -29,6 +30,8 @@ public class CtrlDomain {
     public CtrlDomain(){
         dManager = new DataManager();
     }
+
+    //PRIVATE METHODS
 
     private boolean importClassroom(String file){
 
@@ -48,6 +51,8 @@ public class CtrlDomain {
         }
         else return false;
     }
+
+    //PUBLIC METHODS
 
     public boolean createScenario(String classroomFile, String subjectFile) {
         boolean c = importClassroom(classroomFile);
@@ -81,8 +86,8 @@ public class CtrlDomain {
     public void manageUMH() {}
     */
 
-    public void loadSchedule(String sccheduleFile) {
-        schedule = new Schedule(dManager.loadSchedule(sccheduleFile));
+    public void loadSchedule(String scheduleFile) {
+        schedule = new Schedule(dManager.loadSchedule(scheduleFile));
     }
 
     public void saveSchedule() {
@@ -95,10 +100,14 @@ public class CtrlDomain {
     }
 
     public void generateSchedule(){
-
-        schedule = ctrlScheduleGenerator.generateSchedule(classroomFile, subjectFile);
-
-
+        CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
+        LinkedList<MUS> linkedList = new LinkedList<MUS>();
+        ArrayList<ClassClass> cc = classSet.unset();
+        for(int i = 0; i < cc.size(); ++i) {
+            MUS mus = new MUS();
+            mus.setClassClass(cc.get(i));
+        }
+        schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
     }
 
 }
