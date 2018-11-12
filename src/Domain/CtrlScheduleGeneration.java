@@ -12,6 +12,7 @@ public class CtrlScheduleGeneration {
 
     Schedule schedule;
     ClassroomSession classroomSession;
+    LinkedList<MUS> vars; // PARA CADA MUS UNA VARIABLE DOMINIO (== classroomSesion correspondiente (flitrado))
 
 
     // Constructors
@@ -25,16 +26,6 @@ public class CtrlScheduleGeneration {
         schedule = new Schedule(crFile, sFile);
     }
 
-    /**
-     * Class constructor specifying the member value of classroomSession..
-     * @param crFile name of the file that is going to generate the Schedule's classrooms
-     * @param sFile name of the file that is going to generate the Schedule's subjects
-     * @param classroomSession classroomSession Classroom-Sessions.
-     */
-    public CtrlScheduleGeneration(String crFile, String sFile, ClassroomSession classroomSession) {
-        schedule = new Schedule(crFile, sFile);
-        this.classroomSession = classroomSession;
-    }
 
     // Methods
 
@@ -43,10 +34,19 @@ public class CtrlScheduleGeneration {
      * @param vars Variables to assign a value from the domain.
      * @return Generates Schedule.
      */
-    public Schedule generateSchedule(LinkedList<MUS> vars) {
-        LinkedList<MUS> aux = vars.clone();
-        schedule = chronologicalBacktracking(aux, schedule);
+    public Schedule generateSchedule(LinkedList<MUS> vars, ClassroomSession classroomSession) {
+        this.vars = vars;
+        this.classroomSession = classroomSession;
+
+        filterUnarityConstraints(this.vars);
+
+        //LinkedList<MUS> aux = vars.clone();
+        schedule = chronologicalBacktracking(vars.clone(), schedule);
         return schedule;
+    }
+
+    private static void filterUnarityConstraints(LinkedList<MUS> vars) {
+
     }
 
     /**
@@ -60,8 +60,8 @@ public class CtrlScheduleGeneration {
         else {
             MUS currentVar = futureVars.pollFirst();
 
-            for (int i = 0; i < classroomSession.size(); i++){ 	// i = id/posición pair classroom-sesion
-                currentVar.assign(classroomSession.getPair(i));
+            for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
+                currentVar.assign(currentVar.getValue(i));
                 solution.add(currentVar);
 
                 if (solution.valid()) {
