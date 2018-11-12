@@ -11,6 +11,7 @@ public class ClassroomSession {
      * @param crSet Set of all the Classroom Objects
      */
     public ClassroomSession(ClassroomSetClass crSet) {
+        classroomSessionSet = new ArrayList<UtilsDomain.Pair>();
         ArrayList<ClassroomClass> classroomValues = crSet.getClassroomValues(); //arraylist de les classrooms
         Session s = new Session(); //instancia de sessio per pillar tota la info general que necessiti
         UtilsDomain.Day arr[] = UtilsDomain.Day.values(); //enum posat en array. aixo no se molt be com gestionar-ho
@@ -21,8 +22,9 @@ public class ClassroomSession {
                 for(int k = s.getStartHour(); k < s.getStartHour() + s.getHoursPerDay(); ++k) { //... i cada hora del dia tinc una sessio
                     UtilsDomain.Pair pair = new UtilsDomain.Pair();
                     pair.first = classroomValues.get(i); //el primer valor del pair es una classroom
-                    //el segon valor del pair es un altre pair que conte firs t= dia de la setmana (enum que he posat al Utils) i second = hora(int)
-                    UtilsDomain.Pair sessionPair = new UtilsDomain.Pair(arr[j], k);
+                    pair.second = new Session(arr[j], k);
+
+                    classroomSessionSet.add(pair);
                 }
             }
         }
