@@ -27,9 +27,12 @@ public class Session {
         SUNDAY      // ordinal value: 6
     }
 
-    private static int hoursPerDay = 12;
-    private static int startHour = 8;
-    private static int daysOfTheWeek = 5;
+    public static final int hoursPerDay = 12;
+    public static final int startHour = 8;
+    public static final int daysOfTheWeek = 5;
+
+
+
     private int hour;
     private Day day;
     private Vector<Vector<Integer>> week;
@@ -39,7 +42,7 @@ public class Session {
      * Class constructor.
      */
     public Session() {
-        week = new Vector<Vector<Integer>>(daysOfTheWeek);
+        /*week = new Vector<Vector<Integer>>(daysOfTheWeek);
 
         // For each day of the week
         for ( int i = 0; i < daysOfTheWeek; i++){
@@ -50,7 +53,7 @@ public class Session {
                 // For each hour we initialize the vector
                 week.elementAt(i).add(startHour + j);
             }
-        }
+        }*/
     }
 
     /**
