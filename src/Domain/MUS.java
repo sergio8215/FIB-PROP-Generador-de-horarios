@@ -136,6 +136,14 @@ public class MUS {
     }
 
     /**
+     * It returns the size of the domain.
+     * @return Domain of the size.
+     */
+    public void int domainSize() {
+        return domain.size();
+    }
+
+    /**
      * Assign classroom and session to the MUS.
      * @param csPair Pair with the Classroom and the Session.
      */
