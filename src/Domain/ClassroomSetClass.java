@@ -2,7 +2,6 @@ package src.Domain;
 
 import src.Domain.comparators.ClassroomCapacityComparator;
 
-import java.awt.*;
 import java.util.*;
 
 public class ClassroomSetClass {
@@ -241,12 +240,12 @@ public class ClassroomSetClass {
         ClassroomClass lcc = getLabClassroom(name);
         if(lcc != null) {
             res.queryTest = true;
-            res.resoult = lcc;
+            res.result = lcc;
         }
         ClassroomClass tcc = getTheoryClassroom(name);
         if(tcc != null) {
             res.queryTest = true;
-            res.resoult = tcc;
+            res.result = tcc;
         }
 
         return res;

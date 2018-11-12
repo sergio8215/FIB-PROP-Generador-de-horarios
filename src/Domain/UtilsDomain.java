@@ -19,7 +19,7 @@ public class UtilsDomain {
 
     public static final class ResultOfQuery<T> {
         public boolean queryTest;
-        public T resoult;
+        public T result;
     }
 
     public static final class Pair<T, U> {
