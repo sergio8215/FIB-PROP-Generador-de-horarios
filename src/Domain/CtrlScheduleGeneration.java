@@ -35,19 +35,38 @@ public class CtrlScheduleGeneration {
      * @return Generates Schedule.
      */
     public Schedule generateSchedule(LinkedList<MUS> vars, ClassroomSession classroomSession) {
-        this.vars = vars;
+        this.vars = vars.clone();
         this.classroomSession = classroomSession;
 
-        filterUnarityConstraints(this.vars);
+        filterUnaryConstraints(this.vars);
 
         //LinkedList<MUS> aux = vars.clone();
         schedule = chronologicalBacktracking(vars.clone(), schedule);
         return schedule;
     }
 
-    private static void filterUnarityConstraints(LinkedList<MUS> vars) {
+    /**
+     *
+     * @param vars
+     */
+    private static void filterUnaryConstraints(LinkedList<MUS> vars) {
+
+        for (int i = 0; i < vars.size(); i++) {
+
+            for (int j = 0; i < vars.get(i).domainSize(); j++){
+
+                if (!(Constraints.sizeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
+                        Constraints.typeClassroomUnaryConstraint(vars.get(i), vars.getValueDomain(j)) &&
+                        Constraints.shiftClassUnaryConstraint(vars.get(i), vars.getValueDomain(j)))){
+                    vars.get(i).deleteFromDomain(j);
+                }
+
+            }
+
+        }
 
     }
+
 
     /**
      * Implementation of the Chronological Backtracking Algorithm for satisfaction of constraints.
@@ -61,7 +80,7 @@ public class CtrlScheduleGeneration {
             MUS currentVar = futureVars.pollFirst();
 
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
-                currentVar.assign(currentVar.getValue(i));
+                currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
 
                 if (solution.valid()) {
