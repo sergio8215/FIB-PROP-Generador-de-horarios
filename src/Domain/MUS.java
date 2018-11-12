@@ -152,6 +152,16 @@ public class MUS {
         session = csPair.second;
     }
 
+
+    /**
+     * It returns the value i of the domain.
+     * @param i Id of the pair classroom-session inside the domain.
+     * @return Value i of the domain.
+     */
+    public Pair<Classroom, Session> getValueDomain(int i){
+        return domain.get(i);
+    }
+
     /**
      * It returns the class as a vector of vectos (one per member).
      * @return Vector of vector (of strings) with the members of the class.
