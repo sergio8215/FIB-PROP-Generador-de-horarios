@@ -46,12 +46,14 @@ public class CtrlScheduleGeneration {
     }
 
     /**
-     *
-     * @param vars
+     * It filter unary restrictions.
+     * @param vars Variables to be filtered.
      */
     private static void filterUnaryConstraints(LinkedList<MUS> vars) {
 
         for (int i = 0; i < vars.size(); i++) {
+
+            vars.get(i).setDomain(classroomSession.clone());
 
             for (int j = 0; i < vars.get(i).domainSize(); j++){
 
