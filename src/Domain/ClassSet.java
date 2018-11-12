@@ -16,8 +16,7 @@ import java.util.Vector;
 public class ClassSet {
     
     // ATTRIBUTES -------------------------------------
-    
-    //private ArrayList<Constraints> constraints; 
+
     private HashMap<String, ClassClass> classSet;
 
     // CONSTRUCTOR -----------------------------------
@@ -41,19 +40,34 @@ public class ClassSet {
 
     }
 
+    /**
+     * Class constructor for a given set of subjects in string format.
+     * @param classS
+     */
+    public ClassSet( Vector< Vector<String> > classS ){
+
+        for (Vector<String> classClass: classS) {
+
+            ClassClass auxClass = ClassClass.fromStr(classClass);
+            if ( !this.existsClass( auxClass.getSubject().getName(), auxClass.getGroup() ) ) {
+                this.addClass(auxClass.getIdentifier(), auxClass);
+            }
+        }
+    }
+
     // PRIVATE METHODS -------------------------------------------
 
 
 
     // METHODS ---------------------------------------------------
 
-    public boolean existsClass( String name, String group ) {
-        return classSet.containsKey(name+group);
+    public boolean existsClass( String subjectName, int group ) {
+        return classSet.containsKey(""+subjectName+group);
     }
 
-    public ClassClass getClass( String name, String group ){
+    public ClassClass getClass( String name, int group ){
         if (this.existsClass(name, group)) {
-            return classSet.get(name+group);
+            return classSet.get(""+name+group);
         }
         return null;
     }
@@ -82,7 +96,7 @@ public class ClassSet {
             // if the quantity of students it's less than the max capacity it's just 1 group
             int groups = 1;
             // if quantity of students it's more than MaxCapacity we have to split the group
-            while ( subject.getNumStudents()/groups > subject.getMaxCapacity() ){
+            while ( subject.getNumberStudents()/groups > subject.getMaxCapacity() ){
                 // if we split the group and now it's less than MaxCapacity then we have the quantity of groups
                 groups++;
             }
@@ -92,10 +106,10 @@ public class ClassSet {
 
                 int subGroupCount = 0;
                 int subgroup;
-                Vector<Integer> hoursOfClass = subject.getHoursClasses();
+                int[] hoursOfClass = subject.getHoursClasses();
 
                 // If there is TheoryHours we create the class
-                if ( hoursOfClass.get(0) != 0 ) {
+                if ( hoursOfClass[0] != 0 ) {
                     subgroup = i*10+subGroupCount;
                     identifier = ""+subject.getName()+subgroup;
                     c = new TheoryClass( identifier, subgroup, subject, i*10);
@@ -104,7 +118,7 @@ public class ClassSet {
                 }
 
                 // If there is LaboratoryHours we create the class
-                if ( hoursOfClass.get(1) != 0 ) {
+                if ( hoursOfClass[1] != 0 ) {
                     subgroup = i*10+subGroupCount;
                     subGroupCount++;
                     identifier = ""+subject.getName()+subgroup;
@@ -113,7 +127,7 @@ public class ClassSet {
                 }
 
                 // If there is ProblemsHours we create the class
-                if ( hoursOfClass.get(2) != 0 ) {
+                if ( hoursOfClass[2] != 0 ) {
                     subgroup = i*10+subGroupCount;
                     identifier = ""+subject.getName()+subgroup;
                     c = new ProblemsClass( identifier, subgroup, subject, i*10);
@@ -203,6 +217,20 @@ public class ClassSet {
         if (op.equals("=="))    return s1.equals(s2);
 
         return false;
+    }
+
+
+    /**
+     * It returns the set as a vector of vectors (of strings) with the members of the elements of the set.
+     * @return Vector of vectors (of strings) with the members of the elements of the set.
+     */
+    public Vector< Vector<String> > toStr() {
+        ArrayList<ClassClass> cs = this.unset();
+        Vector< Vector<String> > set = new Vector<>(cs.size());
+
+        for (int i = 0; i < cs.size(); i++) set.set(i, cs.get(i).toStr());
+
+        return set;
     }
 
 

@@ -5,47 +5,71 @@
  */
 package src.Domain;
 
+import java.util.Vector;
+
 /**
  *
  * @author Sergio
  */
 public class LaboratoryClass extends ClassClass {
 
-    // Members
-    private int Subgroup;
-    
+    // MEMBERS------------------------------------------------------------------
 
-    // Constructors
+    private int subGroup;
+
+    // CONSTRUCTORS--------------------------------------------------------------
 
     /**
      * Class constructor specifying the member's values.
      * @param identifier
-     * @param Subgroup Identificator of the SubClass.
+     * @param subGroup Identificator of the SubClass.
      * @param subject
      * @param group
      */
-    public LaboratoryClass(String identifier, int Subgroup, Subject subject, int group){
+    public LaboratoryClass(String identifier, int subGroup, Subject subject, int group){
         super(identifier, subject, group, ClassType.LABORATORY);
-        this.Subgroup = Subgroup;
+        this.subGroup = subGroup;
     }
 
+    /**
+     * Class constructor specifying the member's values.
+     * @param myStringVector Identification of the Class.
+     */
+    public LaboratoryClass( Vector<String> myStringVector ) {
+        super(myStringVector, ClassType.LABORATORY);
+        int sg = Integer.parseInt(myStringVector.get(2)); // subgroup
+        subGroup = sg;
+    }
 
-    // Methods
+    // METHODS--------------------------------------------------------------------
 
     /**
      * @return 
      */
-    public int getSubgroup() {
-        return Subgroup;
+    public int getsubGroup() {
+        return subGroup;
     }
 
     /**
-     * @param Subgroup
+     * @param subGroup
      */
-    public void setSubgroup(int Subgroup) {
-        this.Subgroup = Subgroup;
+    public void setsubGroup(int subGroup) {
+        this.subGroup = subGroup;
     }
 
+    /**
+     * It returns a vector of strings with the members' values.
+     * @return Vector of strings with the members' values.
+     */
+    @Override
+    public Vector<String> toStr() {
+        Vector<String> myAttributes = new Vector<String>(4);
 
+        myAttributes.set(0, super.getIdentifier());
+        myAttributes.set(1, Integer.toString(super.getGroup()));
+        myAttributes.set(2, Integer.toString(subGroup));
+        myAttributes.set(3, Integer.toString(super.getType().ordinal()));
+        return mergeStringVector(myAttributes, super.getSubject().toString());
+    }
 
 }

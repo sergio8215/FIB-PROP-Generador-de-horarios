@@ -16,10 +16,9 @@ import java.util.Scanner;
 public class Main {
     
     public static void main (String[] args) throws Exception {
-        DataManager dt = new DataManager();
-        
-        dt.ImportData("file1.txt");
-        
+
+
+
         
     }
 }
