@@ -16,7 +16,7 @@ public class Session {
 
     //Members
     //store days of the week
-    
+
     public enum Day {
         MONDAY,     // ordinal value: 0
         TUESDAY,    // ordinal value: 1
@@ -60,7 +60,7 @@ public class Session {
      * @param hour
      */
     public Session(Day day, int hour) {
-        this.hour = hour; 
+        this.hour = hour;
         this.day = day;
     }
 
@@ -111,10 +111,10 @@ public class Session {
     }
 
     public static boolean compare( Session s1, String op, Session s2  ) {
-        if (op.equals("<"))     return s1.getHour() < s2.getHour() && s1.getDay().ordinal() < s2.getDay().ordinal();
-        if (op.equals(">"))     return s1.getHour() > s2.getHour() && s1.getDay().ordinal() > s2.getDay().ordinal();
-        if (op.equals("<="))    return s1.getHour() <= s2.getHour() && s1.getDay().ordinal() <= s2.getDay().ordinal();
-        if (op.equals(">="))    return s1.getHour() >= s2.getHour() && s1.getDay().ordinal() >= s2.getDay().ordinal();
+        if (op.equals("<"))     return ( s1.getDay().ordinal() < s2.getDay().ordinal() ) || ( s1.getHour() < s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
+        if (op.equals(">"))     return ( s1.getDay().ordinal() > s2.getDay().ordinal() ) || ( s1.getHour() > s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
+        if (op.equals("<="))    return ( s1.getDay().ordinal() <= s2.getDay().ordinal() ) || ( s1.getHour() <= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
+        if (op.equals(">="))    return ( s1.getDay().ordinal() >= s2.getDay().ordinal() ) || ( s1.getHour() >= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
         if (op.equals("!="))    return !s1.equals(s2);
         if (op.equals("=="))    return s1.equals(s2);
 
