@@ -171,7 +171,7 @@ public class Schedule {
     /**
      * Deletes a MUS Object from the timetable attribute
      * @param mus MUS OBject we need to delete
-     * @return returns true if the element exists and false if it doesn't exists 
+     * @return returns true if the element exists and false if it doesn't exists
      */
     public boolean delete(MUS mus){
         //TODO: comprovar que no funciona pel mus, no per altres merdes
