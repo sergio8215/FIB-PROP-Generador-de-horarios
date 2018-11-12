@@ -12,6 +12,7 @@ public class CtrlScheduleGeneration {
 
     Schedule schedule;
     ClassroomSession classroomSession;
+    LinkedList<MUS> vars; // PARA CADA MUS UNA VARIABLE DOMINIO (== classroomSesion correspondiente (flitrado))
 
 
     // Constructors
@@ -25,17 +26,6 @@ public class CtrlScheduleGeneration {
         schedule = new Schedule(crFile, sFile);
     }
 
-    /**
-     * Class constructor specifying the member value of classroomSession..
-     * @param crFile name of the file that is going to generate the Schedule's classrooms
-     * @param sFile name of the file that is going to generate the Schedule's subjects
-     * @param classroomSession classroomSession Classroom-Sessions.
-     */
-    public CtrlScheduleGeneration(String crFile, String sFile, ClassroomSession classroomSession) {
-        schedule = new Schedule(crFile, sFile);
-        this.classroomSession = classroomSession;
-    }
-
 
     // Methods
 
@@ -44,8 +34,13 @@ public class CtrlScheduleGeneration {
      * @param vars Variables to assign a value from the domain.
      * @return Generates Schedule.
      */
-    public Schedule generateSchedule(LinkedList<MUS> vars) {
-        LinkedList<MUS> aux = vars.clone();
+    public Schedule generateSchedule(LinkedList<MUS> vars, ClassroomSession classroomSession) {
+        this.vars = vars;
+        this.classroomSession = classroomSession;
+
+        filterAndCSAssignd(vars);
+
+        //LinkedList<MUS> aux = vars.clone();
         schedule = chronologicalBacktracking(aux, schedule);
         return schedule;
     }
