@@ -38,11 +38,15 @@ public class CtrlScheduleGeneration {
         this.vars = vars;
         this.classroomSession = classroomSession;
 
-        filterAndCSAssignd(vars);
+        filterUnarityConstraints(this.vars);
 
         //LinkedList<MUS> aux = vars.clone();
-        schedule = chronologicalBacktracking(aux, schedule);
+        schedule = chronologicalBacktracking(vars.clone(), schedule);
         return schedule;
+    }
+
+    private static void filterUnarityConstraints(LinkedList<MUS> vars) {
+
     }
 
     /**
@@ -56,8 +60,8 @@ public class CtrlScheduleGeneration {
         else {
             MUS currentVar = futureVars.pollFirst();
 
-            for (int i = 0; i < currentVar.values().size(); i++){ 	// i = id/posición pair classroom-sesion
-                currentVar.assign(classroomSession.getPair(i));
+            for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
+                currentVar.assign(currentVar.getValue(i));
                 solution.add(currentVar);
 
                 if (solution.valid()) {
