@@ -167,12 +167,12 @@ public abstract class ClassroomClass {
      */
     public Vector<String> toStr() {
 
-        Vector<String> vec = new Vector<String> (4,1);
+        Vector<String> vec = new Vector<String> (5);
         vec.add(name);
         vec.add(String.valueOf(capacity));
         vec.add(typeToString());
         vec.add(multimediaToString());
-
+        vec.add("0");
         return vec;
     }
     

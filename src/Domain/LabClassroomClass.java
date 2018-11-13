@@ -79,7 +79,7 @@ public class LabClassroomClass extends ClassroomClass {
     @Override
     public Vector<String> toStr() {
         Vector<String> vec = super.toStr();
-        vec.add(String.valueOf(numComputers));
+        vec.add(4, String.valueOf(numComputers));
         return vec;
     }
 }
