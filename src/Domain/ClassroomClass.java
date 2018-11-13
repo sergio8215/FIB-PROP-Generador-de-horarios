@@ -24,13 +24,20 @@ public abstract class ClassroomClass {
     //CONSTRUCTOR
 
     /**
+     * Empty ClassroomClass constructor
+     */
+    public ClassroomClass() {
+
+    }
+
+    /**
      * ClassroomClass constructor
      * @param n name of the classroom
      * @param cap capacity of the classroom
      * @param t type of the classroom (Laboratory or Theory)
      * @param m if the classroom has a multimedia system
      */
-    ClassroomClass(String n, int cap, ClassroomType t, boolean m) {
+    public ClassroomClass(String n, int cap, ClassroomType t, boolean m) {
         name = n;
         capacity = cap;
         type = t;

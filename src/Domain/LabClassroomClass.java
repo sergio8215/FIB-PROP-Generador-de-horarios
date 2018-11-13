@@ -16,6 +16,13 @@ public class LabClassroomClass extends ClassroomClass {
     //CONSTRUCTOR
 
     /**
+     * Empty LabClassroomClass constructor
+     */
+    public LabClassroomClass(){
+
+    }
+
+    /**
      * LabClassroomClass constructor
      * @param name name of the classroom
      * @param capacity maximum capacity of the classroom

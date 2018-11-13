@@ -10,6 +10,14 @@ public class TheoryClassroomClass extends ClassroomClass {
      */
 
     //CONSTRUCTOR
+
+    /**
+     * Empty TheoryClassroomClass constructor
+     */
+    public TheoryClassroomClass(){
+
+    }
+
     /**
      * TheoryClassroomClass constructor
      * @param n name of the classroom
