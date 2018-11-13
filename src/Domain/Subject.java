@@ -20,12 +20,10 @@ public class Subject {
     // Members
 
     private static String name;
-    private static int totalWeekHours;
     private static int numberStudents;
     private static int level;
     private static int[] hoursClasses; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
     private static int[] numberOfGroups; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
-    private static int maxCapacity;
     private static typeShift tyShift;
 
 
@@ -43,13 +41,11 @@ public class Subject {
      * @param name Name of the subject.
      * @param level Level of the subject in the curriculum.
      * @param numberStudents Number of students that can be enrolled.
-     * @param weekHours Total of hours required for this subject.
      * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
      * @param numberOfGroups Number of groups and subgroups.
-     * @param maxCapacity The max capacity of the theory groups for the subject.
      * @param tyShift Type of shift.
      */
-    public Subject(String name, int level, int numberStudents, int weekHours, int[] hoursClasses, int[] numberOfGroups, int maxCapacity, typeShift tyShift){
+    public Subject(String name, int level, int numberStudents, int weekHours, int[] hoursClasses, int[] numberOfGroups, typeShift tyShift){
         this.name = name;
         this.level = level;
         this.totalWeekHours = weekHours;
@@ -57,7 +53,6 @@ public class Subject {
         this.hoursClasses = hoursClasses;
         setHoursClasses(hoursClasses);
         setNumberOfGroups(numberOfGroups);
-        this.maxCapacity = maxCapacity;
         this.tyShift = tyShift;
     }
 
@@ -68,7 +63,6 @@ public class Subject {
      */
     public Subject(Vector<String> vectorMembers) {
         name = vectorMembers.get(0);
-        totalWeekHours = Integer.parseInt(vectorMembers.get(1));
         numberStudents = Integer.parseInt(vectorMembers.get(2));
         level = Integer.parseInt(vectorMembers.get(3));
         hoursClasses = new int[3];
@@ -78,8 +72,7 @@ public class Subject {
         numberOfGroups = new int[2];
         numberOfGroups[0] = Integer.parseInt(vectorMembers.get(7));
         numberOfGroups[1] = Integer.parseInt(vectorMembers.get(8));
-        maxCapacity = Integer.parseInt(vectorMembers.get(9));
-        tyShift = typeShift.values()[Integer.parseInt(vectorMembers.get(10))];
+        tyShift = typeShift.values()[Integer.parseInt(vectorMembers.get(9))];
     }
 
     // Methods
@@ -98,22 +91,6 @@ public class Subject {
      */
     public String getName(){
         return name;
-    }
-
-    /**
-     * Set the total of hours required for a given subject.
-     * @param weekHours Total of hours required for this subject.
-     */
-    public void setWeekHours(int weekHours) {
-        this.totalWeekHours = weekHours;
-    }
-
-    /**
-     * It returns the total subject's hours.
-     * @return Total of hours required.
-     */
-    public float getWeekHours() {
-        return totalWeekHours;
     }
 
     /**
@@ -153,15 +130,9 @@ public class Subject {
      * @param theoryHours Hours of theory.
      * @param laboratoryHours Hours of Laboratory.
      * @param problemsHours Hours of problems.
-     * @return True if the summation of the hours distribution is equal to the total of hours required for this subject.
      */
-    public boolean setHoursClasses(int theoryHours, int laboratoryHours, int problemsHours){
-        if (theoryHours + laboratoryHours + problemsHours == totalWeekHours){
-            hoursClasses[0] = theoryHours; hoursClasses[1] = laboratoryHours; hoursClasses[2] = problemsHours;
-            return true;
-        } else {
-            return false;
-        }
+    public void setHoursClasses(int theoryHours, int laboratoryHours, int problemsHours){
+        hoursClasses[0] = theoryHours; hoursClasses[1] = laboratoryHours; hoursClasses[2] = problemsHours;
     }
 
     /**
@@ -254,39 +225,21 @@ public class Subject {
     }
 
     /**
-     * It returns the max capacity of the subject.
-     * @return Max capacity of the subject.
-     */
-    public int getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    /**
-     * Set the max capacity of the subject.
-     * @param maxCapacity Max capacity of the subject.
-     */
-    public void setMaxCapacity(int maxCapacity) {
-        Subject.maxCapacity = maxCapacity;
-    }
-    
-    /**
      * It returns a vector of strings with the members' values.
      * @return Vector of strings with the members' values.
      */
     public Vector<String> toStr() {
-        Vector<String> c = new Vector<>(11);
+        Vector<String> c = new Vector<>(9);
 
         c.set(0, name);
-        c.set(1, Integer.toString(totalWeekHours));
-        c.set(2, Integer.toString(numberStudents));
-        c.set(3, Integer.toString(level));
-        c.set(4, Integer.toString(hoursClasses[0]));
-        c.set(5, Integer.toString(hoursClasses[1]));
-        c.set(6, Integer.toString(hoursClasses[2]));
-        c.set(7, Integer.toString(numberOfGroups[0]));
-        c.set(8, Integer.toString(numberOfGroups[1]));
-        c.set(9, Integer.toString(maxCapacity));
-        c.set(10, Integer.toString(tyShift.ordinal()));
+        c.set(1, Integer.toString(numberStudents));
+        c.set(2, Integer.toString(level));
+        c.set(3, Integer.toString(hoursClasses[0]));
+        c.set(4, Integer.toString(hoursClasses[1]));
+        c.set(5, Integer.toString(hoursClasses[2]));
+        c.set(6, Integer.toString(numberOfGroups[0]));
+        c.set(7, Integer.toString(numberOfGroups[1]));
+        c.set(8, Integer.toString(tyShift.ordinal()));
 
         return c;
     }
