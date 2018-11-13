@@ -6,6 +6,7 @@
 package src.Domain;
 
 
+import javax.rmi.CORBA.Util;
 import java.util.Vector;
 
 /**
@@ -28,22 +29,26 @@ public abstract class ClassClass {
     private String identifier;
     private Subject subject;
     private ClassType type;
-
-
+    private int quantityStudents;
+    private UtilsDomain.TimeZone shift;
 
     // CONSTRUCTORS----------------------------------------------------
+
     /**
      * Class constructor specifying the member's values.
      * @param identifier Identification of the Class.
      * @param subject subject of the class.
      * @param group
      */
-    public ClassClass(String identifier, Subject subject, int group, ClassType type){
+    public ClassClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift, ClassType type){
         this.identifier = identifier;
         this.subject = subject;
         this.group = group;
+        this.quantityStudents = quantityStudents;
         this.type = type;
+        this.shift = shift;
     }
+
 
     /**
      * Class constructor specifying the member's values.
@@ -51,18 +56,22 @@ public abstract class ClassClass {
      * @param type subject of the class.
      */
     public ClassClass( Vector<String> myStringVector, ClassType type ){
-        identifier  = myStringVector.get(0); // identifier
-        group       = Integer.parseInt(myStringVector.get(1)); // group
-        this.type   = type; // type
+        identifier  = myStringVector.get(0);                    // identifier
+        group       = Integer.parseInt(myStringVector.get(1));  // group
+        this.type   = type;                                     // type
+        this.shift  = UtilsDomain.TimeZone.values()[Integer.parseInt(myStringVector.get(4))];  // Shift;
+        this.quantityStudents = Integer.parseInt(myStringVector.get(5));  // quantityStudents
 
-        // We start reading the last positions of the vector that are for the subject object
-        Vector<String> subjectVector = new Vector<>(myStringVector.size() - 4);
+        // We initialize the vector to the subject string vector size:
+        // [0]identifier => [1]group => [2]subGroup => [3]type of group => [4]shift => [5]quantityStudents
+        Vector<String> subjectVector = new Vector<>(myStringVector.size() - 6);
         int j = 0;
-        for ( int i = 4; i < myStringVector.size(); i++ ) {
+        // We start reading the last positions of the vector that are for the subject object
+        for ( int i = 6; i < myStringVector.size(); i++ ) {
             subjectVector.set(j, myStringVector.get(i)); //subject
             j++;
         }
-        subject     = new Subject(subjectVector);
+        subject = new Subject(subjectVector);
     }
 
 
@@ -125,6 +134,22 @@ public abstract class ClassClass {
         return type;
     }
 
+    public UtilsDomain.TimeZone getShift() {
+        return shift;
+    }
+
+    public void setShift(UtilsDomain.TimeZone shift) {
+        this.shift = shift;
+    }
+
+    public int getQuantityStudents() {
+        return quantityStudents;
+    }
+
+    public void setQuantityStudents(int quantityStudents) {
+        this.quantityStudents = quantityStudents;
+    }
+
     /**
      * It returns a vector of strings with the members' values.
      * @return Vector of strings with the members' values.
@@ -160,7 +185,6 @@ public abstract class ClassClass {
                 auxClass = null; // If we cant' find the type of c
                 break;
         }
-
         return auxClass;
     }
 }

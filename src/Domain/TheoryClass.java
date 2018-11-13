@@ -26,8 +26,8 @@ public class TheoryClass extends ClassClass{
      * @param subject
      * @param group
      */
-    public TheoryClass(String identifier, int subGroup, Subject subject, int group){
-        super( identifier, subject, group, ClassType.THEORY );
+    public TheoryClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
+        super(identifier, subject, group, quantityStudents, shift, ClassType.THEORY );
         this.subGroup = subGroup;
     }
 
@@ -65,12 +65,14 @@ public class TheoryClass extends ClassClass{
      */
     @Override
     public Vector<String> toStr() {
-        Vector<String> myAttributes = new Vector<String>(4);
+        Vector<String> myAttributes = new Vector<String>(5);
 
-        myAttributes.set(0, super.getIdentifier());
-        myAttributes.set(1, Integer.toString(super.getGroup()));
-        myAttributes.set(2, Integer.toString(subGroup));
-        myAttributes.set(3, Integer.toString(super.getType().ordinal()));
-        return mergeStringVector(myAttributes, super.getSubject().toString());
+        myAttributes.set(0, super.getIdentifier());                             //identifier
+        myAttributes.set(1, Integer.toString(super.getGroup()));                //group
+        myAttributes.set(2, Integer.toString(subGroup));                        //subGroup
+        myAttributes.set(3, Integer.toString(super.getType().ordinal()));       //type of group
+        myAttributes.set(4, Integer.toString(super.getShift().ordinal()));      //shift
+        myAttributes.set(5, Integer.toString(super.getQuantityStudents()));     //quantityStudents
+        return mergeStringVector(myAttributes, super.getSubject().toStr());     // result vector
     }
 }

@@ -47,11 +47,8 @@ public class ClassSet {
     public ClassSet( Vector< Vector<String> > classS ){
 
         for (Vector<String> classClass: classS) {
-
             ClassClass auxClass = ClassClass.fromStr(classClass);
-            if ( !this.existsClass( auxClass.getSubject().getName(), auxClass.getGroup() ) ) {
-                this.addClass(auxClass.getIdentifier(), auxClass);
-            }
+            this.addClass(auxClass.getIdentifier(), auxClass);
         }
     }
 
@@ -88,50 +85,76 @@ public class ClassSet {
     private void createSetOfClasses( SubjectsSet subjects ){
         ArrayList<Subject> subjectsArray = subjects.unset();
 
-        ClassClass c;
-        String identifier;
-
         // for each subject
         for ( Subject subject : subjectsArray ){
-            // if the quantity of students it's less than the max capacity it's just 1 group
-            int groups = 1;
-            // if quantity of students it's more than MaxCapacity we have to split the group
-            while ( subject.getNumberStudents()/groups > subject.getMaxCapacity() ){
-                // if we split the group and now it's less than MaxCapacity then we have the quantity of groups
-                groups++;
-            }
+
+            // [0] Number of Groups => [1] Number of subgroups
+            int[] groups = subject.getNumberOfGroups();
+            int subGroupCount = 0;
+            int subgroup;
+            String identifier;
+            int quantityStudents;
+            int[] hoursOfClass = subject.getHoursClasses();
+            UtilsDomain.typeShift shiftAssignation;
+            UtilsDomain.TimeZone shiftA;
+            UtilsDomain.TimeZone[] allShift = UtilsDomain.TimeZone.values();
+            ClassClass c;
 
             // For each group of the subject we create the respective theory classes, labs and problems classes.
-            for (int i = 1; i <= groups; i++){
+            for (int i = 1; i <= groups[0]; i++){
 
-                int subGroupCount = 0;
-                int subgroup;
-                int[] hoursOfClass = subject.getHoursClasses();
+                subGroupCount = 0;
+
+                // Verify if the shift is morning - afternoon
+                if ( subject.getTypeShift().ordinal() == 2 ){
+                    if(i%2 != 0){
+                        // if it's odd we assign morning shift
+                        shiftA = allShift[0];
+                    }else{
+                        // if it's pair we assign afternoon shift
+                        shiftA = allShift[1];
+                    }
+                } else if( subject.getTypeShift().ordinal() == 1 ){
+                    // We assign morning shift
+                    shiftA = allShift[0];
+                } else {
+                    // We assign afternoon shift
+                    shiftA = allShift[1];
+                }
 
                 // If there is TheoryHours we create the class
                 if ( hoursOfClass[0] != 0 ) {
                     subgroup = i*10+subGroupCount;
                     identifier = ""+subject.getName()+subgroup;
-                    c = new TheoryClass( identifier, subgroup, subject, i*10);
+
+                    // identifier, subGroup, subject, group, quantityStudents, UtilsDomain.TimeZone shift){
+                    quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[0]);
+                    c = new TheoryClass( identifier, subgroup, subject, i*10, quantityStudents, shiftA );
                     this.addClass( identifier, c);
                     subGroupCount++;
                 }
 
-                // If there is LaboratoryHours we create the class
-                if ( hoursOfClass[1] != 0 ) {
-                    subgroup = i*10+subGroupCount;
-                    subGroupCount++;
-                    identifier = ""+subject.getName()+subgroup;
-                    c = new LaboratoryClass( identifier, subgroup, subject, i*10);
-                    this.addClass( identifier, c);
-                }
 
-                // If there is ProblemsHours we create the class
-                if ( hoursOfClass[2] != 0 ) {
-                    subgroup = i*10+subGroupCount;
-                    identifier = ""+subject.getName()+subgroup;
-                    c = new ProblemsClass( identifier, subgroup, subject, i*10);
-                    this.addClass( identifier, c);
+                for ( int j = 0; j < groups[1]; j++) {
+                    // If there is LaboratoryHours we create the class
+                    if ( hoursOfClass[1] != 0 ) {
+                        subgroup = i*10+subGroupCount;
+                        subGroupCount++;
+                        identifier = ""+subject.getName()+subgroup;
+                        quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[1]);
+                        c = new LaboratoryClass( identifier, subgroup, subject, i*10, quantityStudents, shiftA );
+                        this.addClass( identifier, c);
+                    }
+
+                    // If there is ProblemsHours we create the class
+                    if ( hoursOfClass[2] != 0 ) {
+                        subgroup = i*10+subGroupCount;
+                        subGroupCount++;
+                        identifier = ""+subject.getName()+subgroup;
+                        quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[1]);
+                        c = new ProblemsClass( identifier, subgroup, subject, i*10, quantityStudents, shiftA );
+                        this.addClass( identifier, c);
+                    }
                 }
             }
         }
@@ -209,12 +232,12 @@ public class ClassSet {
      * @return Result of the comparison.
      */
     public static boolean compare(ClassClass s1, String op, ClassClass s2){
-        if (op.equals("<"))     return s1.getGroup() < s2.getGroup() && s1.getSubject().getName() < s2.getSubject().getName();
-        if (op.equals(">"))     return s1.getGroup() > s2.getGroup() && s1.getSubject().getName() > s2.getSubject().getName();
-        if (op.equals("<="))    return s1.getGroup() <= s2.getGroup() && s1.getSubject().getName() <= s2.getSubject().getName();
-        if (op.equals(">="))    return s1.getGroup() >= s2.getGroup() && s1.getSubject().getName() >= s2.getSubject().getName();
-        if (op.equals("!="))    return !s1.equals(s2);
-        if (op.equals("=="))    return s1.equals(s2);
+        if (op.equals("<"))     return s1.getGroup() < s2.getGroup() && s1.getSubject().getName().compareTo(s2.getSubject().getName()) > 0;
+        if (op.equals(">"))     return s1.getGroup() > s2.getGroup() && s1.getSubject().getName().compareTo(s2.getSubject().getName()) < 0;
+        if (op.equals("<="))    return s1.getGroup() <= s2.getGroup() && (s1.getSubject().getName().compareTo(s2.getSubject().getName()) > 0 || s1.getSubject().getName().contentEquals(s2.getSubject().getName()));
+        if (op.equals(">="))    return s1.getGroup() >= s2.getGroup() && (s1.getSubject().getName().compareTo(s2.getSubject().getName()) < 0 || s1.getSubject().getName().contentEquals(s2.getSubject().getName()));
+        if (op.equals("!="))    return s1.getGroup() != s2.getGroup() && !s1.getSubject().getName().contentEquals(s2.getSubject().getName());
+        if (op.equals("=="))    return s1.getGroup() == s2.getGroup() && !s1.getSubject().getName().contentEquals(s2.getSubject().getName());
 
         return false;
     }
