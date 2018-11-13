@@ -8,9 +8,9 @@ public final class UtilsDomain {
     }
 
     public enum ClassType {
-        THEORY,
-        LABORATORY,
-        PROBLEMS
+        THEORY,     // ordinal value: 0
+        LABORATORY, // ordinal value: 1
+        PROBLEMS    // ordinal value: 2
     }
 
     public enum TimeZone{

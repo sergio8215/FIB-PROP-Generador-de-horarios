@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package src.domain.classes;
-
 
 import src.domain.utils.UtilsDomain;
 
@@ -18,14 +16,12 @@ import java.util.Vector;
 public abstract class ClassClass {
 
 
-
     // MEMBERS----------------------------------------------------------
-
 
     private int group;
     private String identifier;
     private Subject subject;
-    private ClassType type;
+    private UtilsDomain.ClassType type;
     private int quantityStudents;
     private UtilsDomain.TimeZone shift;
 
@@ -37,7 +33,7 @@ public abstract class ClassClass {
      * @param subject subject of the class.
      * @param group
      */
-    public ClassClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift, ClassType type){
+    public ClassClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift, UtilsDomain.ClassType type){
         this.identifier = identifier;
         this.subject = subject;
         this.group = group;
@@ -52,7 +48,7 @@ public abstract class ClassClass {
      * @param myStringVector Identification of the Class.
      * @param type subject of the class.
      */
-    public ClassClass( Vector<String> myStringVector, ClassType type ){
+    public ClassClass( Vector<String> myStringVector, UtilsDomain.ClassType type ){
         identifier  = myStringVector.get(0);                    // identifier
         group       = Integer.parseInt(myStringVector.get(1));  // group
         this.type   = type;                                     // type
@@ -127,7 +123,7 @@ public abstract class ClassClass {
      * It returns the type of the class.
      * @return type of the class.
      */
-    public ClassType getType() {
+    public UtilsDomain.ClassType getType() {
         return type;
     }
 
