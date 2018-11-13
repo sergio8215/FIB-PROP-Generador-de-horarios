@@ -4,8 +4,8 @@
 *.iml
 
 META-INF/
-/Schedules-Generator/nbproject/private/
-nbproject/
+
+out/
 
 build\.xml
 
