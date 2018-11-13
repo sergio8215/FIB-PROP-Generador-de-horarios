@@ -7,3 +7,6 @@ META-INF/
 
 out/
 
+build\.xml
+
+manifest\.mf
