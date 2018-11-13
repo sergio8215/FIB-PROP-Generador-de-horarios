@@ -1,6 +1,6 @@
-package src.Domain;
+package src.domain;
 
-import src.Domain.utils.UtilsDomain;
+import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
@@ -123,7 +123,7 @@ public class MUS {
 
     /**
      * It returns the domain of the MUS.
-     * @return Domain of the MUS.
+     * @return domain of the MUS.
      */
     public ClassroomSession getDomain() {
         return domain;
@@ -131,7 +131,7 @@ public class MUS {
 
     /**
      * Set the domain of the MUS.
-     * @param domain Domain of the MUS.
+     * @param domain domain of the MUS.
      */
     public void setDomain(ClassroomSession domain) {
         this.domain = domain;
@@ -139,7 +139,7 @@ public class MUS {
 
     /**
      * It returns the size of the domain.
-     * @return Domain of the size.
+     * @return domain of the size.
      */
     public void int domainSize() {
         return domain.size();

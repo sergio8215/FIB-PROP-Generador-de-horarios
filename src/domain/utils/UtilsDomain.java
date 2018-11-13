@@ -1,4 +1,4 @@
-package src.Domain.utils;
+package src.domain.utils;
 
 public final class UtilsDomain {
 

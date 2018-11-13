@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-src.Presenter.Main-Class: src.Presenter.Main
+src.presentation.Main-Class: src.presentation.Main
 

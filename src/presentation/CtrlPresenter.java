@@ -1,6 +1,6 @@
-package src.Presenter;
+package src.presentation;
 
-import src.Domain.CtrlDomain;
+import src.domain.controllers.CtrlDomain;
 
 import java.util.Scanner;
 

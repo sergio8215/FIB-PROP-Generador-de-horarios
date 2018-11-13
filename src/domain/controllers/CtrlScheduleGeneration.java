@@ -1,4 +1,4 @@
-package src.Domain;
+package src.domain;
 
 import java.util.LinkedList;
 

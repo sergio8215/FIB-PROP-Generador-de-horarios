@@ -1,7 +1,7 @@
-package src.Domain;
+package src.domain;
 
-import src.Domain.comparators.ClassroomCapacityComparator;
-import src.Domain.utils.UtilsDomain;
+import src.domain.comparators.ClassroomCapacityComparator;
+import src.domain.utils.UtilsDomain;
 
 import java.util.*;
 

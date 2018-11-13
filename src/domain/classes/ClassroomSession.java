@@ -1,6 +1,6 @@
-package src.Domain;
+package src.domain;
 
-import src.Domain.utils.UtilsDomain;
+import src.domain.utils.UtilsDomain;
 
 import java.util.ArrayList;
 

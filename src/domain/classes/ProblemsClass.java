@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.Domain;
+package src.domain;
 
-import src.Domain.utils.UtilsDomain;
-import sun.plugin.com.Utils;
+import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
@@ -14,13 +13,13 @@ import java.util.Vector;
  *
  * @author Sergio
  */
-public class LaboratoryClass extends ClassClass {
+public class ProblemsClass extends ClassClass{
 
-    // MEMBERS------------------------------------------------------------------
-
+    // Members
     private int subGroup;
+    
 
-    // CONSTRUCTORS--------------------------------------------------------------
+    // Constructors
 
     /**
      * Class constructor specifying the member's values.
@@ -29,8 +28,8 @@ public class LaboratoryClass extends ClassClass {
      * @param subject
      * @param group
      */
-    public LaboratoryClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
-        super(identifier, subject, group, quantityStudents, shift, ClassType.LABORATORY);
+    public ProblemsClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
+        super(identifier, subject, group, quantityStudents, shift, ClassType.PROBLEMS);
         this.subGroup = subGroup;
     }
 
@@ -38,26 +37,28 @@ public class LaboratoryClass extends ClassClass {
      * Class constructor specifying the member's values.
      * @param myStringVector Identification of the Class.
      */
-    public LaboratoryClass( Vector<String> myStringVector ) {
-        super(myStringVector, ClassType.LABORATORY);
+    public ProblemsClass( Vector<String> myStringVector ) {
+        super(myStringVector, ClassType.PROBLEMS);
         int sg = Integer.parseInt(myStringVector.get(2)); // subgroup
         subGroup = sg;
     }
 
-    // METHODS--------------------------------------------------------------------
+    // Methods
 
     /**
-     * @return 
-     */
-    public int getsubGroup() {
-        return subGroup;
-    }
-
-    /**
+     * 
      * @param subGroup
      */
     public void setsubGroup(int subGroup) {
         this.subGroup = subGroup;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public int getsubGroup() {
+        return subGroup;
     }
 
     /**
@@ -76,5 +77,4 @@ public class LaboratoryClass extends ClassClass {
         myAttributes.set(5, Integer.toString(super.getQuantityStudents()));     //quantityStudents
         return mergeStringVector(myAttributes, super.getSubject().toStr());     // result vector
     }
-
 }

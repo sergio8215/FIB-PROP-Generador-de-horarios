@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.Domain;
+package src.domain;
 
-import src.Data.DataManager;
-import src.Data.MUS;
-import src.Domain.utils.UtilsDomain;
+import src.persistence.DataManager;
+import src.persistence.MUS;
+import src.domain.utils.UtilsDomain;
 
 import java.util.LinkedList;
 import java.util.Vector;

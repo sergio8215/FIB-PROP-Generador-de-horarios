@@ -1,5 +1,5 @@
 
-package src.Data;
+package src.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

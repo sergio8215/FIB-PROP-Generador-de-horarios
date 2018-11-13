@@ -1,6 +1,5 @@
-package src.Domain;
+package src.domain;
 
-import javax.management.loading.ClassLoaderRepository;
 import java.util.Vector;
 
 public abstract class Classroom {

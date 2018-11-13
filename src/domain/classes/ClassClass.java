@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 
-package src.Domain;
+package src.domain;
 
 
-import src.Domain.utils.UtilsDomain;
+import src.domain.utils.UtilsDomain;
 
-import javax.rmi.CORBA.Util;
 import java.util.Vector;
 
 /**
