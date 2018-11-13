@@ -14,7 +14,8 @@ public class Constraints {
     }
 
     protected static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-
+        if (m.getTimeZone() == UtilsDomain.TimeZone.MORNING) return cs.second.getHour() < 14;
+        else return cs.second.getHour() >= 14;
     }
 
      //BINARY CONSTRAINTS
