@@ -1,4 +1,4 @@
-package src.domain;
+package src.domain.classes;
 
 import src.domain.utils.UtilsDomain;
 
@@ -149,7 +149,7 @@ public class MUS {
      * Assign classroom and session to the MUS.
      * @param csPair Pair with the Classroom and the Session.
      */
-    public void assign(Pair<Classroom, Session> csPair) {
+    public void assign(UtilsDomain.Pair<Classroom, Session> csPair) {
         classroom = csPair.first;
         session = csPair.second;
     }
@@ -159,7 +159,7 @@ public class MUS {
      * @param i Id of the pair classroom-session inside the domain.
      * @return Value i of the domain.
      */
-    public Pair<Classroom, Session> getValueDomain(int i){
+    public UtilsDomain.Pair<Classroom, Session> getValueDomain(int i){
         return domain.get(i);
     }
 

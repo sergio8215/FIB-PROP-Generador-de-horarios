@@ -1,4 +1,4 @@
-package src.domain;
+package src.domain.classes;
 
 import java.util.Vector;
 

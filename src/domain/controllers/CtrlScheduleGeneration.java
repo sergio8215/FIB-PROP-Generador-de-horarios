@@ -1,4 +1,9 @@
-package src.domain;
+package src.domain.controllers;
+
+import src.domain.classes.ClassroomSession;
+import src.domain.classes.Constraints;
+import src.domain.classes.MUS;
+import src.domain.classes.Schedule;
 
 import java.util.LinkedList;
 

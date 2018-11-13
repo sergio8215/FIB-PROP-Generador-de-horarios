@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package src.domain;
+package src.domain.classes;
 
 
 import src.domain.utils.UtilsDomain;

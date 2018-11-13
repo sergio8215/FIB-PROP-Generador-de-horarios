@@ -1,5 +1,5 @@
-package src.Domain.drivers;
-import src.Domain.LabClassroom;
+package src.domain.drivers;
+import src.domain.classes.LabClassroom;
 
 import java.util.Scanner;
 import java.util.Vector;

@@ -1,4 +1,6 @@
-package src.domain;
+package src.domain.classes;
+
+import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
@@ -16,17 +18,10 @@ public class Subject {
     private static int level;
     private static int[] hoursClasses; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
     private static int[] numberOfGroups; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
-    private static typeShift tyShift;
+    private static UtilsDomain.typeShift tyShift;
 
 
     // Constructors
-
-    /**
-     * Class constructor.
-     */
-    public Subject(){
-
-    }
 
     /**
      * Class constructor specifying the member's values.
@@ -37,14 +32,13 @@ public class Subject {
      * @param numberOfGroups Number of groups and subgroups.
      * @param tyShift Type of shift.
      */
-    public Subject(String name, int level, int numberStudents, int weekHours, int[] hoursClasses, int[] numberOfGroups, typeShift tyShift){
+    public Subject(String name, int level, int numberStudents, int[] hoursClasses, int[] numberOfGroups, UtilsDomain.typeShift tyShift){
         this.name = name;
         this.level = level;
-        this.totalWeekHours = weekHours;
         this.numberStudents = numberStudents;
         this.hoursClasses = hoursClasses;
-        setHoursClasses(hoursClasses);
-        setNumberOfGroups(numberOfGroups);
+        setHoursClasses(hoursClasses[0], hoursClasses[1], hoursClasses[2]);
+        setNumberOfGroups(numberOfGroups[0], numberOfGroups[1]);
         this.tyShift = tyShift;
     }
 
@@ -55,16 +49,16 @@ public class Subject {
      */
     public Subject(Vector<String> vectorMembers) {
         name = vectorMembers.get(0);
-        numberStudents = Integer.parseInt(vectorMembers.get(2));
-        level = Integer.parseInt(vectorMembers.get(3));
+        numberStudents = Integer.parseInt(vectorMembers.get(1));
+        level = Integer.parseInt(vectorMembers.get(2));
         hoursClasses = new int[3];
-        hoursClasses[0] = Integer.parseInt(vectorMembers.get(4));
-        hoursClasses[1] = Integer.parseInt(vectorMembers.get(5));
-        hoursClasses[2] = Integer.parseInt(vectorMembers.get(6));
+        hoursClasses[0] = Integer.parseInt(vectorMembers.get(3));
+        hoursClasses[1] = Integer.parseInt(vectorMembers.get(4));
+        hoursClasses[2] = Integer.parseInt(vectorMembers.get(5));
         numberOfGroups = new int[2];
-        numberOfGroups[0] = Integer.parseInt(vectorMembers.get(7));
-        numberOfGroups[1] = Integer.parseInt(vectorMembers.get(8));
-        tyShift = typeShift.values()[Integer.parseInt(vectorMembers.get(9))];
+        numberOfGroups[0] = Integer.parseInt(vectorMembers.get(6));
+        numberOfGroups[1] = Integer.parseInt(vectorMembers.get(7));
+        tyShift = UtilsDomain.typeShift.values()[Integer.parseInt(vectorMembers.get(8))];
     }
 
     // Methods
@@ -204,7 +198,7 @@ public class Subject {
      * Set the type of shift.
      * @param tyShift Type of shift.
      */
-    public void setTypeShift(typeShift tyShift) {
+    public void setTypeShift(UtilsDomain.typeShift tyShift) {
         Subject.tyShift = tyShift;
     }
 
@@ -212,7 +206,7 @@ public class Subject {
      * It returns the type of shift.
      * @return Type of the shift.
      */
-    public typeShift getTypeShift() {
+    public UtilsDomain.typeShift getTypeShift() {
         return tyShift;
     }
 

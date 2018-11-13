@@ -1,6 +1,6 @@
-package src.Domain.comparators;
+package src.domain.comparators;
 
-import src.Domain.Classroom;
+import src.domain.classes.Classroom;
 
 import java.util.Comparator;
 

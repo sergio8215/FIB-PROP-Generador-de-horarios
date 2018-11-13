@@ -1,4 +1,4 @@
-package src.Domain.drivers;
+package src.domain.drivers;
 
 public class SubjectsSetDriver {
 

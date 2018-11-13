@@ -1,9 +1,9 @@
-package src.Domain.drivers;
+package src.domain.drivers;
 
-import src.Domain.ClassClass;
-import src.Domain.StubClassClass;
-import src.Domain.Subject;
-import src.Domain.utils.UtilsDomain;
+import src.domain.classes.ClassClass;
+import src.domain.classes.StubClassClass;
+import src.domain.classes.Subject;
+import src.domain.utils.UtilsDomain;
 import sun.plugin.com.Utils;
 
 import java.util.Scanner;

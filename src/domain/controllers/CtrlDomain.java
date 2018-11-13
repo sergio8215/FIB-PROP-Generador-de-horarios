@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.domain;
+package src.domain.controllers;
 
+import src.domain.classes.*;
 import src.persistence.DataManager;
 import src.persistence.MUS;
 import src.domain.utils.UtilsDomain;
