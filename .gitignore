@@ -2,4 +2,8 @@
 \.idea/
 
 *.iml
-/Schedules Generator/nbproject/private/
+
+META-INF/
+
+out/
+
