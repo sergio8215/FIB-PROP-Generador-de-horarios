@@ -18,9 +18,7 @@ import org.json.simple.parser.ParseException;
  * @author Sergio
  */
 public class DataManager {
-    
 
-    
     // Constructor
     public DataManager( ){
     }
@@ -80,11 +78,11 @@ public class DataManager {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> subjects = new Vector <Vector< String>>();
-        
+
         try {
             Object obj = parser.parse(new FileReader("./files/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
-            
+
             String  subject;
             Long    weekHours;
             Long    numStudents;
@@ -94,9 +92,9 @@ public class DataManager {
             // loop array to find values of Subjects
             JSONArray subjectsList = (JSONArray) rootJSON.get("Subjects List");
             Iterator<JSONObject> iterator2 = subjectsList.iterator();
-            
+
             int i=0;
-            
+
             while (iterator2.hasNext()) {
 
                 JSONObject subjectJSON = (JSONObject) iterator2.next();
@@ -105,21 +103,22 @@ public class DataManager {
                 subjects.elementAt(i).add((String)subjectJSON.get("Subject"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Num_students"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Level"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Max_capacity"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Theory_hours"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Laboratory_hours"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Problems_hours"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Number_of_groups"));
+                subjects.elementAt(i).add((String)subjectJSON.get("Number_of_subgroups"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Shift"));
-
 
                 System.out.println("Subject: "+         subjects.elementAt(i).get(0));
                 System.out.println("Num_students: "+    subjects.elementAt(i).get(1));
                 System.out.println("Level: "+           subjects.elementAt(i).get(2));
-                System.out.println("Max_capacity: "+    subjects.elementAt(i).get(3));
-                System.out.println("Theory_hours: "+    subjects.elementAt(i).get(4));
-                System.out.println("Laboratory_hours: "+subjects.elementAt(i).get(5));
-                System.out.println("Problems_hours: "+  subjects.elementAt(i).get(6));
-                System.out.println("Shift: "+           subjects.elementAt(i).get(7)+"\n");
+                System.out.println("Theory_hours: "+    subjects.elementAt(i).get(3));
+                System.out.println("Laboratory_hours: "+subjects.elementAt(i).get(4));
+                System.out.println("Problems_hours: "+  subjects.elementAt(i).get(5));
+                System.out.println("Number_of_groups: "+subjects.elementAt(i).get(6));
+                System.out.println("Number_of_subgroups: "+subjects.elementAt(i).get(7));
+                System.out.println("Shift: "+           subjects.elementAt(i).get(8)+"\n");
                 i++;
             }
 
