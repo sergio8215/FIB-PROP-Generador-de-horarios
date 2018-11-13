@@ -1,4 +1,4 @@
-package src.Domain;
+package src.Domain.utils;
 
 public final class UtilsDomain {
 
@@ -11,6 +11,16 @@ public final class UtilsDomain {
         THEORY,
         LABORATORY,
         PROBLEMS
+    }
+
+    public enum TimeZone{
+        MORNING, AFTERNOON
+    }
+
+    public enum typeShift {
+        morningShift,
+        afternoonShift,
+        bothShifts
     }
 
     public enum Day {

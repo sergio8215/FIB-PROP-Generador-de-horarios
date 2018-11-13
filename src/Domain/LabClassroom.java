@@ -2,7 +2,7 @@ package src.Domain;
 
 import java.util.Vector;
 
-public class LabClassroomClass extends ClassroomClass {
+public class LabClassroom extends Classroom {
 
     /**
      * Represents a laboratory classroom
@@ -16,29 +16,29 @@ public class LabClassroomClass extends ClassroomClass {
     //CONSTRUCTOR
 
     /**
-     * Empty LabClassroomClass constructor
+     * Empty LabClassroom constructor
      */
-    public LabClassroomClass(){
+    public LabClassroom(){
 
     }
 
     /**
-     * LabClassroomClass constructor
+     * LabClassroom constructor
      * @param name name of the classroom
      * @param capacity maximum capacity of the classroom
      * @param multimedia indicates if the classroom has multimedia system
      * @param nComputers number of computers in the classroom
      */
-    public LabClassroomClass (String name, int capacity, boolean multimedia, int nComputers ) {
+    public LabClassroom(String name, int capacity, boolean multimedia, int nComputers ) {
         super(name, capacity, ClassroomType.LABORATORY, multimedia);
         numComputers = nComputers;
     }
 
     /**
-     * LabClassroomClass constructor from String
-     * @param parse Vector of String Objects which encode the attributes of this LabClassroomClass instance
+     * LabClassroom constructor from String
+     * @param parse Vector of String Objects which encode the attributes of this LabClassroom instance
      */
-    public LabClassroomClass(Vector<String> parse) {
+    public LabClassroom(Vector<String> parse) {
         super(parse);
         numComputers = Integer.parseInt(parse.get(4));
     }

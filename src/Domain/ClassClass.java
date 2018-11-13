@@ -7,6 +7,8 @@
 package src.Domain;
 
 
+import src.Domain.utils.UtilsDomain;
+
 import javax.rmi.CORBA.Util;
 import java.util.Vector;
 
@@ -20,12 +22,7 @@ public abstract class ClassClass {
 
     // MEMBERS----------------------------------------------------------
 
-    public enum ClassType {
-        THEORY,     // ordinal value: 0
-        LABORATORY, // ordinal value: 1
-        PROBLEMS    // ordinal value: 2
 
-    }
     private int group;
     private String identifier;
     private Subject subject;

@@ -1,5 +1,7 @@
 package src.Domain;
 
+import src.Domain.utils.UtilsDomain;
+
 public class Constraints {
 
     // UNARY CONSTRAINTS

@@ -5,6 +5,7 @@
  */
 package src.Domain;
 
+import src.Domain.utils.UtilsDomain;
 import sun.plugin.com.Utils;
 
 import java.util.Vector;

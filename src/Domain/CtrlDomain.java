@@ -7,6 +7,7 @@ package src.Domain;
 
 import src.Data.DataManager;
 import src.Data.MUS;
+import src.Domain.utils.UtilsDomain;
 
 import java.util.LinkedList;
 import java.util.Vector;
@@ -20,7 +21,7 @@ public class CtrlDomain {
 
     private DataManager dManager;
     private Schedule schedule;
-    private ClassroomSetClass classroomsSet;
+    private ClassroomSet classroomsSet;
     private SubjectSetClass subjectsSet;
     private ClassSet classSet;
     private ClassroomSession classroomSession;
@@ -46,7 +47,7 @@ public class CtrlDomain {
 
         Vector<Vector<String >> classRooms = dManager.importClassrooms(file);
         if (classRooms == null) {
-            classroomsSet = new ClassroomSetClass( classRooms );
+            classroomsSet = new ClassroomSet( classRooms );
             return true;
         }
         else return false;

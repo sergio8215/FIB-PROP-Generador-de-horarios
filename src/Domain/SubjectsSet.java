@@ -1,6 +1,8 @@
 package src.Domain;
 
 
+import src.Domain.utils.UtilsDomain;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;

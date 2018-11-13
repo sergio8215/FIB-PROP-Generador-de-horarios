@@ -3,10 +3,10 @@ package src.Domain;
 import javax.management.loading.ClassLoaderRepository;
 import java.util.Vector;
 
-public abstract class ClassroomClass {
+public abstract class Classroom {
 
     /**
-     * ClassroomClass represents a classroom of type LABORATORY or THEORY
+     * Classroom represents a classroom of type LABORATORY or THEORY
      * @author mireia
      */
 
@@ -24,20 +24,20 @@ public abstract class ClassroomClass {
     //CONSTRUCTOR
 
     /**
-     * Empty ClassroomClass constructor
+     * Empty Classroom constructor
      */
-    public ClassroomClass() {
+    public Classroom() {
 
     }
 
     /**
-     * ClassroomClass constructor
+     * Classroom constructor
      * @param n name of the classroom
      * @param cap capacity of the classroom
      * @param t type of the classroom (Laboratory or Theory)
      * @param m if the classroom has a multimedia system
      */
-    public ClassroomClass(String n, int cap, ClassroomType t, boolean m) {
+    public Classroom(String n, int cap, ClassroomType t, boolean m) {
         name = n;
         capacity = cap;
         type = t;
@@ -45,10 +45,10 @@ public abstract class ClassroomClass {
     }
 
     /**
-     * ClassroomClass constructor from String
-     * @param parse Vector of String Objects which encodes the attributes of this ClassroomClass instance
+     * Classroom constructor from String
+     * @param parse Vector of String Objects which encodes the attributes of this Classroom instance
      */
-    public ClassroomClass(Vector<String> parse) {
+    public Classroom(Vector<String> parse) {
         name = parse.get(0);
         capacity = Integer.parseInt(parse.get(1));
         typeFromString(parse.get(2));
@@ -124,8 +124,8 @@ public abstract class ClassroomClass {
     //PRIVATE METHODS
 
     /**
-     * Converts the type of this ClassroomClass instance into a legible  String
-     * @return returns an String with the type of the ClassroomClass instance
+     * Converts the type of this Classroom instance into a legible  String
+     * @return returns an String with the type of the Classroom instance
      */
     private String typeToString() {
         if(type == ClassroomType.LABORATORY) return "Laboratory";
@@ -134,7 +134,7 @@ public abstract class ClassroomClass {
 
     /**
      * Converts the multimedia attribute into a legible String
-     * @return returns an String with the attribute multimedia of this ClassroomClass instance
+     * @return returns an String with the attribute multimedia of this Classroom instance
      */
     private String multimediaToString(){
         if(multimedia) return "true";

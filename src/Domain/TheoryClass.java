@@ -5,6 +5,8 @@
  */
 package src.Domain;
 
+import src.Domain.utils.UtilsDomain;
+
 import java.util.Vector;
 
 /**

@@ -1,5 +1,7 @@
 package src.Domain;
 
+import src.Domain.utils.UtilsDomain;
+
 import java.util.ArrayList;
 
 public class ClassroomSession {
@@ -10,9 +12,9 @@ public class ClassroomSession {
      * ClassroomSession constructor
      * @param crSet Set of all the Classroom Objects
      */
-    public ClassroomSession(ClassroomSetClass crSet) {
+    public ClassroomSession(ClassroomSet crSet) {
         classroomSessionSet = new ArrayList<UtilsDomain.Pair>();
-        ArrayList<ClassroomClass> classroomValues = crSet.getClassroomValues(); //arraylist de les classrooms
+        ArrayList<Classroom> classroomValues = crSet.getClassroomValues(); //arraylist de les classrooms
         UtilsDomain.Day arr[] = UtilsDomain.Day.values(); //enum posat en array. aixo no se molt be com gestionar-ho
 
         for(int i = 0; i <classroomValues.size(); ++i) { //per cada classroom...

@@ -2,7 +2,7 @@ package src.Domain;
 
 import java.util.Vector;
 
-public class TheoryClassroomClass extends ClassroomClass {
+public class TheoryClassroom extends Classroom {
 
     /**
      * Represents a theory classroom
@@ -12,27 +12,27 @@ public class TheoryClassroomClass extends ClassroomClass {
     //CONSTRUCTOR
 
     /**
-     * Empty TheoryClassroomClass constructor
+     * Empty TheoryClassroom constructor
      */
-    public TheoryClassroomClass(){
+    public TheoryClassroom(){
 
     }
 
     /**
-     * TheoryClassroomClass constructor
+     * TheoryClassroom constructor
      * @param n name of the classroom
      * @param cap capacity of the classroom
      * @param m indicates if the classroom has multimedia system
      */
-    public TheoryClassroomClass(String n, int cap, boolean m) {
+    public TheoryClassroom(String n, int cap, boolean m) {
         super(n, cap, ClassroomType.THEORY, m);
     }
 
     /**
-     * TheoryClassroomClass constructor from String
-     * @param parse Vector of String Objects which encodes the attributes of this TheoryClassroomClass instance
+     * TheoryClassroom constructor from String
+     * @param parse Vector of String Objects which encodes the attributes of this TheoryClassroom instance
      */
-    public TheoryClassroomClass(Vector<String> parse) {
+    public TheoryClassroom(Vector<String> parse) {
         super(parse);
     }
 

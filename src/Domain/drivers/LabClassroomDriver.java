@@ -1,12 +1,12 @@
 package src.Domain.drivers;
-import src.Domain.LabClassroomClass;
+import src.Domain.LabClassroom;
 
 import java.util.Scanner;
 import java.util.Vector;
 
 public class LabClassroomDriver {
 
-    private static LabClassroomClass lab = new LabClassroomClass();
+    private static LabClassroom lab = new LabClassroom();
 
     public static void testConstructor(){
         Scanner sc = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class LabClassroomDriver {
         int cap = sc.nextInt();
         boolean multimedia = sc.nextBoolean();
         int nComp = sc.nextInt();
-        lab = new LabClassroomClass(name, cap, multimedia, nComp);
+        lab = new LabClassroom(name, cap, multimedia, nComp);
     }
     public static void testConstructorFromString(){}
     public static void testGetName(){

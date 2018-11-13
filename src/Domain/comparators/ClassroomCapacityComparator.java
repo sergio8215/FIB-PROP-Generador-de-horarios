@@ -1,24 +1,24 @@
 package src.Domain.comparators;
 
-import src.Domain.ClassroomClass;
+import src.Domain.Classroom;
 
 import java.util.Comparator;
 
-public class ClassroomCapacityComparator implements Comparator<ClassroomClass> {
+public class ClassroomCapacityComparator implements Comparator<Classroom> {
 
     /**
-     * Comparator-type class to sort ClassroomClass-Object lists by capacity
+     * Comparator-type class to sort Classroom-Object lists by capacity
      * @author mireia
      */
 
     /**
      * Compares its two arguments for order
-     * @param o1 ClassroomClass Object
-     * @param o2 ClassroomClass Object
+     * @param o1 Classroom Object
+     * @param o2 Classroom Object
      * @return returns a -1, 0 or 1 as the first argument is less than, equal to, or greater than the second
      */
     @Override
-    public int compare(ClassroomClass o1, ClassroomClass o2) {
+    public int compare(Classroom o1, Classroom o2) {
         if (o1.getCapacity() > o2.getCapacity()) {
             return 1;
         }

@@ -8,14 +8,6 @@ public class Subject {
      * @author joaquimgomez
      */
 
-    // Auxiliary structures
-
-    public enum typeShift {
-        morningShift,
-        afternoonShift,
-        bothShifts
-    }
-
 
     // Members
 
