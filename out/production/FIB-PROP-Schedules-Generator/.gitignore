@@ -1,0 +1,12 @@
+
+\.idea/
+
+*.iml
+
+META-INF/
+
+build/
+
+nbproject/
+
+out/
