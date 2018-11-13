@@ -3,12 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.Data;
+package Domain;
+
+import Data.DataManager;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  *
  * @author Sergio
  */
-public class DataManager {
+public class Main {
     
+    public static void main (String[] args) throws Exception {
+
+
+
+        
+    }
 }
