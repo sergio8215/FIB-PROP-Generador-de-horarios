@@ -246,12 +246,12 @@ public final class SubjectsSet {
      * @return Resoult of the comparison.
      */
     public static boolean compare(Subject s1, String op, Subject s2){
-        if (op.equals("<"))     return s1.getLevel() < s2.getLevel() && s1.getName() < s2.getName();
-        if (op.equals(">"))     return s1.getLevel() > s2.getLevel() && s1.getName() > s2.getName();
-        if (op.equals("<="))    return s1.getLevel() <= s2.getLevel() && s1.getName() <= s2.getName();
-        if (op.equals(">="))    return s1.getLevel() >= s2.getLevel() && s1.getName() >= s2.getName();
-        if (op.equals("!="))    return !s1.equals(s2);
-        if (op.equals("=="))    return s1.equals(s2);
+        if (op.equals("<"))     return s1.getLevel() < s2.getLevel() && s1.getName().compareTo(s2.getName()) > 0;
+        if (op.equals(">"))     return s1.getLevel() > s2.getLevel() && s1.getName().compareTo(s2.getName()) < 0;
+        if (op.equals("<="))    return s1.getLevel() <= s2.getLevel() && (s1.getName().compareTo(s2.getName()) > 0 || s1.getName().contentEquals(s2.getName()));
+        if (op.equals(">="))    return s1.getLevel() >= s2.getLevel() && (s1.getName().compareTo(s2.getName()) < 0 || s1.getName().contentEquals(s2.getName()));
+        if (op.equals("!="))    return s1.getLevel() != s2.getLevel() && !s1.getName().contentEquals(s2.getName());
+        if (op.equals("=="))    return s1.getLevel() == s2.getLevel() && s1.getName().contentEquals(s2.getName());
 
         return false;
     }
