@@ -13,7 +13,7 @@ public class MUS {
     ClassClass classclass;
     Classroom classroom;
     Session session;
-    ClassroomSession domain;
+    ClassroomSession domain; // No added in constructors and toStr because it's not mandatory.
 
 
     // Constructors
@@ -151,7 +151,6 @@ public class MUS {
         classroom = csPair.first;
         session = csPair.second;
     }
-
 
     /**
      * It returns the value i of the domain.
