@@ -1,4 +1,4 @@
-package src.Domain.Test;
+package src.Domain.drivers;
 
 public class SubjectDriver {
     public void testConstructorEmpty() {

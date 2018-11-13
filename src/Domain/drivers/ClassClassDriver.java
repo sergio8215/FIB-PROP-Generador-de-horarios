@@ -1,11 +1,15 @@
-package src.Domain;
+package src.Domain.drivers;
 
+import src.Domain.ClassClass;
+import src.Domain.StubClassClass;
+import src.Domain.Subject;
+import src.Domain.utils.UtilsDomain;
 import sun.plugin.com.Utils;
 
 import java.util.Scanner;
 import java.util.Vector;
 
-public class DriverClassClass {
+public class ClassClassDriver {
 
     private static void TestContructorClassClass (String identifier, Subject subject, int group, ClassClass.ClassType type)
     {
