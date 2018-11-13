@@ -5,8 +5,8 @@
 
 META-INF/
 
+build/
+
+nbproject/
+
 out/
-
-build\.xml
-
-manifest\.mf
