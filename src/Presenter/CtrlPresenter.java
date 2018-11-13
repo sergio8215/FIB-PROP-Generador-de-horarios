@@ -29,13 +29,14 @@ public class CtrlPresenter {
                     break;
 
                 case 2:
-                    boolean inputCorrect = false;
+                    System.out.println("At the moment the loading of schedules is not available.");
+                    /*boolean inputCorrect = false;
                     while (!inputCorrect) {
                         System.out.println("Path to the schedule file: ");
                         String path = s.nextLine();
 
                         boolean fileExist = ctrlDomain.loadSchedule(path); // PROVISIONAL !!!!!
-                    }
+                    }*/
                 case 3:
                     end = !end;
                     break;
@@ -100,7 +101,23 @@ public class CtrlPresenter {
         String classroomsFile = "classrooms" + classromsFile + ".json";
 
         ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
-        // RESTRICCIONES
+
+        System.out.println("List of restrictions that will apply:\n");
+        System.out.println("1. \n");
+        System.out.println("\n Do you want to continue with the schedule generation? [S/N]");
+
+        switch (s.nextByte()) {
+            case "S":
+                ctrlDomain.generateSchedule(); // FALTA SCHEDULE DE RETORNO
+
+                break;
+
+            case "N":
+                break;
+
+            default:
+                System.out.println("Input error. Try it again!");
+        }
 
     }
 
@@ -114,6 +131,10 @@ public class CtrlPresenter {
                 "  2. ArchivoClassroom2\n");
         System.out.println("Indicates following the scheme: numOfSubjectsFile numOfClassromsFile");
         System.out.println("Option: ");
+    }
+
+    private static void showSchedule() {
+        
     }
 
 }
