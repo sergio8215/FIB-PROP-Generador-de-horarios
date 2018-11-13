@@ -150,20 +150,6 @@ public class Subject {
 
     /**
      * Set the distribution of class hours.
-     * @param hoursClasses Distribution of class hours in a vector as follow: [Theory, Laboratory, Problems].
-     * @return True if the summation of the hours distribution is equal to the total of hours required for this subject.
-     */
-    public boolean setHoursClasses(int[] hoursClasses) {
-        if (hoursClasses[0] + hoursClasses[1] + hoursClasses[2] == totalWeekHours){
-            this.hoursClasses = hoursClasses;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Set the distribution of class hours.
      * @param theoryHours Hours of theory.
      * @param laboratoryHours Hours of Laboratory.
      * @param problemsHours Hours of problems.
@@ -184,63 +170,6 @@ public class Subject {
      */
     public int[] getHoursClasses() {
         return hoursClasses;
-    }
-
-    /**
-     * Set the number of groups and subgroups.
-     * @param numberOfGroups Vector with the number of groups and subgroups.
-     */
-    public void setNumberOfGroups(int[] numberOfGroups) {
-        this.numberOfGroups = numberOfGroups;
-    }
-
-    /**
-     * Set the number of groups and subgroups.
-     * @param groups Number of groups.
-     * @param subgroups Number of subgroups.
-     */
-    public void setNumberOfGroups(int groups, int subgroups){
-        numberOfGroups[0] = groups; numberOfGroups[1] = subgroups;
-    }
-
-    /**
-     * It returns a vector with the number of groups and subgroups.
-     * @return Vector with the number of groups and subgroups.
-     */
-    public int[] getNumberOfGroups() {
-        return numberOfGroups;
-    }
-
-    /**
-     * Set the type of shift.
-     * @param tyShift Type of shift.
-     */
-    public void setTypeShift(typeShift tyShift) {
-        Subject.tyShift = tyShift;
-    }
-
-    /**
-     * It returns the type of shift.
-     * @return Type of the shift.
-     */
-    public typeShift getTypeShift() {
-        return tyShift;
-    }
-
-    /**
-     * It returns the max capacity of the subject.
-     * @return Max capacity of the subject.
-     */
-    public int getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    /**
-     * Set the max capacity of the subject.
-     * @param maxCapacity Max capacity of the subject.
-     */
-    public void setMaxCapacity(int maxCapacity) {
-        Subject.maxCapacity = maxCapacity;
     }
 
     /**
@@ -291,6 +220,55 @@ public class Subject {
         hoursClasses[2] = problemsHours;
     }
 
+    /**
+     * Set the number of groups and subgroups.
+     * @param groups Number of groups.
+     * @param subgroups Number of subgroups.
+     */
+    public void setNumberOfGroups(int groups, int subgroups){
+        numberOfGroups[0] = groups; numberOfGroups[1] = subgroups;
+    }
+
+    /**
+     * It returns a vector with the number of groups and subgroups.
+     * @return Vector with the number of groups and subgroups.
+     */
+    public int[] getNumberOfGroups() {
+        return numberOfGroups;
+    }
+
+    /**
+     * Set the type of shift.
+     * @param tyShift Type of shift.
+     */
+    public void setTypeShift(typeShift tyShift) {
+        Subject.tyShift = tyShift;
+    }
+
+    /**
+     * It returns the type of shift.
+     * @return Type of the shift.
+     */
+    public typeShift getTypeShift() {
+        return tyShift;
+    }
+
+    /**
+     * It returns the max capacity of the subject.
+     * @return Max capacity of the subject.
+     */
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    /**
+     * Set the max capacity of the subject.
+     * @param maxCapacity Max capacity of the subject.
+     */
+    public void setMaxCapacity(int maxCapacity) {
+        Subject.maxCapacity = maxCapacity;
+    }
+    
     /**
      * It returns a vector of strings with the members' values.
      * @return Vector of strings with the members' values.
