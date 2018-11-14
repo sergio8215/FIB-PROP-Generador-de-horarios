@@ -23,7 +23,7 @@ public class CtrlDomain {
     private DataManager dManager;
     private Schedule schedule;
     private ClassroomSet classroomsSet;
-    private SubjectSetClass subjectsSet;
+    private SubjectsSet subjectsSet;
     private ClassSet classSet;
     private ClassroomSession classroomSession;
     private String classroomFile;
@@ -44,9 +44,9 @@ public class CtrlDomain {
      * @param file name of the file to import
      * @return true if the import is successful
      */
-    private boolean importClassroom(String file){
+    private boolean importClassroom(String file) throws Exception{
 
-        Vector<Vector<String >> classRooms = dManager.importClassrooms(file);
+        Vector<Vector<String >> classRooms = dManager.ImportClassrooms(file);
         if (classRooms == null) {
             classroomsSet = new ClassroomSet( classRooms );
             return true;
@@ -60,9 +60,9 @@ public class CtrlDomain {
      * @return true if the import is successful
      */
     private boolean importSubject(String file){
-        Vector< Vector <String > > subjects = dManager.importSubjects(file);
+        Vector< Vector <String > > subjects = dManager.ImportSubjects(file);
         if (subjects != null){
-            subjectsSet = new SubjectSetClass (subjects);
+            subjectsSet = new SubjectsSet (subjects);
             return true;
         }
         else return false;

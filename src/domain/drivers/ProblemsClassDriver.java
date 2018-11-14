@@ -1,14 +1,14 @@
 package src.domain.drivers;
 
 import src.domain.classes.ClassClass;
-import src.domain.classes.TheoryClass;
 import src.domain.classes.Subject;
+import src.domain.classes.ProblemsClass;
 import src.domain.utils.UtilsDomain;
-
 import src.domain.utils.inout;
+
 import java.util.Vector;
 
-public class TheoryClassDriver {
+public class ProblemsClassDriver {
 
     public static ClassClass tc;
     public static inout i = new inout();
@@ -35,7 +35,7 @@ public class TheoryClassDriver {
         System.out.print("Quantity students: ");
         quantityStudents = i.readint();
 
-        tc = new TheoryClass(identifier, readSubject(), group, quantityStudents, shift, subGroup);
+        tc = new ProblemsClass(identifier, readSubject(), group, quantityStudents, shift, subGroup);
         i.write("-", 20);
         i.writeln("Theory Class successfully created");
     }
@@ -50,7 +50,7 @@ public class TheoryClassDriver {
         System.out.print("subGroup: ");
         myVector.add(i.readword());
         //System.out.print("Type of group 0.Theory, 1.Lab, 2.Problems: ");
-        myVector.add("THEORY");
+        myVector.add("PROBLEMS");
         System.out.print("Shift of group 0.Morning, 1.Afternoon: ");
         myVector.add(i.readword());
         System.out.print("Quantity students: ");
@@ -75,7 +75,7 @@ public class TheoryClassDriver {
         System.out.print("Shift 0.Morning, 1.Afternoon, 2.Both ");
         myVector.add(i.readword());
 
-        tc = new TheoryClass(myVector);
+        tc = new ProblemsClass(myVector);
         i.write("-", 20);
         i.writeln("Theory Class successfully created");
     }
@@ -154,7 +154,7 @@ public class TheoryClassDriver {
         System.out.print("subGroup: ");
         myVector.add(i.readword());
         //System.out.print("Type of group 0.Theory, 1.Lab, 2.Problems: ");
-        myVector.add("THEORY");
+        myVector.add("PROBLEMS");
         System.out.print("Type of group 0.Morning, 1.Afternoon: ");
         myVector.add(i.readword());
         System.out.print("Quantity students: ");

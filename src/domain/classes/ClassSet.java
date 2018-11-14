@@ -28,7 +28,6 @@ public class ClassSet {
     */    
     public ClassSet() {
         classSet = new HashMap<>();
-      //  constraints = new ArrayList<Constraints>;
     }
 
     /**
