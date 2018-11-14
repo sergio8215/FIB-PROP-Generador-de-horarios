@@ -34,7 +34,7 @@ public class DataManager {
         Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
         try {
 
-            Object obj = parser.parse(new FileReader("./files/" + fileName ));
+            Object obj = parser.parse(new FileReader("./data/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
@@ -80,7 +80,7 @@ public class DataManager {
         Vector <Vector< String>> subjects = new Vector <Vector< String>>();
 
         try {
-            Object obj = parser.parse(new FileReader("./files/" + fileName ));
+            Object obj = parser.parse(new FileReader("./data/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
             String  subject;
@@ -110,6 +110,8 @@ public class DataManager {
                 subjects.elementAt(i).add((String)subjectJSON.get("Number_of_subgroups"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Shift"));
 
+
+
                 System.out.println("Subject: "+         subjects.elementAt(i).get(0));
                 System.out.println("Num_students: "+    subjects.elementAt(i).get(1));
                 System.out.println("Level: "+           subjects.elementAt(i).get(2));
@@ -121,6 +123,8 @@ public class DataManager {
                 System.out.println("Shift: "+           subjects.elementAt(i).get(8)+"\n");
                 i++;
             }
+
+
 
         } catch (FileNotFoundException | ParseException ex) {
             subjects = null;

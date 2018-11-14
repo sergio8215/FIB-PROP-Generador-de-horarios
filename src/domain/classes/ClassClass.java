@@ -165,14 +165,14 @@ public abstract class ClassClass {
         ClassClass auxClass;
 
         // Ask for the type of class and then we create the class
-        switch ( c.get(3).toUpperCase() ) {
-            case "THEORY":
+        switch ( UtilsDomain.ClassType.valueOf(c.get(3)).ordinal() ) {
+            case 0:
                 auxClass = new TheoryClass(c);
                 break;
-            case "LABORATORY":
+            case 1:
                 auxClass = new LaboratoryClass(c);
                 break;
-            case "PROBLEMS":
+            case 2:
                 auxClass = new ProblemsClass(c);
                 break;
             default:

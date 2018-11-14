@@ -97,8 +97,8 @@ public class CtrlPresenter {
             }
         }
 
-        String strSubjectsFile = "subjects" + subjectsFile + ".json";
-        String classroomsFile = "classrooms" + classromsFile + ".json";
+        String strSubjectsFile = "file" + subjectsFile + ".json";
+        String classroomsFile = "file" + classromsFile + ".json";
 
         ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
 

@@ -57,7 +57,7 @@ public class CtrlScheduleGeneration {
 
         for (int i = 0; i < vars.size(); i++) {
 
-            vars.get(i).setDomain(classroomSession.clone());
+            vars.get(i).setDomain(new ClassroomSession(classroomSession));
 
             for (int j = 0; i < vars.get(i).domainSize(); j++){
 

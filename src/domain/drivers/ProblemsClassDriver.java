@@ -22,17 +22,17 @@ public class ProblemsClassDriver {
         int quantityStudents;
 
 
-        System.out.print("ID: ");
+        i.write("ID: ");
         identifier = i.readword();
-        System.out.print("Group: ");
+        i.write("Group: ");
         group = i.readint();
-        System.out.print("subGroup: ");
+        i.write("subGroup: ");
         subGroup = i.readint();
-        //System.out.print("Type of group 0.Theory, 1.Lab, 2.Problems: ");
+        //i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
         //typeG = UtilsDomain.ClassType.values()[0];
-        System.out.print("Shift of group 0.Morning, 1.Afternoon: ");
+        i.write("Shift of group 0.Morning, 1.Afternoon: ");
         shift = UtilsDomain.typeShift.values()[i.readint()];
-        System.out.print("Quantity students: ");
+        i.write("Quantity students: ");
         quantityStudents = i.readint();
 
         tc = new ProblemsClass(identifier, readSubject(), group, quantityStudents, shift, subGroup);
@@ -43,36 +43,36 @@ public class ProblemsClassDriver {
     public static void testConstructorFromStr () throws Exception {
         Vector<String> myVector = new Vector<>();
 
-        System.out.print("ID: ");
+        i.write("ID: ");
         myVector.add(i.readword());
-        System.out.print("Group: ");
+        i.write("Group: ");
         myVector.add(i.readword());
-        System.out.print("subGroup: ");
+        i.write("subGroup: ");
         myVector.add(i.readword());
-        //System.out.print("Type of group 0.Theory, 1.Lab, 2.Problems: ");
+        //i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
         myVector.add("PROBLEMS");
-        System.out.print("Shift of group 0.Morning, 1.Afternoon: ");
+        i.write("Shift of group 0.Morning, 1.Afternoon: ");
         myVector.add(i.readword());
-        System.out.print("Quantity students: ");
+        i.write("Quantity students: ");
         myVector.add(i.readword());
 
-        System.out.print("Subject Name: ");
+        i.write("Subject Name: ");
         myVector.add(i.readword());
-        System.out.print("Num_students: ");
+        i.write("Num_students: ");
         myVector.add(i.readword());
-        System.out.print("Level: ");
+        i.write("Level: ");
         myVector.add(i.readword());
-        System.out.print("Theory_hours: ");
+        i.write("Theory_hours: ");
         myVector.add(i.readword());
-        System.out.print("Laboratory_hours: ");
+        i.write("Laboratory_hours: ");
         myVector.add(i.readword());
-        System.out.print("Problems_hours: ");
+        i.write("Problems_hours: ");
         myVector.add(i.readword());
-        System.out.print("Number of groups: ");
+        i.write("Number of groups: ");
         myVector.add(i.readword());
-        System.out.print("Number of Subgroups: ");
+        i.write("Number of Subgroups: ");
         myVector.add(i.readword());
-        System.out.print("Shift 0.Morning, 1.Afternoon, 2.Both ");
+        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
         myVector.add(i.readword());
 
         tc = new ProblemsClass(myVector);
@@ -89,23 +89,23 @@ public class ProblemsClassDriver {
         int[] numberOfGroups = new int[2];
         UtilsDomain.typeShift shiftSubj;
 
-        System.out.print("Subject Name: ");
+        i.write("Subject Name: ");
         subjectName = i.readword();
-        System.out.print("Num_students: ");
+        i.write("Num_students: ");
         num_students = i.readint();
-        System.out.print("Level: ");
+        i.write("Level: ");
         level = i.readint();
-        System.out.print("Theory_hours: ");
+        i.write("Theory_hours: ");
         hoursClasses[0] = i.readint();
-        System.out.print("Laboratory_hours: ");
+        i.write("Laboratory_hours: ");
         hoursClasses[1] = i.readint();
-        System.out.print("Problems_hours: ");
+        i.write("Problems_hours: ");
         hoursClasses[2] = i.readint();
-        System.out.print("Number of groups: ");
+        i.write("Number of groups: ");
         numberOfGroups[0] = i.readint();
-        System.out.print("Number of Subgroups: ");
+        i.write("Number of Subgroups: ");
         numberOfGroups[1] = i.readint();
-        System.out.print("Shift 0.Morning, 1.Afternoon, 2.Both ");
+        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
         shiftSubj = UtilsDomain.typeShift.values()[i.readint()];
 
         Subject subject = new Subject(subjectName, num_students, level, hoursClasses, numberOfGroups, shiftSubj);
@@ -147,36 +147,36 @@ public class ProblemsClassDriver {
 
     public static void testFromStr() throws Exception{
         Vector<String> myVector = new Vector<>();
-        System.out.print("ID: ");
+        i.write("ID: ");
         myVector.add(i.readword());
-        System.out.print("Group: ");
+        i.write("Group: ");
         myVector.add(i.readword());
-        System.out.print("subGroup: ");
+        i.write("subGroup: ");
         myVector.add(i.readword());
-        //System.out.print("Type of group 0.Theory, 1.Lab, 2.Problems: ");
+        //i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
         myVector.add("PROBLEMS");
-        System.out.print("Type of group 0.Morning, 1.Afternoon: ");
+        i.write("Type of group 0.Morning, 1.Afternoon: ");
         myVector.add(i.readword());
-        System.out.print("Quantity students: ");
+        i.write("Quantity students: ");
         myVector.add(i.readword());
 
-        System.out.print("Subject Name: ");
+        i.write("Subject Name: ");
         myVector.add(i.readword());
-        System.out.print("Num_students: ");
+        i.write("Num_students: ");
         myVector.add(i.readword());
-        System.out.print("Level: ");
+        i.write("Level: ");
         myVector.add(i.readword());
-        System.out.print("Theory_hours: ");
+        i.write("Theory_hours: ");
         myVector.add(i.readword());
-        System.out.print("Laboratory_hours: ");
+        i.write("Laboratory_hours: ");
         myVector.add(i.readword());
-        System.out.print("Problems_hours: ");
+        i.write("Problems_hours: ");
         myVector.add(i.readword());
-        System.out.print("Number of groups: ");
+        i.write("Number of groups: ");
         myVector.add(i.readword());
-        System.out.print("Number of Subgroups: ");
+        i.write("Number of Subgroups: ");
         myVector.add(i.readword());
-        System.out.print("Shift 0.Morning, 1.Afternoon, 2.Both ");
+        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
         myVector.add(i.readword());
 
         tc = ClassClass.fromStr(myVector);
@@ -188,26 +188,26 @@ public class ProblemsClassDriver {
 
         while( option != 17) {
 
-            System.out.print("------------------------------------------ \n");
-            System.out.print("------------------MENU-------------------- \n");
-            System.out.print("------------------------------------------ \n");
-            System.out.print("Test Constructor 1: \n");
-            System.out.print("Test Constructor from String Vector 2: \n");
-            System.out.print("Test GetGroup 3: \n");
-            System.out.print("Test GetIdentifier 4: \n");
-            System.out.print("Test GetSubject 5: \n");
-            System.out.print("Test GetType 6: \n");
-            System.out.print("Test GetShift 7: \n");
-            System.out.print("Test GetQuantityStudents 8: \n");
-            System.out.print("Test GetSubGroup 9: \n");
-            System.out.print("Test ToStr 10:  \n");
-            System.out.print("Test SetGroup 11:  \n");
-            System.out.print("Test SetIdentifier 12:  \n");
-            System.out.print("Test SetSubject 13:  \n");
-            System.out.print("Test SetShift 14:  \n");
-            System.out.print("Test SetQuantityStudents 15:  \n");
-            System.out.print("Test SetSubGroup 16:  \n");
-            System.out.print("Exit 17:  \n");
+            i.write("------------------------------------------ \n");
+            i.write("------------------MENU-------------------- \n");
+            i.write("------------------------------------------ \n");
+            i.write("Test Constructor 1: \n");
+            i.write("Test Constructor from String Vector 2: \n");
+            i.write("Test GetGroup 3: \n");
+            i.write("Test GetIdentifier 4: \n");
+            i.write("Test GetSubject 5: \n");
+            i.write("Test GetType 6: \n");
+            i.write("Test GetShift 7: \n");
+            i.write("Test GetQuantityStudents 8: \n");
+            i.write("Test GetSubGroup 9: \n");
+            i.write("Test ToStr 10:  \n");
+            i.write("Test SetGroup 11:  \n");
+            i.write("Test SetIdentifier 12:  \n");
+            i.write("Test SetSubject 13:  \n");
+            i.write("Test SetShift 14:  \n");
+            i.write("Test SetQuantityStudents 15:  \n");
+            i.write("Test SetSubGroup 16:  \n");
+            i.write("Exit 17:  \n");
 
             option = i.readint();
 
