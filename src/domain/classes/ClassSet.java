@@ -72,11 +72,11 @@ public class ClassSet {
 
     /**
      * Add a class to the set
-     * @param key that identifies the object.
+     * @param identifier identifies the object.
      * @param newClass the new class that needs to be added.
      */
-    public void addClass( String key, ClassClass newClass ){
-        classSet.put( key, newClass);
+    public void addClass( String identifier, ClassClass newClass ){
+        classSet.put( identifier, newClass);
     }
 
     /**
@@ -159,6 +159,10 @@ public class ClassSet {
                 }
             }
         }
+    }
+
+    public int size(){
+        return this.size();
     }
 
 
