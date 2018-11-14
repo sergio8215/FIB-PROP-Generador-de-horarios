@@ -14,9 +14,9 @@ public final class UtilsDomain {
     }
 
     public enum typeShift {
-        MORNINGSHIFT,
-        AFTERNOONSHIFT,
-        BOTHSHIFTS
+        MORNING,
+        AFTERNOON,
+        BOTH
     }
 
     public enum Day {

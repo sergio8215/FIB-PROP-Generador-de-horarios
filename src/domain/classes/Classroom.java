@@ -51,6 +51,18 @@ public abstract class Classroom {
         multimediaFromString(parse.get(3));
     }
 
+    public static Classroom fromStr(Vector<String> c) {
+        Classroom aux;
+        switch(c.get(2)) {
+            case "LABORATORY":
+                break;
+            case "THEORY":
+                break;
+            default:
+                break;
+        }
+    }
+
     //GETTERS & SETTERS
 
     /**
@@ -124,8 +136,8 @@ public abstract class Classroom {
      * @return returns an String with the type of the Classroom instance
      */
     private String typeToString() {
-        if(type == UtilsDomain.ClassType.LABORATORY) return "Laboratory";
-        else return "Theory";
+        if(type == UtilsDomain.ClassType.LABORATORY) return "LABORATORY";
+        else return "THEORY";
     }
 
     /**
@@ -151,7 +163,7 @@ public abstract class Classroom {
      * @param t String that encodes the type attribute
      */
     private void typeFromString(String t){
-        if(t.equals("Laboratory")) type = UtilsDomain.ClassType.LABORATORY;
+        if(t.equals("LABORATORY")) type = UtilsDomain.ClassType.LABORATORY;
         else type = UtilsDomain.ClassType.THEORY;
     }
 
