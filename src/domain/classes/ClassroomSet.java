@@ -23,6 +23,11 @@ public class ClassroomSet {
     //CONSTRUCTOR
 
     /**
+     * Empty ClassroomSet constructor
+     */
+    public ClassroomSet(){}
+
+    /**
      * ClassroomSet Constructor
      * @param cc
      */
@@ -32,7 +37,7 @@ public class ClassroomSet {
 
         for(int i = 0; i < cc.size(); i++) {
             Classroom classroom = cc.get(i);
-            if(classroom.getType() == Classroom.ClassroomType.LABORATORY) {
+            if(classroom.getType() == UtilsDomain.ClassType.LABORATORY) {
 
                 LabClassroom lab = (LabClassroom) classroom;
                 labClassroomSet.put(lab.getName(), lab);
@@ -154,6 +159,16 @@ public class ClassroomSet {
     }
 
     /**
+     * Getter of the classroom values
+     * @return returns the classroom Objects of the set
+     */
+    public ArrayList<Classroom> getClassroomValues(){
+        ArrayList<Classroom> cc1 = new ArrayList<>(labClassroomSet.values());
+        ArrayList<Classroom> cc2 = new ArrayList<>(theoryClassroomSet.values());
+        return classroomUnion(cc1, cc2);
+    }
+
+    /**
      * Getter of a LabClassroom Object by its name
      * @param name name of a classroom
      * @return returns the LabClassroom Object with that name, or null if it doesn't exist
@@ -169,32 +184,6 @@ public class ClassroomSet {
      */
     private TheoryClassroom getTheoryClassroom (String name) {
         return theoryClassroomSet.get(name);
-    }
-
-    /**
-     * Adds a LabClassroom Object to the HashMap of LabClassroom Objects
-     * @param lcc LabClassroom Object
-     */
-    private void addClassroom (LabClassroom lcc) {
-        labClassroomSet.put(lcc.getName(), lcc);
-    }
-
-    /**
-     * Adds a TheoryClassroom Object to the HashMap of TheoryClassroom Objects
-     * @param tcc TheoryClassroom Object
-     */
-    private void addClassroom (TheoryClassroom tcc) {
-        theoryClassroomSet.put(tcc.getName(), tcc);
-    }
-
-    /**
-     * Sorts a Classroom ArrayList by its capacity
-     * @param classroomValues ArrayList that has to be sorted
-     * @return returns a sorted-by-capacity version of classroomValues
-     */
-    private ArrayList<Classroom> sortByCapacity(ArrayList<Classroom>classroomValues){
-        Collections.sort(classroomValues, new ClassroomCapacityComparator());
-        return classroomValues;
     }
 
     /**
@@ -258,7 +247,7 @@ public class ClassroomSet {
      */
     public void addClassroomSet(ArrayList<Classroom> cc) {
         for (Classroom aCc : cc) {
-            if (aCc.getType() == Classroom.ClassroomType.LABORATORY) {
+            if (aCc.getType() == UtilsDomain.ClassType.LABORATORY) {
                 LabClassroom lab = (LabClassroom) aCc;
                 labClassroomSet.put(lab.getName(), lab);
             } else {
@@ -266,41 +255,6 @@ public class ClassroomSet {
                 theoryClassroomSet.put(theo.getName(), theo);
             }
         }
-    }
-
-    public ArrayList<Classroom> getClassroomValues(){
-        ArrayList<Classroom> cc1 = new ArrayList<>(labClassroomSet.values());
-        ArrayList<Classroom> cc2 = new ArrayList<>(theoryClassroomSet.values());
-        return classroomUnion(cc1, cc2);
-    }
-
-    /**
-     * Sorts all the Classroom Objects by their capacity
-     * @return List of all the classroom Objects sorted by ascendent capacity
-     */
-    public ArrayList<Classroom> getCapacitySortSet(){
-        ArrayList<Classroom> cc1 = new ArrayList<>(labClassroomSet.values());
-        ArrayList<Classroom> cc2 = new ArrayList<>(theoryClassroomSet.values());
-        ArrayList<Classroom> classroomValues = classroomUnion(cc1, cc2);
-        return sortByCapacity(classroomValues);
-    }
-
-    /**
-     * Sorts the LabClassroom Objects by their capacity
-     * @return List of all the LabClassroom objects sorted by ascendent capacity
-     */
-    public ArrayList<Classroom> getCapacitySortLabSet(){
-        ArrayList<Classroom> classroomValues = new ArrayList<Classroom>(labClassroomSet.values());
-        return sortByCapacity(classroomValues);
-    }
-
-    /**
-     * Sorts the TheoryClassroom Objects by their capacity
-     * @return List of all the TheoryClassroom objects sorted by ascendent capacity
-     */
-    public ArrayList<Classroom> getCapacitySortTheorySet(){
-        ArrayList<Classroom> classroomValues = new ArrayList<Classroom>(theoryClassroomSet.values());
-        return sortByCapacity(classroomValues);
     }
 
     /**

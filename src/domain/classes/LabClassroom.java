@@ -1,5 +1,7 @@
 package src.domain.classes;
 
+import src.domain.utils.UtilsDomain;
+
 import java.util.Vector;
 
 public class LabClassroom extends Classroom {
@@ -30,7 +32,7 @@ public class LabClassroom extends Classroom {
      * @param nComputers number of computers in the classroom
      */
     public LabClassroom(String name, int capacity, boolean multimedia, int nComputers ) {
-        super(name, capacity, ClassroomType.LABORATORY, multimedia);
+        super(name, capacity, UtilsDomain.ClassType.LABORATORY, multimedia);
         numComputers = nComputers;
     }
 

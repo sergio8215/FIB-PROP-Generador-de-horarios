@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class LabClassroomDriver {
 
-    private static LabClassroom lab = new LabClassroom();
+    private static LabClassroom lab;
 
     public static void testConstructor(){
         Scanner sc = new Scanner(System.in);
@@ -54,6 +54,7 @@ public class LabClassroomDriver {
     }
 
     public static void  main(String args[]) {
+        lab = new LabClassroom();
         Scanner sc = new Scanner(System.in);
         write();
         do{

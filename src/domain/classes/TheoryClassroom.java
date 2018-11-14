@@ -1,5 +1,7 @@
 package src.domain.classes;
 
+import src.domain.utils.UtilsDomain;
+
 import java.util.Vector;
 
 public class TheoryClassroom extends Classroom {
@@ -25,7 +27,7 @@ public class TheoryClassroom extends Classroom {
      * @param m indicates if the classroom has multimedia system
      */
     public TheoryClassroom(String n, int cap, boolean m) {
-        super(n, cap, ClassroomType.THEORY, m);
+        super(n, cap, UtilsDomain.ClassType.THEORY, m);
     }
 
     /**

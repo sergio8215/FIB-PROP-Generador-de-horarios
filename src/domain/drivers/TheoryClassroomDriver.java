@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class TheoryClassroomDriver {
-    private static TheoryClassroom theo = new TheoryClassroom();
+    private static TheoryClassroom theo;
 
     public static void testConstructor(){
         Scanner sc = new Scanner(System.in);
@@ -51,6 +51,7 @@ public class TheoryClassroomDriver {
 
 
     public static void  main(String args[]) {
+        theo = new TheoryClassroom();
         Scanner sc = new Scanner(System.in);
         write();
         do{
