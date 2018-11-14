@@ -125,7 +125,7 @@ public class Schedule {
 
         for(int i = 0; i < v.size(); ++i) {
             //TODO: arreglar quan tinguis la funcio de la classe Session
-            if(Sessio.compare(v.get(i).getSession(), ">=", mus.getSession())) v.add(i, mus);  //si mus és més petit o igual que el element i, el poso a aquesta posició
+            if(Session.compare(v.get(i).getSession(), ">=", mus.getSession())) v.add(i, mus);  //si mus és més petit o igual que el element i, el poso a aquesta posició
         }
     }
 
@@ -140,8 +140,8 @@ public class Schedule {
     private int findPosition(ArrayList<MUS> v, MUS mus, int low, int high) {
         if(high < low) return -1;
         int mid = (low + high) / 2;
-        if(Sessio.compare(v.get(mid).getSession(), ">", mus.getSession())) return findPosition(v, mus, low, mid-1);
-        else if(Session.compare(v.get(mid).getSessio(), "<", mus.getSession())) return findPosition(v, mus, mid+1, high);
+        if(Session.compare(v.get(mid).getSession(), ">", mus.getSession())) return findPosition(v, mus, low, mid-1);
+        else if(Session.compare(v.get(mid).getSession(), "<", mus.getSession())) return findPosition(v, mus, mid+1, high);
         else return mid;
     }
 
