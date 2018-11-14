@@ -93,7 +93,7 @@ public class ClassSet {
             // [0] Number of Groups => [1] Number of subgroups
             int[] groups = subject.getNumberOfGroups();
             int subGroupCount = 0;
-            int subgroup;
+            int subGroup;
             String identifier;
             int quantityStudents;
             int[] hoursOfClass = subject.getHoursClasses();
@@ -126,12 +126,12 @@ public class ClassSet {
 
                 // If there is TheoryHours we create the class
                 if ( hoursOfClass[0] != 0 ) {
-                    subgroup = i*10+subGroupCount;
-                    identifier = ""+subject.getName()+subgroup;
+                    subGroup = i*10+subGroupCount;
+                    identifier = ""+subject.getName()+subGroup;
 
                     // identifier, subGroup, subject, group, quantityStudents, UtilsDomain.TimeZone shift){
                     quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[0]);
-                    c = new TheoryClass( identifier, subgroup, subject, i*10, quantityStudents, shiftA );
+                    c = new TheoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                     this.addClass( identifier, c);
                     subGroupCount++;
                 }
@@ -140,21 +140,21 @@ public class ClassSet {
                 for ( int j = 0; j < groups[1]; j++) {
                     // If there is LaboratoryHours we create the class
                     if ( hoursOfClass[1] != 0 ) {
-                        subgroup = i*10+subGroupCount;
+                        subGroup = i*10+subGroupCount;
                         subGroupCount++;
-                        identifier = ""+subject.getName()+subgroup;
+                        identifier = ""+subject.getName()+subGroup;
                         quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[1]);
-                        c = new LaboratoryClass( identifier, subgroup, subject, i*10, quantityStudents, shiftA );
+                        c = new LaboratoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                         this.addClass( identifier, c);
                     }
 
                     // If there is ProblemsHours we create the class
                     if ( hoursOfClass[2] != 0 ) {
-                        subgroup = i*10+subGroupCount;
+                        subGroup = i*10+subGroupCount;
                         subGroupCount++;
-                        identifier = ""+subject.getName()+subgroup;
+                        identifier = ""+subject.getName()+subGroup;
                         quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[1]);
-                        c = new ProblemsClass( identifier, subgroup, subject, i*10, quantityStudents, shiftA );
+                        c = new ProblemsClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                         this.addClass( identifier, c);
                     }
                 }

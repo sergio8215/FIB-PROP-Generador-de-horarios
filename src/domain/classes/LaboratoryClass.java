@@ -25,11 +25,13 @@ public class LaboratoryClass extends ClassClass {
     /**
      * Class constructor specifying the member's values.
      * @param identifier
-     * @param subGroup Identificator of the SubClass.
      * @param subject
      * @param group
+     * @param quantityStudents
+     * @param shift
+     * @param subGroup
      */
-    public LaboratoryClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
+    public LaboratoryClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift, int subGroup){
         super(identifier, subject, group, quantityStudents, shift, UtilsDomain.ClassType.LABORATORY);
         this.subGroup = subGroup;
     }
@@ -70,14 +72,14 @@ public class LaboratoryClass extends ClassClass {
      */
     @Override
     public Vector<String> toStr() {
-        Vector<String> myAttributes = new Vector<String>(5);
+        Vector<String> myAttributes = new Vector<String>(6);
 
-        myAttributes.set(0, super.getIdentifier());                             //identifier
-        myAttributes.set(1, Integer.toString(super.getGroup()));                //group
-        myAttributes.set(2, Integer.toString(subGroup));                        //subGroup
-        myAttributes.set(3, Integer.toString(super.getType().ordinal()));       //type of group
-        myAttributes.set(4, Integer.toString(super.getShift().ordinal()));      //shift
-        myAttributes.set(5, Integer.toString(super.getQuantityStudents()));     //quantityStudents
+        myAttributes.add(0, super.getIdentifier());                             //identifier
+        myAttributes.add(1, Integer.toString(super.getGroup()));                //group
+        myAttributes.add(2, Integer.toString(subGroup));                        //subGroup
+        myAttributes.add(3, Integer.toString(super.getType().ordinal()));       //type of group
+        myAttributes.add(4, Integer.toString(super.getShift().ordinal()));      //shift
+        myAttributes.add(5, Integer.toString(super.getQuantityStudents()));     //quantityStudents
         return mergeStringVector(myAttributes, super.getSubject().toStr());     // result vector
     }
 
