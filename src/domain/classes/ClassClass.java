@@ -60,7 +60,7 @@ public abstract class ClassClass {
         int j = 0;
         // We start reading the last positions of the vector that are for the subject object
         for ( int i = 6; i < myStringVector.size(); i++ ) {
-            subjectVector.set(j, myStringVector.get(i)); //subject
+            subjectVector.add(j, myStringVector.get(i)); //subject
             j++;
         }
         subject = new Subject(subjectVector);

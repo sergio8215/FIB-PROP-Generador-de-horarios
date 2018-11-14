@@ -5,6 +5,8 @@
  */
 package src.domain.classes;
 
+import src.domain.utils.UtilsDomain;
+
 import java.util.Vector;
 
 /**
@@ -15,17 +17,6 @@ import java.util.Vector;
 public class Session {
 
     //Members
-    //store days of the week
-
-    public enum Day {
-        MONDAY,     // ordinal value: 0
-        TUESDAY,    // ordinal value: 1
-        WEDNESDAY,  // ordinal value: 2
-        THURSDAY,   // ordinal value: 3
-        FRIDAY,     // ordinal value: 4
-        SATURDAY,   // ordinal value: 5
-        SUNDAY      // ordinal value: 6
-    }
 
     public static final int hoursPerDay = 12;
     public static final int startHour = 8;
@@ -34,7 +25,7 @@ public class Session {
 
 
     private int hour;
-    private Day day;
+    private UtilsDomain.Day day;
     private Vector<Vector<Integer>> week;
 
     //Constructor
@@ -62,7 +53,7 @@ public class Session {
      * @param day
      * @param hour
      */
-    public Session(Day day, int hour) {
+    public Session(UtilsDomain.Day day, int hour) {
         this.hour = hour;
         this.day = day;
     }
@@ -100,7 +91,7 @@ public class Session {
      *
      * @return day of the session.
      */
-    public Day getDay() {
+    public UtilsDomain.Day getDay() {
         return day;
     }
 
@@ -109,7 +100,7 @@ public class Session {
      *
      * @param day
      */
-    public void setDay(Day day) {
+    public void setDay(UtilsDomain.Day day) {
         this.day = day; // Poner expeción si el valor no esta entre 1 y 7
     }
 
