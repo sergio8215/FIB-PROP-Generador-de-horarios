@@ -189,7 +189,23 @@ public class Schedule {
      * @return
      */
     public boolean valid(){
-        return true; // TODO: IMPLEMENTAR!
+        ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
+
+        ArrayList<MUS> arrMUS = new ArrayList<>();
+        for (ArrayList<MUS> subArr : musArray) {
+            arrMUS.addAll(subArr);
+        }
+
+        for(int i = 0; i < arrMUS.size();++i) {
+            for (int j = i+1; j < arrMUS.size(); ++j) {
+                if(!(Constraints.theoryAndLabsOfClassNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j)))
+                ) return false;
+            }
+        }
+        return true;
     }
 
 }
