@@ -37,7 +37,7 @@ public class Schedule {
         this.classroomFile = sched.getClassroomFile();
         this.subjectFile = sched.getSubjectFile();
         this.correct = !sched.isFail();
-        this.timetable =  (HashMap<String, ArrayList<MUS> >)sched.getTimetable().clone();
+        this.timetable = new HashMap<String, ArrayList<MUS>>(sched.getTimetable());
     }
 
     //GETTERS & SETTERS
