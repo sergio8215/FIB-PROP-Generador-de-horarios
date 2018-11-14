@@ -79,7 +79,7 @@ public class ClassroomSetDriver {
             Vector<String> v = new Vector<>(5);
             v.add(sc.next()); //name
             v.add(sc.next()); //capacity
-            v.add("Laboratory"); //type
+            v.add("LABORATORY"); //type
             v.add(sc.next()); //multimedia
             v.add(sc.next()); //nComp
 

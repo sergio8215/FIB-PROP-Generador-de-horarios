@@ -91,7 +91,7 @@ public class ClassroomSet {
 
         for(int i = 0; i < vec.size(); ++i) {
             Vector<String> v = vec.get(i);
-            if(v.get(2).equals("Laboratory")) {
+            if(v.get(2).equals(UtilsDomain.ClassType.LABORATORY.toString())) {
                 labClassroomSet.put(v.get(0), new LabClassroom(v));
             }
             else{
