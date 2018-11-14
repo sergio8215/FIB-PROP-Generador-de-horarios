@@ -22,7 +22,7 @@ public abstract class ClassClass {
     private Subject subject;
     private UtilsDomain.ClassType type;
     private int quantityStudents;
-    private UtilsDomain.TimeZone shift;
+    private UtilsDomain.typeShift shift;
 
     // CONSTRUCTORS----------------------------------------------------
 
@@ -32,7 +32,7 @@ public abstract class ClassClass {
      * @param subject subject of the class.
      * @param group
      */
-    public ClassClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift, UtilsDomain.ClassType type){
+    public ClassClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.typeShift shift, UtilsDomain.ClassType type){
         this.identifier = identifier;
         this.subject = subject;
         this.group = group;
@@ -51,7 +51,7 @@ public abstract class ClassClass {
         identifier  = myStringVector.get(0);                    // identifier
         group       = Integer.parseInt(myStringVector.get(1));  // group
         this.type   = type;                                     // type
-        this.shift  = UtilsDomain.TimeZone.values()[Integer.parseInt(myStringVector.get(4))];  // Shift;
+        this.shift  = UtilsDomain.typeShift.values()[Integer.parseInt(myStringVector.get(4))];  // Shift;
         this.quantityStudents = Integer.parseInt(myStringVector.get(5));  // quantityStudents
 
         // We initialize the vector to the subject string vector size:
@@ -126,11 +126,11 @@ public abstract class ClassClass {
         return type;
     }
 
-    public UtilsDomain.TimeZone getShift() {
+    public UtilsDomain.typeShift getShift() {
         return shift;
     }
 
-    public void setShift(UtilsDomain.TimeZone shift) {
+    public void setShift(UtilsDomain.typeShift shift) {
         this.shift = shift;
     }
 
@@ -165,14 +165,14 @@ public abstract class ClassClass {
         ClassClass auxClass;
 
         // Ask for the type of class and then we create the class
-        switch ( Integer.parseInt(c.get(3)) ) {
-            case 0: // Theory
+        switch ( c.get(3).toUpperCase() ) {
+            case "THEORY":
                 auxClass = new TheoryClass(c);
                 break;
-            case 1: // Laboratory
+            case "LABORATORY":
                 auxClass = new LaboratoryClass(c);
                 break;
-            case 2: // Problems
+            case "PROBLEMS":
                 auxClass = new ProblemsClass(c);
                 break;
             default:
