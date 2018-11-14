@@ -77,7 +77,7 @@ public class CtrlDomain {
      * @return true if the import is successful
      */
     public boolean createScenario(String classroomFile, String subjectFile) throws Exception {
-        boolean c = this.importClassroom(classroomFile);
+        boolean c = importClassroom(classroomFile);
         boolean s = importSubject(subjectFile);
         if (c && s ) {
             classSet = new ClassSet(subjectsSet);
