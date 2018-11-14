@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 public class ClassroomSession {
 
+    //ATTRIBUTES
+
     private ArrayList<UtilsDomain.Pair> classroomSessionSet;
+
+    //CONSTRUCTORS
 
     /**
      * Empty ClassroomSession constructor
@@ -37,6 +41,16 @@ public class ClassroomSession {
     }
 
     /**
+     * ClassroomSession constructor by copy
+     * @param cs ClassroomSession Object we want to replicate
+     */
+    public ClassroomSession(ClassroomSession cs) {
+        this.classroomSessionSet = new ArrayList<>(cs.getClassroomSessionSet());
+    }
+
+    //GETTERS & SETTERS
+
+    /**
      * Getter of the classroomSessionSet attribute
      * @return returns the classroomSessionSet attribute
      */
@@ -51,6 +65,8 @@ public class ClassroomSession {
     public void setClassroomSessionSet(ArrayList<UtilsDomain.Pair> classroomSessionSet) {
         this.classroomSessionSet = classroomSessionSet;
     }
+
+    //METHODS
 
     /**
      * Getter of an specific classroomSesson from the classroomSessionSet attribute
