@@ -98,8 +98,8 @@ public class ClassSet {
             int quantityStudents;
             int[] hoursOfClass = subject.getHoursClasses();
             UtilsDomain.typeShift shiftAssignation;
-            UtilsDomain.TimeZone shiftA;
-            UtilsDomain.TimeZone[] allShift = UtilsDomain.TimeZone.values();
+            UtilsDomain.typeShift shiftA;
+            UtilsDomain.typeShift[] allShift = UtilsDomain.typeShift.values();
             ClassClass c;
 
             // For each group of the subject we create the respective theory classes, labs and problems classes.

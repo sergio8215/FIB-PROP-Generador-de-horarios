@@ -7,9 +7,9 @@ package src.domain.controllers;
 
 import src.domain.classes.*;
 import src.persistence.DataManager;
-import src.persistence.MUS;
 import src.domain.utils.UtilsDomain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Vector;
 
@@ -23,7 +23,7 @@ public class CtrlDomain {
     private DataManager dManager;
     private Schedule schedule;
     private ClassroomSet classroomsSet;
-    private SubjectSetClass subjectsSet;
+    private SubjectsSet subjectsSet;
     private ClassSet classSet;
     private ClassroomSession classroomSession;
     private String classroomFile;
@@ -62,7 +62,7 @@ public class CtrlDomain {
     private boolean importSubject(String file){
         Vector< Vector <String > > subjects = dManager.importSubjects(file);
         if (subjects != null){
-            subjectsSet = new SubjectSetClass (subjects);
+            subjectsSet = new SubjectsSet (subjects);
             return true;
         }
         else return false;
@@ -129,7 +129,7 @@ public class CtrlDomain {
     /**
      *  Show the generated schedule
      */
-    public UtilsDomain.ResultOfQuery<> showSchedule() {
+    public UtilsDomain.ResultOfQuery<Schedule> showSchedule() {
         UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
         s.queryTest = !schedule.empty();
         s.result = schedule;

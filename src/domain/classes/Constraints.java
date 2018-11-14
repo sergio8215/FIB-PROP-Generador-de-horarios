@@ -7,17 +7,17 @@ public class Constraints {
 
     // UNARY CONSTRAINTS
 
-    protected static boolean sizeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
+    public static boolean sizeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
         return cs.first.getCapacity() >= m.getClassClass().getQuantityStudents();       // FALTA studentsSize()
     }
 
-    protected static boolean typeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
+    public static boolean typeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
         return cs.first.getType() == m.getClassClass().getType();           // COMPATIBILIDAD DE TIPOS AULA Y TIPOS CLASE
-                                                                        //NO ES TÉ EN COMPTE CLASSE DE TIPUS PROBLEMES
+                                                                        //NO ES TÉ EN COMPTE CLASSE DE TIPUS PROBLEME
     }
 
-    protected static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        if (m.getClassClass().getShift() == typeShift.MORNINGSHIFT) return cs.second.getHour() < 14;
+    public static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
+        if (m.getClassClass().getShift() == typeShift.MORNING) return cs.second.getHour() < 14;
         else return cs.second.getHour() >= 14;
     }
 
@@ -26,7 +26,7 @@ public class Constraints {
 
     // N-ARY CONSTRAINTS
 
-    protected static boolean theoryAndLabsOfClassNoTogether(MUS m1, MUS m2) {
+    public static boolean theoryAndLabsOfClassNoTogether(MUS m1, MUS m2) {
         // Si m1 de un tipo(t/p/l) igual que el tipo de m2 (t/p/l) y en la misma sesion => false
         if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
                 m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
@@ -35,7 +35,7 @@ public class Constraints {
         return true;
     }
 
-    protected static boolean theorysOfSubjectsOfSameLevelNoTogether(MUS m1, MUS m2) {
+    public static boolean theorysOfSubjectsOfSameLevelNoTogether(MUS m1, MUS m2) {
         if (m1.getClassClass().getType() == ClassType.THEORY &&
                 m2.getClassClass().getType() == ClassType.THEORY &&
                 !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
@@ -45,7 +45,7 @@ public class Constraints {
         return true;
     }
 
-    protected static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
+    public static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
         if (m1.getClassClass().getType() == ClassType.THEORY &&
                 m2.getClassClass().getType() == ClassType.THEORY &&
                 m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&

@@ -59,8 +59,8 @@ public final class SubjectsSet {
      * @param subjects Set of subjects.
      */
     public void setSet(ArrayList<Subject> subjects) {
-        for (int i = 0; i < subjects.size(); i++)   set.put(subjects.get(i).getName(), subjects.get(i));
-        //for (Subject s : subjects)   set.put(s.getName(), s);
+       // for (int i = 0; i < subjects.size(); i++)   set.put(subjects.get(i).getName(), subjects.get(i));
+        for (Subject s : subjects)   set.put(s.getName(), s);
     }
 
     /**
