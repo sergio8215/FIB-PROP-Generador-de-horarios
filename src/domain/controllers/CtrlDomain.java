@@ -148,6 +148,7 @@ public class CtrlDomain {
         for(int i = 0; i < cc.size(); ++i) {
             MUS mus = new MUS();
             mus.setClassClass(cc.get(i));
+            linkedList.add(mus);
         }
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
     }
