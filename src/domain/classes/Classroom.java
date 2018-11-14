@@ -1,5 +1,6 @@
 package src.domain.classes;
 
+import jdk.jshell.execution.Util;
 import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
@@ -47,8 +48,8 @@ public abstract class Classroom {
     public Classroom(Vector<String> parse) {
         name = parse.get(0);
         capacity = Integer.parseInt(parse.get(1));
-        typeFromString(parse.get(2));
-        multimediaFromString(parse.get(3));
+        type = UtilsDomain.ClassType.valueOf(parse.get(2));
+        multimedia = (parse.get(3).equals("true"));
     }
 
     /**
@@ -138,44 +139,6 @@ public abstract class Classroom {
         this.multimedia = multimedia;
     }
 
-    //PRIVATE METHODS
-
-    /**
-     * Converts the type of this Classroom instance into a legible  String
-     * @return returns an String with the type of the Classroom instance
-     */
-    private String typeToString() {
-        if(type == UtilsDomain.ClassType.LABORATORY) return UtilsDomain.ClassType.LABORATORY.toString();
-        else return UtilsDomain.ClassType.THEORY.toString();
-    }
-
-    /**
-     * Converts the multimedia attribute into a legible String
-     * @return returns an String with the attribute multimedia of this Classroom instance
-     */
-    private String multimediaToString(){
-        if(multimedia) return "true";
-        else return "false";
-    }
-
-    /**
-     * Converts an String into a boolean that shows if the Classroom instance has multimedia system
-     * @param m String that encodes the multimedia attribute
-     */
-    private void multimediaFromString(String m){
-        if(m.equals("true")) multimedia = true;
-        else multimedia = false;
-    }
-
-    /**
-     * Converts an String into a ClassroomType
-     * @param t String that encodes the type attribute
-     */
-    private void typeFromString(String t){
-        if(t.equals(UtilsDomain.ClassType.LABORATORY.toString())) type = UtilsDomain.ClassType.LABORATORY;
-        else type = UtilsDomain.ClassType.THEORY;
-    }
-
     //PUBLIC METHODS
 
     /**
@@ -187,8 +150,8 @@ public abstract class Classroom {
         Vector<String> vec = new Vector<String> (5);
         vec.add(name);
         vec.add(String.valueOf(capacity));
-        vec.add(typeToString());
-        vec.add(multimediaToString());
+        vec.add(type.toString());
+        vec.add((multimedia?"true":"false"));
         vec.add("0");
         return vec;
     }
