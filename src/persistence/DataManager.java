@@ -54,6 +54,7 @@ public class DataManager {
                 classrooms.elementAt(i).add((String)classroomJSON.get("Audiovisual"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Num_computers"));
 
+
                 System.out.println("Classroom: "+   classrooms.elementAt(i).get(0));
                 System.out.println("Quantity: "+    classrooms.elementAt(i).get(1));
                 System.out.println("Type: "+        classrooms.elementAt(i).get(2));

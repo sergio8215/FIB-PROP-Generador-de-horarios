@@ -46,9 +46,9 @@ public class CtrlDomain {
      */
     private boolean importClassroom(String file) throws Exception{
 
-        Vector<Vector<String >> classRooms = dManager.importClassrooms(file);
-        if (classRooms == null) {
-            classroomsSet = new ClassroomSet( classRooms );
+        Vector<Vector<String >> classrooms = dManager.importClassrooms(file);
+        if (classrooms != null) {
+            classroomsSet = new ClassroomSet( classrooms );
             return true;
         }
         else return false;
