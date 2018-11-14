@@ -46,18 +46,20 @@ public class ProblemsClass extends ClassClass{
     // Methods
 
     /**
-     * 
+     *
      * @param subGroup
      */
-    public void setsubGroup(int subGroup) {
+    @Override
+    public void setSubGroup(int subGroup) {
         this.subGroup = subGroup;
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    public int getsubGroup() {
+    @Override
+    public int getSubGroup() {
         return subGroup;
     }
 

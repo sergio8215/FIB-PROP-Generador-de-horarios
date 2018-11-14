@@ -49,6 +49,7 @@ public class TheoryClass extends ClassClass{
      * 
      * @param subGroup
      */
+    @Override
     public void setSubGroup(int subGroup) {
         this.subGroup = subGroup;
     }
@@ -57,6 +58,7 @@ public class TheoryClass extends ClassClass{
      * 
      * @return 
      */
+    @Override
     public int getSubGroup() {
         return subGroup;
     }

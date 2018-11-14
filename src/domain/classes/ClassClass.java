@@ -142,6 +142,8 @@ public abstract class ClassClass {
         this.quantityStudents = quantityStudents;
     }
 
+    public abstract void setSubGroup(int subGroup);
+    public abstract int getSubGroup();
     /**
      * It returns a vector of strings with the members' values.
      * @return Vector of strings with the members' values.

@@ -47,17 +47,21 @@ public class LaboratoryClass extends ClassClass {
     // METHODS--------------------------------------------------------------------
 
     /**
-     * @return 
+     *
+     * @param subGroup
      */
-    public int getsubGroup() {
-        return subGroup;
+    @Override
+    public void setSubGroup(int subGroup) {
+        this.subGroup = subGroup;
     }
 
     /**
-     * @param subGroup
+     *
+     * @return
      */
-    public void setsubGroup(int subGroup) {
-        this.subGroup = subGroup;
+    @Override
+    public int getSubGroup() {
+        return subGroup;
     }
 
     /**
