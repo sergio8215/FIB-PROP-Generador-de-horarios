@@ -60,4 +60,20 @@ public class ClassroomSession {
     public UtilsDomain.Pair getPair(int id) {
         return classroomSessionSet.get(id);
     }
+
+    /**
+     * returns the size of the classroomSessionSet
+     * @return returns an int with the size of the classroomSessionSet
+     */
+    public int size(){
+        return classroomSessionSet.size();
+    }
+
+    /**
+     * Removes an specific Pair from classroomSessionSet
+     * @param id of the specific Pair we want to delete
+     */
+    public void delete(int id) {
+        classroomSessionSet.remove(id);
+    }
 }

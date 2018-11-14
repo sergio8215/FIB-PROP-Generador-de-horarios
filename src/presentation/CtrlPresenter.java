@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class CtrlPresenter {
 
-    CtrlDomain ctrlDomain;
+    private static CtrlDomain ctrlDomain;
 
     public static void main(String[] args) throws Exception {
 
@@ -80,8 +80,8 @@ public class CtrlPresenter {
 
         scheduleGenerationMenu();
 
-        int subjectsFile;
-        int classromsFile;
+        int subjectsFile = 0;
+        int classromsFile = 0;
 
         boolean inputCorrect = false;
         while (!inputCorrect) {
@@ -106,7 +106,7 @@ public class CtrlPresenter {
         System.out.println("1. \n");
         System.out.println("\n Do you want to continue with the schedule generation? [S/N]");
 
-        switch (s.nextByte()) {
+        switch (s.next()) {
             case "S":
                 ctrlDomain.generateSchedule(); // FALTA SCHEDULE DE RETORNO
 

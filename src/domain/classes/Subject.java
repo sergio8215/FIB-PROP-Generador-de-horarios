@@ -13,12 +13,12 @@ public class Subject {
 
     // Members
 
-    private static String name;
-    private static int numberStudents;
-    private static int level;
-    private static int[] hoursClasses = new int[3]; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
-    private static int[] numberOfGroups = new int[2]; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
-    private static UtilsDomain.typeShift tyShift;
+    private String name;
+    private int numberStudents;
+    private int level;
+    private int[] hoursClasses = new int[3]; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
+    private int[] numberOfGroups = new int[2]; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
+    private UtilsDomain.typeShift tyShift;
 
 
     // Constructors
@@ -43,7 +43,6 @@ public class Subject {
         this.name = name;
         this.numberStudents = numberStudents;
         this.level = level;
-        this.hoursClasses = hoursClasses;
         setHoursClasses(hoursClasses[0], hoursClasses[1], hoursClasses[2]);
         setNumberOfGroups(numberOfGroups[0], numberOfGroups[1]);
         this.tyShift = tyShift;
@@ -58,11 +57,9 @@ public class Subject {
         name = vectorMembers.get(0);
         numberStudents = Integer.parseInt(vectorMembers.get(1));
         level = Integer.parseInt(vectorMembers.get(2));
-        hoursClasses = new int[3];
         hoursClasses[0] = Integer.parseInt(vectorMembers.get(3));
         hoursClasses[1] = Integer.parseInt(vectorMembers.get(4));
         hoursClasses[2] = Integer.parseInt(vectorMembers.get(5));
-        numberOfGroups = new int[2];
         numberOfGroups[0] = Integer.parseInt(vectorMembers.get(6));
         numberOfGroups[1] = Integer.parseInt(vectorMembers.get(7));
         tyShift = UtilsDomain.typeShift.values()[Integer.parseInt(vectorMembers.get(8))];
@@ -206,7 +203,7 @@ public class Subject {
      * @param tyShift Type of shift.
      */
     public void setTypeShift(UtilsDomain.typeShift tyShift) {
-        Subject.tyShift = tyShift;
+        tyShift = tyShift;
     }
 
     /**

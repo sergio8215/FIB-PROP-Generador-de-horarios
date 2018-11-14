@@ -7,7 +7,7 @@ import java.util.Vector;
 public class MUS {
     /**
      * Minimum Unit of Schedule (MUS)
-     * @author joaquimgomez
+     * @author Joaquim Gómez
      */
 
 
@@ -56,7 +56,7 @@ public class MUS {
      */
     public MUS(Vector< Vector<String> > mus) {
         classclass = ClassClass.fromStr(mus.get(0));
-        classroom = new Classroom(mus.get(1));
+        classroom = Classroom.fromStr(mus.get(1));
         session = new Session(mus.get(2));
     }
 
@@ -91,7 +91,7 @@ public class MUS {
      * Set the classclass of the MUS.
      * @param classclass Classclass of the MUS.
      */
-    public void setClassclass(ClassClass classclass) {
+    public void setClassClass(ClassClass classclass) {
         this.classclass = classclass;
     }
 
@@ -168,6 +168,14 @@ public class MUS {
      */
     public UtilsDomain.Pair<Classroom, Session> getValueDomain(int i){
         return domain.getPair(i);
+    }
+
+    /**
+     * It deletes a value from domain.
+     * @param i Id of the pair classroom-session to be deleted inside the domain.
+     */
+    public void deleteFromDomain(int i) {
+        domain.delete(i);
     }
 
     /**

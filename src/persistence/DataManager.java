@@ -28,7 +28,7 @@ public class DataManager {
      * @param fileName
      * @throws java.io.IOException
      */
-    public Vector <Vector< String>> ImportClassrooms(String fileName) throws IOException {
+    public Vector <Vector< String>> importClassrooms(String fileName) throws IOException {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
@@ -74,7 +74,7 @@ public class DataManager {
      * @param fileName
      * @throws java.io.IOException
      */
-    public Vector <Vector< String>> ImportSubjects(String fileName) throws IOException {
+    public Vector <Vector< String>> importSubjects(String fileName) throws IOException {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> subjects = new Vector <Vector< String>>();

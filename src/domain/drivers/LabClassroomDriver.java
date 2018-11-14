@@ -1,5 +1,7 @@
 package src.domain.drivers;
+import src.domain.classes.Classroom;
 import src.domain.classes.LabClassroom;
+import src.domain.utils.UtilsDomain;
 
 import java.util.Scanner;
 import java.util.Vector;
@@ -7,6 +9,21 @@ import java.util.Vector;
 public class LabClassroomDriver {
 
     private static LabClassroom lab;
+
+    private static void writeClassroom(Classroom c){
+        String s = c.getName() + " "
+                + String.valueOf(c.getCapacity()) + " "
+                + String.valueOf(c.getType().name()) + " ";
+        if(c.isMultimedia()) s += "true ";
+        else s += "false ";
+        if(c.getType() == UtilsDomain.ClassType.LABORATORY) {
+            LabClassroom l = (LabClassroom) c;
+            s += String.valueOf(l.getNumComputers());
+        }
+        else s += "0";
+
+        System.out.println(s);
+    }
 
     public static void testConstructor(){
         Scanner sc = new Scanner(System.in);
@@ -27,6 +44,17 @@ public class LabClassroomDriver {
         vec.add(String.valueOf(sc.nextInt())); //nComp
 
         lab = new LabClassroom(vec);
+    }
+    public static void testFromStr(){
+        Scanner sc = new Scanner(System.in);
+        Vector<String> v = new Vector<> (5);
+        v.add(sc.next()); //name
+        v.add(sc.next()); //capacity
+        v.add("LABORATORY"); //type
+        v.add(sc.next()); //multimedia
+        v.add(sc.next()); //nComp
+
+        writeClassroom(Classroom.fromStr(v));
     }
     public static void testGetName(){
         System.out.println(lab.getName());
@@ -68,21 +96,24 @@ public class LabClassroomDriver {
                     testConstructorFromString();
                     break;
                 case 2:
-                    testGetName();
+                    testFromStr();
                     break;
                 case 3:
-                    testGetCapacity();
+                    testGetName();
                     break;
                 case 4:
-                    testGetType();
+                    testGetCapacity();
                     break;
                 case 5:
-                    testGetMultimedia();
+                    testGetType();
                     break;
                 case 6:
-                    testGetNumComputers();
+                    testGetMultimedia();
                     break;
                 case 7:
+                    testGetNumComputers();
+                    break;
+                case 8:
                     testToStr();
                     break;
                 default:
@@ -99,12 +130,13 @@ public class LabClassroomDriver {
         System.out.println("\nWrite the number of the function you want to test:");
         System.out.println("\t0 -> Basic constructor");
         System.out.println("\t1 -> Constructor from String");
-        System.out.println("\t2 -> Name getter");
-        System.out.println("\t3 -> Capacity getter");
-        System.out.println("\t4 -> Type getter");
-        System.out.println("\t5 -> Multimedia getter");
-        System.out.println("\t6 -> NumComputers getter");
-        System.out.println("\t7 -> Convert Object to String");
+        System.out.println("\t2 -> From String");
+        System.out.println("\t3 -> Name getter");
+        System.out.println("\t4 -> Capacity getter");
+        System.out.println("\t5 -> Type getter");
+        System.out.println("\t6 -> Multimedia getter");
+        System.out.println("\t7 -> NumComputers getter");
+        System.out.println("\t8 -> Convert Object to String");
     }
 
 }
