@@ -6,7 +6,14 @@ import src.domain.classes.Subject;
 import src.domain.utils.UtilsDomain;
 
 import src.domain.utils.inout;
+import sun.applet.Main;
+
+import java.io.FileInputStream;
 import java.util.Vector;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class TheoryClassDriver {
 
@@ -183,6 +190,9 @@ public class TheoryClassDriver {
     }
 
     public static void main (String [] args) throws Exception {
+        FileInputStream is = new FileInputStream(new File("../../data/TheoryClassFile.txt"));
+        System.setIn(is);
+        Main.main(args);
 
         int option = 0;
 
@@ -191,23 +201,23 @@ public class TheoryClassDriver {
             i.write("------------------------------------------ \n");
             i.write("------------------MENU-------------------- \n");
             i.write("------------------------------------------ \n");
-            i.write("1 ->Test Constructor: \n");
-            i.write("2 ->Test Constructor from String Vector: \n");
-            i.write("3 ->Test GetGroup: \n");
-            i.write("4 ->Test GetIdentifier: \n");
-            i.write("5 ->Test GetSubject: \n");
-            i.write("6 ->Test GetType: \n");
-            i.write("7 ->Test GetShift: \n");
-            i.write("8 ->Test GetQuantityStudents: \n");
-            i.write("9 ->Test GetSubGroup: \n");
-            i.write("10->Test ToStr:  \n");
-            i.write("11->Test SetGroup:  \n");
-            i.write("12->Test SetIdentifier:  \n");
-            i.write("13->Test SetSubject:  \n");
-            i.write("14->Test SetShift:  \n");
-            i.write("15->Test SetQuantityStudents:  \n");
-            i.write("16->Test SetSubGroup:  \n");
-            i.write("17->Exit:  \n");
+            i.write("1 ->Test Constructor \n");
+            i.write("2 ->Test Constructor from String Vector \n");
+            i.write("3 ->Test GetGroup \n");
+            i.write("4 ->Test GetIdentifier \n");
+            i.write("5 ->Test GetSubject \n");
+            i.write("6 ->Test GetType \n");
+            i.write("7 ->Test GetShift \n");
+            i.write("8 ->Test GetQuantityStudents \n");
+            i.write("9 ->Test GetSubGroup \n");
+            i.write("10->Test ToStr  \n");
+            i.write("11->Test SetGroup  \n");
+            i.write("12->Test SetIdentifier  \n");
+            i.write("13->Test SetSubject  \n");
+            i.write("14->Test SetShift  \n");
+            i.write("15->Test SetQuantityStudents  \n");
+            i.write("16->Test SetSubGroup  \n");
+            i.write("17->Exit  \n");
 
             option = i.readint();
 
