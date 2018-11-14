@@ -30,7 +30,7 @@ public class LaboratoryClass extends ClassClass {
      * @param group
      */
     public LaboratoryClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
-        super(identifier, subject, group, quantityStudents, shift, ClassType.LABORATORY);
+        super(identifier, subject, group, quantityStudents, shift, UtilsDomain.ClassType.LABORATORY);
         this.subGroup = subGroup;
     }
 
@@ -39,7 +39,7 @@ public class LaboratoryClass extends ClassClass {
      * @param myStringVector Identification of the Class.
      */
     public LaboratoryClass( Vector<String> myStringVector ) {
-        super(myStringVector, ClassType.LABORATORY);
+        super(myStringVector, UtilsDomain.ClassType.LABORATORY);
         int sg = Integer.parseInt(myStringVector.get(2)); // subgroup
         subGroup = sg;
     }

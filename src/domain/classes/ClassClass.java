@@ -6,7 +6,6 @@
 package src.domain.classes;
 
 import src.domain.utils.UtilsDomain;
-
 import java.util.Vector;
 
 /**

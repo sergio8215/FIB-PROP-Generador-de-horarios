@@ -29,7 +29,7 @@ public class ProblemsClass extends ClassClass{
      * @param group
      */
     public ProblemsClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
-        super(identifier, subject, group, quantityStudents, shift, ClassType.PROBLEMS);
+        super(identifier, subject, group, quantityStudents, shift, UtilsDomain.ClassType.PROBLEMS);
         this.subGroup = subGroup;
     }
 
@@ -38,7 +38,7 @@ public class ProblemsClass extends ClassClass{
      * @param myStringVector Identification of the Class.
      */
     public ProblemsClass( Vector<String> myStringVector ) {
-        super(myStringVector, ClassType.PROBLEMS);
+        super(myStringVector, UtilsDomain.ClassType.PROBLEMS);
         int sg = Integer.parseInt(myStringVector.get(2)); // subgroup
         subGroup = sg;
     }

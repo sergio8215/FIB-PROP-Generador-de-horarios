@@ -29,7 +29,7 @@ public class TheoryClass extends ClassClass{
      * @param group
      */
     public TheoryClass(String identifier, int subGroup, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift){
-        super(identifier, subject, group, quantityStudents, shift, ClassType.THEORY );
+        super(identifier, subject, group, quantityStudents, shift, UtilsDomain.ClassType.THEORY );
         this.subGroup = subGroup;
     }
 
@@ -38,7 +38,7 @@ public class TheoryClass extends ClassClass{
      * @param myStringVector Identification of the Class.
      */
     public TheoryClass( Vector<String> myStringVector ) {
-        super(myStringVector, ClassType.THEORY);
+        super(myStringVector, UtilsDomain.ClassType.THEORY);
         int sg = Integer.parseInt(myStringVector.get(2)); // subgroup
         subGroup = sg;
     }
@@ -49,7 +49,7 @@ public class TheoryClass extends ClassClass{
      * 
      * @param subGroup
      */
-    public void setsubGroup(int subGroup) {
+    public void setSubGroup(int subGroup) {
         this.subGroup = subGroup;
     }
     
@@ -57,7 +57,7 @@ public class TheoryClass extends ClassClass{
      * 
      * @return 
      */
-    public int getsubGroup() {
+    public int getSubGroup() {
         return subGroup;
     }
 
