@@ -348,15 +348,15 @@ public class ClassSetDriver {
             i.write("------------------------------------------ \n");
             i.write("------------------MENU-------------------- \n");
             i.write("------------------------------------------ \n");
-            i.write("1 ->Test ConstructorSubjects: \n");
-            i.write("2 ->Test ConstructorFromStr: \n");
-            i.write("3 ->Test ExistsClass: \n");
-            i.write("4 ->Test GetClass: \n");
-            i.write("5 ->Test AddClass: \n");
-            i.write("6 ->Test Unset: \n");
-            i.write("7 ->Test Compare: \n");
-            i.write("8 ->Test ToStr: \n");
-            i.write("9 ->Exit:  \n");
+            i.write("1 ->Test ConstructorSubjects \n");
+            i.write("2 ->Test ConstructorFromStr \n");
+            i.write("3 ->Test ExistsClass \n");
+            i.write("4 ->Test GetClass \n");
+            i.write("5 ->Test AddClass \n");
+            i.write("6 ->Test Unset \n");
+            i.write("7 ->Test Compare \n");
+            i.write("8 ->Test ToStr \n");
+            i.write("9 ->Exit  \n");
 
             option = i.readint();
 
