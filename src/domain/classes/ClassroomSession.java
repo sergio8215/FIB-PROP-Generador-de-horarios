@@ -9,6 +9,11 @@ public class ClassroomSession {
     private ArrayList<UtilsDomain.Pair> classroomSessionSet;
 
     /**
+     * Empty ClassroomSession constructor
+     */
+    public ClassroomSession(){}
+
+    /**
      * ClassroomSession constructor
      * @param crSet Set of all the Classroom Objects
      */
