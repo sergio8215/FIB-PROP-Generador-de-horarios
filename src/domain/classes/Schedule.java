@@ -189,7 +189,7 @@ public class Schedule {
      * @return
      */
     public boolean valid(){
-
+        return true; // TODO: IMPLEMENTAR!
     }
 
 }

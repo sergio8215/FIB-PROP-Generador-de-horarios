@@ -167,8 +167,8 @@ public final class SubjectsSet {
     public static boolean compare(Subject s1, String op, Subject s2){
         if (op.equals("<"))     return s1.getLevel() < s2.getLevel() && s1.getName().compareTo(s2.getName()) > 0;
         if (op.equals(">"))     return s1.getLevel() > s2.getLevel() && s1.getName().compareTo(s2.getName()) < 0;
-        if (op.equals("<="))    return s1.getLevel() <= s2.getLevel() && (s1.getName().compareTo(s2.getName()) > 0 || s1.getName().contentEquals(s2.getName()));
-        if (op.equals(">="))    return s1.getLevel() >= s2.getLevel() && (s1.getName().compareTo(s2.getName()) < 0 || s1.getName().contentEquals(s2.getName()));
+        if (op.equals("<="))    return s1.getLevel() <= s2.getLevel() && (s1.getName().compareTo(s2.getName()) < 0 || s1.getName().contentEquals(s2.getName()));
+        if (op.equals(">="))    return s1.getLevel() >= s2.getLevel() && (s1.getName().compareTo(s2.getName()) > 0 || s1.getName().contentEquals(s2.getName()));
         if (op.equals("!="))    return s1.getLevel() != s2.getLevel() && !s1.getName().contentEquals(s2.getName());
         if (op.equals("=="))    return s1.getLevel() == s2.getLevel() && s1.getName().contentEquals(s2.getName());
 
@@ -217,22 +217,6 @@ public final class SubjectsSet {
             j++;
             k++;
         }
-
-        /*ArrayList<Subject> aux = new ArrayList<>();
-
-        for (int i = start; i <= end; i++)  aux.add(i, set.get(i));
-
-        int i = start;
-        int j = mid + 1;
-        int k = start;
-
-        while (i <= mid && j <= end) {
-            if (compare(aux.get(i), "<=", aux.get(j)))   set.set(k++, aux.get(i++));
-            else    set.set(k++, aux.get(j++));
-        }
-
-        while (i <= mid)
-            set.set(k++, aux.get(i++));*/
     }
 
     /**
@@ -248,7 +232,7 @@ public final class SubjectsSet {
             rSubjectsSort(set, start, mid);
             rSubjectsSort(set,mid + 1, end);
 
-            merge(set, start, mid, end);
+            merge(new ArrayList<>(set), start, mid, end);
         }
     }
 

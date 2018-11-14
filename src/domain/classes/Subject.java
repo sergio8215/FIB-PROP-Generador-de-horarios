@@ -62,7 +62,7 @@ public class Subject {
         hoursClasses[2] = Integer.parseInt(vectorMembers.get(5));
         numberOfGroups[0] = Integer.parseInt(vectorMembers.get(6));
         numberOfGroups[1] = Integer.parseInt(vectorMembers.get(7));
-        tyShift = UtilsDomain.typeShift.values()[Integer.parseInt(vectorMembers.get(8))];
+        tyShift = UtilsDomain.typeShift.valueOf(vectorMembers.get(8));
     }
 
     // Methods
