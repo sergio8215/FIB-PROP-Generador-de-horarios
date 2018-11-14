@@ -16,12 +16,19 @@ public class Subject {
     private static String name;
     private static int numberStudents;
     private static int level;
-    private static int[] hoursClasses; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
-    private static int[] numberOfGroups; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
+    private static int[] hoursClasses = new int[3]; // [0] -> Theory, [1] -> Laboratory, [2] -> Problems
+    private static int[] numberOfGroups = new int[2]; // [0] -> Number of groups, [1] -> Number of subgroups  |||  SetDeclases genera los grupos correspondientes
     private static UtilsDomain.typeShift tyShift;
 
 
     // Constructors
+
+    /**
+     * Empty constructor.
+     */
+    public Subject() {
+
+    }
 
     /**
      * Class constructor specifying the member's values.
@@ -32,10 +39,10 @@ public class Subject {
      * @param numberOfGroups Number of groups and subgroups.
      * @param tyShift Type of shift.
      */
-    public Subject(String name, int level, int numberStudents, int[] hoursClasses, int[] numberOfGroups, UtilsDomain.typeShift tyShift){
+    public Subject(String name, int numberStudents, int level, int[] hoursClasses, int[] numberOfGroups, UtilsDomain.typeShift tyShift){
         this.name = name;
-        this.level = level;
         this.numberStudents = numberStudents;
+        this.level = level;
         this.hoursClasses = hoursClasses;
         setHoursClasses(hoursClasses[0], hoursClasses[1], hoursClasses[2]);
         setNumberOfGroups(numberOfGroups[0], numberOfGroups[1]);
@@ -217,15 +224,15 @@ public class Subject {
     public Vector<String> toStr() {
         Vector<String> c = new Vector<>(9);
 
-        c.set(0, name);
-        c.set(1, Integer.toString(numberStudents));
-        c.set(2, Integer.toString(level));
-        c.set(3, Integer.toString(hoursClasses[0]));
-        c.set(4, Integer.toString(hoursClasses[1]));
-        c.set(5, Integer.toString(hoursClasses[2]));
-        c.set(6, Integer.toString(numberOfGroups[0]));
-        c.set(7, Integer.toString(numberOfGroups[1]));
-        c.set(8, Integer.toString(tyShift.ordinal()));
+        c.add(0, name);
+        c.add(1, Integer.toString(numberStudents));
+        c.add(2, Integer.toString(level));
+        c.add(3, Integer.toString(hoursClasses[0]));
+        c.add(4, Integer.toString(hoursClasses[1]));
+        c.add(5, Integer.toString(hoursClasses[2]));
+        c.add(6, Integer.toString(numberOfGroups[0]));
+        c.add(7, Integer.toString(numberOfGroups[1]));
+        c.add(8, Integer.toString(tyShift.ordinal()));
 
         return c;
     }
