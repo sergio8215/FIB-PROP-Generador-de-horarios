@@ -1,5 +1,6 @@
 package src.presentation;
 
+import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
 
 import java.util.Scanner;
@@ -108,7 +109,7 @@ public class CtrlPresenter {
 
         switch (s.next()) {
             case "S":
-                ctrlDomain.generateSchedule(); // FALTA SCHEDULE DE RETORNO
+                Schedule schedule = ctrlDomain.generateSchedule(); // FALTA SCHEDULE DE RETORNO
 
                 break;
 

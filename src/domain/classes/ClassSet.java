@@ -172,7 +172,7 @@ public class ClassSet {
      */
     public ArrayList<ClassClass> unset() {
         ArrayList<ClassClass> tempSet = new ArrayList<>(classSet.values());
-        classSort(tempSet);
+        //classSort(tempSet);
         return tempSet;
     }
 

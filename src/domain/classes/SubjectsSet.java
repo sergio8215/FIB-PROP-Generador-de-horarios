@@ -17,7 +17,7 @@ public final class SubjectsSet {
 
     // Members
 
-    HashMap<String,Subject> set;
+    private HashMap<String,Subject> set;
 
 
     // Constructors

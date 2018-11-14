@@ -123,9 +123,12 @@ public class Schedule {
      */
     private void addOrdered(ArrayList<MUS> v, MUS mus) {
 
-        for(int i = 0; i < v.size(); ++i) {
-            //TODO: arreglar quan tinguis la funcio de la classe Session
-            if(Session.compare(v.get(i).getSession(), ">=", mus.getSession())) v.add(i, mus);  //si mus és més petit o igual que el element i, el poso a aquesta posició
+        boolean found = false;
+        for(int i = 0; i < v.size() && !found; ++i) {
+            if(Session.compare(v.get(i).getSession(), ">=", mus.getSession())) {
+                v.add(i, mus);  //si mus és més petit o igual que el element i, el poso a aquesta posició
+                found = true;
+            }
         }
     }
 
@@ -164,8 +167,9 @@ public class Schedule {
         if(values == null) {
             values = new ArrayList<MUS>();
             timetable.put(mus.getSubject().getName(), values);
+            values.add(mus);
         }
-        addOrdered(values, mus);
+        else addOrdered(values, mus);
     }
 
     /**
@@ -189,7 +193,7 @@ public class Schedule {
      * @return
      */
     public boolean valid(){
-        return true; // TODO: IMPLEMENTAR!
+
     }
 
 }

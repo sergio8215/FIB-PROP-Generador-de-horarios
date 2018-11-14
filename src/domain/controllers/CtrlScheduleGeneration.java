@@ -59,13 +59,24 @@ public class CtrlScheduleGeneration {
 
             vars.get(i).setDomain(new ClassroomSession(classroomSession));
 
-            for (int j = 0; i < vars.get(i).domainSize(); j++){
+            /*for (int j = 0; i < vars.get(i).domainSize(); j++){
 
                 if (!(Constraints.sizeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
                         Constraints.typeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
                         Constraints.shiftClassUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)))){
                     vars.get(i).deleteFromDomain(j);
                 }
+
+            }*/
+
+            int j = 0;
+            while (j < vars.get(i).domainSize()) {
+
+                if (!(Constraints.sizeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
+                        Constraints.typeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
+                        Constraints.shiftClassUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)))){
+                    vars.get(i).deleteFromDomain(j);
+                } else      ++j;
 
             }
 
@@ -86,6 +97,7 @@ public class CtrlScheduleGeneration {
             MUS currentVar = futureVars.pollFirst();
 
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
+                System.out.println(i);
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
 

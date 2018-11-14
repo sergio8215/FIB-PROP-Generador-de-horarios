@@ -141,7 +141,7 @@ public class CtrlDomain {
     /**
      * Generates the scheduler based on the generated scenario
      */
-    public void generateSchedule(){
+    public Schedule generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
         ArrayList<ClassClass> cc = classSet.unset();
@@ -151,6 +151,7 @@ public class CtrlDomain {
             linkedList.add(mus);
         }
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
+        return schedule;
     }
 
 }
