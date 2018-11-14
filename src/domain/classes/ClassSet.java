@@ -252,7 +252,7 @@ public class ClassSet {
         ArrayList<ClassClass> cs = this.unset();
         Vector< Vector<String> > set = new Vector<>(cs.size());
 
-        for (int i = 0; i < cs.size(); i++) set.set(i, cs.get(i).toStr());
+        for (int i = 0; i < cs.size(); i++) set.add(i, cs.get(i).toStr());
 
         return set;
     }

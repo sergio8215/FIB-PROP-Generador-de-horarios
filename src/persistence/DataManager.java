@@ -34,7 +34,7 @@ public class DataManager {
         Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
         try {
 
-            Object obj = parser.parse(new FileReader("./files/" + fileName ));
+            Object obj = parser.parse(new FileReader("./data/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
@@ -80,7 +80,7 @@ public class DataManager {
         Vector <Vector< String>> subjects = new Vector <Vector< String>>();
 
         try {
-            Object obj = parser.parse(new FileReader("./files/" + fileName ));
+            Object obj = parser.parse(new FileReader("./data/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
             String  subject;
