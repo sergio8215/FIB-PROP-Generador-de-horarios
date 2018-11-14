@@ -15,7 +15,18 @@ public class TheoryClassroomDriver {
         boolean multimedia = sc.nextBoolean();
         theo = new TheoryClassroom(name, cap, multimedia);
     }
-    public static void testConstructorFromString(){}
+    public static void testConstructorFromString(){
+        Vector<String> vec = new Vector<String> (4);
+        Scanner sc = new Scanner(System.in);
+
+        vec.add(sc.next()); //name
+        vec.add(String.valueOf(sc.nextInt())); //capacity
+        vec.add(sc.next()); //type (Theory)
+        vec.add(sc.next()); //multimedia
+        vec.add("0"); //nComp
+
+        theo = new TheoryClassroom(vec);
+    }
     public static void testGetName(){
         System.out.println(theo.getName());
     }
