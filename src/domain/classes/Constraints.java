@@ -17,8 +17,9 @@ public class Constraints {
     }
 
     public static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        if (m.getClassClass().getShift() == typeShift.MORNING) return cs.second.getHour() < 14;
-        else return cs.second.getHour() >= 14;
+        if (m.getClassClass().getShift().ordinal() == 0 ) return cs.second.getHour() < 14;
+        else if (m.getClassClass().getShift().ordinal() == 1 ) return cs.second.getHour() >= 14;
+        return true;
     }
 
      //BINARY CONSTRAINTS
