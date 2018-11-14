@@ -13,71 +13,43 @@ public class SubjectsSetDriver {
     private static SubjectsSet ss = new SubjectsSet();
     private static Scanner sc = new Scanner(System.in);
 
-    private static Subject buildSubjects() {
-        Vector<String> v = new Vector<>(9);
-
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-        v.add(sc.next());
-
-        return new Subject(v);
-    }
-
     public static void testConstructorFromArray() {
         System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
-        ArrayList<Subject> subjectsArray = new ArrayList<>(n);
+        ArrayList<Subject> sa = new ArrayList<>();
 
-        Vector< Vector<String> > vs = new Vector<>(n);
-        for (int i = 0; i < n; i ++) {
+        for (int i = 0; i < n; ++i) {
             System.out.print("Data subject " + i + ": ");
+            String name = sc.next();
+            int numberStudents = sc.nextInt();
+            int level = sc.nextInt();
+            int[] hoursClasses = new int[3];
+            hoursClasses[0] = sc.nextInt();
+            hoursClasses[1] = sc.nextInt();
+            hoursClasses[2] = sc.nextInt();
+            int[] numberOfGroups = new int[2];
+            numberOfGroups[0] = sc.nextInt();
+            numberOfGroups[1] = sc.nextInt();
+            UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.values()[sc.nextInt()];
 
-            Vector<String> v = new Vector<>(9);
-
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-            v.add(sc.next());
-
-            vs.add(v);
-            //subjectsArray.add(i, buildSubjects());
+            sa.add(i, new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift));
         }
 
-
-        for (int i = 0; i < n; i++) {
-            System.out.println(vs.get(i).get(0));
-            Subject s = new Subject(vs.get(i));
-            System.out.println(s.getName());
-            subjectsArray.add(s);
-        } // TODO: ERROR AL INSERTAR ELEMENTOS EN EL ARRAY LIST
-
-        System.out.println(subjectsArray.get(0).getName());
-        System.out.println(subjectsArray.get(1).getName());
-        System.out.println(subjectsArray.get(2).getName());
-
-        ss = new SubjectsSet(subjectsArray);
+        ss = new SubjectsSet(sa);
     }
 
     public static void testConstructorFromString() {
         System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
-        Vector< Vector<String> > subjectsVector = new Vector<>(n);
+        Vector< Vector<String> > vv = new Vector<>(n);
+
         for (int i = 0; i < n; i++) {
             System.out.print("Data subject " + i + ": ");
+
             Vector<String> v = new Vector<>(9);
+
             v.add(0, sc.next());
             v.add(1, sc.next());
             v.add(2, sc.next());
@@ -87,33 +59,37 @@ public class SubjectsSetDriver {
             v.add(6, sc.next());
             v.add(7, sc.next());
             v.add(8, sc.next());
-            subjectsVector.add(v);
+
+            vv.add(i, v);
         }
 
-        ss = new SubjectsSet(subjectsVector);
+        ss = new SubjectsSet(vv);
     }
 
     public static void testSetSet() {
         System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
-        ArrayList<Subject> subjectsArray = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        ArrayList<Subject> sa = new ArrayList<>();
+
+        for (int i = 0; i < n; ++i) {
             System.out.print("Data subject " + i + ": ");
-            Vector<String> v = new Vector<>(9);
-            v.add(0, sc.next());
-            v.add(1, sc.next());
-            v.add(2, sc.next());
-            v.add(3, sc.next());
-            v.add(4, sc.next());
-            v.add(5, sc.next());
-            v.add(6, sc.next());
-            v.add(7, sc.next());
-            v.add(8, sc.next());
-            subjectsArray.add(new Subject(v));
+            String name = sc.next();
+            int numberStudents = sc.nextInt();
+            int level = sc.nextInt();
+            int[] hoursClasses = new int[3];
+            hoursClasses[0] = sc.nextInt();
+            hoursClasses[1] = sc.nextInt();
+            hoursClasses[2] = sc.nextInt();
+            int[] numberOfGroups = new int[2];
+            numberOfGroups[0] = sc.nextInt();
+            numberOfGroups[1] = sc.nextInt();
+            UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.values()[sc.nextInt()];
+
+            sa.add(i, new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift));
         }
 
-        ss.setSet(subjectsArray);
+        ss.setSet(sa);
     }
 
     public static void testUnset() {
