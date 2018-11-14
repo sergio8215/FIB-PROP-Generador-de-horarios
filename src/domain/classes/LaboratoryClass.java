@@ -31,7 +31,7 @@ public class LaboratoryClass extends ClassClass {
      * @param shift
      * @param subGroup
      */
-    public LaboratoryClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.TimeZone shift, int subGroup){
+    public LaboratoryClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.typeShift shift, int subGroup){
         super(identifier, subject, group, quantityStudents, shift, UtilsDomain.ClassType.LABORATORY);
         this.subGroup = subGroup;
     }
@@ -77,8 +77,8 @@ public class LaboratoryClass extends ClassClass {
         myAttributes.add(0, super.getIdentifier());                             //identifier
         myAttributes.add(1, Integer.toString(super.getGroup()));                //group
         myAttributes.add(2, Integer.toString(subGroup));                        //subGroup
-        myAttributes.add(3, Integer.toString(super.getType().ordinal()));       //type of group
-        myAttributes.add(4, Integer.toString(super.getShift().ordinal()));      //shift
+        myAttributes.add(3, super.getType().toString());                        //type of group
+        myAttributes.add(4, super.getShift().toString());                       //shift
         myAttributes.add(5, Integer.toString(super.getQuantityStudents()));     //quantityStudents
         return mergeStringVector(myAttributes, super.getSubject().toStr());     // result vector
     }

@@ -1,33 +1,33 @@
 {
     "Classrooms List": [
-		{
-			"Classroom":"A6201",
-			"Quantity":"20",
-			"Type": "Laboratory",
-			"Audiovisual": "true",
-			"Num_computers": "10"
-		},
-		{
-			"Classroom":"A6202",
-			"Quantity":"50",
-			"Type": "Theory",
-			"Audiovisual": "true",
-			"Num_computers": "0"
-		},
-		{
-			"Classroom":"A6203",
-			"Quantity":"30",			
-			"Type": "Theory",
-			"Audiovisual": "true",
-			"Num_computers": "0"
-		},
-		{
-			"Classroom":"A6204",
-			"Quantity":"15",	
-			"Type": "Theory",
-			"Audiovisual": "true",
-			"Num_computers": "0"
-		}
+        {
+            "Classroom":"A6201",
+            "Quantity":"20",
+            "Type": "LABORATORY",
+            "Audiovisual": "true",
+            "Num_computers": "10"
+        },
+        {
+            "Classroom":"A6202",
+            "Quantity":"50",
+            "Type": "THEORY",
+            "Audiovisual": "true",
+            "Num_computers": "0"
+        },
+        {
+            "Classroom":"A6203",
+            "Quantity":"30",
+            "Type": "THEORY",
+            "Audiovisual": "true",
+            "Num_computers": "0"
+        },
+        {
+            "Classroom":"A6204",
+            "Quantity":"15",
+            "Type": "THEORY",
+            "Audiovisual": "true",
+            "Num_computers": "0"
+        }
     ],
     "Subjects List": [
 		{
