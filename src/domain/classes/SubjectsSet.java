@@ -15,17 +15,8 @@ public final class SubjectsSet {
      */
 
 
-    // Auxiliary Structures
-
-    public static enum typeSet {
-        ofSchedule,
-        unespecified
-    }
-
-
     // Members
 
-    typeSet tySet;  // Unused by the moment.
     HashMap<String,Subject> set;
 
 
@@ -35,17 +26,14 @@ public final class SubjectsSet {
      * Class constructor
      */
     public SubjectsSet() {
-        tySet = typeSet.unespecified;
         set = new HashMap<>();
     }
 
     /**
      * Class constructor specifying the member's values.
      * @param subjects Array list with subjects.
-     * @param tySet Type of set.
      */
-    public SubjectsSet(ArrayList<Subject> subjects, typeSet tySet){
-       this.tySet = tySet;
+    public SubjectsSet(ArrayList<Subject> subjects){
        set = new HashMap<>(subjects.size());
 
        setSet(subjects);
@@ -56,8 +44,7 @@ public final class SubjectsSet {
      * @param subjectsSet Matrix with the differents subjects (with string format) to be added to the set.
      */
     public SubjectsSet(Vector< Vector<String> > subjectsSet){
-        tySet = typeSet.unespecified;
-
+        set = new HashMap<>(subjectsSet.size());
         for (Vector<String> subject : subjectsSet) {
             Subject auxSubject = new Subject(subject);
             this.putSubject(auxSubject);
@@ -68,27 +55,12 @@ public final class SubjectsSet {
     // Methods
 
     /**
-     * Set the type of the set.
-     * @param tySet Type of set.
-     */
-    public void setTySet(typeSet tySet) {
-        this.tySet = tySet;
-    }
-
-    /**
-     * Returns the type of the set.
-     * @return Type of the set.
-     */
-    public typeSet getTySet() {
-        return tySet;
-    }
-
-    /**
      * Set the set of subjects.
      * @param subjects Set of subjects.
      */
     public void setSet(ArrayList<Subject> subjects) {
-        for (Subject s : subjects)   set.put(s.getName(), s);
+        for (int i = 0; i < subjects.size(); i++)   set.put(subjects.get(i).getName(), subjects.get(i));
+        //for (Subject s : subjects)   set.put(s.getName(), s);
     }
 
     /**
@@ -97,7 +69,7 @@ public final class SubjectsSet {
      */
     public ArrayList<Subject> unset() {
         ArrayList<Subject> tempSet = new ArrayList<>(set.values());
-        subjectsSort(tempSet);
+        //subjectsSort(tempSet);
         return tempSet;
     }
 
@@ -110,7 +82,7 @@ public final class SubjectsSet {
 
         Vector< Vector<String> > set = new Vector<>(ss.size());
 
-        for (int i = 0; i < ss.size(); i++)     set.set(i, ss.get(i).toStr());
+        for (int i = 0; i < ss.size(); i++)     set.add(i, ss.get(i).toStr());
 
         return set;
     }
@@ -140,7 +112,6 @@ public final class SubjectsSet {
      */
     public boolean putSubject(Subject s) {
         if (set.containsKey(s.getName()))   return false;
-        else if (!canPut(s))    return false;
         else {
             set.put(s.getName(), s);
             return true;
@@ -181,62 +152,8 @@ public final class SubjectsSet {
      * @param sSubject Name of the subject to check.
      * @return True if the set has the subject.
      */
-    public boolean belong(String sSubject){
+    public boolean belongs(String sSubject){
         return set.containsKey(sSubject);
-    }
-
-    /**
-     * It carries out the union of the sets.
-     * @param set Set with which the union should be made.
-     * @return True if the union could be made.
-     */
-    public boolean union(SubjectsSet set) {
-        ArrayList<Subject> arraySet = set.unset();
-        HashMap<String,Subject> auxSet = new HashMap<>();
-
-        boolean allCompatible = true;
-        for (Subject s : arraySet){
-            if (this.canPut(s))     auxSet.put(s.getName(), s);
-            else {
-                allCompatible = !allCompatible;
-                break;
-            }
-        }
-
-        if (allCompatible){
-            this.set.putAll(auxSet);
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Compute the difference between two subjects set.
-     * @param set Which the function compute the difference.
-     * @return The difference
-     */
-    public SubjectsSet difference(SubjectsSet set) {
-        // Definition of the difference: this - set
-        ArrayList<Subject> set1 = this.unset();
-        ArrayList<Subject> set2 = set.unset();
-
-        SubjectsSet diff = new SubjectsSet();
-
-        for (Subject s : set1) {
-            if (!set2.contains(s))  diff.putSubject(s);
-        }
-
-        return diff;
-    }
-
-    /**
-     * For a given subject return true if is possible to add it to the set.
-     * @param s Subject to analize.
-     * @return true if is possible to add the subject to the set
-     */
-    private boolean canPut(Subject s){
-        return true;    // By the moment
     }
 
     /**
@@ -266,7 +183,42 @@ public final class SubjectsSet {
      * @param end End point of the sort.
      */
     private static void merge(ArrayList<Subject> set, int start, int mid, int end) {
-        ArrayList<Subject> aux = new ArrayList<>();
+        int n1 = mid - start + 1;
+        int n2 = end - mid;
+
+        ArrayList<Subject> aux1 = new ArrayList<>(n1);
+        ArrayList<Subject> aux2 = new ArrayList<>(n2);
+
+        for (int i = 0; i < n1; ++i)    aux1.add(i, set.get(start + i));
+        for (int j = 0; j < n2; ++j)    aux2.add(j, set.get(mid + 1 + j));
+
+        int i = 0;
+        int j = 0;
+
+        int k = start;
+        while (i < n1 && j < n2) {
+            if (compare(aux1.get(i), "<=", aux2.get(j))){
+                set.set(k, aux1.get(i));
+                i++;
+            } else {
+                set.set(k, aux2.get(j));
+                j++;
+            }
+        }
+
+        while (i < n1){
+            set.set(k, aux1.get(i));
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            set.set(k, aux2.get(j));
+            j++;
+            k++;
+        }
+
+        /*ArrayList<Subject> aux = new ArrayList<>();
 
         for (int i = start; i <= end; i++)  aux.add(i, set.get(i));
 
@@ -280,7 +232,7 @@ public final class SubjectsSet {
         }
 
         while (i <= mid)
-            set.set(k++, aux.get(i++));
+            set.set(k++, aux.get(i++));*/
     }
 
     /**
@@ -307,6 +259,6 @@ public final class SubjectsSet {
     public static void subjectsSort(ArrayList<Subject> set) {
         // Mergesort Implementation
         // Worst-case complexity: O(n log n) ; Worst-case space complexity: O(n)
-        rSubjectsSort(set, 0, set.size());
+        rSubjectsSort(set, 0, set.size()-1);
     }
 }
