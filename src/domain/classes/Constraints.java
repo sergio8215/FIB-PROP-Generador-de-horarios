@@ -1,5 +1,6 @@
 package src.domain.classes;
 
+import src.domain.utils.UtilsDomain;
 import src.domain.utils.UtilsDomain.*;
 
 public class Constraints {
@@ -16,7 +17,7 @@ public class Constraints {
     }
 
     protected static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        if (m.getClassClass().getShift() == TimeZone.MORNING) return cs.second.getHour() < 14;
+        if (m.getClassClass().getShift() == typeShift.MORNINGSHIFT) return cs.second.getHour() < 14;
         else return cs.second.getHour() >= 14;
     }
 

@@ -13,14 +13,10 @@ public final class UtilsDomain {
         PROBLEMS    // ordinal value: 2
     }
 
-    public enum TimeZone{
-        MORNING, AFTERNOON
-    }
-
     public enum typeShift {
-        morningShift,
-        afternoonShift,
-        bothShifts
+        MORNING,
+        AFTERNOON,
+        BOTH
     }
 
     public enum Day {
