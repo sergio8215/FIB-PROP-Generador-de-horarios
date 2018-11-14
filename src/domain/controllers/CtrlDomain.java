@@ -46,7 +46,7 @@ public class CtrlDomain {
      */
     private boolean importClassroom(String file) throws Exception{
 
-        Vector<Vector<String >> classRooms = dManager.ImportClassrooms(file);
+        Vector<Vector<String >> classRooms = dManager.importClassrooms(file);
         if (classRooms == null) {
             classroomsSet = new ClassroomSet( classRooms );
             return true;
@@ -59,8 +59,8 @@ public class CtrlDomain {
      * @param file name of the file to import
      * @return true if the import is successful
      */
-    private boolean importSubject(String file){
-        Vector< Vector <String > > subjects = dManager.ImportSubjects(file);
+    private boolean importSubject(String file) throws Exception{
+        Vector< Vector <String > > subjects = dManager.importSubjects(file);
         if (subjects != null){
             subjectsSet = new SubjectsSet (subjects);
             return true;
@@ -76,12 +76,12 @@ public class CtrlDomain {
      * @param subjectFile name of the subjects file to import
      * @return true if the import is successful
      */
-    public boolean createScenario(String classroomFile, String subjectFile) {
-        boolean c = importClassroom(classroomFile);
+    public boolean createScenario(String classroomFile, String subjectFile) throws Exception {
+        boolean c = this.importClassroom(classroomFile);
         boolean s = importSubject(subjectFile);
         if (c && s ) {
             classSet = new ClassSet(subjectsSet);
-            classroomSession = new ClassroomSession(classSet, new Session());
+            classroomSession = new ClassroomSession(classroomsSet);
             this.classroomFile = classroomFile;
             this.subjectFile = subjectFile;
             return true;
@@ -94,16 +94,16 @@ public class CtrlDomain {
      * List of all the subjects of the created Scenario
      * @return A list of subjects
      */
-    public Vector<String> showSubject() {
-        return subjectsSet.toString();
+    public Vector<Vector <String>> showSubject() {
+        return subjectsSet.toStr();
     }
 
     /**
      * List of all the Classrooms of the created Scenario
      * @return A list of Classrooms
      */
-    public void showClassroom(){
-        return classroomsSet.toString();
+    public Vector <Vector< String>> showClassroom(){
+        return classroomsSet.toStr();
     }
 
 
@@ -114,24 +114,24 @@ public class CtrlDomain {
     /**
      * Load a schedule from a file
      * @param scheduleFile name of the schedule file to import
-     */
+
     public void loadSchedule(String scheduleFile) {
         schedule = new Schedule(dManager.loadSchedule(scheduleFile));
-    }
+    }*/
 
     /**
      * Saves the generated schedule
-     */
+
     public void saveSchedule() {
         dManager.saveSchedule(schedule.toString());
-    }
+    }*/
 
     /**
      *  Show the generated schedule
      */
     public UtilsDomain.ResultOfQuery<Schedule> showSchedule() {
         UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
-        s.queryTest = !schedule.empty();
+        s.queryTest = !schedule.isEmpty();
         s.result = schedule;
         return s;
         //hacer cuando tengamos el schedule implementado
