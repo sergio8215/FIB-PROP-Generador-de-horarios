@@ -22,29 +22,19 @@ public class Session {
     public static final int startHour = 8;
     public static final int daysOfTheWeek = 5;
 
-
-
     private int hour;
     private UtilsDomain.Day day;
-    private Vector<Vector<Integer>> week;
 
     //Constructor
     /**
      * Class constructor.
      */
     public Session() {
-        /*week = new Vector<Vector<Integer>>(daysOfTheWeek);
+    }
 
-        // For each day of the week
-        for ( int i = 0; i < daysOfTheWeek; i++){
-
-            // We create a vector for each day of the week
-            week.add( i, new Vector<>(hoursPerDay));
-            for ( int j = 0 ; j < hoursPerDay; j++ ) {
-                // For each hour we initialize the vector
-                week.elementAt(i).add(startHour + j);
-            }
-        }*/
+    public Session( Vector<String> myVector ) {
+        hour = Integer.parseInt(myVector.get(0));
+        day = UtilsDomain.Day.values()[Integer.parseInt(myVector.get(1))];
     }
 
     /**
@@ -59,14 +49,6 @@ public class Session {
     }
 
     //Methods
-    /**
-     * It returns the days and hours of the week inside a matrix.
-     * @return a matrix with days of the week(first column) and hours.
-     */
-    public Vector<Vector < Integer>> getWeek() {
-        return week;
-    }
-
 
     /**
      * It returns the hour of the session.
@@ -101,7 +83,14 @@ public class Session {
      * @param day
      */
     public void setDay(UtilsDomain.Day day) {
-        this.day = day; // Poner expeción si el valor no esta entre 1 y 7
+        this.day = day; 
+    }
+
+    public Vector<String> toStr(){
+        Vector<String> myVector = new Vector<>(2);
+        myVector.add(0, String.valueOf(hour));
+        myVector.add(1, day.toString());
+        return myVector;
     }
 
     public static boolean compare( Session s1, String op, Session s2  ) {
