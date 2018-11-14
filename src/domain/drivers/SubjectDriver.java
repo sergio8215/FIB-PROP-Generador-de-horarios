@@ -99,12 +99,12 @@ public class SubjectDriver {
 
     public static void testSetLaboratoryHours() {
         int laboratoryHours = sc.nextInt();
-        s.setTheoryHours(laboratoryHours);
+        s.setLaboratoryHours(laboratoryHours);
     }
 
     public static void testSetProblemsHours() {
         int problemsHours = sc.nextInt();
-        s.setTheoryHours(problemsHours);
+        s.setProblemsHours(problemsHours);
     }
 
     public static void testSetNumberOfGroups() {
@@ -141,8 +141,6 @@ public class SubjectDriver {
     }
 
     public static void main(String args[]) {
-       // Scanner sc = new Scanner(System.in);
-
         menu();
 
         do {
