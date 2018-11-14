@@ -40,13 +40,12 @@ public class CtrlScheduleGeneration {
      * @return Generates Schedule.
      */
     public Schedule generateSchedule(LinkedList<MUS> vars, ClassroomSession classroomSession) {
-        this.vars = (LinkedList<MUS>) vars.clone();
+        this.vars = new LinkedList<MUS>(vars);
         this.classroomSession = classroomSession;
 
         filterUnaryConstraints(this.vars);
 
-        //LinkedList<MUS> aux = vars.clone();
-        schedule = chronologicalBacktracking(vars.clone(), schedule);
+        schedule = chronologicalBacktracking(new LinkedList<>(vars), schedule);
         return schedule;
     }
 
@@ -54,7 +53,7 @@ public class CtrlScheduleGeneration {
      * It filter unary restrictions.
      * @param vars Variables to be filtered.
      */
-    private static void filterUnaryConstraints(LinkedList<MUS> vars) {
+    private void filterUnaryConstraints(LinkedList<MUS> vars) {
 
         for (int i = 0; i < vars.size(); i++) {
 
@@ -63,8 +62,8 @@ public class CtrlScheduleGeneration {
             for (int j = 0; i < vars.get(i).domainSize(); j++){
 
                 if (!(Constraints.sizeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
-                        Constraints.typeClassroomUnaryConstraint(vars.get(i), vars.getValueDomain(j)) &&
-                        Constraints.shiftClassUnaryConstraint(vars.get(i), vars.getValueDomain(j)))){
+                        Constraints.typeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
+                        Constraints.shiftClassUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)))){
                     vars.get(i).deleteFromDomain(j);
                 }
 
@@ -91,7 +90,7 @@ public class CtrlScheduleGeneration {
                 solution.add(currentVar);
 
                 if (solution.valid()) {
-                    LinkedList<MUS> aux = futureVars.clone();
+                    LinkedList<MUS> aux = new LinkedList<>(futureVars);
                     solution = chronologicalBacktracking(aux, new Schedule(solution));
 
                     if (!solution.isFail()) {

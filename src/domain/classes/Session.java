@@ -83,7 +83,7 @@ public class Session {
      * @param day
      */
     public void setDay(UtilsDomain.Day day) {
-        this.day = day; 
+        this.day = day;
     }
 
     public Vector<String> toStr(){
