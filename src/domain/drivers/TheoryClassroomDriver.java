@@ -1,57 +1,43 @@
 package src.domain.drivers;
-import src.domain.classes.LabClassroom;
+
+import src.domain.classes.TheoryClassroom;
 
 import java.util.Scanner;
 import java.util.Vector;
 
-public class LabClassroomDriver {
-
-    private static LabClassroom lab = new LabClassroom();
+public class TheoryClassroomDriver {
+    private static TheoryClassroom theo = new TheoryClassroom();
 
     public static void testConstructor(){
         Scanner sc = new Scanner(System.in);
         String name = sc.next();
         int cap = sc.nextInt();
         boolean multimedia = sc.nextBoolean();
-        int nComp = sc.nextInt();
-        lab = new LabClassroom(name, cap, multimedia, nComp);
+        theo = new TheoryClassroom(name, cap, multimedia);
     }
-    public static void testConstructorFromString(){
-        Vector<String> vec = new Vector<String> (4);
-        Scanner sc = new Scanner(System.in);
-
-        vec.add(sc.next()); //name
-        vec.add(String.valueOf(sc.nextInt())); //capacity
-        vec.add(sc.next()); //type (Laboratory)
-        vec.add(sc.next()); //multimedia
-        vec.add(String.valueOf(sc.nextInt())); //nComp
-
-        lab = new LabClassroom(vec);
-    }
+    public static void testConstructorFromString(){}
     public static void testGetName(){
-        System.out.println(lab.getName());
+        System.out.println(theo.getName());
     }
     public static void testGetCapacity(){
-        System.out.println(lab.getCapacity());
+        System.out.println(theo.getCapacity());
     }
     public static void testGetType(){
-        System.out.println(lab.getType().name());
+        System.out.println(theo.getType().name());
     }
     public static void testGetMultimedia(){
-        if(lab.isMultimedia()) System.out.println("true");
+        if(theo.isMultimedia()) System.out.println("true");
         else System.out.println("false");
     }
-    public static void testGetNumComputers(){
-        System.out.println(lab.getNumComputers());
-    }
     public static void testToStr(){
-        Vector<String> v = lab.toStr();
+        Vector<String> v = theo.toStr();
         System.out.println(v.get(0)
                 + " " + v.get(1)
                 + " " + v.get(2)
                 + " " + v.get(3)
                 + " " + v.get(4));
     }
+
 
     public static void  main(String args[]) {
         Scanner sc = new Scanner(System.in);
@@ -79,9 +65,6 @@ public class LabClassroomDriver {
                     testGetMultimedia();
                     break;
                 case 6:
-                    testGetNumComputers();
-                    break;
-                case 7:
                     testToStr();
                     break;
                 default:
@@ -102,8 +85,6 @@ public class LabClassroomDriver {
         System.out.println("\t3 -> Capacity getter");
         System.out.println("\t4 -> Type getter");
         System.out.println("\t5 -> Multimedia getter");
-        System.out.println("\t6 -> NumComputers getter");
-        System.out.println("\t7 -> Convert Object to String");
+        System.out.println("\t6 -> Convert Object to String");
     }
-
 }
