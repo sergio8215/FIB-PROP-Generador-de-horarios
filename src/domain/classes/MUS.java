@@ -55,7 +55,7 @@ public class MUS {
      * @param mus Vector of vector (of strings) with the members to construct the class.
      */
     public MUS(Vector< Vector<String> > mus) {
-        classclass = new ClassClass(mus.get(0));
+        classclass = ClassClass.fromStr(mus.get(0));
         classroom = new Classroom(mus.get(1));
         session = new Session(mus.get(2));
     }
@@ -120,6 +120,13 @@ public class MUS {
         return res;
     }
 
+    /**
+     * It returns the subject associated with the MUS.
+     * @return Subject associated with the MUS.
+     */
+    public Subject getSubject() {
+        return classclass.getSubject();
+    }
 
     /**
      * It returns the domain of the MUS.
@@ -141,7 +148,7 @@ public class MUS {
      * It returns the size of the domain.
      * @return domain of the size.
      */
-    public void int domainSize() {
+    public int domainSize() {
         return domain.size();
     }
 
@@ -160,7 +167,7 @@ public class MUS {
      * @return Value i of the domain.
      */
     public UtilsDomain.Pair<Classroom, Session> getValueDomain(int i){
-        return domain.get(i);
+        return domain.getPair(i);
     }
 
     /**

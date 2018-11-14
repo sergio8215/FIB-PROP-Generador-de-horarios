@@ -7,16 +7,16 @@ public class Constraints {
     // UNARY CONSTRAINTS
 
     protected static boolean sizeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        return cs.first.getCapacity() >= m.getClassClass.studentsSize();       // FALTA studentsSize()
+        return cs.first.getCapacity() >= m.getClassClass().getQuantityStudents();       // FALTA studentsSize()
     }
 
     protected static boolean typeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        return cs.first.getType == m.getClassclass.getType();           // COMPATIBILIDAD DE TIPOS AULA Y TIPOS CLASE
+        return cs.first.getType() == m.getClassClass().getType();           // COMPATIBILIDAD DE TIPOS AULA Y TIPOS CLASE
                                                                         //NO ES TÉ EN COMPTE CLASSE DE TIPUS PROBLEMES
     }
 
     protected static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        if (m.getTimeZone() == TimeZone.MORNING) return cs.second.getHour() < 14;
+        if (m.getClassClass().getShift() == TimeZone.MORNING) return cs.second.getHour() < 14;
         else return cs.second.getHour() >= 14;
     }
 
@@ -37,7 +37,7 @@ public class Constraints {
     protected static boolean theorysOfSubjectsOfSameLevelNoTogether(MUS m1, MUS m2) {
         if (m1.getClassClass().getType() == ClassType.THEORY &&
                 m2.getClassClass().getType() == ClassType.THEORY &&
-                !m1.getClassClass.getSubject().getName().equals(m2.getClassClass.getSubject().getName()) &&
+                !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
@@ -47,7 +47,7 @@ public class Constraints {
     protected static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
         if (m1.getClassClass().getType() == ClassType.THEORY &&
                 m2.getClassClass().getType() == ClassType.THEORY &&
-                m1.getClassClass.getSubject().getName().equals(m2.getClassClass.getSubject().getName()) &&
+                m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;
