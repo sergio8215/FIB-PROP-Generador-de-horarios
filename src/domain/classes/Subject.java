@@ -229,7 +229,7 @@ public class Subject {
         c.add(5, Integer.toString(hoursClasses[2]));
         c.add(6, Integer.toString(numberOfGroups[0]));
         c.add(7, Integer.toString(numberOfGroups[1]));
-        c.add(8, Integer.toString(tyShift.ordinal()));
+        c.add(8, (tyShift.toString()));
 
         return c;
     }

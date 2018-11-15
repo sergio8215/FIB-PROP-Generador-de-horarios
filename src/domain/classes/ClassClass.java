@@ -51,7 +51,7 @@ public abstract class ClassClass {
         identifier  = myStringVector.get(0);                    // identifier
         group       = Integer.parseInt(myStringVector.get(1));  // group
         this.type   = type;                                     // type
-        this.shift  = UtilsDomain.typeShift.values()[Integer.parseInt(myStringVector.get(4))];  // Shift;
+        this.shift  = UtilsDomain.typeShift.valueOf(myStringVector.get(4));  // Shift;
         this.quantityStudents = Integer.parseInt(myStringVector.get(5));  // quantityStudents
 
         // We initialize the vector to the subject string vector size:

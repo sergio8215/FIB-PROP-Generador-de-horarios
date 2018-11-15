@@ -147,7 +147,7 @@ public class DataManager {
     public Schedule loadSchedule( int fileNum ) throws IOException {
 
         ArrayList<String> fileList = listScheduleFiles();
-        Path file = Paths.get("./data/load/"+ fileList.get(fileNum));
+        Path file = Paths.get( fileList.get(fileNum));
 
         List<String> stringSchedule = Files.readAllLines(file, Charset.forName("UTF-8"));
         String classroomFile = stringSchedule.get(0);
