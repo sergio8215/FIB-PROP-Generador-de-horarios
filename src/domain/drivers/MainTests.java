@@ -86,14 +86,13 @@ public class MainTests {
 
     private static boolean subjectTest() throws Exception {
         System.out.print("Name of input file: ");
-        String file = sc.next();
+        String fileIn = sc.next();
 
-        //String[] args = new String[1];
-        //args[0] = file;
+        System.out.print("Name of output file: ");
+        String fileOut = sc.next();
 
-        //SubjectDriver.main(args);
+        ProcessBuilder p = Runtime.getRuntime().exec("java ./out/production/FIB-PROP-Schedules-Generator/src/domain/drivers/SubjectDriver.class " + fileIn + " " + fileOut);
 
-        Runtime.getRuntime().exec("java ./out/production/FIB-PROP-Schedules-Generator/src/domain/drivers/SubjectDriver.class " + file + " > out.txt");
         return true;
     }
 

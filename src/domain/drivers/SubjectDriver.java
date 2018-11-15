@@ -143,7 +143,7 @@ public class SubjectDriver {
                 " " + v.get(8) + "\n");
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws FileNotFoundException {
         if (args.length > 0) {
             interactive = true;
 
@@ -153,8 +153,8 @@ public class SubjectDriver {
                 e.printStackTrace();
             }
 
-            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File([args[0] + ".out"]),true)),true);
-            set
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File(args[1]),true)),true);
+            System.setOut(ps);
 
         } else {
             sc = new Scanner(System.in);
@@ -243,8 +243,6 @@ public class SubjectDriver {
             }
 
         } while (!eof && sc.hasNextInt());  // SI EOF ACABAR PROGRAMA
-
-        OutputStream os = new BufferedOutputStream();
 
 
     }
