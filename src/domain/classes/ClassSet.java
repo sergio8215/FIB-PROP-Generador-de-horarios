@@ -32,18 +32,19 @@ public class ClassSet {
 
     /**
     * Class constructor specifying the member's values.
-    * @param subjects
-    */    
-    public ClassSet( SubjectsSet subjects ) {
+    * @param subjectsSet set of subjects
+    */
+
+    public ClassSet( SubjectsSet subjectsSet ) {
 
         classSet = new HashMap<>();
-        createSetOfClasses(subjects);
+        createSetOfClasses(subjectsSet);
 
     }
 
     /**
      * Class constructor for a given set of subjects in string format.
-     * @param classS
+     * @param classS Vector of vector with one class at each row
      */
     public ClassSet( Vector< Vector<String> > classS ){
 
@@ -91,12 +92,11 @@ public class ClassSet {
 
             // [0] Number of Groups => [1] Number of subgroups
             int[] groups = subject.getNumberOfGroups();
-            int subGroupCount = 0;
+            int subGroupCount;
             int subGroup;
             String identifier;
             int quantityStudents;
             int[] hoursOfClass = subject.getHoursClasses();
-            UtilsDomain.typeShift shiftAssignation;
             UtilsDomain.typeShift shiftA;
             UtilsDomain.typeShift[] allShift = UtilsDomain.typeShift.values();
             ClassClass c;
@@ -127,9 +127,8 @@ public class ClassSet {
                 if ( hoursOfClass[0] != 0 ) {
                     subGroup = i*10+subGroupCount;
                     identifier = ""+subject.getName()+subGroup;
-
-                    // identifier, subGroup, subject, group, quantityStudents, UtilsDomain.TimeZone shift){
-                    quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[0]);
+                    // identifier, subGroup, subject, group, quantityStudents, UtilsDomain.TimeZone shift)
+                    quantityStudents = ((groups[0] != 0)?(int)Math.ceil(subject.getNumberStudents()/groups[0]): 0);
                     c = new TheoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                     this.addClass( identifier, c);
                     subGroupCount++;
@@ -142,7 +141,7 @@ public class ClassSet {
                         subGroup = i*10+subGroupCount;
                         subGroupCount++;
                         identifier = ""+subject.getName()+subGroup;
-                        quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[1]);
+                        quantityStudents = ((groups[0] != 0)?(int)Math.ceil(subject.getNumberStudents()/groups[1]): 0);
                         c = new LaboratoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                         this.addClass( identifier, c);
                     }
@@ -152,7 +151,7 @@ public class ClassSet {
                         subGroup = i*10+subGroupCount;
                         subGroupCount++;
                         identifier = ""+subject.getName()+subGroup;
-                        quantityStudents = (int)Math.ceil(subject.getNumberStudents()/groups[1]);
+                        quantityStudents = ((groups[0] != 0)?(int)Math.ceil(subject.getNumberStudents()/groups[1]): 0);
                         c = new ProblemsClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                         this.addClass( identifier, c);
                     }
