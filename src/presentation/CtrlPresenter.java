@@ -4,6 +4,7 @@ import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
 
 import java.util.Scanner;
+import java.util.Vector;
 
 public class CtrlPresenter {
 
@@ -30,14 +31,9 @@ public class CtrlPresenter {
                     break;
 
                 case 2:
-                    System.out.println("At the moment the loading of schedules is not available.");
-                    /*boolean inputCorrect = false;
-                    while (!inputCorrect) {
-                        System.out.println("Path to the schedule file: ");
-                        String path = s.nextLine();
+                    Vector<String> v = ctrlDomain.listSchedulerFiles();
 
-                        boolean fileExist = ctrlDomain.loadSchedule(path); // PROVISIONAL !!!!!
-                    }*/
+                    ctrlDomain.loadSchedul();
                 case 3:
                     end = !end;
                     break;
@@ -93,7 +89,7 @@ public class CtrlPresenter {
             else {
                 //clearConsole();
                 System.out.println("Input error. Try it again. \n");
-                s.nextLine();
+                s.next();
                 scheduleGenerationMenu();
             }
         }
@@ -111,6 +107,14 @@ public class CtrlPresenter {
             case "S":
                 Schedule schedule = ctrlDomain.generateSchedule();
 
+                System.out.print("Save schedule?: [S/N]");
+                String ss = s.next();
+
+                if (ss.contentEquals("S")){
+                    System.out.print("Name of the file: ");
+                    String fileName = s.next();
+                    ctrlDomain.saveSchedule(fileName, schedule);
+                }
                 break;
 
             case "N":

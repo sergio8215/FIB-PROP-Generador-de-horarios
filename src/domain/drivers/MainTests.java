@@ -1,5 +1,7 @@
 package src.domain.drivers;
 
+import src.domain.classes.Subject;
+
 import java.util.Scanner;
 
 public class MainTests {
@@ -84,72 +86,91 @@ public class MainTests {
 
     private static boolean subjectTest() throws Exception {
         System.out.print("Name of input file: ");
-        String file = sc.next();
-        Runtime.getRuntime().exec("java ./out/production/src/domain/drivers/SubjectDriver.class " + file);
+        String fileIn = sc.next();
+
+        System.out.print("Name of output file: ");
+        String fileOut = sc.next();
+
+        ProcessBuilder p = Runtime.getRuntime().exec("java ./out/production/FIB-PROP-Schedules-Generator/src/domain/drivers/SubjectDriver.class " + fileIn + " " + fileOut);
+
+        return true;
     }
 
     private static boolean sessionTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean theoryClassroomTest() throws  Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean laboratoryClassroomTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean theoryClassTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean laboratoryClassTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean problemsClassTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean subjectsSetTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean classSetTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean classroomSetTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean MUSTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean classroomSessionTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean constraintsTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 
     private static boolean scheduleTest() throws Exception {
         System.out.print("Name of input file: ");
         String file = sc.next();
+        return true;
     }
 }
