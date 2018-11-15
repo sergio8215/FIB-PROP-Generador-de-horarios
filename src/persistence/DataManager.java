@@ -8,16 +8,14 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import src.domain.classes.MUS;
 import src.domain.classes.Schedule;
 
 /**
@@ -146,13 +144,38 @@ public class DataManager {
     }
 
     public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
-        String classroomFile;
-        String subjectFile;
-        boolean correct = true;
-        String subjectName;
 
-        List<String> lines = Arrays.asList("The first line", "The second line");
         Path file = Paths.get("./data/load/"+fileName);
+
+        List<String> lines = new ArrayList<>();
+
+        lines.add(schedule.getClassroomFile());
+        lines.add(schedule.getSubjectFile());
+        lines.add("true");
+
+        // I get an array list of MUS's
+        for ( MUS mus: schedule.unset() ){
+
+            // For each mus I pass all his attributes to string
+            lines.add(mus.getClassClass().getSubject().getName());
+
+            Vector< Vector<String> > musAttributes;
+            musAttributes = mus.toStr();
+            String result = "";
+
+            // for each attribute of the MUS
+            for (Vector<String> eachAttribute : musAttributes ) {
+
+                result = "";
+
+                for (String objectAttribute : eachAttribute ){
+                    result = result + objectAttribute +"**";
+                }
+                lines.add(result);
+            }
+            lines.add("$$");
+        }
+
         Files.write(file, lines, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
