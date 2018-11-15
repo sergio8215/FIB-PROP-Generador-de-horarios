@@ -1,146 +1,13 @@
 package src.domain.drivers;
 
-import src.domain.classes.Subject;
-import src.domain.utils.UtilsDomain;
-
 import java.io.*;
 import java.util.Scanner;
-import java.util.Vector;
 
-public class SubjectDriver {
+public class ConstraintsDriver {
 
-    private static Subject s = new Subject();
     private static Scanner sc;
     private static PrintStream ps;
     private static boolean interactive = false;
-
-
-    public static void testBasicConstructor() {
-        String name = sc.next();
-        int numberStudents = sc.nextInt();
-        int level = sc.nextInt();
-        int[] hoursClasses = new int[3];
-        hoursClasses[0] = sc.nextInt();
-        hoursClasses[1] = sc.nextInt();
-        hoursClasses[2] = sc.nextInt();
-        int[] numberOfGroups = new int[2];
-        numberOfGroups[0] = sc.nextInt();
-        numberOfGroups[1] = sc.nextInt();
-        UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.valueOf(sc.next());
-        s = new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift);
-    }
-
-    public static void testConstructorFromString() {
-        Vector<String> v = new Vector<>(9);
-        v.add(0, sc.next());
-        v.add(1, sc.next());
-        v.add(2, sc.next());
-        v.add(3, sc.next());
-        v.add(4, sc.next());
-        v.add(5, sc.next());
-        v.add(6, sc.next());
-        v.add(7, sc.next());
-        v.add(8, sc.next());
-        s = new Subject(v);
-    }
-
-    public static void testSetName() {
-        String name = sc.next();
-        s.setName(name);
-    }
-
-    public static void testGetName() {
-        System.out.println(s.getName());
-    }
-
-    public static void testSetNumberStudents() {
-        int numberStudents = sc.nextInt();
-        s.setNumberStudents(numberStudents);
-    }
-
-    public static void testGetNumberStudents() {
-        System.out.println(s.getNumberStudents());
-    }
-
-    public static void testSetLevel() {
-        int level = sc.nextInt();
-        s.setLevel(level);
-    }
-
-    public static void testGetLevel() {
-        System.out.println(s.getLevel());
-    }
-
-    public static void testSetHoursClasses() {
-        int theoryHours = sc.nextInt();
-        int laboratoryHours = sc.nextInt();
-        int problemsHours = sc.nextInt();
-        s.setHoursClasses(theoryHours, laboratoryHours, problemsHours);
-    }
-
-    public static void testGetHoursClasses() {
-        int[] hoursClasses = s.getHoursClasses();
-        System.out.println(hoursClasses[0] + " " + hoursClasses[1] + " " + hoursClasses[2]);
-    }
-
-    public static void testGetTheoryHours() {
-        System.out.println(s.getTheoryHours());
-    }
-
-    public static void testGetLaboratoryHours() {
-        System.out.println(s.getLaboratoryHours());
-    }
-
-    public static void testGetProblemsHours() {
-        System.out.println(s.getProblemsHours());
-    }
-
-    public static void testSetTheoryHours() {
-        int theoryHours = sc.nextInt();
-        s.setTheoryHours(theoryHours);
-    }
-
-    public static void testSetLaboratoryHours() {
-        int laboratoryHours = sc.nextInt();
-        s.setLaboratoryHours(laboratoryHours);
-    }
-
-    public static void testSetProblemsHours() {
-        int problemsHours = sc.nextInt();
-        s.setProblemsHours(problemsHours);
-    }
-
-    public static void testSetNumberOfGroups() {
-        int groups = sc.nextInt();
-        int subgroups = sc.nextInt();
-        s.setNumberOfGroups(groups, subgroups);
-    }
-
-    public static void testGetNumberOfGroups() {
-        int[] numberOfGroups = s.getNumberOfGroups();
-        System.out.println(numberOfGroups[0] + " " + numberOfGroups[1]);
-    }
-
-    public static void testSetTypeShift() {
-        s.setTypeShift(UtilsDomain.typeShift.valueOf(sc.next()));
-    }
-
-    public static void testGetTypeShift() {
-        System.out.println(s.getTypeShift().ordinal());
-    }
-
-    public static void testToStr() {
-        Vector<String> v = s.toStr();
-        System.out.println(v.get(0) +
-                " " + v.get(1) +
-                " " + v.get(2) +
-                " " + v.get(3) +
-                " " + v.get(4) +
-                " " + v.get(5) +
-                " " + v.get(6) +
-                " " + v.get(7) +
-                " " + v.get(8) + "\n");
-    }
 
     public static void main(String args[]) throws FileNotFoundException {
         final PrintStream oldStdout = System.out;
@@ -149,7 +16,7 @@ public class SubjectDriver {
             interactive = true;
 
             try {
-                sc = new Scanner(new FileReader("./data/testing/" + args[0]));
+                sc = new Scanner(new FileReader("./data/testing" + args[0]));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -249,7 +116,6 @@ public class SubjectDriver {
             System.setOut(oldStdout);
             ps.close();
         }
-
     }
 
     private static void menu() {

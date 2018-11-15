@@ -4,6 +4,7 @@ import src.domain.classes.Subject;
 import src.domain.classes.SubjectsSet;
 import src.domain.utils.UtilsDomain;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -11,7 +12,9 @@ import java.util.Vector;
 public class SubjectsSetDriver {
 
     private static SubjectsSet ss = new SubjectsSet();
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner sc;
+    private static PrintStream ps;
+    private static boolean interactive = false;
 
     public static void testConstructorFromArray() {
         System.out.println("Indicates the number of subjects you want to generate:");
@@ -240,8 +243,29 @@ public class SubjectsSetDriver {
         }
     }
 
-    public static void main(String args[]) {
-        menu();
+    public static void main(String args[]) throws FileNotFoundException {
+        final PrintStream oldStdout = System.out;
+
+        if (args.length > 0) {
+            interactive = true;
+
+            try {
+                sc = new Scanner(new FileReader("./data/testing" + args[0]));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File(args[1]),true)),true);
+            System.setOut(ps);
+
+        } else {
+            sc = new Scanner(System.in);
+        }
+
+
+        if (!interactive)  menu();
+
+        boolean eof = false;
 
         do {
             switch (sc.nextInt()) {
@@ -284,14 +308,24 @@ public class SubjectsSetDriver {
                 case 12:
                     testSubjectsSort();
                     break;
+                case 99:
+                    eof = true;
+                    break;
                 default:
                     System.out.println("Input error!");
             }
 
-            clearConsole();
-            menu();
+            if (!interactive) {
+                clearConsole();
+                menu();
+            }
 
-        } while (sc.hasNextInt());
+        } while (!eof && sc.hasNextInt());
+
+        if (interactive) {
+            System.setOut(oldStdout);
+            ps.close();
+        }
     }
 
     private static void menu() {

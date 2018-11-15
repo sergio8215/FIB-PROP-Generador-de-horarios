@@ -1,9 +1,5 @@
 package src.domain.drivers;
 
-import src.domain.classes.Constraints;
-import src.domain.classes.Subject;
-import src.domain.classes.TheoryClass;
-
 import java.util.Scanner;
 
 public class MainTests {
@@ -78,12 +74,26 @@ public class MainTests {
                 case 13:
                     scheduleTest();
                     break;
-
                 default:
                     System.out.println("Input error!\n");
             }
 
+            clearConsole();
+            menu();
+
         } while (sc.hasNextInt());
+    }
+
+    private static void clearConsole() {
+        final String os = System.getProperty("os.name");
+
+        try {
+            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            else    Runtime.getRuntime().exec("clear");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     private static boolean subjectTest() throws Exception {
@@ -263,7 +273,7 @@ public class MainTests {
 
         final String args[] = {fileIn, fileOut};
 
-        ConstraintsDriver.main(args);
+        //ConstraintsDriver.main(args);
 
         return true;
     }
@@ -277,7 +287,7 @@ public class MainTests {
 
         final String args[] = {fileIn, fileOut};
 
-        ScheduleDriver.main(args);
+        //ScheduleDriver.main(args);
 
         return true;
     }
