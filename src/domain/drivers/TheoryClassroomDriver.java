@@ -5,11 +5,15 @@ import src.domain.classes.LabClassroom;
 import src.domain.classes.TheoryClassroom;
 import src.domain.utils.UtilsDomain;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class TheoryClassroomDriver {
     private static TheoryClassroom theo;
+    private static Scanner sc;
+    private static boolean fromFile = false;
 
     private static void writeClassroom(Classroom c){
         String s = c.getName() + " "
@@ -27,7 +31,6 @@ public class TheoryClassroomDriver {
     }
 
     public static void testConstructor(){
-        Scanner sc = new Scanner(System.in);
         String name = sc.next();
         int cap = sc.nextInt();
         boolean multimedia = sc.nextBoolean();
@@ -35,7 +38,6 @@ public class TheoryClassroomDriver {
     }
     public static void testConstructorFromString(){
         Vector<String> vec = new Vector<String> (4);
-        Scanner sc = new Scanner(System.in);
 
         vec.add(sc.next()); //name
         vec.add(String.valueOf(sc.nextInt())); //capacity
@@ -46,7 +48,6 @@ public class TheoryClassroomDriver {
         theo = new TheoryClassroom(vec);
     }
     public static void testFromStr(){
-        Scanner sc = new Scanner(System.in);
         Vector<String> v = new Vector<> (5);
         v.add(sc.next()); //name
         v.add(sc.next()); //capacity
@@ -69,6 +70,15 @@ public class TheoryClassroomDriver {
         if(theo.isMultimedia()) System.out.println("true");
         else System.out.println("false");
     }
+    public static void testSetName(){
+        theo.setName(sc.next());
+    }
+    public static void testSetCapacity(){
+        theo.setCapacity(sc.nextInt());
+    }
+    public static void testSetMultimedia(){
+        theo.setMultimedia(sc.next().equals("true"));
+    }
     public static void testToStr(){
         Vector<String> v = theo.toStr();
         System.out.println(v.get(0)
@@ -81,11 +91,21 @@ public class TheoryClassroomDriver {
 
     public static void  main(String args[]) {
         theo = new TheoryClassroom();
-        Scanner sc = new Scanner(System.in);
-        write();
+        if(args.length > 0) {
+            fromFile = true;
+
+            try{
+                sc = new Scanner(new FileReader("./data/" + args[0]));
+            }catch(FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            sc = new Scanner(System.in);
+        }
+        if(!fromFile) write();
         do{
-            int i = sc.nextInt();
-            switch(i) {
+            switch(sc.nextInt()) {
                 case 0:
                     testConstructor();
                     break;
@@ -108,12 +128,22 @@ public class TheoryClassroomDriver {
                     testGetMultimedia();
                     break;
                 case 7:
+                    testSetName();
+                    break;
+                case 8:
+                    testSetCapacity();
+                    break;
+                case 9:
+                    testSetMultimedia();
+                    break;
+                case 10:
                     testToStr();
                     break;
+
                 default:
-                    System.out.println("\tEXIT");
+                    System.out.println("Input error\n");
             }
-            write();
+            if(!fromFile) write();
         }while(sc.hasNextInt());
 
     }
@@ -129,6 +159,9 @@ public class TheoryClassroomDriver {
         System.out.println("\t4 -> Capacity getter");
         System.out.println("\t5 -> Type getter");
         System.out.println("\t6 -> Multimedia getter");
-        System.out.println("\t7 -> Convert Object to String");
+        System.out.println("\t7 -> Name setter");
+        System.out.println("\t8 -> Capacity setter");
+        System.out.println("\t9 -> Multimedia setter");
+        System.out.println("\t10 -> Convert Object to String");
     }
 }

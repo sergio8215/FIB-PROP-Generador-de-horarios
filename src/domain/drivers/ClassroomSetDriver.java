@@ -6,6 +6,8 @@ import src.domain.classes.LabClassroom;
 import src.domain.classes.TheoryClassroom;
 import src.domain.utils.UtilsDomain;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -13,6 +15,8 @@ import java.util.Vector;
 public class ClassroomSetDriver {
 
     private static ClassroomSet cSet;
+    private static Scanner sc;
+    private static boolean fromFile = false;
 
     private static void writeClassroom(Classroom c){
         String s = c.getName() + " "
@@ -31,7 +35,6 @@ public class ClassroomSetDriver {
 
     public static void testConstructor(){
         ArrayList<Classroom> c = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
         int lab = sc.nextInt();
         int theo = sc.nextInt();
         for(int i = 0; i < lab; ++i) {
@@ -52,7 +55,6 @@ public class ClassroomSetDriver {
     public static void testLabTheoryConstructor(){
         ArrayList<LabClassroom> labArray = new ArrayList<>();
         ArrayList<TheoryClassroom> theoArray = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
         int lab = sc.nextInt();
         int theo = sc.nextInt();
         for(int i = 0; i < lab; ++i) {
@@ -71,7 +73,6 @@ public class ClassroomSetDriver {
         cSet = new ClassroomSet(theoArray, labArray);
     }
     public static void testConstructorFromString(){
-        Scanner sc = new Scanner(System.in);
         int lab = sc.nextInt();
         int theo = sc.nextInt();
         Vector<Vector<String>> vec = new Vector< Vector<String> >((lab+theo));
@@ -116,17 +117,17 @@ public class ClassroomSetDriver {
             writeClassroom(c);
         }
     }
+    public static void testAddLabClassroomSet(){}
+    public static void testAddTheoryClassroomSet(){}
     public static void testGetNumClassrooms(){
         System.out.println(cSet.getNumClassrooms());
     }
     public static void testExists(){
-        Scanner sc = new Scanner(System.in);
         String s = sc.next();
         s = (String)(cSet.exists(s)?"true":"false");
         System.out.println(s);
     }
     public static void testGetClassroom(){
-        Scanner sc = new Scanner(System.in);
         String s = sc.next();
         if(cSet.getClassroom(s).queryTest) {
             Classroom c = (Classroom)  cSet.getClassroom(s).result;
@@ -136,7 +137,6 @@ public class ClassroomSetDriver {
     }
     public static void testAddClassroomSet(){
         ArrayList<Classroom> c = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
         int lab = sc.nextInt();
         int theo = sc.nextInt();
         for(int i = 0; i < lab; ++i) {
@@ -169,8 +169,19 @@ public class ClassroomSetDriver {
 
     public static void  main(String args[]) {
         cSet = new ClassroomSet();
-        Scanner sc = new Scanner(System.in);
-        write();
+        if(args.length > 0) {
+            fromFile = true;
+
+            try{
+                sc = new Scanner(new FileReader("./data/" + args[0]));
+            }catch(FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            sc = new Scanner(System.in);
+        }
+        if(!fromFile) write();
         do{
 
             int i = sc.nextInt();
@@ -194,24 +205,30 @@ public class ClassroomSetDriver {
                     testGetTheoryClassroomSet();
                     break;
                 case 6:
-                    testGetNumClassrooms();
+                    testAddLabClassroomSet();
                     break;
                 case 7:
-                    testExists();
+                    testAddTheoryClassroomSet();
                     break;
                 case 8:
-                    testGetClassroom();
+                    testGetNumClassrooms();
                     break;
                 case 9:
-                    testAddClassroomSet();
+                    testExists();
                     break;
                 case 10:
+                    testGetClassroom();
+                    break;
+                case 11:
+                    testAddClassroomSet();
+                    break;
+                case 12:
                     testToStr();
                     break;
                 default:
                     System.out.println("\tCtr+D to EXIT");
             }
-            write();
+            if(!fromFile) write();
         }while(sc.hasNextInt());
 
     }
@@ -226,11 +243,13 @@ public class ClassroomSetDriver {
         System.out.println("\t3 -> Get values of classrooms");
         System.out.println("\t4 -> Laboratory list getter");
         System.out.println("\t5 -> Theory list getter");
-        System.out.println("\t6 -> Get number of classrooms");
-        System.out.println("\t7 -> Classroom exists?");
-        System.out.println("\t8 -> Specific classroom getter");
-        System.out.println("\t9 -> Add classroom");
-        System.out.println("\t10 -> Convert Object to String");
+        System.out.println("\t6 -> Add Laboratory classroom list");
+        System.out.println("\t7 -> Add Theory classroom list");
+        System.out.println("\t8 -> Get number of classrooms");
+        System.out.println("\t9 -> Classroom exists?");
+        System.out.println("\t10 -> Specific classroom getter");
+        System.out.println("\t11 -> Add classroom");
+        System.out.println("\t12 -> Convert Object to String");
 
     }
 }

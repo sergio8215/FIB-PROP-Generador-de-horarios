@@ -1,0 +1,8 @@
+0
+2 2
+A5201 25 true 20
+A5S102 20 true 17
+A6201 55 false
+AD301 60 true
+
+12

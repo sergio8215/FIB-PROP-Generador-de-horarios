@@ -132,7 +132,7 @@ public class ClassroomSet {
      * Setter of the labClassroomSet attribute
      * @param lab ArrayList with all the laboratory classrooms
      */
-    public void setLabClassroomSet(ArrayList<LabClassroom> lab) {
+    public void addLabClassroomSet(ArrayList<LabClassroom> lab) {
         for (LabClassroom aLab : lab) {
             labClassroomSet.put(aLab.getName(), aLab);
         }

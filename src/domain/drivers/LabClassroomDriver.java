@@ -3,12 +3,16 @@ import src.domain.classes.Classroom;
 import src.domain.classes.LabClassroom;
 import src.domain.utils.UtilsDomain;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class LabClassroomDriver {
 
     private static LabClassroom lab;
+    private static Scanner sc;
+    private static boolean fromFile = false;
 
     private static void writeClassroom(Classroom c){
         String s = c.getName() + " "
@@ -26,7 +30,6 @@ public class LabClassroomDriver {
     }
 
     public static void testConstructor(){
-        Scanner sc = new Scanner(System.in);
         String name = sc.next();
         int cap = sc.nextInt();
         boolean multimedia = sc.nextBoolean();
@@ -35,7 +38,6 @@ public class LabClassroomDriver {
     }
     public static void testConstructorFromString(){
         Vector<String> vec = new Vector<String> (4);
-        Scanner sc = new Scanner(System.in);
 
         vec.add(sc.next()); //name
         vec.add(String.valueOf(sc.nextInt())); //capacity
@@ -46,7 +48,6 @@ public class LabClassroomDriver {
         lab = new LabClassroom(vec);
     }
     public static void testFromStr(){
-        Scanner sc = new Scanner(System.in);
         Vector<String> v = new Vector<> (5);
         v.add(sc.next()); //name
         v.add(sc.next()); //capacity
@@ -72,6 +73,18 @@ public class LabClassroomDriver {
     public static void testGetNumComputers(){
         System.out.println(lab.getNumComputers());
     }
+    public static void testSetName(){
+        lab.setName(sc.next());
+    }
+    public static void testSetCapacity(){
+        lab.setCapacity(sc.nextInt());
+    }
+    public static void testSetMultimedia(){
+        lab.setMultimedia(sc.next().equals("true"));
+    }
+    public static void testSetNumComputers(){
+        lab.setNumComputers(sc.nextInt());
+    }
     public static void testToStr(){
         Vector<String> v = lab.toStr();
         System.out.println(v.get(0)
@@ -83,12 +96,22 @@ public class LabClassroomDriver {
 
     public static void  main(String args[]) {
         lab = new LabClassroom();
-        Scanner sc = new Scanner(System.in);
-        write();
-        do{
+        if(args.length > 0) {
+            fromFile = true;
 
-            int i = sc.nextInt();
-            switch(i) {
+            try{
+                sc = new Scanner(new FileReader("./data/" + args[0]));
+            }catch(FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            sc = new Scanner(System.in);
+        }
+
+        if(!fromFile) write();
+        do{
+            switch(sc.nextInt()) {
                 case 0:
                     testConstructor();
                     break;
@@ -114,13 +137,27 @@ public class LabClassroomDriver {
                     testGetNumComputers();
                     break;
                 case 8:
+                    testSetName();
+                    break;
+                case 9:
+                    testSetCapacity();
+                    break;
+                case 10:
+                    testSetMultimedia();
+                    break;
+                case 11:
+                    testSetNumComputers();
+                    break;
+                case 12:
                     testToStr();
                     break;
+
                 default:
-                    System.out.println("\tEXIT");
+                    System.out.println("Input error\n");
             }
-            write();
-        }while(sc.hasNextInt());
+
+            if(!fromFile) write();
+        }while(sc.hasNextInt());    //Si EOF acabar programa
 
     }
 
@@ -135,8 +172,10 @@ public class LabClassroomDriver {
         System.out.println("\t4 -> Capacity getter");
         System.out.println("\t5 -> Type getter");
         System.out.println("\t6 -> Multimedia getter");
-        System.out.println("\t7 -> NumComputers getter");
-        System.out.println("\t8 -> Convert Object to String");
+        System.out.println("\t8 -> Name setter");
+        System.out.println("\t9 -> Capacity setter");
+        System.out.println("\t10 -> Multimedia setter");
+        System.out.println("\t12 -> Convert Object to String");
     }
 
 }

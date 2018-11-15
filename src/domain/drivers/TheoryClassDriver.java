@@ -6,7 +6,6 @@ import src.domain.classes.Subject;
 import src.domain.utils.UtilsDomain;
 
 import src.domain.utils.inout;
-import sun.applet.Main;
 
 import java.io.FileInputStream;
 import java.util.Vector;
