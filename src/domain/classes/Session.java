@@ -32,11 +32,6 @@ public class Session {
     public Session() {
     }
 
-    public Session( Vector<String> myVector ) {
-        hour = Integer.parseInt(myVector.get(0));
-        day = UtilsDomain.Day.values()[Integer.parseInt(myVector.get(1))];
-    }
-
     /**
      * Class constructor specifying the member's values.
      *
@@ -47,6 +42,13 @@ public class Session {
         this.hour = hour;
         this.day = day;
     }
+
+
+    public Session( Vector<String> myVector ) {
+        hour = Integer.parseInt(myVector.get(0));
+        day = UtilsDomain.Day.values()[Integer.parseInt(myVector.get(1))];
+    }
+
 
     //Methods
 
@@ -98,8 +100,8 @@ public class Session {
         if (op.equals(">"))     return ( s1.getDay().ordinal() > s2.getDay().ordinal() ) || ( s1.getHour() > s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
         if (op.equals("<="))    return ( s1.getDay().ordinal() <= s2.getDay().ordinal() ) || ( s1.getHour() <= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
         if (op.equals(">="))    return ( s1.getDay().ordinal() >= s2.getDay().ordinal() ) || ( s1.getHour() >= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
-        if (op.equals("!="))    return !s1.equals(s2);
-        if (op.equals("=="))    return s1.equals(s2);
+        if (op.equals("!="))    return s1.getDay().ordinal() != s2.getDay().ordinal() || s1.getHour() != s2.getHour();
+        if (op.equals("=="))    return s1.getDay().ordinal() == s2.getDay().ordinal() && s1.getHour() == s2.getHour();
 
         return false;
     }
