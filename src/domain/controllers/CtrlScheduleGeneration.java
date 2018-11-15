@@ -59,16 +59,6 @@ public class CtrlScheduleGeneration {
 
             vars.get(i).setDomain(new ClassroomSession(classroomSession));
 
-            /*for (int j = 0; i < vars.get(i).domainSize(); j++){
-
-                if (!(Constraints.sizeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
-                        Constraints.typeClassroomUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)) &&
-                        Constraints.shiftClassUnaryConstraint(vars.get(i), vars.get(i).getValueDomain(j)))){
-                    vars.get(i).deleteFromDomain(j);
-                }
-
-            }*/
-
             int j = 0;
             while (j < vars.get(i).domainSize()) {
 
@@ -91,13 +81,15 @@ public class CtrlScheduleGeneration {
      * @param solution Partial solution of the assignment of values to the variables.
      * @return Final solution (successful or not).
      */
-    private static Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
+    private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
         if (futureVars.isEmpty()) 	return solution;
         else {
-            MUS currentVar = futureVars.pollFirst();
+            MUS currentVar = futureVars.getFirst();
+            futureVars.remove(0);
+            System.out.println(futureVars.size());
 
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
-                System.out.println(i);
+
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
 
@@ -117,8 +109,8 @@ public class CtrlScheduleGeneration {
 
             }
 
-            solution.fail();
-            return solution;
+            //solution.fail();
+            return solution.fail();
         }
     }
 }

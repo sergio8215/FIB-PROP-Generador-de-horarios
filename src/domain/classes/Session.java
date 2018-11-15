@@ -46,7 +46,7 @@ public class Session {
 
     public Session( Vector<String> myVector ) {
         hour = Integer.parseInt(myVector.get(0));
-        day = UtilsDomain.Day.values()[Integer.parseInt(myVector.get(1))];
+        day = UtilsDomain.Day.valueOf(myVector.get(1));
     }
 
 

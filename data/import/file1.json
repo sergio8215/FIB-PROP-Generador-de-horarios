@@ -2,39 +2,39 @@
 	"Classrooms List": [
 		{
 			"Classroom":"A6201",
-			"Quantity":"20",
-			"Type": "LABORATORY",
+			"Quantity":"100",
+			"Type": "THEORY",
 			"Audiovisual": "true",
-			"Num_computers": "10"
+			"Num_computers": "0"
 		},
 		{
 			"Classroom":"A6202",
-			"Quantity":"50",
+			"Quantity":"100",
+			"Type": "THEORY",
+			"Audiovisual": "true",
+			"Num_computers": "0"
+		},
+		{
+			"Classroom":"A5S101",
+			"Quantity":"100",
 			"Type": "LABORATORY",
 			"Audiovisual": "true",
-			"Num_computers": "10"
+			"Num_computers": "20"
 		},
 		{
-			"Classroom":"A6203",
-			"Quantity":"30",
-			"Type": "THEORY",
+			"Classroom":"A5S102",
+			"Quantity":"100",
+			"Type": "LABORATORY",
 			"Audiovisual": "true",
-			"Num_computers": "0"
-		},
-		{
-			"Classroom":"A6204",
-			"Quantity":"15",
-			"Type": "THEORY",
-			"Audiovisual": "true",
-			"Num_computers": "0"
+			"Num_computers": "20"
 		}
 	],
 	"Subjects List": [
 		{
 			"Subject":"EEE",
-			"Num_students": "30",
+			"Num_students": "40",
 			"Level": "3",
-			"Theory_hours":"4",
+			"Theory_hours":"2",
 			"Laboratory_hours": "2",
 			"Problems_hours": "0",
 			"Number_of_groups": "3",
@@ -43,9 +43,9 @@
 		},
 		{
 			"Subject":"IDI",
-			"Num_students": "30",
+			"Num_students": "60",
 			"Level":  "4",
-			"Theory_hours":"4",
+			"Theory_hours":"2",
 			"Laboratory_hours": "2",
 			"Problems_hours": "0",
 			"Number_of_groups": "3",
@@ -54,9 +54,9 @@
 		},
 		{
 			"Subject":"IES",
-			"Num_students": "30",
+			"Num_students": "60",
 			"Level":  "4",
-			"Theory_hours":"4",
+			"Theory_hours":"2",
 			"Laboratory_hours": "2",
 			"Problems_hours": "0",
 			"Number_of_groups": "3",
@@ -67,7 +67,7 @@
 			"Subject":"XC",
 			"Num_students": "30",
 			"Level":  "4",
-			"Theory_hours":"4",
+			"Theory_hours":"2",
 			"Laboratory_hours": "2",
 			"Problems_hours": "0",
 			"Number_of_groups": "3",
@@ -78,7 +78,7 @@
 			"Subject":"PAR",
 			"Num_students": "30",
 			"Level": "5",
-			"Theory_hours":"4",
+			"Theory_hours":"2",
 			"Laboratory_hours": "2",
 			"Problems_hours": "0",
 			"Number_of_groups": "3",
@@ -89,7 +89,7 @@
 			"Subject":"PROP",
 			"Num_students": "30",
 			"Level": "6",
-			"Theory_hours":"4",
+			"Theory_hours":"2",
 			"Laboratory_hours": "2",
 			"Problems_hours": "0",
 			"Number_of_groups": "3",

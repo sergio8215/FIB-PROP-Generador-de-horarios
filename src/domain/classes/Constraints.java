@@ -8,12 +8,11 @@ public class Constraints {
     // UNARY CONSTRAINTS
 
     public static boolean sizeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        return cs.first.getCapacity() >= m.getClassClass().getQuantityStudents();       // FALTA studentsSize()
+        return cs.first.getCapacity() >= m.getClassClass().getQuantityStudents();
     }
 
     public static boolean typeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        return cs.first.getType() == m.getClassClass().getType();           // COMPATIBILIDAD DE TIPOS AULA Y TIPOS CLASE
-                                                                        //NO ES TÉ EN COMPTE CLASSE DE TIPUS PROBLEME
+        return cs.first.getType() == m.getClassClass().getType();
     }
 
     public static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {

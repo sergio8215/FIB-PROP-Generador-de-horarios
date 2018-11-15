@@ -161,7 +161,7 @@ public class DataManager {
         separated = stringSchedule.get(2).split("\\*");
         String subjectName = ClassClass.fromStr(new Vector(Arrays.asList(separated))).getSubject().getName();
 
-        for( int i = 3; i < stringSchedule.size(); i+=3 ){
+        for( int i = 2; i < stringSchedule.size(); i+=3 ){
 
             // We read the class
             separated = stringSchedule.get(i).split("\\*");

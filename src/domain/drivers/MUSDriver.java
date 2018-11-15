@@ -3,13 +3,17 @@ package src.domain.drivers;
 import src.domain.classes.*;
 import src.domain.utils.UtilsDomain;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class MUSDriver {
 
     private static MUS m = new MUS();
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner sc;
+    private static PrintStream ps;
+    private static boolean interactive = false;
 
 
     private static Subject subjectConstructor() {
@@ -65,7 +69,6 @@ public class MUSDriver {
 
         return new Session(v);
     }
-
 
     public static void testBasicConstructor() {
         m = new MUS(classClassConstructor(), classroomConstructor(), sessionConstructor());
@@ -135,7 +138,21 @@ public class MUSDriver {
     }
 
     public static void testSetDomain() {
-        // TODO
+        ClassroomSession cs = new ClassroomSession();
+
+        System.out.print("Numbers of ClassroomSessions to be added: ");
+        int n = sc.nextInt();
+
+        ArrayList<UtilsDomain.Pair> a = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            UtilsDomain.Pair<Classroom, Session> p = new UtilsDomain.Pair(classroomConstructor(), sessionConstructor());
+            a.add(p);
+        }
+
+        cs.setClassroomSessionSet(a);
+
+        m.setDomain(cs);
     }
 
     public static void testGetClassClass() {
@@ -190,7 +207,7 @@ public class MUSDriver {
     }
 
     public static void testGetDomain() {
-        // TODO
+        ClassroomSession cs = m.getDomain();
     }
 
     public static void testDomainSize() {
@@ -198,15 +215,28 @@ public class MUSDriver {
     }
 
     public static void testAssign() {
-        // TODO
+        m.assign(new UtilsDomain.Pair<Classroom, Session>(classroomConstructor(), sessionConstructor()));
     }
 
     public static void testGetValueDomain() {
-        // TODO
+        System.out.print("Id of the value: ");
+        UtilsDomain.Pair<Classroom, Session> p = m.getValueDomain(sc.nextInt());
+
+        Vector<String> vc = p.first.toStr();
+        Vector<String> vs = p.second.toStr();
+
+        for (String s : vc) {
+            System.out.print(s + " ");
+        }
+
+        for (String s : vs) {
+            System.out.print(s + " ");
+        }
     }
 
     public static void testDeleteFromDomain() {
-        // TODO
+        System.out.print("Id of the value: ");
+        m.deleteFromDomain(sc.nextInt());
     }
 
     public static void testToStr() {
@@ -219,8 +249,29 @@ public class MUSDriver {
         }
     }
 
-    public static void main(String args[]) {
-        menu();
+    public static void main(String args[]) throws FileNotFoundException {
+        final PrintStream oldStdout = System.out;
+
+        if (args.length > 0) {
+            interactive = true;
+
+            try {
+                sc = new Scanner(new FileReader("./data/testing" + args[0]));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File(args[1]),true)),true);
+            System.setOut(ps);
+
+        } else {
+            sc = new Scanner(System.in);
+        }
+
+
+        if (!interactive)  menu();
+
+        boolean eof = false;
 
         do {
             switch (sc.nextInt()) {
@@ -278,14 +329,24 @@ public class MUSDriver {
                 case 17:
                     testToStr();
                     break;
+                case 99:
+                    eof = true;
+                    break;
                 default:
                     System.out.println("Input error!");
             }
 
-            clearConsole();
-            menu();
+            if (!interactive) {
+                clearConsole();
+                menu();
+            }
 
-        } while (sc.hasNextInt());
+        } while (!eof && sc.hasNextInt());
+
+        if (interactive) {
+            System.setOut(oldStdout);
+            ps.close();
+        }
     }
 
     private static void menu() {
