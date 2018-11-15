@@ -185,9 +185,9 @@ public class MUS {
     public Vector< Vector<String> > toStr() {
         Vector< Vector<String> > mus = new Vector<>(3);
 
-        mus.set(0, classclass.toStr());
-        mus.set(1, classroom.toStr());
-        mus.set(2, session.toStr());
+        mus.add(0, classclass.toStr());
+        mus.add(1, classroom.toStr());
+        mus.add(2, session.toStr());
 
         return mus;
     }

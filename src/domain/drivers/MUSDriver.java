@@ -1,9 +1,6 @@
 package src.domain.drivers;
 
-import src.domain.classes.ClassClass;
-import src.domain.classes.Classroom;
-import src.domain.classes.MUS;
-import src.domain.classes.Session;
+import src.domain.classes.*;
 import src.domain.utils.UtilsDomain;
 
 import java.util.Scanner;
@@ -14,9 +11,35 @@ public class MUSDriver {
     private static MUS m = new MUS();
     private static Scanner sc = new Scanner(System.in);
 
+
+    private static Subject subjectConstructor() {
+        String name = sc.next();
+        int numberStudents = sc.nextInt();
+        int level = sc.nextInt();
+        int[] hoursClasses = new int[3];
+        hoursClasses[0] = sc.nextInt();
+        hoursClasses[1] = sc.nextInt();
+        hoursClasses[2] = sc.nextInt();
+        int[] numberOfGroups = new int[2];
+        numberOfGroups[0] = sc.nextInt();
+        numberOfGroups[1] = sc.nextInt();
+        UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.valueOf(sc.next());
+        return new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift);
+    }
+
     private static ClassClass classClassConstructor() {
         System.out.print("Data classClass: ");
-        // TODO
+
+        // First data of the classClass, Subjects data before.
+
+        String identifier = sc.next();
+        int group = sc.nextInt();
+        int subGroup = sc.nextInt();
+        UtilsDomain.ClassType typeG = UtilsDomain.ClassType.valueOf(sc.next());
+        UtilsDomain.typeShift shift = UtilsDomain.typeShift.valueOf(sc.next());
+        int quantityStudents = sc.nextInt();
+
+        return new ProblemsClass(identifier, subjectConstructor(), group, quantityStudents, shift, subGroup);
     }
 
     private static Classroom classroomConstructor() {
@@ -43,6 +66,7 @@ public class MUSDriver {
         return new Session(v);
     }
 
+
     public static void testBasicConstructor() {
         m = new MUS(classClassConstructor(), classroomConstructor(), sessionConstructor());
     }
@@ -55,11 +79,51 @@ public class MUSDriver {
     }
 
     public static void testConstructorFromString() {
-        // TODO
+        // Class class
+        Vector< Vector<String> > mus = new Vector<>(3);
+
+        Vector<String> classclass = new Vector<>(15);
+        classclass.add(0, sc.next());
+        classclass.add(1, sc.next());
+        classclass.add(2, sc.next());
+        classclass.add(3, sc.next());
+        classclass.add(4, sc.next());
+        classclass.add(5, sc.next());
+        classclass.add(6, sc.next());
+        classclass.add(7, sc.next());
+        classclass.add(8, sc.next());
+        classclass.add(9, sc.next());
+        classclass.add(10, sc.next());
+        classclass.add(11, sc.next());
+        classclass.add(12, sc.next());
+        classclass.add(13, sc.next());
+        classclass.add(14, sc.next());
+
+        mus.add(0, classclass);
+
+
+        Vector<String> classroom = new Vector<>(4);
+
+        classroom.add(0, sc.next());
+        classroom.add(1, sc.next());
+        classroom.add(2, sc.next());
+        classroom.add(3, sc.next());
+
+        mus.add(1, classroom);
+
+
+        Vector<String> session = new Vector<>(2);
+
+        session.add(0, sc.next());
+        session.add(1, sc.next());
+
+        mus.add(2, session);
+
+        m = new MUS(mus);
     }
 
     public static void testSetClassClass() {
-        // TODO
+        m.setClassClass(classClassConstructor());
     }
 
     public static void testSetClassroom() {

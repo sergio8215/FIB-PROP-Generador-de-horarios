@@ -3,13 +3,16 @@ package src.domain.drivers;
 import src.domain.classes.Subject;
 import src.domain.utils.UtilsDomain;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class SubjectDriver {
 
     private static Subject s = new Subject();
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner sc;
+    private static boolean fromFile = false;
 
 
     public static void testBasicConstructor() {
@@ -141,7 +144,21 @@ public class SubjectDriver {
     }
 
     public static void main(String args[]) {
-        menu();
+        if (args.length > 0) {
+            fromFile = true;
+
+            try {
+                sc = new Scanner(new FileReader("./data/" + args[0]));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            sc = new Scanner(System.in);
+        }
+
+
+        if (!fromFile)  menu();
 
         do {
             switch (sc.nextInt()) {
@@ -212,10 +229,12 @@ public class SubjectDriver {
                     System.out.println("Input error!\n");
             }
 
-            clearConsole();
-            menu();
+            if (!fromFile) {
+                clearConsole();
+                menu();
+            }
 
-        } while (sc.hasNextInt());
+        } while (sc.hasNextInt());  // SI EOF ACABAR PROGRAMA
     }
 
     private static void menu() {
