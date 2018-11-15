@@ -186,6 +186,18 @@ public class Schedule {
         }
     }
 
+    /** Unset the HashMap
+     * @return returns ArrayList with the classes of the ArrayList.
+     * */
+    public ArrayList<MUS> unset() {
+        ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
+        ArrayList<MUS> arrMUS = new ArrayList<>();
+        for (ArrayList<MUS> subArr : musArray) {
+            arrMUS.addAll(subArr);
+        }
+        return arrMUS;
+    }
+
     /**
      *
      * @return
@@ -207,11 +219,8 @@ public class Schedule {
         }
         return true;
         */
-        ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
-        ArrayList<MUS> arrMUS = new ArrayList<>();
-        for (ArrayList<MUS> subArr : musArray) {
-            arrMUS.addAll(subArr);
-        }
+
+        ArrayList<MUS> arrMUS = this.unset();
 
         for(int i = 0; i < arrMUS.size();++i) {
             for (int j = i+1; j < arrMUS.size(); ++j) {
