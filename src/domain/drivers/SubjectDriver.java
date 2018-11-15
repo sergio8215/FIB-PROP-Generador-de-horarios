@@ -146,6 +146,7 @@ public class SubjectDriver {
     public static void main(String args[]) throws FileNotFoundException {
         if (args.length > 0) {
             interactive = true;
+            System.out.print("EY!");
 
             try {
                 sc = new Scanner(new FileReader("./data/" + args[0]));

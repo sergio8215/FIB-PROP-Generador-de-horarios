@@ -3,6 +3,7 @@ package src.domain.drivers;
 import src.domain.classes.*;
 import src.domain.utils.UtilsDomain;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -135,7 +136,21 @@ public class MUSDriver {
     }
 
     public static void testSetDomain() {
-        // TODO
+        ClassroomSession cs = new ClassroomSession();
+
+        System.out.print("Numbers of ClassroomSessions to be added: ");
+        int n = sc.nextInt();
+
+        ArrayList<UtilsDomain.Pair> a = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            UtilsDomain.Pair<Classroom, Session> p = new UtilsDomain.Pair(classroomConstructor(), sessionConstructor());
+            a.add(p);
+        }
+
+        cs.setClassroomSessionSet(a);
+
+        m.setDomain(cs);
     }
 
     public static void testGetClassClass() {
@@ -190,7 +205,7 @@ public class MUSDriver {
     }
 
     public static void testGetDomain() {
-        // TODO
+        ClassroomSession cs = m.getDomain();
     }
 
     public static void testDomainSize() {
@@ -198,15 +213,28 @@ public class MUSDriver {
     }
 
     public static void testAssign() {
-        // TODO
+        m.assign(new UtilsDomain.Pair<Classroom, Session>(classroomConstructor(), sessionConstructor()));
     }
 
     public static void testGetValueDomain() {
-        // TODO
+        System.out.print("Id of the value: ");
+        UtilsDomain.Pair<Classroom, Session> p = m.getValueDomain(sc.nextInt());
+
+        Vector<String> vc = p.first.toStr();
+        Vector<String> vs = p.second.toStr();
+
+        for (String s : vc) {
+            System.out.print(s + " ");
+        }
+
+        for (String s : vs) {
+            System.out.print(s + " ");
+        }
     }
 
     public static void testDeleteFromDomain() {
-        // TODO
+        System.out.print("Id of the value: ");
+        m.deleteFromDomain(sc.nextInt());
     }
 
     public static void testToStr() {
