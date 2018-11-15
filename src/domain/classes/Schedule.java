@@ -215,7 +215,8 @@ public class Schedule {
 
         for(int i = 0; i < arrMUS.size();++i) {
             for (int j = i+1; j < arrMUS.size(); ++j) {
-                if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j)))) return false;
+                if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j))))
+                    return false;
             }
         }
         return true;

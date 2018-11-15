@@ -28,7 +28,7 @@ public class Constraints {
     // N-ARY CONSTRAINTS
 
     public static boolean notSameClassroomAndSession(MUS m1, MUS m2) {
-        if((m1.getSession().getDay() == m1.getSession().getDay()) &&
+        if((m1.getSession().getDay().ordinal() == m2.getSession().getDay().ordinal()) &&
            (m1.getSession().getHour() == m2.getSession().getHour()) &&
            (m1.getClassroom().getName().equals(m2.getClassroom().getName())))
             return false;
