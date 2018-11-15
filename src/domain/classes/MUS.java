@@ -37,6 +37,7 @@ public class MUS {
         this.classclass = classclass;
         this.classroom = classroom;
         this.session = session;
+        domain = new ClassroomSession();
     }
 
     /**
@@ -48,6 +49,7 @@ public class MUS {
         this.classclass = classclass;
         this.classroom = classroomSessionpair.first;
         this.session = classroomSessionpair.second;
+        domain = new ClassroomSession();
     }
 
     /**
@@ -58,6 +60,7 @@ public class MUS {
         classclass = ClassClass.fromStr(mus.get(0));
         classroom = Classroom.fromStr(mus.get(1));
         session = new Session(mus.get(2));
+        domain = new ClassroomSession();
     }
 
 

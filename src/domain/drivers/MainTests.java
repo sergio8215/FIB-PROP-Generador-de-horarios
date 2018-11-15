@@ -23,13 +23,14 @@ public class MainTests {
         System.out.println("\t11 -> ClassroomSession");
         System.out.println("\t12 -> Constraints");
         System.out.println("\t13 -> Schedule");
+        System.out.print("Option: ");
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {   // TODO: IMPLEMENTAR DIFF
+
+        menu();
 
         do {
-
-            menu();
 
             switch (sc.nextInt()) {
                 case 0:

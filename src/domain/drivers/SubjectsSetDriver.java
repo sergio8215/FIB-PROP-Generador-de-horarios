@@ -17,13 +17,13 @@ public class SubjectsSetDriver {
     private static boolean interactive = false;
 
     public static void testConstructorFromArray() {
-        System.out.println("Indicates the number of subjects you want to generate:");
+        if (!interactive)   System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
         ArrayList<Subject> sa = new ArrayList<>();
 
         for (int i = 0; i < n; ++i) {
-            System.out.print("Data subject " + i + ": ");
+            if (!interactive)   System.out.print("Data subject " + i + ": ");
             String name = sc.next();
             int numberStudents = sc.nextInt();
             int level = sc.nextInt();
@@ -43,13 +43,13 @@ public class SubjectsSetDriver {
     }
 
     public static void testConstructorFromString() {
-        System.out.println("Indicates the number of subjects you want to generate:");
+        if (!interactive)   System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
         Vector< Vector<String> > vv = new Vector<>(n);
 
         for (int i = 0; i < n; i++) {
-            System.out.print("Data subject " + i + ": ");
+            if (!interactive)   System.out.print("Data subject " + i + ": ");
 
             Vector<String> v = new Vector<>(9);
 
@@ -70,13 +70,13 @@ public class SubjectsSetDriver {
     }
 
     public static void testSetSet() {
-        System.out.println("Indicates the number of subjects you want to generate:");
+        if (!interactive)   System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
         ArrayList<Subject> sa = new ArrayList<>();
 
         for (int i = 0; i < n; ++i) {
-            System.out.print("Data subject " + i + ": ");
+            if (!interactive)   System.out.print("Data subject " + i + ": ");
             String name = sc.next();
             int numberStudents = sc.nextInt();
             int level = sc.nextInt();
@@ -117,7 +117,7 @@ public class SubjectsSetDriver {
     }
 
     public static void testGetSubject() {
-        System.out.println("Name of the subject: ");
+        if (!interactive)   System.out.println("Name of the subject: ");
         String name = sc.next();
 
         UtilsDomain.ResoultOfQuery<Subject> res = ss.getSubject(name);
@@ -126,7 +126,7 @@ public class SubjectsSetDriver {
     }
 
     public static void testPutSuject() {
-        System.out.print("Data of the subject: ");
+        if (!interactive)   System.out.print("Data of the subject: ");
         Vector<String> v = new Vector<>(9);
         v.add(0, sc.next());
         v.add(1, sc.next());
@@ -144,7 +144,7 @@ public class SubjectsSetDriver {
     }
 
     public static void testPopSubject() {
-        System.out.print("Name of the subject: ");
+        if (!interactive)   System.out.print("Name of the subject: ");
         String name = sc.next();
 
         System.out.println(ss.popSubject(name));
@@ -155,7 +155,7 @@ public class SubjectsSetDriver {
     }
 
     public static void testBelongsFromSubject() {
-        System.out.print("Data of the subject: ");
+        if (!interactive)   System.out.print("Data of the subject: ");
         Vector<String> v = new Vector<>(9);
         v.add(0, sc.next());
         v.add(1, sc.next());
@@ -173,14 +173,14 @@ public class SubjectsSetDriver {
     }
 
     public static void testBelongsFromName() {
-        System.out.print("Name of the subject: ");
+        if (!interactive)   System.out.print("Name of the subject: ");
         String name = sc.next();
 
         System.out.println(ss.belongs(name));
     }
 
     public static void testCompare() {
-        System.out.print("Data of the subject 1: ");
+        if (!interactive)   System.out.print("Data of the subject 1: ");
         Vector<String> v1 = new Vector<>(9);
         v1.add(0, sc.next());
         v1.add(1, sc.next());
@@ -194,7 +194,7 @@ public class SubjectsSetDriver {
 
         Subject s1 = new Subject(v1);
 
-        System.out.print("Data of the subject 2: ");
+        if (!interactive)   System.out.print("Data of the subject 2: ");
         Vector<String> v2 = new Vector<>(9);
         v2.add(0, sc.next());
         v2.add(1, sc.next());
@@ -208,19 +208,19 @@ public class SubjectsSetDriver {
 
         Subject s2 = new Subject(v2);
 
-        System.out.print("Comparator: ");
+        if (!interactive)   System.out.print("Comparator: ");
         String op = sc.next();
 
         System.out.println(SubjectsSet.compare(s1, op, s2));
     }
 
     public static void testSubjectsSort() {
-        System.out.println("Indicates the number of subjects you want to generate:");
+        if (!interactive)   System.out.println("Indicates the number of subjects you want to generate:");
         int n = sc.nextInt();
 
         ArrayList<Subject> subjectsArray = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            System.out.println("Data subject " + i + ":");
+            if (!interactive)   System.out.println("Data subject " + i + ":");
             Vector<String> v = new Vector<>(9);
             v.add(0, sc.next());
             v.add(1, sc.next());
@@ -250,12 +250,12 @@ public class SubjectsSetDriver {
             interactive = true;
 
             try {
-                sc = new Scanner(new FileReader("./data/testing" + args[0]));
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
-            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File(args[1]),true)),true);
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),true)),true);
             System.setOut(ps);
 
         } else {

@@ -32,7 +32,7 @@ public class MUSDriver {
     }
 
     private static ClassClass classClassConstructor() {
-        System.out.print("Data classClass: ");
+        if (!interactive)   System.out.print("Data classClass: ");
 
         // First data of the classClass, Subjects data before.
 
@@ -47,20 +47,21 @@ public class MUSDriver {
     }
 
     private static Classroom classroomConstructor() {
-        System.out.print("Data classroom: ");
+        if (!interactive)   System.out.print("Data classroom: ");
 
-        Vector<String> v = new Vector<>(4);
+        Vector<String> v = new Vector<>(5);
 
         v.add(0, sc.next());
         v.add(1, sc.next());
         v.add(2, sc.next());
         v.add(3, sc.next());
+        if (v.get(2).equals("LABORATORY"))   v.add(4, sc.next());
 
         return Classroom.fromStr(v);
     }
 
     private static Session sessionConstructor() {
-        System.out.print("Data session: ");
+        if (!interactive)   System.out.print("Data session: ");
 
         Vector<String> v = new Vector<>(2);
 
@@ -74,7 +75,7 @@ public class MUSDriver {
         m = new MUS(classClassConstructor(), classroomConstructor(), sessionConstructor());
     }
 
-    public static void testConstructorWithMembers1() {
+    public static void testConstructorWithMembers() {
         ClassClass cc = classClassConstructor();
         UtilsDomain.Pair<Classroom, Session> p = new UtilsDomain.Pair<>(classroomConstructor(), sessionConstructor());
 
@@ -105,15 +106,15 @@ public class MUSDriver {
         mus.add(0, classclass);
 
 
-        Vector<String> classroom = new Vector<>(4);
+        Vector<String> classroom = new Vector<>(5);
 
         classroom.add(0, sc.next());
         classroom.add(1, sc.next());
         classroom.add(2, sc.next());
         classroom.add(3, sc.next());
+        if (classroom.get(2).equals("LABORATORY"))     classroom.add(4, sc.next());
 
         mus.add(1, classroom);
-
 
         Vector<String> session = new Vector<>(2);
 
@@ -140,7 +141,7 @@ public class MUSDriver {
     public static void testSetDomain() {
         ClassroomSession cs = new ClassroomSession();
 
-        System.out.print("Numbers of ClassroomSessions to be added: ");
+        if (!interactive)   System.out.print("Numbers of ClassroomSessions to be added: ");
         int n = sc.nextInt();
 
         ArrayList<UtilsDomain.Pair> a = new ArrayList<>();
@@ -219,7 +220,7 @@ public class MUSDriver {
     }
 
     public static void testGetValueDomain() {
-        System.out.print("Id of the value: ");
+        if (!interactive)   System.out.print("Id of the value: ");
         UtilsDomain.Pair<Classroom, Session> p = m.getValueDomain(sc.nextInt());
 
         Vector<String> vc = p.first.toStr();
@@ -235,7 +236,7 @@ public class MUSDriver {
     }
 
     public static void testDeleteFromDomain() {
-        System.out.print("Id of the value: ");
+        if (!interactive)    System.out.print("Id of the value: ");
         m.deleteFromDomain(sc.nextInt());
     }
 
@@ -256,12 +257,12 @@ public class MUSDriver {
             interactive = true;
 
             try {
-                sc = new Scanner(new FileReader("./data/testing" + args[0]));
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
-            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File(args[1]),true)),true);
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),true)),true);
             System.setOut(ps);
 
         } else {
@@ -279,7 +280,7 @@ public class MUSDriver {
                     testBasicConstructor();
                     break;
                 case 1:
-                    testConstructorWithMembers1();
+                    testConstructorWithMembers();
                     break;
                 case 2:
                     testConstructorFromString();
@@ -353,7 +354,7 @@ public class MUSDriver {
         System.out.println("------------------------------------------");
         System.out.println("\nWrite the number of the function you want to test:");
         System.out.println("\t0 -> Basic Constructor");
-        System.out.println("\t1 -> Constructor with Members 1");
+        System.out.println("\t1 -> Constructor with Members");
         System.out.println("\t2 -> Constructor from String");
         System.out.println("\t3 -> Classclass setter");
         System.out.println("\t4 -> Classroom setter");
