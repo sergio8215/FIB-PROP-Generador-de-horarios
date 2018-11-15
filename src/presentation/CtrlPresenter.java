@@ -93,7 +93,7 @@ public class CtrlPresenter {
             else {
                 //clearConsole();
                 System.out.println("Input error. Try it again. \n");
-                s.nextLine();
+                s.next();
                 scheduleGenerationMenu();
             }
         }
@@ -111,6 +111,14 @@ public class CtrlPresenter {
             case "S":
                 Schedule schedule = ctrlDomain.generateSchedule();
 
+                System.out.print("Save schedule?: [S/N]");
+                String ss = s.next();
+
+                if (ss.contentEquals("S")){
+                    System.out.print("Name of the file: ");
+                    String fileName = s.next();
+                    ctrlDomain.saveSchedule(fileName, schedule);
+                }
                 break;
 
             case "N":

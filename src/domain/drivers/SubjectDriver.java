@@ -3,8 +3,7 @@ package src.domain.drivers;
 import src.domain.classes.Subject;
 import src.domain.utils.UtilsDomain;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -12,7 +11,8 @@ public class SubjectDriver {
 
     private static Subject s = new Subject();
     private static Scanner sc;
-    private static boolean fromFile = false;
+    private static PrintStream ps;
+    private static boolean interactive = false;
 
 
     public static void testBasicConstructor() {
@@ -145,7 +145,7 @@ public class SubjectDriver {
 
     public static void main(String args[]) {
         if (args.length > 0) {
-            fromFile = true;
+            interactive = true;
 
             try {
                 sc = new Scanner(new FileReader("./data/" + args[0]));
@@ -153,12 +153,17 @@ public class SubjectDriver {
                 e.printStackTrace();
             }
 
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File([args[0] + ".out"]),true)),true);
+            set
+
         } else {
             sc = new Scanner(System.in);
         }
 
 
-        if (!fromFile)  menu();
+        if (!interactive)  menu();
+
+        boolean eof = false;
 
         do {
             switch (sc.nextInt()) {
@@ -225,16 +230,23 @@ public class SubjectDriver {
                 case 20:
                     testToStr();
                     break;
+                case 99:
+                    eof = true;
+                    break;
                 default:
                     System.out.println("Input error!\n");
             }
 
-            if (!fromFile) {
+            if (!interactive) {
                 clearConsole();
                 menu();
             }
 
-        } while (sc.hasNextInt());  // SI EOF ACABAR PROGRAMA
+        } while (!eof && sc.hasNextInt());  // SI EOF ACABAR PROGRAMA
+
+        OutputStream os = new BufferedOutputStream();
+
+
     }
 
     private static void menu() {
