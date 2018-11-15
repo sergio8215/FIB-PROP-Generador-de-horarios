@@ -23,7 +23,7 @@ public class SubjectDriver {
         int[] numberOfGroups = new int[2];
         numberOfGroups[0] = sc.nextInt();
         numberOfGroups[1] = sc.nextInt();
-        UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.values()[sc.nextInt()];
+        UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.valueOf(sc.next());
         s = new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift);
     }
 

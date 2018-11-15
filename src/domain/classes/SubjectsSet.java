@@ -1,6 +1,5 @@
 package src.domain.classes;
 
-
 import src.domain.utils.UtilsDomain;
 
 import java.util.ArrayList;
@@ -69,7 +68,7 @@ public final class SubjectsSet {
      */
     public ArrayList<Subject> unset() {
         ArrayList<Subject> tempSet = new ArrayList<>(set.values());
-        //subjectsSort(tempSet);
+        subjectsSort(tempSet);
         return tempSet;
     }
 
@@ -177,72 +176,71 @@ public final class SubjectsSet {
 
     /**
      * Implementation of merge for the mergesort algorithm.
-     * @param set Set that must be ordered.
-     * @param start Start point of the sort.
-     * @param mid Middle point of the sort.
-     * @param end End point of the sort.
+     * @param left Left part of the set.
+     * @param right Right part of the set.
+     * @param set Set.
      */
-    private static void merge(ArrayList<Subject> set, int start, int mid, int end) {
-        int n1 = mid - start + 1;
-        int n2 = end - mid;
+    private static void merge(ArrayList<Subject> left, ArrayList<Subject> right, ArrayList<Subject> set) {
+        int leftInd = 0;
+        int rightInd = 0;
+        int setInd = 0;
 
-        ArrayList<Subject> aux1 = new ArrayList<>(n1);
-        ArrayList<Subject> aux2 = new ArrayList<>(n2);
-
-        for (int i = 0; i < n1; ++i)    aux1.add(i, set.get(start + i));
-        for (int j = 0; j < n2; ++j)    aux2.add(j, set.get(mid + 1 + j));
-
-        int i = 0;
-        int j = 0;
-
-        int k = start;
-        while (i < n1 && j < n2) {
-            if (compare(aux1.get(i), "<=", aux2.get(j))){
-                set.set(k, aux1.get(i));
-                i++;
+        while (leftInd < left.size() && rightInd < right.size()) {
+            if (SubjectsSet.compare(left.get(leftInd), "<=", right.get(rightInd)) /*(left.get(leftInd).compareTo(right.get(rightInd))) < 0*/) {
+                set.set(setInd, left.get(leftInd));
+                leftInd++;
             } else {
-                set.set(k, aux2.get(j));
-                j++;
+                set.set(setInd, right.get(rightInd));
+                rightInd++;
             }
+            setInd++;
         }
 
-        while (i < n1){
-            set.set(k, aux1.get(i));
-            i++;
-            k++;
+        ArrayList<Subject> rest;
+        int restIndex;
+        if (leftInd >= left.size()) {
+            rest = right;
+            restIndex = rightInd;
+        } else {
+            rest = left;
+            restIndex = leftInd;
         }
 
-        while (j < n2) {
-            set.set(k, aux2.get(j));
-            j++;
-            k++;
-        }
-    }
-
-    /**
-     * Recursively implementation of the mergesort algorithm.
-     * @param set Set that must be ordered.
-     * @param start Start point of the sort.
-     * @param end End point of the sort.
-     */
-    private static void rSubjectsSort(ArrayList<Subject> set, int start, int end) {
-        if (start < end){
-            int mid = start + (end - start) / 2;
-
-            rSubjectsSort(set, start, mid);
-            rSubjectsSort(set,mid + 1, end);
-
-            merge(new ArrayList<>(set), start, mid, end);
+        for (int i=restIndex; i<rest.size(); i++) {
+            set.set(setInd, rest.get(i));
+            setInd++;
         }
     }
 
     /**
-     * Sort of the subjects considering the level and the name of these.
-     * @param set Set that must be ordered.
+     * Sort of the subjects considering the level and the name of these (implemented following Mergesort algorithm).
+     * @param set Set that must be sorted.
+     * @return Sorted set.
      */
-    public static void subjectsSort(ArrayList<Subject> set) {
-        // Mergesort Implementation
-        // Worst-case complexity: O(n log n) ; Worst-case space complexity: O(n)
-        rSubjectsSort(set, 0, set.size()-1);
+    public static ArrayList<Subject> subjectsSort(ArrayList<Subject> set) {
+        ArrayList<Subject> left = new ArrayList<Subject>();
+        ArrayList<Subject> right = new ArrayList<Subject>();
+
+        int mid;
+
+        if (set.size() == 1)    return set;
+        else {
+            mid = set.size()/2;
+
+            for (int i = 0; i < mid; i++) {
+                left.add(set.get(i));
+            }
+
+            for (int i = mid; i < set.size(); i++) {
+                right.add(set.get(i));
+            }
+
+            left = subjectsSort(left);
+            right = subjectsSort(right);
+
+            merge(left, right, set);
+        }
+
+        return set;
     }
 }
