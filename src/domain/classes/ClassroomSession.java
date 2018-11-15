@@ -70,11 +70,11 @@ public class ClassroomSession {
 
     /**
      * Getter of an specific classroomSesson from the classroomSessionSet attribute
-     * @param id position of the pair we want
-     * @return returns a the pair that was at the id position
+     * @param index position of the pair we want
+     * @return returns a the pair that was at the index position
      */
-    public UtilsDomain.Pair getPair(int id) {
-        return classroomSessionSet.get(id);
+    public UtilsDomain.Pair getPair(int index) {
+        return classroomSessionSet.get(index);
     }
 
     /**
@@ -87,9 +87,14 @@ public class ClassroomSession {
 
     /**
      * Removes an specific Pair from classroomSessionSet
-     * @param id of the specific Pair we want to delete
+     * @param index of the specific Pair we want to delete
      */
-    public void delete(int id) {
-        classroomSessionSet.remove(id);
+    public boolean delete(int index) {
+        if(index < this.size() && index >= 0) {
+            classroomSessionSet.remove(index);
+            return true;
+        }
+        return false;
+
     }
 }

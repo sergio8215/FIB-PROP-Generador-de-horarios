@@ -42,7 +42,6 @@ public class CtrlPresenter {
                     opt = s.nextInt();
                     ctrlDomain.loadSchedule(opt);
 
-                    ctrlDomain.loadSchedul();
                 case 3:
                     end = !end;
                     break;
