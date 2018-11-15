@@ -47,7 +47,7 @@ public class TheoryClassDriver {
     }
 
     public static void testConstructorFromStr () throws Exception {
-        Vector<String> myVector = new Vector<>();
+        Vector<String> myVector = new Vector<>(15);
 
         i.write("ID: ");
         myVector.add(i.readword());
@@ -152,7 +152,7 @@ public class TheoryClassDriver {
     }
 
     public static void testFromStr() throws Exception{
-        Vector<String> myVector = new Vector<>();
+        Vector<String> myVector = new Vector<>(15);
         i.write("ID: ");
         myVector.add(i.readword());
         i.write("Group: ");
@@ -221,66 +221,82 @@ public class TheoryClassDriver {
             switch (option) {
                 case 1:
                     testConstructor();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 2:
                     testConstructorFromStr();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 3:
                     testGetGroup();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 4:
                     testGetIdentifier();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 5:
                     testGetSubject();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 6:
                     testGetType();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 7:
                     testGetShift();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 8:
                     testGetQuantityStudents();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 9:
                     testGetSubGroup();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 10:
                     testToStr();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 11:
                     testSetGroup();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 12:
                     testSetIdentifier();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 13:
                     testSetSubject();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 14:
                     testSetShift();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 15:
                     testSetQuantityStudents();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 16:
                     testSetSubGroup();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
             }

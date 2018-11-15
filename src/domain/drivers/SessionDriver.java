@@ -25,7 +25,7 @@ public class SessionDriver {
     }
 
     public static void testConstructorFromVector( ) throws Exception{
-        Vector<String> myVector = new Vector<>();
+        Vector<String> myVector = new Vector<>(2);
 
         i.writeln("Hour: ");
         myVector.add(i.readword());
@@ -102,34 +102,42 @@ public class SessionDriver {
             switch (option) {
                 case 1:
                     testConstructor();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 2:
                     testConstructorFromVector();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 3:
                     testGetHour();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 4:
                     testGetDay();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 5:
                     testSetHour();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 6:
                     testSetDay();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 7:
                     testToStr();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 8:
                     testCompare();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
             }

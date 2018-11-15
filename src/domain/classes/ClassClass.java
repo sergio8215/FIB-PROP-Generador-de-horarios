@@ -66,7 +66,6 @@ public abstract class ClassClass {
         subject = new Subject(subjectVector);
     }
 
-
     // METHODS--------------------------------------------------------
 
     /**

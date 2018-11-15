@@ -53,17 +53,20 @@ public class ClassSetDriver {
 
         cSet = new ClassSet( new SubjectsSet(subjectsArray) );
         i.write("Set of Classes created successfully");
+        i.writeln("\n Please press one key to continue");
         System.in.read();
     }
 
     public static void testConstructorFromStr( ) throws Exception{
-        Vector<Vector <String>> myMatrix = new Vector<>();
-        int exit = 1;
+        i.write("Quantity of Classes: ");
+        int size = i.readint();
+        Vector<Vector <String>> myMatrix = new Vector<>(size);
+
         int ii = 0;
 
-        while ( exit != 0 ){
-            Vector<String> myVector = new Vector<>();
-            myMatrix.add(new Vector<String>());
+        for (;ii<size; ii++){
+
+            Vector<String> myVector = new Vector<>(15);
 
             i.write("ID: ");
             myVector.add(i.readword());
@@ -98,11 +101,11 @@ public class ClassSetDriver {
             myVector.add(i.readword());
 
             myMatrix.add(ii, myVector);
-            i.write("Press 1 to read add another class: ");
-            exit = i.readint();
+
         }
         cSet = new ClassSet(myMatrix);
         i.write("Set of Classes created successfully");
+        i.writeln("\n Please press one key to continue");
         System.in.read();
     }
 
@@ -364,34 +367,42 @@ public class ClassSetDriver {
             switch (option) {
                 case 1:
                     testConstructorSubjects();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 2:
                     testConstructorFromStr();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 3:
                     testExistsClass();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 4:
                     testGetClass();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 5:
                     testAddClass();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 6:
                     testUnset();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 7:
                     testCompare();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
                 case 8:
                     testToStr();
+                    i.writeln("\n Please press one key to continue");
                     System.in.read();
                     break;
             }
