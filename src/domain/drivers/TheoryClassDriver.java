@@ -5,84 +5,81 @@ import src.domain.classes.TheoryClass;
 import src.domain.classes.Subject;
 import src.domain.utils.UtilsDomain;
 
-import src.domain.utils.inout;
-
-import java.io.FileInputStream;
+import java.io.*;
+import java.util.Scanner;
 import java.util.Vector;
-
-import java.io.File;
-
 
 public class TheoryClassDriver {
 
     public static ClassClass tc;
-    public static inout i = new inout();
+
+    private static Scanner sc = new Scanner(System.in);
+    private static PrintStream ps;
+    private static boolean interactive = false;
+
 
     private static void testConstructor() throws Exception {
         String identifier;
         int group;
         int subGroup;
-        UtilsDomain.ClassType typeG;
         UtilsDomain.typeShift shift;
         int quantityStudents;
 
-
-        i.write("ID: ");
-        identifier = i.readword();
-        i.write("Group: ");
-        group = i.readint();
-        i.write("subGroup: ");
-        subGroup = i.readint();
-        //i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
+        //ID
+        identifier = sc.next();
+        //Group
+        group = sc.nextInt();
+        //subGroup
+        subGroup = sc.nextInt();
+        //Type of group 0.Theory, 1.Lab, 2.Problems
         //typeG = UtilsDomain.ClassType.values()[0];
-        i.write("Shift of group 0.Morning, 1.Afternoon: ");
-        shift = UtilsDomain.typeShift.values()[i.readint()];
-        i.write("Quantity students: ");
-        quantityStudents = i.readint();
+        //Shift of group 0.Morning, 1.Afternoon
+        shift = UtilsDomain.typeShift.valueOf(sc.next());
+        //Quantity students
+        quantityStudents = sc.nextInt();
 
         tc = new TheoryClass(identifier, readSubject(), group, quantityStudents, shift, subGroup);
-        i.write("-", 20);
-        i.writeln("Theory Class successfully created");
+
+        //Theory Class successfully created
     }
 
     public static void testConstructorFromStr () throws Exception {
         Vector<String> myVector = new Vector<>(15);
 
-        i.write("ID: ");
-        myVector.add(i.readword());
-        i.write("Group: ");
-        myVector.add(i.readword());
-        i.write("subGroup: ");
-        myVector.add(i.readword());
-        //i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
+        //ID
+        myVector.add(sc.next());
+        //Group
+        myVector.add(sc.next());
+        //subGroup
+        myVector.add(sc.next());
+        //Type of group 0.Theory, 1.Lab, 2.Problems
         myVector.add("THEORY");
-        i.write("Shift of group 0.Morning, 1.Afternoon: ");
-        myVector.add(i.readword());
-        i.write("Quantity students: ");
-        myVector.add(i.readword());
+        //Shift of group 0.Morning, 1.Afternoon
+        myVector.add(sc.next());
+        //Quantity students
+        myVector.add(sc.next());
 
-        i.write("Subject Name: ");
-        myVector.add(i.readword());
-        i.write("Num_students: ");
-        myVector.add(i.readword());
-        i.write("Level: ");
-        myVector.add(i.readword());
-        i.write("Theory_hours: ");
-        myVector.add(i.readword());
-        i.write("Laboratory_hours: ");
-        myVector.add(i.readword());
-        i.write("Problems_hours: ");
-        myVector.add(i.readword());
-        i.write("Number of groups: ");
-        myVector.add(i.readword());
-        i.write("Number of Subgroups: ");
-        myVector.add(i.readword());
-        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-        myVector.add(i.readword());
+        //Subject Name
+        myVector.add(sc.next());
+        //Num_students
+        myVector.add(sc.next());
+        //Level
+        myVector.add(sc.next());
+        //Theory_hours
+        myVector.add(sc.next());
+        //Laboratory_hours
+        myVector.add(sc.next());
+        //Problems_hours
+        myVector.add(sc.next());
+        //Number of groups
+        myVector.add(sc.next());
+        //Number of Subgroups
+        myVector.add(sc.next());
+        //Shift 0.Morning, 1.Afternoon, 2.Both
+        myVector.add(sc.next());
 
         tc = new TheoryClass(myVector);
-        i.write("-", 20);
-        i.writeln("Theory Class successfully created");
+        //System.out.println("Theory Class successfully created");
     }
 
     public static Subject readSubject() throws Exception{
@@ -94,211 +91,218 @@ public class TheoryClassDriver {
         int[] numberOfGroups = new int[2];
         UtilsDomain.typeShift shiftSubj;
 
-        i.write("Subject Name: ");
-        subjectName = i.readword();
-        i.write("Num_students: ");
-        num_students = i.readint();
-        i.write("Level: ");
-        level = i.readint();
-        i.write("Theory_hours: ");
-        hoursClasses[0] = i.readint();
-        i.write("Laboratory_hours: ");
-        hoursClasses[1] = i.readint();
-        i.write("Problems_hours: ");
-        hoursClasses[2] = i.readint();
-        i.write("Number of groups: ");
-        numberOfGroups[0] = i.readint();
-        i.write("Number of Subgroups: ");
-        numberOfGroups[1] = i.readint();
-        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-        shiftSubj = UtilsDomain.typeShift.values()[i.readint()];
+        //Subject Name
+        subjectName = sc.next();
+        //Num_students
+        num_students = sc.nextInt();
+        //Level
+        level = sc.nextInt();
+        //Theory_hours
+        hoursClasses[0] = sc.nextInt();
+        //Laboratory_hours
+        hoursClasses[1] = sc.nextInt();
+        //Problems_hours
+        hoursClasses[2] = sc.nextInt();
+        //Number of groups
+        numberOfGroups[0] = sc.nextInt();
+        //Number of Subgroups
+        numberOfGroups[1] = sc.nextInt();
+        //Shift 0.Morning, 1.Afternoon, 2.Both
+        shiftSubj = UtilsDomain.typeShift.valueOf(sc.next());
 
         Subject subject = new Subject(subjectName, num_students, level, hoursClasses, numberOfGroups, shiftSubj);
         return subject;
 
     }
 
-    public static void testGetGroup() throws Exception {i.writeln( tc.getGroup() );}
-    public static void testGetIdentifier() throws Exception {i.writeln( tc.getIdentifier() );}
+    public static void testGetGroup() throws Exception {System.out.println( tc.getGroup() );}
+    public static void testGetIdentifier() throws Exception {System.out.println( tc.getIdentifier() );}
     public static void testGetSubject() throws Exception {
         Subject subject = tc.getSubject();
-        i.writeln( subject.getName() );
-        i.writeln( subject.getLevel() );
-        i.writeln( subject.getNumberStudents() );
-        i.writeln( subject.getTypeShift().toString() );
+        System.out.println( subject.getName() );
+        System.out.println( subject.getNumberStudents() );
+        System.out.println( subject.getLevel() );
+        System.out.println( subject.getHoursClasses()[0] );
+        System.out.println( subject.getHoursClasses()[1] );
+        System.out.println( subject.getHoursClasses()[2] );
+        System.out.println( subject.getNumberOfGroups()[0] );
+        System.out.println( subject.getNumberOfGroups()[1] );
+        System.out.println( subject.getTypeShift().toString() );
 
     }
-    public static void testGetType() throws Exception {i.writeln( tc.getType().toString() );}
-    public static void testGetShift() throws Exception {i.writeln( tc.getShift().toString() );}
-    public static void testGetQuantityStudents() throws Exception {i.writeln( tc.getQuantityStudents() );}
-    public static void testGetSubGroup() throws Exception {i.writeln(tc.getSubGroup()); }
+    public static void testGetType() throws Exception {System.out.println( tc.getType().toString() );}
+    public static void testGetShift() throws Exception {System.out.println( tc.getShift().toString() );}
+    public static void testGetQuantityStudents() throws Exception {System.out.println( tc.getQuantityStudents() );}
+    public static void testGetSubGroup() throws Exception {System.out.println(tc.getSubGroup()); }
 
 
-    public static void testSetGroup() throws Exception{ tc.setGroup( i.readint()); }
-    public static void testSetIdentifier() throws Exception{ tc.setIdentifier( i.readword() ); }
+    public static void testSetGroup() throws Exception{ tc.setGroup( sc.nextInt()); }
+    public static void testSetIdentifier() throws Exception{ tc.setIdentifier( sc.next() ); }
     public static void testSetSubject() throws Exception{ tc.setSubject( readSubject() ); }
-    public static void testSetShift() throws Exception{ tc.setShift( UtilsDomain.typeShift.values()[i.readint()]); }
-    public static void testSetQuantityStudents() throws Exception{ tc.setQuantityStudents(i.readint()); }
-    public static void testSetSubGroup() throws Exception{ tc.setSubGroup(i.readint()); }
+    public static void testSetShift() throws Exception{ tc.setShift( UtilsDomain.typeShift.valueOf(sc.next())); }
+    public static void testSetQuantityStudents() throws Exception{ tc.setQuantityStudents(sc.nextInt()); }
+    public static void testSetSubGroup() throws Exception{ tc.setSubGroup(sc.nextInt()); }
 
 
     public static void testToStr() throws Exception {
         Vector<String> myVector = tc.toStr();
 
         for (int ii = 0; ii < myVector.size(); ii++) {
-            i.writeln( myVector.get(ii) );
+            System.out.println( myVector.get(ii) );
         }
     }
 
     public static void testFromStr() throws Exception{
         Vector<String> myVector = new Vector<>(15);
-        i.write("ID: ");
-        myVector.add(i.readword());
-        i.write("Group: ");
-        myVector.add(i.readword());
-        i.write("subGroup: ");
-        myVector.add(i.readword());
-        //i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
+        //ID
+        myVector.add(sc.next());
+        //Group
+        myVector.add(sc.next());
+        //subGroup
+        myVector.add(sc.next());
+        //Type of group 0.Theory, 1.Lab, 2.Problems
         myVector.add("THEORY");
-        i.write("Type of group 0.Morning, 1.Afternoon: ");
-        myVector.add(i.readword());
-        i.write("Quantity students: ");
-        myVector.add(i.readword());
+        //Type of group 0.Morning, 1.Afternoon
+        myVector.add(sc.next());
+        //Quantity students
+        myVector.add(sc.next());
 
-        i.write("Subject Name: ");
-        myVector.add(i.readword());
-        i.write("Num_students: ");
-        myVector.add(i.readword());
-        i.write("Level: ");
-        myVector.add(i.readword());
-        i.write("Theory_hours: ");
-        myVector.add(i.readword());
-        i.write("Laboratory_hours: ");
-        myVector.add(i.readword());
-        i.write("Problems_hours: ");
-        myVector.add(i.readword());
-        i.write("Number of groups: ");
-        myVector.add(i.readword());
-        i.write("Number of Subgroups: ");
-        myVector.add(i.readword());
-        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-        myVector.add(i.readword());
+        //Subject Name
+        myVector.add(sc.next());
+        //Num_students
+        myVector.add(sc.next());
+        //Level
+        myVector.add(sc.next());
+        //Theory_hours
+        myVector.add(sc.next());
+        //Laboratory_hours
+        myVector.add(sc.next());
+        //Problems_hours
+        myVector.add(sc.next());
+        //Number of groups
+        myVector.add(sc.next());
+        //Number of Subgroups
+        myVector.add(sc.next());
+        //Shift 0.Morning, 1.Afternoon, 2.Both
+        myVector.add(sc.next());
 
         tc = ClassClass.fromStr(myVector);
     }
 
-    public static void main (String [] args) throws Exception {
+    public static void menu(){
+        System.out.println("------------------------------------------ \n");
+        System.out.println("------------------MENU-------------------- \n");
+        System.out.println("------------------------------------------ \n");
+        System.out.println("1 ->Test Constructor \n");
+        System.out.println("2 ->Test Constructor from String Vector \n");
+        System.out.println("3 ->Test GetGroup \n");
+        System.out.println("4 ->Test GetIdentifier \n");
+        System.out.println("5 ->Test GetSubject \n");
+        System.out.println("6 ->Test GetType \n");
+        System.out.println("7 ->Test GetShift \n");
+        System.out.println("8 ->Test GetQuantityStudents \n");
+        System.out.println("9 ->Test GetSubGroup \n");
+        System.out.println("10->Test ToStr  \n");
+        System.out.println("11->Test SetGroup  \n");
+        System.out.println("12->Test SetIdentifier  \n");
+        System.out.println("13->Test SetSubject  \n");
+        System.out.println("14->Test SetShift  \n");
+        System.out.println("15->Test SetQuantityStudents  \n");
+        System.out.println("16->Test SetSubGroup  \n");
+        System.out.println("17->Exit  \n");
 
-        int option = 0;
+    }
 
-        while( option != 17) {
+    public static void main (String args[]) throws Exception {
 
-            i.write("------------------------------------------ \n");
-            i.write("------------------MENU-------------------- \n");
-            i.write("------------------------------------------ \n");
-            i.write("1 ->Test Constructor \n");
-            i.write("2 ->Test Constructor from String Vector \n");
-            i.write("3 ->Test GetGroup \n");
-            i.write("4 ->Test GetIdentifier \n");
-            i.write("5 ->Test GetSubject \n");
-            i.write("6 ->Test GetType \n");
-            i.write("7 ->Test GetShift \n");
-            i.write("8 ->Test GetQuantityStudents \n");
-            i.write("9 ->Test GetSubGroup \n");
-            i.write("10->Test ToStr  \n");
-            i.write("11->Test SetGroup  \n");
-            i.write("12->Test SetIdentifier  \n");
-            i.write("13->Test SetSubject  \n");
-            i.write("14->Test SetShift  \n");
-            i.write("15->Test SetQuantityStudents  \n");
-            i.write("16->Test SetSubGroup  \n");
-            i.write("17->Exit  \n");
+        interactive = true;
 
-            option = i.readint();
+        try {
+            sc = new Scanner(new FileReader("./data/drivers/TheoryClassFile.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/testing/TheoryClassFile.out"),true)),true);
+        System.setOut(ps);
 
 
-            switch (option) {
+        if (!interactive) menu();
+
+        boolean eof = false;
+
+        do{
+
+            switch (sc.nextInt()) {
                 case 1:
                     testConstructor();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 2:
                     testConstructorFromStr();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 3:
                     testGetGroup();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 4:
                     testGetIdentifier();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 5:
                     testGetSubject();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 6:
                     testGetType();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 7:
                     testGetShift();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 8:
                     testGetQuantityStudents();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 9:
                     testGetSubGroup();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 10:
                     testToStr();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 11:
                     testSetGroup();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 12:
                     testSetIdentifier();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 13:
                     testSetSubject();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 14:
                     testSetShift();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 15:
                     testSetQuantityStudents();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 16:
                     testSetSubGroup();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
+                default:
+                    System.out.println("Input error!\n");
             }
+            if (!interactive) {
+                clearConsole();
+                menu();
+            }
+        } while (!eof && sc.hasNextInt());
+        ps.close();
+        sc.close();
+    }
+
+    private static void clearConsole() {
+        final String os = System.getProperty("os.name");
+
+        try {
+            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            else    Runtime.getRuntime().exec("clear");
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 }
