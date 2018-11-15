@@ -20,7 +20,6 @@ import org.json.simple.parser.ParseException;
 import src.domain.classes.*;
 import src.domain.utils.inout;
 
-import javax.xml.bind.ValidationEvent;
 
 import static java.nio.file.Files.readAllLines;
 

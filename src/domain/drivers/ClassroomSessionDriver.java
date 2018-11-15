@@ -38,17 +38,47 @@ public class ClassroomSessionDriver {
         ClassroomSet clSet = new ClassroomSet(arrC);
         classroomSession = new ClassroomSession(clSet);
     }
-    public static void testConstructorByCopy(){}
+    public static void testConstructorByCopy(){
+        ArrayList<Classroom> arrC = new ArrayList<>();
+        int quant = sc.nextInt();
+        for(int i = 0; i < quant; ++i) {
+            Vector<String> v = new Vector<> (5);
+            v.add(sc.next()); //name
+            v.add(sc.next()); //capacity
+            v.add(sc.next()); //type
+            v.add(sc.next()); //multimedia
+            v.add(v.get(2).equals("LABORATORY")?sc.next():"0"); //nComp
+            arrC.add(Classroom.fromStr(v));
+        }
+        ClassroomSet clSet = new ClassroomSet(arrC);
+        ClassroomSession clsess = new ClassroomSession(clSet);
+
+        classroomSession = new ClassroomSession(clsess);
+    }
     public static void testGetClassroomSessionSet(){
         ArrayList<UtilsDomain.Pair> clss = classroomSession.getClassroomSessionSet();
         for (UtilsDomain.Pair cls : clss) {
             Classroom c = (Classroom) cls.first;
             Session s = (Session) cls.second;
-            System.out.println(c.toStr() + " " + s.toStr());
+            printVector(c.toStr());
+            printVector(s.toStr());
         }
     }
     public static void testSetClassroomSessionSet(){
-
+        ArrayList<Classroom> arrC = new ArrayList<>();
+        int quant = sc.nextInt();
+        for(int i = 0; i < quant; ++i) {
+            Vector<String> v = new Vector<> (5);
+            v.add(sc.next()); //name
+            v.add(sc.next()); //capacity
+            v.add(sc.next()); //type
+            v.add(sc.next()); //multimedia
+            v.add(v.get(2).equals("LABORATORY")?sc.next():"0"); //nComp
+            arrC.add(Classroom.fromStr(v));
+        }
+        ClassroomSet clSet = new ClassroomSet(arrC);
+        ClassroomSession clsess = new ClassroomSession(clSet);
+        classroomSession.setClassroomSessionSet(clsess.getClassroomSessionSet());
     }
     public static void testGetPair(){
         UtilsDomain.Pair p = classroomSession.getPair(sc.nextInt());
@@ -56,8 +86,13 @@ public class ClassroomSessionDriver {
         Session s = (Session) p.second;
         System.out.println(c.toStr() + " " + s.toStr());
     }
-    public static void testSize(){}
-    public static void testDelete(){}
+    public static void testSize(){
+        System.out.println(String.valueOf(classroomSession.size()));
+    }
+    public static void testDelete(){
+        boolean b = classroomSession.delete(sc.nextInt());
+        if(!b) System.out.println("Incorrect index");
+    }
 
     public static void  main(String args[]) {
         classroomSession = new ClassroomSession();
