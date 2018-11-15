@@ -5,14 +5,14 @@ import src.domain.classes.LabClassroom;
 import src.domain.classes.TheoryClassroom;
 import src.domain.utils.UtilsDomain;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class TheoryClassroomDriver {
     private static TheoryClassroom theo;
     private static Scanner sc;
+    private static PrintStream ps;
     private static boolean fromFile = false;
 
     private static void writeClassroom(Classroom c){
@@ -89,7 +89,7 @@ public class TheoryClassroomDriver {
     }
 
 
-    public static void  main(String args[]) {
+    public static void  main(String args[]) throws FileNotFoundException {
         theo = new TheoryClassroom();
         if(args.length > 0) {
             fromFile = true;
@@ -99,11 +99,15 @@ public class TheoryClassroomDriver {
             }catch(FileNotFoundException e) {
                 e.printStackTrace();
             }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/testing/" + args[1]),true)),true);
+            System.setOut(ps);
         }
         else {
             sc = new Scanner(System.in);
         }
         if(!fromFile) write();
+        boolean eof = false;
         do{
             switch(sc.nextInt()) {
                 case 0:
@@ -144,7 +148,7 @@ public class TheoryClassroomDriver {
                     System.out.println("Input error\n");
             }
             if(!fromFile) write();
-        }while(sc.hasNextInt());
+        }while(!eof && sc.hasNextInt());
 
     }
 
