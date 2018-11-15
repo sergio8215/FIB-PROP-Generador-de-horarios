@@ -2,6 +2,7 @@ package src.presentation;
 
 import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
+import src.domain.utils.inout;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -41,7 +42,8 @@ public class CtrlPresenter {
                     }
                     opt = s.nextInt();
                     ctrlDomain.loadSchedule(opt);
-
+                    System.out.println("\n Please press one key to continue");
+                    System.in.read();
                 case 3:
                     end = !end;
                     break;
