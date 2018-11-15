@@ -12,8 +12,7 @@ import java.io.FileInputStream;
 import java.util.Vector;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+
 
 public class TheoryClassDriver {
 
@@ -190,9 +189,6 @@ public class TheoryClassDriver {
     }
 
     public static void main (String [] args) throws Exception {
-        FileInputStream is = new FileInputStream(new File("../../data/TheoryClassFile.txt"));
-        System.setIn(is);
-        Main.main(args);
 
         int option = 0;
 
