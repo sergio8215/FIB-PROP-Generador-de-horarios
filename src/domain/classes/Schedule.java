@@ -18,7 +18,7 @@ public class Schedule {
     //CONSTRUCTOR
 
     /**
-     * Basic schedule constructor
+     * Simple schedule constructor
      * @param classroomFile name of the file with the classroom information
      * @param subjectFile name of the file with the subject information
      */
@@ -27,6 +27,18 @@ public class Schedule {
         this.subjectFile = subjectFile;
         correct = true;
         timetable = new HashMap<String, ArrayList<MUS>>();
+    }
+
+    /**
+     * Basic schedule constructor
+     * @param classroomFile name of the file with the classroom information
+     * @param subjectFile name of the file with the subject information
+     * @param timetable HashMap with all the MUS values
+     */
+    public Schedule(String classroomFile, String subjectFile, HashMap<String, ArrayList<MUS>> timetable) {
+        this.classroomFile = classroomFile;
+        this.subjectFile = subjectFile;
+        this.timetable = timetable;
     }
 
     /**

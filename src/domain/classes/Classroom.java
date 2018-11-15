@@ -151,7 +151,6 @@ public abstract class Classroom {
         vec.add(String.valueOf(capacity));
         vec.add(type.toString());
         vec.add((multimedia?"true":"false"));
-        vec.add("0");
         return vec;
     }
 }

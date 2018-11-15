@@ -31,9 +31,9 @@ public class CtrlPresenter {
                     break;
 
                 case 2:
-                    Vector<String> v = ctrlDomain.listSchedulerFiles();
+                   // Vector<String> v = ctrlDomain.listSchedulerFiles();
 
-                    ctrlDomain.loadSchedul();
+                    //ctrlDomain.loadSchedul();
                 case 3:
                     end = !end;
                     break;

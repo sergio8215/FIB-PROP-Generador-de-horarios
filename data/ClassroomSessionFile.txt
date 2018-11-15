@@ -1,0 +1,16 @@
+0
+2
+A5S102 20 LABORATORY true 17
+A6201 55 THEORY false
+
+4
+0
+
+4
+30
+
+4
+60
+
+4
+110

@@ -46,6 +46,8 @@ public class TheoryClassroom extends Classroom {
      */
     @Override
     public Vector<String> toStr() {
-        return super.toStr();
+        Vector<String> vec = super.toStr();
+        vec.add("0");
+        return vec;
     }
 }
