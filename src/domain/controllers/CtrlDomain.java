@@ -159,4 +159,11 @@ public class CtrlDomain {
 
         dManager.saveSchedule(newFileName, schedule);
     }
+
+    public ArrayList<String> listScheduleFiles(){
+        return dManager.listScheduleFiles();
+    }
+    public void loadSchedule(int fileNum){
+        schedule = dManager.loadSchedule(fileNum);
+    }
 }

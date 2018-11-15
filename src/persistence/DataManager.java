@@ -5,18 +5,25 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import src.domain.classes.MUS;
 import src.domain.classes.Schedule;
+import src.domain.utils.inout;
+
+import javax.xml.bind.ValidationEvent;
+
+import static java.nio.file.Files.readAllLines;
 
 /**
  *
@@ -139,11 +146,62 @@ public class DataManager {
         return subjects;
     }
 
-    public void loadSchedule(  ) {
+    public Schedule loadSchedule( int fileNum ) throws IOException {
+
+        Schedule schedule = null;
+
+        ArrayList<String> fileList = listScheduleFiles();
+        Path file = Paths.get("./data/load/"+ fileList.get(fileNum));
+
+        List<String> stringSchedule = Files.readAllLines(file, Charset.forName("UTF-8"));
+        String classroomFile = stringSchedule.get(0);
+        String subjectFile = stringSchedule.get(1);
+        boolean correct = Boolean.valueOf(stringSchedule.get(0));
+        HashMap<String, ArrayList<MUS> > timetable;
+
+
+        for( int i = 4; i < stringSchedule.size(); i++ ){
+
+            String[] separated = line.split("*");
+
+        }
+
+
+
+
+
+        return schedule;
+
+
+
+
+
 
     }
 
-    public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
+    public ArrayList<String> listScheduleFiles() {
+        inout i = new inout();
+
+        ArrayList<String> myFiles = new ArrayList<String>();
+        Path dir = Paths.get("./data/load/");
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+
+            for (Path entry : stream) {
+                myFiles.add(entry.toString());
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            myFiles = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            myFiles = null;
+        }
+        return myFiles;
+    }
+
+        public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
 
         Path file = Paths.get("./data/load/"+fileName);
 
@@ -151,17 +209,16 @@ public class DataManager {
 
         lines.add(schedule.getClassroomFile());
         lines.add(schedule.getSubjectFile());
-        lines.add("true");
+        lines.add("true"); // "correct" variable, it's not necessary to save
 
         // I get an array list of MUS's
         for ( MUS mus: schedule.unset() ){
 
             // For each mus I pass all his attributes to string
-            lines.add(mus.getClassClass().getSubject().getName());
 
             Vector< Vector<String> > musAttributes;
             musAttributes = mus.toStr();
-            String result = "";
+            String result;
 
             // for each attribute of the MUS
             for (Vector<String> eachAttribute : musAttributes ) {
@@ -169,11 +226,10 @@ public class DataManager {
                 result = "";
 
                 for (String objectAttribute : eachAttribute ){
-                    result = result + objectAttribute +"**";
+                    result = result + objectAttribute +"*";
                 }
                 lines.add(result);
-            }
-            lines.add("$$");
+
         }
 
         Files.write(file, lines, Charset.forName("UTF-8"));
