@@ -168,6 +168,19 @@ public class Schedule {
     }
 
     /**
+     * Returns the size of the timetable attribute
+     * @return returns the size of the timetable attribute
+     */
+    public int size(){
+        int sum = 0;
+        ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
+        for (ArrayList<MUS> subArr : musArray) {
+            sum += subArr.size();
+        }
+        return sum;
+    }
+
+    /**
      * Adds(and sorts) a MUS Object to the timetable attributed
      * @param mus MUS Object we need to add
      */
@@ -216,12 +229,6 @@ public class Schedule {
      */
     public boolean valid(){
         /*
-        ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
-
-        ArrayList<MUS> arrMUS = new ArrayList<>();
-        for (ArrayList<MUS> subArr : musArray) {
-            arrMUS.addAll(subArr);
-        }
 
         for(int i = 0; i < arrMUS.size();++i) {
             for (int j = i+1; j < arrMUS.size(); ++j) {

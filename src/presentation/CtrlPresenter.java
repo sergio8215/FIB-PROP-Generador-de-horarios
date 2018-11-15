@@ -111,7 +111,7 @@ public class CtrlPresenter {
         System.out.println("1. \n");
         System.out.println("\n Do you want to continue with the schedule generation? [S/N]");
 
-        switch (s.next()) {
+        switch (s.next().toUpperCase()) {
             case "S":
                 Schedule schedule = ctrlDomain.generateSchedule();
 
