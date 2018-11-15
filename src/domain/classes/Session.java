@@ -103,7 +103,6 @@ public class Session {
         if (op.equals("!="))    return s1.getDay().ordinal() != s2.getDay().ordinal() || s1.getHour() != s2.getHour();
         if (op.equals("=="))    return s1.getDay().ordinal() == s2.getDay().ordinal() && s1.getHour() == s2.getHour();
 
-
         return false;
     }
 }

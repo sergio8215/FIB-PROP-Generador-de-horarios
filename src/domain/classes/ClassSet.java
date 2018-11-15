@@ -117,10 +117,10 @@ public class ClassSet {
                     }
                 } else if( subject.getTypeShift().ordinal() == 1 ){
                     // We assign morning shift
-                    shiftA = allShift[0];
+                    shiftA = allShift[1];
                 } else {
                     // We assign afternoon shift
-                    shiftA = allShift[1];
+                    shiftA = allShift[0];
                 }
 
                 // If there is TheoryHours we create the class
