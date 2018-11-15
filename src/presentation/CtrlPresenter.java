@@ -3,6 +3,7 @@ package src.presentation;
 import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -31,9 +32,17 @@ public class CtrlPresenter {
                     break;
 
                 case 2:
-                   // Vector<String> v = ctrlDomain.listSchedulerFiles();
+                    ArrayList<String> filesList = ctrlDomain.listScheduleFiles();
+                    System.out.println("Please input the number of one saved files: ");
+                    int i = 0;
+                    for (String f : filesList ){
+                        System.out.println(i+". "+f);
+                        i++;
+                    }
+                    opt = s.nextInt();
+                    ctrlDomain.loadSchedule(opt);
 
-                    //ctrlDomain.loadSchedul();
+                    ctrlDomain.loadSchedul();
                 case 3:
                     end = !end;
                     break;

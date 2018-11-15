@@ -10,6 +10,7 @@ import src.persistence.DataManager;
 import src.domain.utils.UtilsDomain;
 import src.presentation.CtrlPresenter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Vector;
@@ -158,5 +159,12 @@ public class CtrlDomain {
     public void saveSchedule( String newFileName, Schedule schedule ) throws Exception {
 
         dManager.saveSchedule(newFileName, schedule);
+    }
+
+    public ArrayList<String> listScheduleFiles(){
+        return dManager.listScheduleFiles();
+    }
+    public void loadSchedule(int fileNum) throws IOException {
+        schedule = dManager.loadSchedule(fileNum);
     }
 }
