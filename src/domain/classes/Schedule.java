@@ -136,16 +136,13 @@ public class Schedule {
      * Binary search algorithm to find mus on an ArrayList
      * @param v ArrayList which contains(or not) the MUS Object
      * @param mus MUS Object to find
-     * @param low low index
-     * @param high high index
      * @return returns the index of the MUS Object, or -1 if it doesn't exists
      */
-    private int findPosition(ArrayList<MUS> v, MUS mus, int low, int high) {
-        if(high < low) return -1;
-        int mid = (low + high) / 2;
-        if(Session.compare(v.get(mid).getSession(), ">", mus.getSession())) return findPosition(v, mus, low, mid-1);
-        else if(Session.compare(v.get(mid).getSession(), "<", mus.getSession())) return findPosition(v, mus, mid+1, high);
-        else return mid;
+    private int findPosition(ArrayList<MUS> v, MUS mus) {
+        for(int i = 0; i < v.size(); ++i) {
+            if(v.get(i) == mus) return i;
+        }
+        return -1;
     }
 
     //PUBLIC METHODS
@@ -169,6 +166,7 @@ public class Schedule {
             timetable.put(mus.getSubject().getName(), values);
             values.add(mus);
         }
+        else if(values.size() == 0) values.add(mus);
         else addOrdered(values, mus);
     }
 
@@ -180,7 +178,7 @@ public class Schedule {
     public boolean delete(MUS mus){
         //TODO: comprovar que no funciona pel mus, no per altres merdes
         ArrayList<MUS> a = timetable.get(mus.getSubject().getName());
-        int index = findPosition(a, mus, 0, a.size()-1);
+        int index = findPosition(a, mus);
         if (index == -1) return false;
         else {
             a.remove(index);
@@ -193,6 +191,7 @@ public class Schedule {
      * @return
      */
     public boolean valid(){
+        /*
         ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
 
         ArrayList<MUS> arrMUS = new ArrayList<>();
@@ -202,14 +201,31 @@ public class Schedule {
 
         for(int i = 0; i < arrMUS.size();++i) {
             for (int j = i+1; j < arrMUS.size(); ++j) {
-                if(!(Constraints.theoryAndLabsOfClassNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j)))
+                if(!(Constraints.theoryAndLabsOfClassNoTogether(arrMUS.get(i), arrMUS.get(j)))
                 ) return false;
+            }
+        }
+        return true;
+        */
+        ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
+        ArrayList<MUS> arrMUS = new ArrayList<>();
+        for (ArrayList<MUS> subArr : musArray) {
+            arrMUS.addAll(subArr);
+        }
+
+        for(int i = 0; i < arrMUS.size();++i) {
+            for (int j = i+1; j < arrMUS.size(); ++j) {
+                if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j)))) return false;
             }
         }
         return true;
     }
 
+
+/**
+ &&
+ Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+ Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+ Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))
+ */
 }

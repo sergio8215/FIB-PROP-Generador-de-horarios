@@ -17,8 +17,8 @@ public class Constraints {
     }
 
     public static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        if (m.getClassClass().getShift().ordinal() == 0 ) return cs.second.getHour() < 14;
-        else if (m.getClassClass().getShift().ordinal() == 1 ) return cs.second.getHour() >= 14;
+        if (m.getClassClass().getShift() == typeShift.MORNING ) return cs.second.getHour() < 14;
+        else if (m.getClassClass().getShift() == typeShift.AFTERNOON ) return cs.second.getHour() >= 14;
         return true;
     }
 
@@ -27,10 +27,19 @@ public class Constraints {
 
     // N-ARY CONSTRAINTS
 
+    public static boolean notSameClassroomAndSession(MUS m1, MUS m2) {
+        if((m1.getSession().getDay() == m1.getSession().getDay()) &&
+           (m1.getSession().getHour() == m2.getSession().getHour()) &&
+           (m1.getClassroom().getName().equals(m2.getClassroom().getName())))
+            return false;
+        return true;
+    }
+
     public static boolean theoryAndLabsOfClassNoTogether(MUS m1, MUS m2) {
         // Si m1 de un tipo(t/p/l) igual que el tipo de m2 (t/p/l) y en la misma sesion => false
         if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
-                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
+                m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
+                m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;

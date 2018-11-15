@@ -10,9 +10,9 @@
 		{
 			"Classroom":"A6202",
 			"Quantity":"50",
-			"Type": "THEORY",
+			"Type": "LABORATORY",
 			"Audiovisual": "true",
-			"Num_computers": "0"
+			"Num_computers": "10"
 		},
 		{
 			"Classroom":"A6203",

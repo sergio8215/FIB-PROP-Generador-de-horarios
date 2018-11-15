@@ -26,7 +26,7 @@ public class CtrlPresenter {
             switch (opt){
                 case 1:
                     scheduleGeneration();
-                    clearConsole();
+                    //clearConsole();
                     break;
 
                 case 2:
@@ -43,7 +43,7 @@ public class CtrlPresenter {
                     break;
 
                 default:
-                    clearConsole();
+                    //clearConsole();
                     System.out.println("Input error. Try it again!");
                     mainMenu();
                     opt = s.nextInt();
@@ -91,7 +91,7 @@ public class CtrlPresenter {
 
             if (subjectsFile < numFilesSubjects && classromsFile < numFilesClassroms)   inputCorrect = true;
             else {
-                clearConsole();
+                //clearConsole();
                 System.out.println("Input error. Try it again. \n");
                 s.nextLine();
                 scheduleGenerationMenu();
@@ -109,7 +109,7 @@ public class CtrlPresenter {
 
         switch (s.next()) {
             case "S":
-                Schedule schedule = ctrlDomain.generateSchedule(); // FALTA SCHEDULE DE RETORNO
+                Schedule schedule = ctrlDomain.generateSchedule();
 
                 break;
 
