@@ -93,11 +93,11 @@ public final class SubjectsSet {
      */
     public UtilsDomain.ResoultOfQuery<Subject> getSubject(String name) {
         UtilsDomain.ResoultOfQuery<Subject> res = new UtilsDomain.ResoultOfQuery<>();
-        res.resoult = new Subject();
+        res.result = new Subject();
         res.queryTest = false;
 
         if (set.containsKey(name)){
-            res.resoult = set.get(name);
+            res.result = set.get(name);
             res.queryTest = !res.queryTest;
         }
 

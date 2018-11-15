@@ -4,7 +4,13 @@ package src.persistence;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import src.domain.classes.Schedule;
 
 /**
  *
@@ -34,7 +41,7 @@ public class DataManager {
         Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
         try {
 
-            Object obj = parser.parse(new FileReader("./data/" + fileName ));
+            Object obj = parser.parse(new FileReader("./data/import/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
@@ -81,7 +88,7 @@ public class DataManager {
         Vector <Vector< String>> subjects = new Vector <Vector< String>>();
 
         try {
-            Object obj = parser.parse(new FileReader("./data/" + fileName ));
+            Object obj = parser.parse(new FileReader("./data/import/" + fileName ));
             JSONObject rootJSON = (JSONObject) obj;
 
             String  subject;
@@ -138,8 +145,16 @@ public class DataManager {
 
     }
 
-    public void saveSchedule(  ) {
+    public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
+        String classroomFile;
+        String subjectFile;
+        boolean correct = true;
+        String subjectName;
 
+        List<String> lines = Arrays.asList("The first line", "The second line");
+        Path file = Paths.get("./data/load/"+fileName);
+        Files.write(file, lines, Charset.forName("UTF-8"));
+        //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
 }
 
