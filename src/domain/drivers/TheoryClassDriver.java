@@ -218,12 +218,12 @@ public class TheoryClassDriver {
         interactive = true;
 
         try {
-            sc = new Scanner(new FileReader("./data/drivers/TheoryClassFile.txt"));
+            sc = new Scanner(new FileReader("./data/drivers/in/TheoryClassFile.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/testing/TheoryClassFile.out"),true)),true);
+        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/TheoryClassFile.out"),false)),true);
         System.setOut(ps);
 
 
