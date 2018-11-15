@@ -149,12 +149,12 @@ public class SubjectDriver {
             interactive = true;
 
             try {
-                sc = new Scanner(new FileReader("./data/testing/" + args[0]));
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
-            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File(args[1]),true)),true);
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),true)),true);
             System.setOut(ps);
 
         } else {
