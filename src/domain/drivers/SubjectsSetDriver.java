@@ -31,7 +31,7 @@ public class SubjectsSetDriver {
             int[] numberOfGroups = new int[2];
             numberOfGroups[0] = sc.nextInt();
             numberOfGroups[1] = sc.nextInt();
-            UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.values()[sc.nextInt()];
+            UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.valueOf(sc.next());
 
             sa.add(i, new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift));
         }
@@ -84,7 +84,7 @@ public class SubjectsSetDriver {
             int[] numberOfGroups = new int[2];
             numberOfGroups[0] = sc.nextInt();
             numberOfGroups[1] = sc.nextInt();
-            UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.values()[sc.nextInt()];
+            UtilsDomain.typeShift tyShift = UtilsDomain.typeShift.valueOf(sc.next());
 
             sa.add(i, new Subject(name, numberStudents, level, hoursClasses, numberOfGroups, tyShift));
         }
@@ -231,7 +231,7 @@ public class SubjectsSetDriver {
             subjectsArray.add(new Subject(v));
         }
 
-        SubjectsSet.subjectsSort(subjectsArray);
+        subjectsArray = SubjectsSet.subjectsSort(subjectsArray);
 
         for (Subject s : subjectsArray) {
             Vector<String> v = s.toStr();
