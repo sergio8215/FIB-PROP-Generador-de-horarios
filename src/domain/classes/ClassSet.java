@@ -47,7 +47,7 @@ public class ClassSet {
      * @param classS Vector of vector with one class at each row
      */
     public ClassSet( Vector< Vector<String> > classS ){
-
+        classSet = new HashMap<>();
         for (Vector<String> classClass: classS) {
             ClassClass auxClass = ClassClass.fromStr(classClass);
             this.addClass(auxClass.getIdentifier(), auxClass);

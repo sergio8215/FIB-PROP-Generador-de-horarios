@@ -218,7 +218,7 @@ public class TheoryClassDriver {
         interactive = true;
 
         try {
-            sc = new Scanner(new FileReader("./data/drivers/in/TheoryClassFile.txt"));
+            sc = new Scanner(new FileReader("./data/drivers/in/TheoryClassFile.in"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

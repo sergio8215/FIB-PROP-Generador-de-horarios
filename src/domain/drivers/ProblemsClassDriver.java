@@ -217,7 +217,7 @@ public class ProblemsClassDriver {
         interactive = true;
 
         try {
-            sc = new Scanner(new FileReader("./data/drivers/in/ProblemsClassFile.txt"));
+            sc = new Scanner(new FileReader("./data/drivers/in/ProblemsClassFile.in"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

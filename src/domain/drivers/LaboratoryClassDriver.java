@@ -218,7 +218,7 @@ public class LaboratoryClassDriver {
         interactive = true;
 
         try {
-            sc = new Scanner(new FileReader("./data/drivers/in/LaboratoryClassFile.txt"));
+            sc = new Scanner(new FileReader("./data/drivers/in/LaboratoryClassFile.in"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -2,16 +2,19 @@ package src.domain.drivers;
 
 import src.domain.classes.*;
 import src.domain.utils.UtilsDomain;
-import src.domain.utils.inout;
 
-import java.lang.reflect.Array;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class ClassSetDriver {
 
     private static ClassSet cSet;
-    private static inout i = new inout();
+
+    private static Scanner sc = new Scanner(System.in);
+    private static PrintStream ps;
+    private static boolean interactive = false;
 
     public static void testConstructorSubjects( ) throws Exception{
         String subjectName;
@@ -26,40 +29,37 @@ public class ClassSetDriver {
 
         while ( exit != 1 ) {
 
-            i.write("Subject Name: ");
-            subjectName = i.readword();
-            i.write("Num_students: ");
-            num_students = i.readint();
-            i.write("Level: ");
-            level = i.readint();
-            i.write("Theory_hours: ");
-            hoursClasses[0] = i.readint();
-            i.write("Laboratory_hours: ");
-            hoursClasses[1] = i.readint();
-            i.write("Problems_hours: ");
-            hoursClasses[2] = i.readint();
-            i.write("Number of groups: ");
-            numberOfGroups[0] = i.readint();
-            i.write("Number of Subgroups: ");
-            numberOfGroups[1] = i.readint();
-            i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-            shiftSubj = UtilsDomain.typeShift.values()[i.readint()];
+            //Subject Name
+            subjectName = sc.next();
+            //Num_students
+            num_students = sc.nextInt();
+            //Level
+            level = sc.nextInt();
+            //Theory_hours
+            hoursClasses[0] = sc.nextInt();
+            //Laboratory_hours
+            hoursClasses[1] = sc.nextInt();
+            //Problems_hours
+            hoursClasses[2] = sc.nextInt();
+            //Number of groups
+            numberOfGroups[0] = sc.nextInt();
+            //Number of Subgroups
+            numberOfGroups[1] = sc.nextInt();
+            //Shift 0.Morning, 1.Afternoon, 2.Both
+            shiftSubj = UtilsDomain.typeShift.valueOf(sc.next());
 
             subjectsArray.add(new Subject(subjectName, num_students, level, hoursClasses, numberOfGroups, shiftSubj));
 
-            i.write("Press 1 to add another subject: ");
-            exit = i.readint();
+            exit = sc.nextInt();
         }
 
         cSet = new ClassSet( new SubjectsSet(subjectsArray) );
-        i.write("Set of Classes created successfully");
-        i.writeln("\n Please press one key to continue");
-        System.in.read();
+
     }
 
     public static void testConstructorFromStr( ) throws Exception{
-        i.write("Quantity of Classes: ");
-        int size = i.readint();
+
+        int size = sc.nextInt();
         Vector<Vector <String>> myMatrix = new Vector<>(size);
 
         int ii = 0;
@@ -68,61 +68,60 @@ public class ClassSetDriver {
 
             Vector<String> myVector = new Vector<>(15);
 
-            i.write("ID: ");
-            myVector.add(i.readword());
-            i.write("Group: ");
-            myVector.add(i.readword());
-            i.write("subGroup: ");
-            myVector.add(i.readword());
-            i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
-            myVector.add(i.readword());
-            i.write("Type of group 0.Morning, 1.Afternoon: ");
-            myVector.add(i.readword());
-            i.write("Quantity students: ");
-            myVector.add(i.readword());
+            //ID
+            myVector.add(sc.next());
+            //Group
+            myVector.add(sc.next());
+            //subGroup
+            myVector.add(sc.next());
+            //Type of group 0.Theory, 1.Lab, 2.Problems
+            myVector.add(sc.next());
+            //Type of group 0.Morning, 1.Afternoon
+            myVector.add(sc.next());
+            //Quantity students
+            myVector.add(sc.next());
 
-            i.write("Subject Name: ");
-            myVector.add(i.readword());
-            i.write("Num_students: ");
-            myVector.add(i.readword());
-            i.write("Level: ");
-            myVector.add(i.readword());
-            i.write("Theory_hours: ");
-            myVector.add(i.readword());
-            i.write("Laboratory_hours: ");
-            myVector.add(i.readword());
-            i.write("Problems_hours: ");
-            myVector.add(i.readword());
-            i.write("Number of groups: ");
-            myVector.add(i.readword());
-            i.write("Number of Subgroups: ");
-            myVector.add(i.readword());
-            i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-            myVector.add(i.readword());
+            //Subject Name
+            myVector.add(sc.next());
+            //Num_students
+            myVector.add(sc.next());
+            //Level
+            myVector.add(sc.next());
+            //Theory_hours
+            myVector.add(sc.next());
+            //Laboratory_hours
+            myVector.add(sc.next());
+            //Problems_hours
+            myVector.add(sc.next());
+            //Number of groups
+            myVector.add(sc.next());
+            //Number of Subgroups
+            myVector.add(sc.next());
+            //Shift 0.Morning, 1.Afternoon, 2.Both
+            myVector.add(sc.next());
 
             myMatrix.add(ii, myVector);
 
         }
         cSet = new ClassSet(myMatrix);
-        i.write("Set of Classes created successfully");
-        i.writeln("\n Please press one key to continue");
-        System.in.read();
     }
 
 
-    public static void testExistsClass( ) throws Exception{ i.write(cSet.existsClass( i.readword(), i.readint())); }
-    public static void testGetClass( ) throws Exception{
-        ClassClass myClass = cSet.getClass(i.readword(), i.readint());
-        i.write("ID: "+myClass.getIdentifier()+", ");
-        i.write("Group: "+ myClass.getGroup()+", ");
-        i.write("SubGroup: "+myClass.getSubGroup()+", ");
-        i.write("Quantity Stud: "+myClass.getQuantityStudents()+", ");
-        i.write("Type: "+myClass.getType().toString()+", ");
-        i.write("Shift: "+myClass.getShift().toString()+", ");
-        i.write("Subject name:"+myClass.getSubject().getName());
+    public static void testExistsClass( ){ System.out.println(Boolean.valueOf(cSet.existsClass( sc.next(), sc.nextInt()))); }
+    public static void testGetClass( ) {
+        ClassClass myClass = cSet.getClass(sc.next(), sc.nextInt());
+        System.out.println(myClass.toStr());
+
+        /*System.out.print("ID: "+myClass.getIdentifier()+", ");
+        System.out.print("Group: "+ myClass.getGroup()+", ");
+        System.out.print("SubGroup: "+myClass.getSubGroup()+", ");
+        System.out.print("Quantity Stud: "+myClass.getQuantityStudents()+", ");
+        System.out.print("Type: "+myClass.getType().toString()+", ");
+        System.out.print("Shift: "+myClass.getShift().toString()+", ");
+        System.out.print("Subject name:"+myClass.getSubject().getName());*/
 
     }
-    public static void testAddClass( ) throws Exception{
+    public static void testAddClass( ){
 
         String identifier;
         int group;
@@ -138,37 +137,37 @@ public class ClassSetDriver {
         int[] numberOfGroups = new int[2];
         UtilsDomain.typeShift shiftSubj;
 
-        i.write("ID: ");
-        identifier = i.readword();
-        i.write("Group: ");
-        group = i.readint();
-        i.write("subGroup: ");
-        subGroup = i.readint();
-        i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
-        typeG = UtilsDomain.ClassType.values()[i.readint()];
-        i.write("Shift of group 0.Morning, 1.Afternoon: ");
-        shift = UtilsDomain.typeShift.values()[i.readint()];
-        i.write("Quantity students: ");
-        quantityStudents = i.readint();
+        //ID
+        identifier = sc.next();
+        //Group
+        group = sc.nextInt();
+        //subGroup
+        subGroup = sc.nextInt();
+        //Type of group 0.Theory, 1.Lab, 2.Problems
+        typeG = UtilsDomain.ClassType.valueOf(sc.next());
+        //Shift of group 0.Morning, 1.Afternoon
+        shift = UtilsDomain.typeShift.valueOf(sc.next());
+        //Quantity students
+        quantityStudents = sc.nextInt();
 
-        i.write("Subject Name: ");
-        subjectName = i.readword();
-        i.write("Num_students: ");
-        num_students = i.readint();
-        i.write("Level: ");
-        level = i.readint();
-        i.write("Theory_hours: ");
-        hoursClasses[0] = i.readint();
-        i.write("Laboratory_hours: ");
-        hoursClasses[1] = i.readint();
-        i.write("Problems_hours: ");
-        hoursClasses[2] = i.readint();
-        i.write("Number of groups: ");
-        numberOfGroups[0] = i.readint();
-        i.write("Number of Subgroups: ");
-        numberOfGroups[1] = i.readint();
-        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-        shiftSubj = UtilsDomain.typeShift.values()[i.readint()];
+        //Subject Name
+        subjectName = sc.next();
+        //Num_students
+        num_students = sc.nextInt();
+        //Level
+        level = sc.nextInt();
+        //Theory_hours
+        hoursClasses[0] = sc.nextInt();
+        //Laboratory_hours
+        hoursClasses[1] = sc.nextInt();
+        //Problems_hours
+        hoursClasses[2] = sc.nextInt();
+        //Number of groups
+        numberOfGroups[0] = sc.nextInt();
+        //Number of Subgroups
+        numberOfGroups[1] = sc.nextInt();
+        //Shift 0.Morning, 1.Afternoon, 2.Both
+        shiftSubj = UtilsDomain.typeShift.valueOf(sc.next());
 
         Subject subject = new Subject(subjectName, num_students, level, hoursClasses, numberOfGroups, shiftSubj);
 
@@ -191,16 +190,15 @@ public class ClassSetDriver {
         }
 
         cSet.addClass( identifier, auxClass );
-
-        i.write("Class added to the SetClass. New set size = "+ cSet.size());
     }
 
     public static void testUnset() throws Exception{
         ArrayList<ClassClass> classArray = cSet.unset();
         for (int ii = 0; ii<classArray.size(); ii++) {
             // Print the name of each subject
-            i.write(classArray.get(ii).getSubject().getName()+ ", ");
+            System.out.print(classArray.get(ii).getSubject().getName()+ ", ");
         }
+        System.out.println("\n");
     }
 
     public static void testCompare() throws Exception{
@@ -219,37 +217,37 @@ public class ClassSetDriver {
         int[] numberOfGroups = new int[2];
         UtilsDomain.typeShift shiftSubj;
 
-        i.write("ID: ");
-        identifier = i.readword();
-        i.write("Group: ");
-        group = i.readint();
-        i.write("subGroup: ");
-        subGroup = i.readint();
-        i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
-        typeG = UtilsDomain.ClassType.values()[i.readint()];
-        i.write("Shift of group 0.Morning, 1.Afternoon: ");
-        shift = UtilsDomain.typeShift.values()[i.readint()];
-        i.write("Quantity students: ");
-        quantityStudents = i.readint();
+        //ID
+        identifier = sc.next();
+        //Group
+        group = sc.nextInt();
+        //subGroup
+        subGroup = sc.nextInt();
+        //Type of group 0.Theory, 1.Lab, 2.Problems
+        typeG = UtilsDomain.ClassType.valueOf(sc.next());
+        //Shift of group 0.Morning, 1.Afternoon
+        shift = UtilsDomain.typeShift.valueOf(sc.next());
+        //Quantity students
+        quantityStudents = sc.nextInt();
 
-        i.write("Subject Name: ");
-        subjectName = i.readword();
-        i.write("Num_students: ");
-        num_students = i.readint();
-        i.write("Level: ");
-        level = i.readint();
-        i.write("Theory_hours: ");
-        hoursClasses[0] = i.readint();
-        i.write("Laboratory_hours: ");
-        hoursClasses[1] = i.readint();
-        i.write("Problems_hours: ");
-        hoursClasses[2] = i.readint();
-        i.write("Number of groups: ");
-        numberOfGroups[0] = i.readint();
-        i.write("Number of Subgroups: ");
-        numberOfGroups[1] = i.readint();
-        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-        shiftSubj = UtilsDomain.typeShift.values()[i.readint()];
+        //Subject Name
+        subjectName = sc.next();
+        //Num_students
+        num_students = sc.nextInt();
+        //Level
+        level = sc.nextInt();
+        //Theory_hours
+        hoursClasses[0] = sc.nextInt();
+        //Laboratory_hours
+        hoursClasses[1] = sc.nextInt();
+        //Problems_hours
+        hoursClasses[2] = sc.nextInt();
+        //Number of groups
+        numberOfGroups[0] = sc.nextInt();
+        //Number of Subgroups
+        numberOfGroups[1] = sc.nextInt();
+        //Shift 0.Morning, 1.Afternoon, 2.Both
+        shiftSubj = UtilsDomain.typeShift.valueOf(sc.next());
 
         Subject subject = new Subject(subjectName, num_students, level, hoursClasses, numberOfGroups, shiftSubj);
 
@@ -271,40 +269,40 @@ public class ClassSetDriver {
                 break;
         }
 
-        i.write("Operator: ");
-        String op = i.readword();
+        //Operator
+        String op = sc.next();
 
-        i.write("ID: ");
-        identifier = i.readword();
-        i.write("Group: ");
-        group = i.readint();
-        i.write("subGroup: ");
-        subGroup = i.readint();
-        i.write("Type of group 0.Theory, 1.Lab, 2.Problems: ");
-        typeG = UtilsDomain.ClassType.values()[i.readint()];
-        i.write("Shift of group 0.Morning, 1.Afternoon: ");
-        shift = UtilsDomain.typeShift.values()[i.readint()];
-        i.write("Quantity students: ");
-        quantityStudents = i.readint();
+        //ID
+        identifier = sc.next();
+        //Group
+        group = sc.nextInt();
+        //subGroup
+        subGroup = sc.nextInt();
+        //Type of group 0.Theory, 1.Lab, 2.Problems
+        typeG = UtilsDomain.ClassType.valueOf(sc.next());
+        //Shift of group 0.Morning, 1.Afternoon
+        shift = UtilsDomain.typeShift.valueOf(sc.next());
+        //Quantity students
+        quantityStudents = sc.nextInt();
 
-        i.write("Subject Name: ");
-        subjectName = i.readword();
-        i.write("Num_students: ");
-        num_students = i.readint();
-        i.write("Level: ");
-        level = i.readint();
-        i.write("Theory_hours: ");
-        hoursClasses[0] = i.readint();
-        i.write("Laboratory_hours: ");
-        hoursClasses[1] = i.readint();
-        i.write("Problems_hours: ");
-        hoursClasses[2] = i.readint();
-        i.write("Number of groups: ");
-        numberOfGroups[0] = i.readint();
-        i.write("Number of Subgroups: ");
-        numberOfGroups[1] = i.readint();
-        i.write("Shift 0.Morning, 1.Afternoon, 2.Both ");
-        shiftSubj = UtilsDomain.typeShift.values()[i.readint()];
+        //Subject Name
+        subjectName = sc.next();
+        //Num_students
+        num_students = sc.nextInt();
+        //Level
+        level = sc.nextInt();
+        //Theory_hours
+        hoursClasses[0] = sc.nextInt();
+        //Laboratory_hours
+        hoursClasses[1] = sc.nextInt();
+        //Problems_hours
+        hoursClasses[2] = sc.nextInt();
+        //Number of groups
+        numberOfGroups[0] = sc.nextInt();
+        //Number of Subgroups
+        numberOfGroups[1] = sc.nextInt();
+        //Shift 0.Morning, 1.Afternoon, 2.Both
+        shiftSubj = UtilsDomain.typeShift.valueOf(sc.next());
 
         Subject subject2 = new Subject(subjectName, num_students, level, hoursClasses, numberOfGroups, shiftSubj);
 
@@ -327,7 +325,7 @@ public class ClassSetDriver {
         }
 
 
-        i.write( ClassSet.compare(s1, op, s2));
+        System.out.println( ClassSet.compare(s1, op, s2));
 
     }
 
@@ -336,76 +334,91 @@ public class ClassSetDriver {
         Vector< Vector<String> > myStringVector = cSet.toStr();
         for( Vector<String> c: myStringVector ){
             for (String r: c){
-                i.write(r+", ");
+                System.out.print(r+", ");
             }
-            i.writeln("\n");
+            System.out.println("\n");
         }
     }
-
+    public static void menu(){
+        System.out.print("------------------------------------------ \n");
+        System.out.print("------------------MENU-------------------- \n");
+        System.out.print("------------------------------------------ \n");
+        System.out.print("1 ->Test ConstructorSubjects \n");
+        System.out.print("2 ->Test ConstructorFromStr \n");
+        System.out.print("3 ->Test ExistsClass \n");
+        System.out.print("4 ->Test GetClass \n");
+        System.out.print("5 ->Test AddClass \n");
+        System.out.print("6 ->Test Unset \n");
+        System.out.print("7 ->Test Compare \n");
+        System.out.print("8 ->Test ToStr \n");
+        System.out.print("9 ->Exit  \n");
+    }
     public static void main (String [] args) throws Exception {
 
-        int option = 0;
+        interactive = true;
 
-        while( option != 9) {
+        try {
+            sc = new Scanner(new FileReader("./data/drivers/in/ClassSetFile.in"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-            i.write("------------------------------------------ \n");
-            i.write("------------------MENU-------------------- \n");
-            i.write("------------------------------------------ \n");
-            i.write("1 ->Test ConstructorSubjects \n");
-            i.write("2 ->Test ConstructorFromStr \n");
-            i.write("3 ->Test ExistsClass \n");
-            i.write("4 ->Test GetClass \n");
-            i.write("5 ->Test AddClass \n");
-            i.write("6 ->Test Unset \n");
-            i.write("7 ->Test Compare \n");
-            i.write("8 ->Test ToStr \n");
-            i.write("9 ->Exit  \n");
-
-            option = i.readint();
+        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/ClassSetFile.out"),false)),true);
+        System.setOut(ps);
 
 
-            switch (option) {
+        if (!interactive) menu();
+
+        boolean eof = false;
+
+        do{
+
+            switch (sc.nextInt()) {
                 case 1:
                     testConstructorSubjects();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 2:
                     testConstructorFromStr();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 3:
                     testExistsClass();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 4:
                     testGetClass();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 5:
                     testAddClass();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 6:
                     testUnset();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 7:
                     testCompare();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 8:
                     testToStr();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
+                default:
+                    System.out.println("Input error!\n");
             }
+            if (!interactive) {
+                clearConsole();
+                menu();
+            }
+        } while (!eof && sc.hasNextInt());
+        ps.close();
+        sc.close();
+    }
+
+    private static void clearConsole() {
+        final String os = System.getProperty("os.name");
+
+        try {
+            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            else    Runtime.getRuntime().exec("clear");
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 }

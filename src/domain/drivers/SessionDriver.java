@@ -2,145 +2,163 @@ package src.domain.drivers;
 
 import src.domain.classes.Session;
 import src.domain.utils.UtilsDomain;
-import src.domain.utils.inout;
 
+import java.io.*;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class SessionDriver {
     private static Session s;
-    private static inout i = new inout();
+    private static Scanner sc = new Scanner(System.in);
+    private static PrintStream ps;
+    private static boolean interactive = false;
 
-    public static void testConstructor() throws Exception{
+    public static void testConstructor() {
 
         int hour;
         UtilsDomain.Day day;
 
-        i.writeln("Hour: ");
-        hour = i.readint();
-        i.writeln("Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY: ");
-        day = UtilsDomain.Day.values()[i.readint()];
+        //Hour
+        hour = sc.nextInt();
+        //Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY
+        day = UtilsDomain.Day.valueOf(sc.next());
 
         s = new Session(day, hour);
-        i.writeln("Session successfully created");
+        //Session successfully
     }
 
-    public static void testConstructorFromVector( ) throws Exception{
+    public static void testConstructorFromVector( ) {
         Vector<String> myVector = new Vector<>(2);
 
-        i.writeln("Hour: ");
-        myVector.add(i.readword());
-        i.writeln("Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY: ");
-        myVector.add(UtilsDomain.Day.values()[i.readint()].toString());
+        //Hour
+        myVector.add(sc.next());
+        //Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY
+        myVector.add(sc.next());
 
         s = new Session(myVector);
-        i.writeln("Session successfully created");
+
     }
 
-    public static void testGetHour() throws Exception{ i.writeln(s.getHour()); }
-    public static void testSetHour() throws Exception{
-        i.writeln("Hour: ");
-        s.setHour(i.readint());
+    public static void testGetHour() { System.out.println(s.getHour()); }
+    public static void testSetHour() {
+        //Hour
+        s.setHour(sc.nextInt());
     }
-    public static void testGetDay () throws Exception{ i.writeln(s.getDay().toString()); }
-    public static void testSetDay() throws Exception {
-        i.writeln("Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY: ");
-        s.setDay(UtilsDomain.Day.values()[i.readint()]);
+    public static void testGetDay () { System.out.println(s.getDay().toString()); }
+    public static void testSetDay()  {
+        //Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY
+        s.setDay(UtilsDomain.Day.valueOf(sc.next()));
     }
-    public static void testToStr()throws Exception{
+    public static void testToStr(){
         Vector<String> myStringVector = s.toStr();
         for(int ii=0; ii<myStringVector.size(); ii++){
-            i.writeln(myStringVector.get(ii));
+            System.out.println(myStringVector.get(ii));
         }
     }
 
-    public static void testCompare( ) throws Exception{
+    public static void testCompare( ) {
 
         int hour;
         UtilsDomain.Day day;
 
-        i.writeln("Hour: ");
-        hour = i.readint();
-        i.writeln("Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY: ");
-        day = UtilsDomain.Day.values()[i.readint()];
+        //Hour
+        hour = sc.nextInt();
+        //Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY
+        day = UtilsDomain.Day.valueOf(sc.next());
         Session s1 = new Session(day, hour);
 
-        i.write("Operator:  ");
-        String op = i.readword();
+        //Operator
+        String op = sc.next();
 
-        i.writeln("Hour: ");
-        hour = i.readint();
-        i.writeln("Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY: ");
-        day = UtilsDomain.Day.values()[i.readint()];
+        //Hour
+        hour = sc.nextInt();
+        //Day of the week 0.MONDAY, 1.TUESDAY, 2.WEDNESDAY, 3.THURSDAY, 4.FRIDAY
+        day = UtilsDomain.Day.valueOf(sc.next());
 
         Session s2 = new Session(day, hour);
-        i.write(Session.compare(s1,op,s2));
+        System.out.println(Session.compare(s1,op,s2));
+    }
+    public static void menu(){
+        System.out.print("------------------------------------------ \n");
+        System.out.print("------------------MENU-------------------- \n");
+        System.out.print("------------------------------------------ \n");
+        System.out.print("1->Test Constructor \n");
+        System.out.print("2->Test Constructor from String Vector \n");
+        System.out.print("3->Test GetHour \n");
+        System.out.print("4->Test GetDay \n");
+        System.out.print("5->Test SetHour \n");
+        System.out.print("6->Test SetDay \n");
+        System.out.print("7->Test ToStr \n");
+        System.out.print("8->Test Compare \n");
+        System.out.print("9->Exit  \n");
     }
 
+    public static void main (String [] args) throws FileNotFoundException {
 
-    public static void main (String [] args) throws Exception {
+        interactive = true;
 
-        int option = 0;
+        try {
+            sc = new Scanner(new FileReader("./data/drivers/in/SessionFile.in"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        while( option != 9) {
-
-            i.write("------------------------------------------ \n");
-            i.write("------------------MENU-------------------- \n");
-            i.write("------------------------------------------ \n");
-            i.write("1->Test Constructor \n");
-            i.write("2->Test Constructor from String Vector \n");
-            i.write("3->Test GetHour \n");
-            i.write("4->Test GetDay \n");
-            i.write("5->Test SetHour \n");
-            i.write("6->Test SetDay \n");
-            i.write("7->Test ToStr \n");
-            i.write("8->Test Compare \n");
-            i.write("9->Exit  \n");
-
-            option = i.readint();
+        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/SessionFile.out"),false)),true);
+        System.setOut(ps);
 
 
-            switch (option) {
+        if (!interactive) menu();
+
+        boolean eof = false;
+
+        do{
+
+            switch (sc.nextInt()) {
                 case 1:
                     testConstructor();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 2:
                     testConstructorFromVector();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 3:
                     testGetHour();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 4:
                     testGetDay();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 5:
                     testSetHour();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 6:
                     testSetDay();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 7:
                     testToStr();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
                 case 8:
                     testCompare();
-                    i.writeln("\n Please press one key to continue");
-                    System.in.read();
                     break;
+                default:
+                    System.out.println("Input error!\n");
             }
+            if (!interactive) {
+                clearConsole();
+                menu();
+            }
+        } while (!eof && sc.hasNextInt());
+        ps.close();
+        sc.close();
+    }
+
+    private static void clearConsole() {
+        final String os = System.getProperty("os.name");
+
+        try {
+            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            else    Runtime.getRuntime().exec("clear");
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 }
