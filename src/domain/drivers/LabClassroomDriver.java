@@ -3,8 +3,7 @@ import src.domain.classes.Classroom;
 import src.domain.classes.LabClassroom;
 import src.domain.utils.UtilsDomain;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -12,6 +11,7 @@ public class LabClassroomDriver {
 
     private static LabClassroom lab;
     private static Scanner sc;
+    private static PrintStream ps;
     private static boolean fromFile = false;
 
     private static void writeClassroom(Classroom c){
@@ -41,7 +41,7 @@ public class LabClassroomDriver {
 
         vec.add(sc.next()); //name
         vec.add(String.valueOf(sc.nextInt())); //capacity
-        vec.add(sc.next()); //type (Laboratory)
+        vec.add("LABORATORY"); //type (Laboratory)
         vec.add(sc.next()); //multimedia
         vec.add(String.valueOf(sc.nextInt())); //nComp
 
@@ -94,22 +94,27 @@ public class LabClassroomDriver {
                 + " " + v.get(4));
     }
 
-    public static void  main(String args[]) {
+    public static void  main(String args[]) throws FileNotFoundException{
+        final PrintStream oldStdout = System.out;
         lab = new LabClassroom();
         if(args.length > 0) {
             fromFile = true;
 
             try{
-                sc = new Scanner(new FileReader("./data/" + args[0]));
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
             }catch(FileNotFoundException e) {
                 e.printStackTrace();
             }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),true)),true);
+            System.setOut(ps);
         }
         else {
             sc = new Scanner(System.in);
         }
 
         if(!fromFile) write();
+        boolean eof = false;
         do{
             switch(sc.nextInt()) {
                 case 0:
@@ -157,8 +162,12 @@ public class LabClassroomDriver {
             }
 
             if(!fromFile) write();
-        }while(sc.hasNextInt());    //Si EOF acabar programa
+        }while(!eof && sc.hasNextInt());
 
+        if(fromFile) {
+            System.setOut(oldStdout);
+            ps.close();
+        }
     }
 
     //TODO: treure això pels jocs de proves
