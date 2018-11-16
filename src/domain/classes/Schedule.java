@@ -18,6 +18,11 @@ public class Schedule {
     //CONSTRUCTOR
 
     /**
+     * Empty Schedule constructor
+     */
+    public Schedule(){}
+
+    /**
      * Simple schedule constructor
      * @param classroomFile name of the file with the classroom information
      * @param subjectFile name of the file with the subject information
@@ -229,22 +234,16 @@ public class Schedule {
      * @return
      */
     public boolean valid(){
-        /*
-
-        for(int i = 0; i < arrMUS.size();++i) {
-            for (int j = i+1; j < arrMUS.size(); ++j) {
-                if(!(Constraints.theoryAndLabsOfClassNoTogether(arrMUS.get(i), arrMUS.get(j)))
-                ) return false;
-            }
-        }
-        return true;
-        */
 
         ArrayList<MUS> arrMUS = this.unset();
 
         for(int i = 0; i < arrMUS.size();++i) {
             for (int j = i+1; j < arrMUS.size(); ++j) {
-                if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j))))
+                if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.theoryAndLabsOfClassNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))))
                     return false;
             }
         }

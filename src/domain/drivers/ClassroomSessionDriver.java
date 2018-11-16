@@ -6,8 +6,7 @@ import src.domain.classes.ClassroomSet;
 import src.domain.classes.Session;
 import src.domain.utils.UtilsDomain;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -15,12 +14,16 @@ import java.util.Vector;
 public class ClassroomSessionDriver {
     private static ClassroomSession classroomSession;
     private static Scanner sc;
+    private static PrintStream ps;
     private static boolean fromFile = false;
 
-    private static void printVector(Vector<String> v) {
+    private static String vectorToString(Vector<String> v) {
+        String s = "[";
         for(int i = 0; i < v.size(); ++i) {
-            System.out.println(v.get(i));
+            s = s + " " + v.get(i);
         }
+        s += " ]";
+        return s;
     }
 
     public static void testConstructor(){
@@ -30,7 +33,7 @@ public class ClassroomSessionDriver {
             Vector<String> v = new Vector<> (5);
             v.add(sc.next()); //name
             v.add(sc.next()); //capacity
-            v.add(sc.next()); //type
+            v.add(sc.next().toUpperCase()); //type
             v.add(sc.next()); //multimedia
             v.add(v.get(2).equals("LABORATORY")?sc.next():"0"); //nComp
             arrC.add(Classroom.fromStr(v));
@@ -45,7 +48,7 @@ public class ClassroomSessionDriver {
             Vector<String> v = new Vector<> (5);
             v.add(sc.next()); //name
             v.add(sc.next()); //capacity
-            v.add(sc.next()); //type
+            v.add(sc.next().toUpperCase()); //type
             v.add(sc.next()); //multimedia
             v.add(v.get(2).equals("LABORATORY")?sc.next():"0"); //nComp
             arrC.add(Classroom.fromStr(v));
@@ -60,8 +63,8 @@ public class ClassroomSessionDriver {
         for (UtilsDomain.Pair cls : clss) {
             Classroom c = (Classroom) cls.first;
             Session s = (Session) cls.second;
-            printVector(c.toStr());
-            printVector(s.toStr());
+            String sol = vectorToString(c.toStr()) + " " + vectorToString(s.toStr());
+            System.out.println(sol);
         }
     }
     public static void testSetClassroomSessionSet(){
@@ -94,21 +97,26 @@ public class ClassroomSessionDriver {
         if(!b) System.out.println("Incorrect index");
     }
 
-    public static void  main(String args[]) {
+    public static void  main(String args[]) throws FileNotFoundException{
+        final PrintStream oldStdout = System.out;
         classroomSession = new ClassroomSession();
         if(args.length > 0) {
             fromFile = true;
 
             try{
-                sc = new Scanner(new FileReader("./data/" + args[0]));
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
             }catch(FileNotFoundException e) {
                 e.printStackTrace();
             }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),true)),true);
+            System.setOut(ps);
         }
         else {
             sc = new Scanner(System.in);
         }
         if(!fromFile) write();
+        boolean eof = false;
         do{
 
             int i = sc.nextInt();
@@ -134,15 +142,20 @@ public class ClassroomSessionDriver {
                 case 6:
                     testDelete();
                     break;
+                case 99:
+                    eof = true;
                 default:
                     System.out.println("\tInput Error");
             }
             if(!fromFile) write();
         }while(sc.hasNextInt());
 
+        if(fromFile) {
+            System.setOut(oldStdout);
+            ps.close();
+        }
     }
 
-    //TODO: treure això pels jocs de proves
     public static void write() {
         System.out.println("------------------------------------------");
         System.out.println("\nWrite the number of the function you want to test:");
