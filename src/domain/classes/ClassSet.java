@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- *
- * @author Sergio
+ * CLassSet represents a set of Classes of different types
+ * @author Sergio Mazzariol
  */
 public class ClassSet {
     
@@ -24,7 +24,7 @@ public class ClassSet {
     // CONSTRUCTOR -----------------------------------
 
     /**
-    * Class constructor.
+    * Class constructor that initialize the set
     */    
     public ClassSet() {
         classSet = new HashMap<>();
@@ -32,9 +32,8 @@ public class ClassSet {
 
     /**
     * Class constructor specifying the member's values.
-    * @param subjectsSet set of subjects
+    * @param subjectsSet set of subjects that are needed to create the set of classes
     */
-
     public ClassSet( SubjectsSet subjectsSet ) {
 
         classSet = new HashMap<>();
@@ -60,10 +59,22 @@ public class ClassSet {
 
     // METHODS ---------------------------------------------------
 
+    /**
+     * Check if a given Class it's in the set
+     * @param subjectName Name of the subject to check
+     * @param group Group of the class to check
+     * @return
+     */
     public boolean existsClass( String subjectName, int group ) {
         return classSet.containsKey(""+subjectName+group);
     }
 
+    /**
+     * Gets a given class from the set
+     * @param name Name of the subject to find
+     * @param group Group of the class to check
+     * @return The class on success and null if can't find it
+     */
     public ClassClass getClass( String name, int group ){
         if (this.existsClass(name, group)) {
             return classSet.get(""+name+group);
@@ -72,7 +83,7 @@ public class ClassSet {
     }
 
     /**
-     * Add a class to the set
+     * Add a new class to the set
      * @param identifier identifies the object.
      * @param newClass the new class that needs to be added.
      */
@@ -160,71 +171,22 @@ public class ClassSet {
         }
     }
 
+    /**
+     * Size of the set
+     * @return Size of the set
+     */
     public int size(){
         return this.size();
     }
 
-
     /**
      * Unset the set of classes.
-     * @return ArrayList with the classes of the set (sorted).
+     * @return An Array with the classes of the set.
      */
     public ArrayList<ClassClass> unset() {
         ArrayList<ClassClass> tempSet = new ArrayList<>(classSet.values());
         //classSort(tempSet);
         return tempSet;
-    }
-
-    /**
-     * Recursively implementation of the mergesort algorithm.
-     * @param set that must be ordered.
-     * @param start Start point of the sort.
-     * @param end End point of the sort.
-     */
-    private static void rClassSort(ArrayList<ClassClass> set, int start, int end) {
-        if (start < end){
-            int mid = start + (end - start) / 2;
-
-            rClassSort(set, start, mid);
-            rClassSort(set,mid + 1, end);
-
-            merge(set, start, mid, end);
-        }
-    }
-    /**
-     * Sort of the classes considering the group and the name of these.
-     * @param set Set that must be ordered.
-     */
-    public static void classSort(ArrayList<ClassClass> set) {
-        // Mergesort Implementation
-        // Worst-case complexity: O(n log n) ; Worst-case space complexity: O(n)
-        rClassSort(set, 0, set.size());
-    }
-
-
-    /**
-     * Implementation of merge for the mergesort algorithm.
-     * @param set Set that must be ordered.
-     * @param start Start point of the sort.
-     * @param mid Middle point of the sort.
-     * @param end End point of the sort.
-     */
-    private static void merge(ArrayList<ClassClass> set, int start, int mid, int end) {
-        ArrayList<ClassClass> aux = new ArrayList<>();
-
-        for (int i = start; i <= end; i++)  aux.add(i, set.get(i));
-
-        int i = start;
-        int j = mid + 1;
-        int k = start;
-
-        while (i <= mid && j <= end) {
-            if (compare(aux.get(i), "<=", aux.get(j)))   set.set(k++, aux.get(i++));
-            else    set.set(k++, aux.get(j++));
-        }
-
-        while (i <= mid)
-            set.set(k++, aux.get(i++));
     }
 
     /**
@@ -259,6 +221,61 @@ public class ClassSet {
 
         return set;
     }
+
+
+    /* NOT IMPLEMENTED FOR THE MOMENT----------------------------------------------
+    /**
+     * Recursively implementation of the mergesort algorithm.
+     * @param set that must be ordered.
+     * @param start Start point of the sort.
+     * @param end End point of the sort.
+
+    private static void rClassSort(ArrayList<ClassClass> set, int start, int end) {
+        if (start < end){
+            int mid = start + (end - start) / 2;
+
+            rClassSort(set, start, mid);
+            rClassSort(set,mid + 1, end);
+
+            merge(set, start, mid, end);
+        }
+    }
+    /**
+     * Sort of the classes considering the group and the name of these.
+     * @param set Set that must be ordered.
+
+    public static void classSort(ArrayList<ClassClass> set) {
+        // Mergesort Implementation
+        // Worst-case complexity: O(n log n) ; Worst-case space complexity: O(n)
+        rClassSort(set, 0, set.size());
+    }
+
+
+    /**
+     * Implementation of merge for the mergesort algorithm.
+     * @param set Set that must be ordered.
+     * @param start Start point of the sort.
+     * @param mid Middle point of the sort.
+     * @param end End point of the sort.
+
+    private static void merge(ArrayList<ClassClass> set, int start, int mid, int end) {
+        ArrayList<ClassClass> aux = new ArrayList<>();
+
+        for (int i = start; i <= end; i++)  aux.add(i, set.get(i));
+
+        int i = start;
+        int j = mid + 1;
+        int k = start;
+
+        while (i <= mid && j <= end) {
+            if (compare(aux.get(i), "<=", aux.get(j)))   set.set(k++, aux.get(i++));
+            else    set.set(k++, aux.get(j++));
+        }
+
+        while (i <= mid)
+            set.set(k++, aux.get(i++));
+    }
+    */
 
 
 }

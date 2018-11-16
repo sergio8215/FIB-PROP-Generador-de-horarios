@@ -10,25 +10,24 @@ import src.domain.utils.UtilsDomain;
 import java.util.Vector;
 
 /**
- *
- * @author Sergio
+ * ProblemsClass represents the set of students that share a same schedule on a problem class
+ * @author Sergio Mazzariol
  */
 public class ProblemsClass extends ClassClass{
 
-    // Members
+    // MEMBERS----------------------------------------------------------
     private int subGroup;
-    
 
-    // Constructors
+    // CONSTRUCTORS----------------------------------------------------
 
     /**
      * Class constructor specifying the member's values.
-     * @param identifier
-     * @param subject
-     * @param group
-     * @param quantityStudents
-     * @param shift
-     * @param subGroup
+     * @param identifier Identification of the Class.
+     * @param subject subject of the class.
+     * @param group Number of the class for unique for each subject
+     * @param quantityStudents Quantity of students that are enroll
+     * @param shift Shift of the class, Morning or Afternoon
+     * @param subGroup SubGroup identification
      */
     public ProblemsClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.typeShift shift, int subGroup){
         super(identifier, subject, group, quantityStudents, shift, UtilsDomain.ClassType.PROBLEMS);
@@ -37,19 +36,19 @@ public class ProblemsClass extends ClassClass{
 
     /**
      * Class constructor specifying the member's values.
-     * @param myStringVector Identification of the Class.
+     * @param myStringVector Vector with all class information, one attribute per position.
      */
     public ProblemsClass( Vector<String> myStringVector ) {
         super(myStringVector, UtilsDomain.ClassType.PROBLEMS);
-        int sg = Integer.parseInt(myStringVector.get(2)); // subgroup
-        subGroup = sg;
+        subGroup = Integer.parseInt(myStringVector.get(2)); // subgroup
+
     }
 
-    // Methods
+    // METHODS--------------------------------------------------------
 
     /**
-     *
-     * @param subGroup
+     * Set the Group number of a given class.
+     * @param subGroup Subgroup identification of the class.
      */
     @Override
     public void setSubGroup(int subGroup) {
@@ -57,8 +56,8 @@ public class ProblemsClass extends ClassClass{
     }
 
     /**
-     *
-     * @return
+     * It returns the SubGroup number of the class.
+     * @return SubGroup number of the class.
      */
     @Override
     public int getSubGroup() {

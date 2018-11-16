@@ -10,7 +10,7 @@ import java.util.Vector;
 
 /**
  * ClassClass represents the set of students that share a same schedule
- * @author Sergio
+ * @author Sergio Mazzariol
  */
 public abstract class ClassClass {
 
@@ -30,7 +30,10 @@ public abstract class ClassClass {
      * Class constructor specifying the member's values.
      * @param identifier Identification of the Class.
      * @param subject subject of the class.
-     * @param group
+     * @param group Number of the class for unique for each subject
+     * @param quantityStudents Quantity of students that are enroll
+     * @param shift Shift of the class, Morning or Afternoon
+     * @param type Type of class, theory, laboratory or problems
      */
     public ClassClass(String identifier, Subject subject, int group, int quantityStudents, UtilsDomain.typeShift shift, UtilsDomain.ClassType type){
         this.identifier = identifier;
@@ -44,8 +47,8 @@ public abstract class ClassClass {
 
     /**
      * Class constructor specifying the member's values.
-     * @param myStringVector Identification of the Class.
-     * @param type subject of the class.
+     * @param myStringVector Vector with all class information, one attribute per position.
+     * @param type Type of class.
      */
     public ClassClass( Vector<String> myStringVector, UtilsDomain.ClassType type ){
         identifier  = myStringVector.get(0);                    // identifier
@@ -70,7 +73,7 @@ public abstract class ClassClass {
 
     /**
      * Set the Group number of a given class.
-     * @param group group of the class.
+     * @param group Group of the class.
      */
     public void setGroup(int group) {
         this.group = group;
@@ -103,15 +106,15 @@ public abstract class ClassClass {
     
     /**
      * Set the subject of a given class.
-     * @param subject subjecto of the class.
+     * @param subject subject of the class.
      */
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
 
     /**
-     * It returns the identification of the class.
-     * @return Identification of the class.
+     * It returns the subject of the class.
+     * @return Subject of the class.
      */
     public Subject getSubject() {
         return subject;
@@ -125,40 +128,72 @@ public abstract class ClassClass {
         return type;
     }
 
+    /**
+     * Gets the shift of the class
+     * @return shift of the class
+     */
     public UtilsDomain.typeShift getShift() {
         return shift;
     }
 
+    /**
+     * Sets the class shift
+     * @param shift Specifies if the class is given in the morning or afternoon
+     */
     public void setShift(UtilsDomain.typeShift shift) {
         this.shift = shift;
     }
 
+    /**
+     * Gets the quantity of students
+     * @return Quantity of students on the clas
+     */
     public int getQuantityStudents() {
         return quantityStudents;
     }
 
+    /**
+     * Set a quantity of students
+     * @param quantityStudents Quantity of students of given class
+     */
     public void setQuantityStudents(int quantityStudents) {
         this.quantityStudents = quantityStudents;
     }
 
+    /**
+     * Sets a subgroup for the class
+     * @param subGroup Subgroup identification
+     */
     public abstract void setSubGroup(int subGroup);
+
+    /**
+     * Gets the subgroup identification
+     * @return subgroup identification
+     */
     public abstract int getSubGroup();
+
     /**
      * It returns a vector of strings with the members' values.
      * @return Vector of strings with the members' values.
      */
     public abstract Vector<String> toStr();
 
+    /**
+     * Merge two vectors Vb at the last position of Va
+     * @param Va First part of the merged vector
+     * @param Vb Second part of the merged vector
+     * @return A vector Va + Vb
+     */
     static Vector<String> mergeStringVector(Vector<String> Va, Vector<String> Vb) {
-        Vector<String> merge = new Vector<String>();
+        Vector<String> merge = new Vector<>();
         merge.addAll(Va);
         merge.addAll(Vb);
         return merge;
     }
 
     /**
-     * Class constructor for a given set of subjects in string format.
-     * @param c
+     * Class that creates an specific type class extracting the information from a vector string
+     * @param c Vector with member's values
      */
     public static ClassClass fromStr( Vector<String> c ){
         ClassClass auxClass;
