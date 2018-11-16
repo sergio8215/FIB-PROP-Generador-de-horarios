@@ -2,7 +2,7 @@
 make:
 	javac -d bin/ -cp libs/json-simple-1.1.1.jar src/domain/utils/*.java src/domain/classes/*.java src/domain/comparators/*.java src/domain/controllers/*.java src/persistence/*.java src/presentation/*.java
 	javac -d bin/ src/domain/drivers/*.java
-	javac -d bin/ -cp libs/junit-4.12.jar:libs/hamcrest-core-1.3.jar:bin/ src/domain/junits/*.java
+	javac -d bin/ -cp libs/*.jar:bin/  src/domain/junits/*.java
 
 run:
 	java -cp bin/:libs/json-simple-1.1.1.jar src.presentation.CtrlPresenter
