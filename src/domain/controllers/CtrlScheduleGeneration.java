@@ -87,16 +87,13 @@ public class CtrlScheduleGeneration {
         else {
             MUS currentVar = futureVars.getFirst();
             futureVars.remove(0);
-            System.out.println(futureVars.size());
 
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
-
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
 
                 if (solution.valid()) {
-                    LinkedList<MUS> aux = new LinkedList<>(futureVars);
-                    solution = chronologicalBacktracking(aux, new Schedule(solution));
+                    solution = chronologicalBacktracking(new LinkedList<>(futureVars), new Schedule(solution));
 
                     if (!solution.isFail()) {
                         return solution;
@@ -110,8 +107,8 @@ public class CtrlScheduleGeneration {
 
             }
 
-            //solution.fail();
-            return solution.fail();
+            solution.fail();
+            return solution;
         }
     }
 }

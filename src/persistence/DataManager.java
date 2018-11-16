@@ -20,9 +20,6 @@ import org.json.simple.parser.ParseException;
 import src.domain.classes.*;
 import src.domain.utils.inout;
 
-
-import static java.nio.file.Files.readAllLines;
-
 /**
  *
  * @author Sergio
@@ -63,13 +60,12 @@ public class DataManager {
                 classrooms.elementAt(i).add((String)classroomJSON.get("Type"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Audiovisual"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Num_computers"));
-
-
+                /*
                 System.out.println("Classroom: "+   classrooms.elementAt(i).get(0));
                 System.out.println("Quantity: "+    classrooms.elementAt(i).get(1));
                 System.out.println("Type: "+        classrooms.elementAt(i).get(2));
                 System.out.println("Audiovisual: "+ classrooms.elementAt(i).get(3));
-                System.out.println("Num Computers: "+classrooms.elementAt(i).get(4)+"\n");
+                System.out.println("Num Computers: "+classrooms.elementAt(i).get(4)+"\n");*/
                 i++;
             }
 
@@ -122,7 +118,7 @@ public class DataManager {
                 subjects.elementAt(i).add((String)subjectJSON.get("Shift"));
 
 
-
+                /*
                 System.out.println("Subject: "+         subjects.elementAt(i).get(0));
                 System.out.println("Num_students: "+    subjects.elementAt(i).get(1));
                 System.out.println("Level: "+           subjects.elementAt(i).get(2));
@@ -131,7 +127,7 @@ public class DataManager {
                 System.out.println("Problems_hours: "+  subjects.elementAt(i).get(5));
                 System.out.println("Number_of_groups: "+subjects.elementAt(i).get(6));
                 System.out.println("Number_of_subgroups: "+subjects.elementAt(i).get(7));
-                System.out.println("Shift: "+           subjects.elementAt(i).get(8)+"\n");
+                System.out.println("Shift: "+           subjects.elementAt(i).get(8)+"\n");*/
                 i++;
             }
 

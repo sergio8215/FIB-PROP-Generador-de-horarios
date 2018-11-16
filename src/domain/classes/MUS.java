@@ -13,10 +13,10 @@ import java.util.Vector;
 public class MUS {
 
     // Members
-    ClassClass classclass;
-    Classroom classroom;
-    Session session;
-    ClassroomSession domain; // No added in constructors and toStr because it's not mandatory.
+    private ClassClass classclass;
+    private Classroom classroom;
+    private Session session;
+    private ClassroomSession domain; // No added in constructors and toStr because it's not mandatory.
 
 
     // Constructors

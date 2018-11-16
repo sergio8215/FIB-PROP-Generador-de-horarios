@@ -1,4 +1,4 @@
-package src.domain.drivers;
+package src.domain.classes;
 
 import java.io.*;
 import java.util.Scanner;
