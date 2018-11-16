@@ -154,7 +154,8 @@ public class SessionDriver {
         final String os = System.getProperty("os.name");
 
         try {
-            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            if (os.contains("Windows")) {String[] cls = new String[] {"cmd.exe", "/c", "cls"};
+                Runtime.getRuntime().exec(cls); }
             else    Runtime.getRuntime().exec("clear");
         } catch (Exception e) {
             System.out.println(e);

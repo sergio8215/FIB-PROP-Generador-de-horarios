@@ -98,7 +98,10 @@ public class CtrlPresenter {
         final String os = System.getProperty("os.name");
 
         try {
-            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            if (os.contains("Windows")) {
+                String[] cls = new String[]{"cmd.exe", "/c", "cls"};
+                Runtime.getRuntime().exec(cls);
+            }
             else    Runtime.getRuntime().exec("clear");
         } catch (Exception e) {
             System.out.println(e);
@@ -182,7 +185,7 @@ public class CtrlPresenter {
                 "\tSet of Classrooms.\n" +
                 "\t\t1. classrooms1.json\n" +
                 "\t\t2. classrooms2.json\n");
-        System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassromsFile; i.e: 1 1");
+        System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassroomsFile; i.e: 1 1");
         System.out.print("Option: ");
     }
 
