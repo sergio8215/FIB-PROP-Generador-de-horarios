@@ -163,6 +163,7 @@ public class Schedule {
     }
 
     //PUBLIC METHODS
+    //PUBLIC METHODS
 
     /**
      * Indicates if the timetable attribute is empty(true) or not(false)
@@ -206,7 +207,6 @@ public class Schedule {
      * @return returns true if the element exists and false if it doesn't exists
      */
     public boolean delete(MUS mus){
-        //TODO: comprovar que no funciona pel mus, no per altres merdes
         ArrayList<MUS> a = timetable.get(mus.getSubject().getName());
         int index = findPosition(a, mus);
         if (index == -1) return false;
@@ -249,12 +249,4 @@ public class Schedule {
         }
         return true;
     }
-
-
-/**
- &&
- Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
- Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
- Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))
- */
 }

@@ -22,12 +22,12 @@ public class TheoryClassroom extends Classroom {
 
     /**
      * TheoryClassroom constructor
-     * @param n name of the classroom
-     * @param cap capacity of the classroom
-     * @param m indicates if the classroom has multimedia system
+     * @param name name of the classroom
+     * @param capacity capacity of the classroom
+     * @param multimedia indicates if the classroom has multimedia system
      */
-    public TheoryClassroom(String n, int cap, boolean m) {
-        super(n, cap, UtilsDomain.ClassType.THEORY, m);
+    public TheoryClassroom(String name, int capacity, boolean multimedia) {
+        super(name, capacity, UtilsDomain.ClassType.THEORY, multimedia);
     }
 
     /**

@@ -1,0 +1,59 @@
+//MUS
+PAR21 20 21 LABORATORY MORNING 30
+PAR 100 4 1 1 1 2 2 MORNING
+A5201 50 LABORATORY true 40
+11 FRIDAY
+
+//JP
+1
+classroomFile.txt
+subjectFile.txt
+1
+PAR21 20 21 LABORATORY MORNING 30
+PAR 100 4 1 1 1 2 2 MORNING
+A5201 50 LABORATORY true 40
+11 FRIDAY
+
+6
+subjectFile6.txt
+
+5
+
+0
+classroomFile1.txt
+subjectFile1.txt
+
+4
+classroomFile4.txt
+
+3
+
+12
+
+14
+IA21 10 11 LABORATORY MORNING 30
+IA 100 4 1 1 1 2 2 MORNING
+A2201 50 LABORATORY false 40
+9 FRIDAY
+
+13
+
+2
+classroomFile2.txt
+subjectFile2.txt
+1
+PROP20 20 20 THEORY MORNING 30
+PROP 100 4 1 1 1 2 2 MORNING
+A5s102 50 THEORY true
+10 MONDAY
+
+7
+
+9
+
+7
+
+8
+true
+
+7
