@@ -214,25 +214,30 @@ public class TheoryClassDriver {
     }
 
     public static void main (String args[]) throws Exception {
+        final PrintStream oldStdout = System.out;
 
-        interactive = true;
+        if (args.length > 0) {
+            interactive = true;
 
-        try {
-            sc = new Scanner(new FileReader("./data/drivers/in/TheoryClassFile.in"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            try {
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),true)),true);
+            System.setOut(ps);
+
+        } else {
+            sc = new Scanner(System.in);
         }
 
-        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("drivers/out/TheoryClass.out"),false)),true);
-        System.setOut(ps);
 
-
-        if (!interactive) menu();
+        if (!interactive)  menu();
 
         boolean eof = false;
 
-        do{
-
+        do {
             switch (sc.nextInt()) {
                 case 1:
                     testConstructor();
@@ -285,20 +290,26 @@ public class TheoryClassDriver {
                 default:
                     System.out.println("Input error!\n");
             }
+
             if (!interactive) {
                 clearConsole();
                 menu();
             }
+
         } while (!eof && sc.hasNextInt());
-        ps.close();
-        sc.close();
+
+        if (interactive) {
+            System.setOut(oldStdout);
+            ps.close();
+        }
     }
 
     private static void clearConsole() {
         final String os = System.getProperty("os.name");
 
         try {
-            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            if (os.contains("Windows")){String[] cls = new String[] {"cmd.exe", "/c", "cls"};
+                Runtime.getRuntime().exec(cls); }
             else    Runtime.getRuntime().exec("clear");
         } catch (Exception e) {
             System.out.println(e);

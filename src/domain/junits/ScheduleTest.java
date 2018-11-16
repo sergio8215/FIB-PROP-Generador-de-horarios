@@ -1,8 +1,8 @@
 package src.domain.junits;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.*;
 import src.domain.classes.*;
 
 import java.util.ArrayList;

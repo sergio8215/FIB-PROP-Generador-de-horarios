@@ -98,7 +98,10 @@ public class CtrlPresenter {
         final String os = System.getProperty("os.name");
 
         try {
-            if (os.contains("Windows"))     Runtime.getRuntime().exec("cls");
+            if (os.contains("Windows")) {
+                String[] cls = new String[]{"cmd.exe", "/c", "cls"};
+                Runtime.getRuntime().exec(cls);
+            }
             else    Runtime.getRuntime().exec("clear");
         } catch (Exception e) {
             System.out.println(e);
@@ -113,21 +116,21 @@ public class CtrlPresenter {
     private static void scheduleGeneration() throws Exception {
 
         final int numFilesSubjects = 2;
-        final int numFilesClassroms = 2;
+        final int numFilesClassrooms = 2;
 
         Scanner s = new Scanner(System.in);
 
         scheduleGenerationMenu();
 
         int subjectsFile = 0;
-        int classromsFile = 0;
+        int classroomsFile = 0;
 
         boolean inputCorrect = false;
         while (!inputCorrect) {
             subjectsFile = s.nextInt();
-            classromsFile = s.nextInt();
+            classroomsFile = s.nextInt();
 
-            if (subjectsFile < numFilesSubjects && classromsFile < numFilesClassroms)   inputCorrect = true;
+            if (subjectsFile <= numFilesSubjects && classroomsFile <= numFilesClassrooms)   inputCorrect = true;
             else {
                 System.out.println("Input error. Try it again. \n");
                 s.next();
@@ -135,10 +138,10 @@ public class CtrlPresenter {
             }
         }
 
-        String strSubjectsFile = "file" + subjectsFile + ".json"; // TODO: CAMBIAR NOMBRE DE FICHEROS
-        String classroomsFile = "file" + classromsFile + ".json";
+        String strSubjectsFileName = "subjects" + subjectsFile + ".json"; // TODO: CAMBIAR NOMBRE DE FICHEROS
+        String classroomsFileName = "classrooms" + classroomsFile + ".json";
 
-        ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
+        ctrlDomain.createScenario(classroomsFileName, strSubjectsFileName);
 
         System.out.println("List of restrictions that will apply:\n");
         System.out.println("\n1.");                                    // TODO: LISTAR LAS RESTRICCIONES
@@ -182,7 +185,7 @@ public class CtrlPresenter {
                 "\tSet of Classrooms.\n" +
                 "\t\t1. classrooms1.json\n" +
                 "\t\t2. classrooms2.json\n");
-        System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassromsFile; i.e: 1 1");
+        System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassroomsFile; i.e: 1 1");
         System.out.print("Option: ");
     }
 

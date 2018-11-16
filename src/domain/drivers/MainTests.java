@@ -1,5 +1,7 @@
 package src.domain.drivers;
 
+import src.domain.junits.ScheduleTest;
+
 import java.util.Scanner;
 
 public class MainTests {
@@ -71,6 +73,9 @@ public class MainTests {
                     break;
                 case 12:
                     constraintsTest();
+                    break;
+                case 13:
+                    scheduleTest();
                     break;
                 default:
                     System.out.println("Input error!\n");
@@ -271,7 +276,21 @@ public class MainTests {
 
         final String args[] = {fileIn, fileOut};
 
-        //src.domain.drivers.src.domain.classes.ConstraintsDriver.main(args);
+        ConstraintsDriver.main(args);
+
+        return true;
+    }
+
+    private static boolean scheduleTest() throws Exception {
+        System.out.print("Name of input file: ");
+        String fileIn = sc.next();
+
+        System.out.print("Name of output file: ");
+        String fileOut = sc.next();
+
+        final String args[] = {fileIn, fileOut};
+
+        src.domain.drivers.ScheduleDriver.main(args);
 
         return true;
     }

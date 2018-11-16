@@ -14,10 +14,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Vector;
 
-
 /**
- *
- * @author Sergio & Mireia
+ * CtrlDomain Class, it's part of one of the layers of the program. On charge of controlling the domain and data classes
+ * @author Sergio Mazzariol & Mireia Cano
  */
 public class CtrlDomain {
 
@@ -31,14 +30,16 @@ public class CtrlDomain {
     private String subjectFile;
 
 
+    // CONSTRUCTORS----------------------------------------------------
+
     /**
-     * CtrlDomain constructor
+     *  Class constructor specifying the member's values, initialize the data manager.
      */
     public CtrlDomain(){
         dManager = new DataManager();
     }
 
-    //PRIVATE METHODS
+    //PRIVATE METHODS--------------------------------------------------
 
     /**
      * Method to import Classrooms from JSON file
@@ -56,7 +57,7 @@ public class CtrlDomain {
     }
 
     /**
-     * Method to import Subject from JSON file
+     * Method to import Subjects from JSON file
      * @param file name of the file to import
      * @return true if the import is successful
      */
@@ -69,7 +70,7 @@ public class CtrlDomain {
         else return false;
     }
 
-    //PUBLIC METHODS
+    //PUBLIC METHODS------------------------------------------------------
 
     /**
      * Creates the Scenario for the Schedule
@@ -92,7 +93,7 @@ public class CtrlDomain {
 
 
     /**
-     * List of all the subjects of the created Scenario
+     * List of all the subjects of the created Scenario, one subject per position
      * @return A list of subjects
      */
     public Vector<Vector <String>> showSubject() {
@@ -108,39 +109,18 @@ public class CtrlDomain {
     }
 
 
-   /* creemos que es opcional. queremos mover una asignatura de una hora/aula a otra
-    public void manageUMH() {}
-    */
-
     /**
-     * Load a schedule from a file
-     * @param scheduleFile name of the schedule file to import
-
-    public void loadSchedule(String scheduleFile) {
-        schedule = new Schedule(dManager.loadSchedule(scheduleFile));
-    }*/
-
-    /**
-     * Saves the generated schedule
-
-    public void saveSchedule() {
-        dManager.saveSchedule(schedule.toString());
-    }*/
-
-    /**
-     *  Show the generated schedule
+     *  Shows the generated schedule
      */
     public UtilsDomain.ResultOfQuery<Schedule> showSchedule() {
         UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
         s.queryTest = !schedule.isEmpty();
         s.result = schedule;
         return s;
-        //hacer cuando tengamos el schedule implementado
-        //filtrar por quatris, asignaturas, horarios, etc
-    }
+     }
 
     /**
-     * Generates the scheduler based on the generated scenario
+     * Generates the schedule based on the generated scenario
      */
     public void generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
@@ -154,15 +134,38 @@ public class CtrlDomain {
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
     }
 
+    /**
+     * Saves the generated schedule on a file with the name that the user wants.
+     * @param newFileName Name of the file to create
+     * @param schedule Schedule to save
+     * @throws Exception If file can't be created
+     */
     public void saveSchedule( String newFileName, Schedule schedule ) throws Exception {
 
         dManager.saveSchedule(newFileName, schedule);
     }
 
+    /**
+     * List of schedule saved files.
+     * @return A list of files
+     */
     public ArrayList<String> listScheduleFiles(){
         return dManager.listScheduleFiles();
     }
+
+
+    /**
+     * Load a schedule from a file
+     * @param fileNum Number of the schedule file to import
+     * @throws IOException if file it's not found
+     */
     public void loadSchedule(int fileNum) throws IOException {
         schedule = dManager.loadSchedule(fileNum);
     }
 }
+
+
+
+
+
+
