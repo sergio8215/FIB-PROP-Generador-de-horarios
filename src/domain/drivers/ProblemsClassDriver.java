@@ -213,17 +213,23 @@ public class ProblemsClassDriver {
     }
 
     public static void main (String [] args) throws Exception {
+        final PrintStream oldStdout = System.out;
 
-        interactive = true;
+        if (args.length > 0) {
+            interactive = true;
 
-        try {
-            sc = new Scanner(new FileReader("./data/drivers/in/ProblemsClassFile.in"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            try {
+                sc = new Scanner(new FileReader("./data/drivers/in/" + args[0]));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/" + args[1]),false)),true);
+            System.setOut(ps);
+
+        } else {
+            sc = new Scanner(System.in);
         }
-
-        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/ProblemsClassFile.out"),false)),true);
-        System.setOut(ps);
 
 
         if (!interactive) menu();
@@ -284,13 +290,18 @@ public class ProblemsClassDriver {
                 default:
                     System.out.println("Input error!\n");
             }
+
             if (!interactive) {
                 clearConsole();
                 menu();
             }
+
         } while (!eof && sc.hasNextInt());
-        ps.close();
-        sc.close();
+
+        if (interactive) {
+            System.setOut(oldStdout);
+            ps.close();
+        }
     }
 
     private static void clearConsole() {
