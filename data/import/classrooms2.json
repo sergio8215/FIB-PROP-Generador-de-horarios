@@ -1,0 +1,32 @@
+{
+	"Classrooms List": [
+		{
+			"Classroom":"A6201",
+			"Quantity":"100",
+			"Type": "THEORY",
+			"Audiovisual": "true",
+			"Num_computers": "0"
+		},
+		{
+			"Classroom":"A6202",
+			"Quantity":"100",
+			"Type": "THEORY",
+			"Audiovisual": "true",
+			"Num_computers": "0"
+		},
+		{
+			"Classroom":"A5S101",
+			"Quantity":"100",
+			"Type": "LABORATORY",
+			"Audiovisual": "true",
+			"Num_computers": "20"
+		},
+		{
+			"Classroom":"A5S102",
+			"Quantity":"100",
+			"Type": "LABORATORY",
+			"Audiovisual": "true",
+			"Num_computers": "20"
+		}
+	]
+}
