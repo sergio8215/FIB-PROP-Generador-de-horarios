@@ -62,22 +62,22 @@ public class ClassSet {
     /**
      * Check if a given Class it's in the set
      * @param subjectName Name of the subject to check
-     * @param group Group of the class to check
+     * @param subGroup Subgroup of the class to check
      * @return
      */
-    public boolean existsClass( String subjectName, int group ) {
-        return classSet.containsKey(""+subjectName+group);
+    public boolean existsClass( String subjectName, int subGroup ) {
+        return classSet.containsKey(""+subjectName+subGroup );
     }
 
     /**
      * Gets a given class from the set
      * @param name Name of the subject to find
-     * @param group Group of the class to check
+     * @param subGroup Group of the class to check
      * @return The class on success and null if can't find it
      */
-    public ClassClass getClass( String name, int group ){
-        if (this.existsClass(name, group)) {
-            return classSet.get(""+name+group);
+    public ClassClass getClass( String name, int subGroup ){
+        if (this.existsClass(name, subGroup)) {
+            return classSet.get(""+name+subGroup);
         }
         return null;
     }
