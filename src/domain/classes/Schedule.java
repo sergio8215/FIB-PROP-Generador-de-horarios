@@ -19,6 +19,11 @@ public class Schedule {
     //CONSTRUCTOR
 
     /**
+     * Empty Schedule constructor
+     */
+    public Schedule(){}
+
+    /**
      * Simple schedule constructor
      * @param classroomFile name of the file with the classroom information
      * @param subjectFile name of the file with the subject information

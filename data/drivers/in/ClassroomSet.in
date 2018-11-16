@@ -4,53 +4,38 @@ A5201 25 true 20
 A5S102 20 true 17
 A6201 55 false
 AD301 60 true
-
 9
-
 10
 A5S102
-
 11
 A5S102
-
 12
-
 6
 1 1
 D5S103 23 true 18
 A4301 58 false
-
 3
-
 1
 2 1
 A3202 30 true 25
 A5E02 21 false 19
 H6001 53 true
-
 9
-
 10
 A5S102
-
 11
 H6001
-
 12
-
 7
 1
 A5S105 25 true 20
-
 4
-
 2
 2 2
 E5102 22 false 19
 A5001 28 true 23
 A6003 57 false
 D3301 50 true
-
 12
 
 8
