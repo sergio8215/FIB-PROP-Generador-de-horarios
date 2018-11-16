@@ -37,7 +37,7 @@ public class ClassroomSet {
 
         for(int i = 0; i < cc.size(); i++) {
             Classroom classroom = cc.get(i);
-            if(classroom.getType() == UtilsDomain.ClassType.LABORATORY) {
+            if(classroom.getType().ordinal() == UtilsDomain.ClassType.LABORATORY.ordinal()) {
 
                 LabClassroom lab = (LabClassroom) classroom;
                 labClassroomSet.put(lab.getName(), lab);

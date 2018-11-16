@@ -17,10 +17,13 @@ public class ClassroomSessionDriver {
     private static PrintStream ps;
     private static boolean fromFile = false;
 
-    private static void printVector(Vector<String> v) {
+    private static String vectorToString(Vector<String> v) {
+        String s = "[";
         for(int i = 0; i < v.size(); ++i) {
-            System.out.println(v.get(i));
+            s = s + " " + v.get(i);
         }
+        s += " ]";
+        return s;
     }
 
     public static void testConstructor(){
@@ -60,8 +63,8 @@ public class ClassroomSessionDriver {
         for (UtilsDomain.Pair cls : clss) {
             Classroom c = (Classroom) cls.first;
             Session s = (Session) cls.second;
-            printVector(c.toStr());
-            printVector(s.toStr());
+            String sol = vectorToString(c.toStr()) + " " + vectorToString(s.toStr());
+            System.out.println(sol);
         }
     }
     public static void testSetClassroomSessionSet(){
