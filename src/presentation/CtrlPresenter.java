@@ -1,11 +1,11 @@
 package src.presentation;
 
+import src.domain.classes.MUS;
 import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
 import src.domain.utils.UtilsDomain;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 
 /**
@@ -58,7 +58,7 @@ public class CtrlPresenter {
                     ctrlDomain.loadSchedule(s.nextInt());
 
                     UtilsDomain.ResultOfQuery<Schedule> rq = ctrlDomain.showSchedule();
-                    showSchedule(rq.result);
+                    showSchedule(rq.result);    // TODO: PROBAR RECUPERAR HORARIO
 
                     System.out.println("\n Please press one key to continue");
                     System.in.read();
@@ -146,10 +146,11 @@ public class CtrlPresenter {
 
         switch (s.next().toUpperCase()) {
             case "S":
+                ctrlDomain.generateSchedule();
                 Schedule sch = ctrlDomain.showSchedule().result;
                 showSchedule(sch);
 
-                System.out.print("Save schedule?: [S/N]");
+                System.out.print("Save schedule?: [S/N]"); // TODO: PROBAR GUARDAR HORARIO
                 String ss = s.next().toUpperCase();
 
                 if (ss.contentEquals("S")){
@@ -173,12 +174,12 @@ public class CtrlPresenter {
      */
     private static void scheduleGenerationMenu() {
         System.out.println("To generate the schedule it is necessary to indicate: \n " +
-                "- Set of Subjects:\n" +
-                "  1. subjects1.json\n" +
-                "  2. subjects2.json\n" +
-                "- Set of Classrooms.\n" +
-                "  1. classrooms1.json\n" +
-                "  2. classrooms2.json\n");
+                "\tSet of Subjects:\n" +
+                "\t\t1. subjects1.json\n" +
+                "\t\t2. subjects2.json\n" +
+                "\tSet of Classrooms.\n" +
+                "\t\t1. classrooms1.json\n" +
+                "\t\t2. classrooms2.json\n");
         System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassromsFile; i.e: 1 1");
         System.out.print("Option: ");
     }
@@ -188,7 +189,21 @@ public class CtrlPresenter {
      * @param s Schedule to be printed.
      */
     private static void showSchedule(Schedule s) {
-        
+        HashMap<String, ArrayList<MUS> > timetable = s.getTimetable();
+
+        Set<String> keys = timetable.keySet();
+
+        for (String nameSubject : keys) {
+            System.out.println("\n SUBJECT - " + nameSubject.toUpperCase());
+
+            ArrayList<MUS> elems = timetable.get(nameSubject);
+
+            for (MUS m : elems) {
+                System.out.println(m.getClassClass().getIdentifier() + ": " + m.getClassroom().getName() + " - " + m.getSession().getDay() + " " + m.getSession().getHour());
+            }
+
+            System.out.print("\n");
+        }
     }
 
 }
