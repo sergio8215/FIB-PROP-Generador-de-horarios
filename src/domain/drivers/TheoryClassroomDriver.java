@@ -41,7 +41,7 @@ public class TheoryClassroomDriver {
 
         vec.add(sc.next()); //name
         vec.add(String.valueOf(sc.nextInt())); //capacity
-        vec.add(sc.next()); //type (Theory)
+        vec.add("THEORY"); //type (Theory)
         vec.add(sc.next()); //multimedia
         vec.add("0"); //nComp
 
