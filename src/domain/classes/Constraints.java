@@ -62,7 +62,7 @@ public class Constraints {
         return true;
     }
 
-    protected static boolean LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(MUS m1, MUS m2) {
+    public static boolean LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(MUS m1, MUS m2) {
         if ((m1.getClassClass().getType() == ClassType.LABORATORY ||
                 m1.getClassClass().getType() == ClassType.PROBLEMS) &&
                 (m2.getClassClass().getType() == ClassType.LABORATORY ||

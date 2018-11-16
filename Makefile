@@ -47,7 +47,7 @@ classroomSessionDriver:
 	java -cp bin/:libs/json-simple-1.1.1.jar src.domain.drivers.ClassroomSessionDriver
 
 constraintsDriver:
-	java -cp bin/:libs/json-simple-1.1.1.jar src.domain.drivers.src.domain.classes.ConstraintsDriver
+	java -cp bin/:libs/json-simple-1.1.1.jar src.domain.drivers.src.domain.drivers.ConstraintsDriver
 
 junit:
 	java -cp bin/:libs/ src.domain.junits.TestSchedule
