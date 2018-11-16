@@ -7,12 +7,11 @@ import java.util.HashMap;
 import java.util.Vector;
 
 
+/**
+ * SubjectsSet class implements a set of subjects to work with them together.
+ * @author Joaquim Gomez
+ */
 public final class SubjectsSet {
-    /**
-     * SubjectsSet class implements a set of subjects to work with them together.
-     * @author joaquimgomez
-     */
-
 
     // Members
 

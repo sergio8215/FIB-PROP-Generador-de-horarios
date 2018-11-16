@@ -7,11 +7,12 @@ import src.domain.classes.Schedule;
 
 import java.util.LinkedList;
 
+
+/**
+ * Controller for the generation of schedules.
+ * @author Joaquim Gomez & Mireia Cano
+ */
 public class CtrlScheduleGeneration {
-    /**
-     *
-     * @author joaquimgomez & mireiacano
-     */
 
     // Members
 

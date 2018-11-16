@@ -8,7 +8,6 @@ package src.domain.controllers;
 import src.domain.classes.*;
 import src.persistence.DataManager;
 import src.domain.utils.UtilsDomain;
-import src.presentation.CtrlPresenter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -143,7 +142,7 @@ public class CtrlDomain {
     /**
      * Generates the scheduler based on the generated scenario
      */
-    public Schedule generateSchedule(){
+    public void generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
         ArrayList<ClassClass> cc = classSet.unset();
@@ -153,7 +152,6 @@ public class CtrlDomain {
             linkedList.add(mus);
         }
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
-        return schedule;
     }
 
     public void saveSchedule( String newFileName, Schedule schedule ) throws Exception {
