@@ -113,21 +113,21 @@ public class CtrlPresenter {
     private static void scheduleGeneration() throws Exception {
 
         final int numFilesSubjects = 2;
-        final int numFilesClassroms = 2;
+        final int numFilesClassrooms = 2;
 
         Scanner s = new Scanner(System.in);
 
         scheduleGenerationMenu();
 
         int subjectsFile = 0;
-        int classromsFile = 0;
+        int classroomsFile = 0;
 
         boolean inputCorrect = false;
         while (!inputCorrect) {
             subjectsFile = s.nextInt();
-            classromsFile = s.nextInt();
+            classroomsFile = s.nextInt();
 
-            if (subjectsFile < numFilesSubjects && classromsFile < numFilesClassroms)   inputCorrect = true;
+            if (subjectsFile <= numFilesSubjects && classroomsFile <= numFilesClassrooms)   inputCorrect = true;
             else {
                 System.out.println("Input error. Try it again. \n");
                 s.next();
@@ -135,10 +135,10 @@ public class CtrlPresenter {
             }
         }
 
-        String strSubjectsFile = "file" + subjectsFile + ".json"; // TODO: CAMBIAR NOMBRE DE FICHEROS
-        String classroomsFile = "file" + classromsFile + ".json";
+        String strSubjectsFileName = "subjects" + subjectsFile + ".json"; // TODO: CAMBIAR NOMBRE DE FICHEROS
+        String classroomsFileName = "classrooms" + classroomsFile + ".json";
 
-        ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
+        ctrlDomain.createScenario(classroomsFileName, strSubjectsFileName);
 
         System.out.println("List of restrictions that will apply:\n");
         System.out.println("\n1.");                                    // TODO: LISTAR LAS RESTRICCIONES
