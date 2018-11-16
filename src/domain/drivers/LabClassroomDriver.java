@@ -156,7 +156,9 @@ public class LabClassroomDriver {
                 case 12:
                     testToStr();
                     break;
-
+                case 99:
+                    eof = true;
+                    break;
                 default:
                     System.out.println("Input error\n");
             }

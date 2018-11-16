@@ -103,6 +103,32 @@ public class ClassroomSet {
     //GETTERS & SETTERS
 
     /**
+     * Getter of the classroom values
+     * @return returns the classroom Objects of the set
+     */
+    public ArrayList<Classroom> getClassroomValues(){
+        ArrayList<Classroom> cc1 = new ArrayList<>(labClassroomSet.values());
+        ArrayList<Classroom> cc2 = new ArrayList<>(theoryClassroomSet.values());
+        return classroomUnion(cc1, cc2);
+    }
+
+    /**
+     * Adds new Classroom Objects to our HashMaps
+     * @param cc ArrayList of Classrooms to add
+     */
+    public void addClassroomSet(ArrayList<Classroom> cc) {
+        for (Classroom aCc : cc) {
+            if (aCc.getType() == UtilsDomain.ClassType.LABORATORY) {
+                LabClassroom lab = (LabClassroom) aCc;
+                labClassroomSet.put(lab.getName(), lab);
+            } else {
+                TheoryClassroom theo = (TheoryClassroom) aCc;
+                theoryClassroomSet.put(theo.getName(), theo);
+            }
+        }
+    }
+
+    /**
      * Getter of the theoryClassroomSet attribute
      * @return returns an ArrayList with all the theory classrooms
      */
@@ -114,7 +140,7 @@ public class ClassroomSet {
      * Setter of the theoryClassroomSet attribute
      * @param theory ArrayList with all the theory classrooms
      */
-    public void setTheoryClassroomSet(ArrayList<TheoryClassroom> theory) {
+    public void addTheoryClassroomSet(ArrayList<TheoryClassroom> theory) {
         for (TheoryClassroom aTheory : theory) {
             theoryClassroomSet.put(aTheory.getName(), aTheory);
         }
@@ -156,16 +182,6 @@ public class ClassroomSet {
      */
     private boolean theoryExists(String name){
         return theoryClassroomSet.containsKey(name);
-    }
-
-    /**
-     * Getter of the classroom values
-     * @return returns the classroom Objects of the set
-     */
-    public ArrayList<Classroom> getClassroomValues(){
-        ArrayList<Classroom> cc1 = new ArrayList<>(labClassroomSet.values());
-        ArrayList<Classroom> cc2 = new ArrayList<>(theoryClassroomSet.values());
-        return classroomUnion(cc1, cc2);
     }
 
     /**
@@ -239,22 +255,6 @@ public class ClassroomSet {
         }
 
         return res;
-    }
-
-    /**
-     * Adds new Classroom Objects to our HashMaps
-     * @param cc ArrayList of Classrooms to add
-     */
-    public void addClassroomSet(ArrayList<Classroom> cc) {
-        for (Classroom aCc : cc) {
-            if (aCc.getType() == UtilsDomain.ClassType.LABORATORY) {
-                LabClassroom lab = (LabClassroom) aCc;
-                labClassroomSet.put(lab.getName(), lab);
-            } else {
-                TheoryClassroom theo = (TheoryClassroom) aCc;
-                theoryClassroomSet.put(theo.getName(), theo);
-            }
-        }
     }
 
     /**

@@ -143,7 +143,9 @@ public class TheoryClassroomDriver {
                 case 10:
                     testToStr();
                     break;
-
+                case 99:
+                    eof = true;
+                    break;
                 default:
                     System.out.println("Input error\n");
             }
