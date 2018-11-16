@@ -12,7 +12,6 @@ public class Schedule {
     private boolean correct;
     //ArrayList< ArrayList<MUS> > timetable;
     private HashMap<String, ArrayList<MUS> > timetable;
-    public int countSchedule = 0;
 
     //matriz de asignaturas. Cada fila son los UMH de una asignatura concreta (ordenada por horas/dia)
 
@@ -106,9 +105,8 @@ public class Schedule {
     /**
      * Setter to false of the correct attribute
      */
-    public Schedule fail(){
+    public void fail() {
         correct = false;
-        return this;
     }
 
     /**
@@ -195,7 +193,6 @@ public class Schedule {
         }
         else if(values.size() == 0) values.add(mus);
         else addOrdered(values, mus);
-        countSchedule++;
     }
 
     /**
@@ -209,7 +206,6 @@ public class Schedule {
         int index = findPosition(a, mus);
         if (index == -1) return false;
         else {
-            countSchedule--;
             a.remove(index);
             return true;
         }

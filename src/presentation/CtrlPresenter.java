@@ -135,14 +135,14 @@ public class CtrlPresenter {
             }
         }
 
-        String strSubjectsFile = "file" + subjectsFile + ".json";
+        String strSubjectsFile = "file" + subjectsFile + ".json"; // TODO: CAMBIAR NOMBRE DE FICHEROS
         String classroomsFile = "file" + classromsFile + ".json";
 
         ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
 
         System.out.println("List of restrictions that will apply:\n");
-        System.out.println("1. \n\n");                                    // TODO: LISTAR LAS RESTRICCIONES
-        System.out.print("\n Do you want to continue with the schedule generation? [S/N]: ");
+        System.out.println("\n1.");                                    // TODO: LISTAR LAS RESTRICCIONES
+        System.out.print("Do you want to continue with the schedule generation? [S/N]: ");
 
         switch (s.next().toUpperCase()) {
             case "S":
@@ -150,7 +150,7 @@ public class CtrlPresenter {
                 Schedule sch = ctrlDomain.showSchedule().result;
                 showSchedule(sch);
 
-                System.out.print("Save schedule?: [S/N]"); // TODO: PROBAR GUARDAR HORARIO
+                System.out.print("Save schedule?: [S/N] "); // TODO: PROBAR GUARDAR HORARIO
                 String ss = s.next().toUpperCase();
 
                 if (ss.contentEquals("S")){
@@ -158,6 +158,8 @@ public class CtrlPresenter {
                     String fileName = s.next();
                     ctrlDomain.saveSchedule(fileName, sch);
                 }
+
+                clearConsole();
                 break;
 
             case "N":

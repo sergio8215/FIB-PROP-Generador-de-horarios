@@ -72,9 +72,6 @@ public class MainTests {
                 case 12:
                     constraintsTest();
                     break;
-                case 13:
-                    scheduleTest();
-                    break;
                 default:
                     System.out.println("Input error!\n");
             }
@@ -274,21 +271,7 @@ public class MainTests {
 
         final String args[] = {fileIn, fileOut};
 
-        //ConstraintsDriver.main(args);
-
-        return true;
-    }
-
-    private static boolean scheduleTest() throws Exception {
-        System.out.print("Name of input file: ");
-        String fileIn = sc.next();
-
-        System.out.print("Name of output file: ");
-        String fileOut = sc.next();
-
-        final String args[] = {fileIn, fileOut};
-
-        //ScheduleDriver.main(args);
+        //src.domain.drivers.src.domain.classes.ConstraintsDriver.main(args);
 
         return true;
     }
