@@ -223,7 +223,7 @@ public class TheoryClassDriver {
             e.printStackTrace();
         }
 
-        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("./data/drivers/out/TheoryClassFile.out"),false)),true);
+        ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("drivers/out/TheoryClass.out"),false)),true);
         System.setOut(ps);
 
 

@@ -4,12 +4,11 @@ import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
+/**
+ * Subject class.
+ * @author Joaquim Gomez
+ */
 public class Subject {
-    /**
-     * Subject class represents a subject of a given Curriculum.
-     * @author joaquimgomez
-     */
-
 
     // Members
 

@@ -4,12 +4,13 @@ import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
-public class MUS {
-    /**
-     * Minimum Unit of Schedule (MUS)
-     * @author Joaquim Gómez
-     */
 
+/**
+ * Minimum Unit of Schedule (MUS)
+ * @author Joaquim Gomez
+ */
+
+public class MUS {
 
     // Members
     ClassClass classclass;
@@ -42,8 +43,8 @@ public class MUS {
 
     /**
      * Class constructor specifying the member's values (classroom and session as a pair.).
-     * @param classclass
-     * @param classroomSessionpair
+     * @param classclass ClassClass of the MUS.
+     * @param classroomSessionpair Pair with the Classroom and the Session of the MUS.
      */
     public MUS(ClassClass classclass, UtilsDomain.Pair<Classroom, Session> classroomSessionpair) {
         this.classclass = classclass;

@@ -1,20 +1,34 @@
 package src.presentation;
 
+import src.domain.classes.MUS;
 import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
-import src.domain.utils.inout;
+import src.domain.utils.UtilsDomain;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
+
+/**
+ * Presentation Controller
+ * @author Joaquim Gomez
+ */
 public class CtrlPresenter {
+
+    // Members
 
     private static CtrlDomain ctrlDomain;
 
+
+    // Methods
+
+    /**
+     * Main method of the program.
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
-        System.out.println("SCHEDULE GENERATOR\n");
+        System.out.println("\t\t\t============ SCHEDULE GENERATOR ============");
 
         ctrlDomain = new CtrlDomain();
 
@@ -24,48 +38,62 @@ public class CtrlPresenter {
         while (!end){
             mainMenu();
 
-            int opt = s.nextInt();
 
-            switch (opt){
+            switch (s.nextInt()){
                 case 1:
                     scheduleGeneration();
-                    //clearConsole();
                     break;
 
                 case 2:
                     ArrayList<String> filesList = ctrlDomain.listScheduleFiles();
-                    System.out.println("Please input the number of one saved files: ");
+
                     int i = 0;
                     for (String f : filesList ){
                         System.out.println(i+". "+f);
                         i++;
                     }
-                    opt = s.nextInt();
-                    ctrlDomain.loadSchedule(opt);
+
+                    System.out.print("Please input the number of one saved files: ");
+
+                    ctrlDomain.loadSchedule(s.nextInt());
+
+                    UtilsDomain.ResultOfQuery<Schedule> rq = ctrlDomain.showSchedule();
+                    showSchedule(rq.result);    // TODO: PROBAR RECUPERAR HORARIO
+
                     System.out.println("\n Please press one key to continue");
                     System.in.read();
+
                 case 3:
                     end = !end;
                     break;
 
                 default:
-                    //clearConsole();
+                    clearConsole();
+
                     System.out.println("Input error. Try it again!");
                     mainMenu();
-                    opt = s.nextInt();
+
+                    break;
             }
+
+            clearConsole();
         }
 
     }
 
+    /**
+     * Print the menu on the screen.
+     */
     private static void mainMenu() {
-        System.out.println("1. Generate Schedule.\n");
-        System.out.println("2. Load schedule.\n");
-        System.out.println("3. Exit.\n");
-        System.out.println("\n Which option do you want choose? \n");
-        System.out.println("Option: ");
+        System.out.println("1. Generate Schedule.");
+        System.out.println("2. Load schedule.");
+        System.out.println("3. Exit.");
+        System.out.print("Option: ");
     }
 
+    /**
+     * Clear the console.
+     */
     private static void clearConsole() {
         final String os = System.getProperty("os.name");
 
@@ -78,7 +106,11 @@ public class CtrlPresenter {
 
     }
 
-    private static void scheduleGeneration() throws Exception { /// MODIFICAR PARA PASAR ESCENARIO
+    /**
+     * Interaction with the user to pass to CtrlDomain the information to generate the schedule and start the generation.
+     * @throws Exception
+     */
+    private static void scheduleGeneration() throws Exception {
 
         final int numFilesSubjects = 2;
         final int numFilesClassroms = 2;
@@ -97,7 +129,6 @@ public class CtrlPresenter {
 
             if (subjectsFile < numFilesSubjects && classromsFile < numFilesClassroms)   inputCorrect = true;
             else {
-                //clearConsole();
                 System.out.println("Input error. Try it again. \n");
                 s.next();
                 scheduleGenerationMenu();
@@ -110,20 +141,22 @@ public class CtrlPresenter {
         ctrlDomain.createScenario(classroomsFile, strSubjectsFile);
 
         System.out.println("List of restrictions that will apply:\n");
-        System.out.println("1. \n");
-        System.out.println("\n Do you want to continue with the schedule generation? [S/N]");
+        System.out.println("1. \n\n");                                    // TODO: LISTAR LAS RESTRICCIONES
+        System.out.print("\n Do you want to continue with the schedule generation? [S/N]: ");
 
         switch (s.next().toUpperCase()) {
             case "S":
-                Schedule schedule = ctrlDomain.generateSchedule();
+                ctrlDomain.generateSchedule();
+                Schedule sch = ctrlDomain.showSchedule().result;
+                showSchedule(sch);
 
-                System.out.print("Save schedule?: [S/N]");
-                String ss = s.next();
+                System.out.print("Save schedule?: [S/N]"); // TODO: PROBAR GUARDAR HORARIO
+                String ss = s.next().toUpperCase();
 
                 if (ss.contentEquals("S")){
                     System.out.print("Name of the file: ");
                     String fileName = s.next();
-                    ctrlDomain.saveSchedule(fileName, schedule);
+                    ctrlDomain.saveSchedule(fileName, sch);
                 }
                 break;
 
@@ -136,20 +169,41 @@ public class CtrlPresenter {
 
     }
 
+    /**
+     * Print the menu of the Schedule Generation on the screen.
+     */
     private static void scheduleGenerationMenu() {
         System.out.println("To generate the schedule it is necessary to indicate: \n " +
-                "- Set of Subjects: \n" +
-                "  1. ArchivoSubjects1 \n" +
-                "  2. ArchivoSubjects2 \n" +
-                "- Set of Classrooms.\n" +
-                "  1. ArchivoClassrooms1\n" +
-                "  2. ArchivoClassroom2\n");
-        System.out.println("Indicates following the scheme: numOfSubjectsFile numOfClassromsFile");
-        System.out.println("Option: ");
+                "\tSet of Subjects:\n" +
+                "\t\t1. subjects1.json\n" +
+                "\t\t2. subjects2.json\n" +
+                "\tSet of Classrooms.\n" +
+                "\t\t1. classrooms1.json\n" +
+                "\t\t2. classrooms2.json\n");
+        System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassromsFile; i.e: 1 1");
+        System.out.print("Option: ");
     }
 
-    private static void showSchedule() {
-        
+    /**
+     * Print the schedule on the screen.
+     * @param s Schedule to be printed.
+     */
+    private static void showSchedule(Schedule s) {
+        HashMap<String, ArrayList<MUS> > timetable = s.getTimetable();
+
+        Set<String> keys = timetable.keySet();
+
+        for (String nameSubject : keys) {
+            System.out.println("\n SUBJECT - " + nameSubject.toUpperCase());
+
+            ArrayList<MUS> elems = timetable.get(nameSubject);
+
+            for (MUS m : elems) {
+                System.out.println(m.getClassClass().getIdentifier() + ": " + m.getClassroom().getName() + " - " + m.getSession().getDay() + " " + m.getSession().getHour());
+            }
+
+            System.out.print("\n");
+        }
     }
 
 }
