@@ -32,16 +32,16 @@ public class DataManager {
 
     /**
      * Reading from JSON file
-     * @param fileName
+     * @param fileNumber
      * @throws java.io.IOException
      */
-    public Vector <Vector< String>> importClassrooms(String fileName) throws IOException {
+    public Vector <Vector< String>> importClassrooms(int fileNumber) throws IOException {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
         try {
 
-            Object obj = parser.parse(new FileReader("./data/import/" + fileName ));
+            Object obj = parser.parse(new FileReader(listImportFiles().get(fileNumber)));
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
@@ -78,16 +78,16 @@ public class DataManager {
 
     /**
      * Reading from JSON file
-     * @param fileName
+     * @param fileNumber
      * @throws java.io.IOException
      */
-    public Vector <Vector< String>> importSubjects(String fileName) throws IOException {
+    public Vector <Vector< String>> importSubjects(int fileNumber) throws IOException {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> subjects = new Vector <Vector< String>>();
 
         try {
-            Object obj = parser.parse(new FileReader("./data/import/" + fileName ));
+            Object obj = parser.parse(new FileReader(listImportFiles().get(fileNumber)));
             JSONObject rootJSON = (JSONObject) obj;
 
             String  subject;
@@ -210,7 +210,30 @@ public class DataManager {
         return myFiles;
     }
 
-        public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
+    public ArrayList<String> listImportFiles() {
+        inout i = new inout();
+
+        ArrayList<String> myFiles = new ArrayList<String>();
+        Path dir = Paths.get("./data/import/");
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+
+            for (Path entry : stream) {
+                myFiles.add(entry.toString());
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            myFiles = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            myFiles = null;
+        }
+        return myFiles;
+    }
+
+
+    public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
 
         Path file = Paths.get("./data/load/"+fileName);
 

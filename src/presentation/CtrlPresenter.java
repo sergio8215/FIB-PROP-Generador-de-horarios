@@ -58,7 +58,7 @@ public class CtrlPresenter {
                     ctrlDomain.loadSchedule(s.nextInt());
 
                     UtilsDomain.ResultOfQuery<Schedule> rq = ctrlDomain.showSchedule();
-                    showSchedule(rq.result);    // TODO: PROBAR RECUPERAR HORARIO
+                    showSchedule(rq.result);
 
                     System.out.println("\n Please press one key to continue");
                     System.in.read();
@@ -106,7 +106,6 @@ public class CtrlPresenter {
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -115,12 +114,18 @@ public class CtrlPresenter {
      */
     private static void scheduleGeneration() throws Exception {
 
-        final int numFilesSubjects = 2;
-        final int numFilesClassrooms = 2;
-
         Scanner s = new Scanner(System.in);
 
         scheduleGenerationMenu();
+        System.out.println("\n");
+        ArrayList<String> filesList = ctrlDomain.listImportFiles();
+
+        int i = 0;
+        for (String f : filesList ){
+            List<String> myFile = Arrays.asList(f.split("\\\\"));
+            System.out.println(i+". "+myFile.get(myFile.size()-1));
+            i++;
+        }
 
         int subjectsFile = 0;
         int classroomsFile = 0;
@@ -130,7 +135,7 @@ public class CtrlPresenter {
             subjectsFile = s.nextInt();
             classroomsFile = s.nextInt();
 
-            if (subjectsFile <= numFilesSubjects && classroomsFile <= numFilesClassrooms)   inputCorrect = true;
+            if (subjectsFile <= filesList.size() && classroomsFile <= filesList.size())   inputCorrect = true;
             else {
                 System.out.println("Input error. Try it again. \n");
                 s.next();
@@ -138,10 +143,7 @@ public class CtrlPresenter {
             }
         }
 
-        String strSubjectsFileName = "subjects" + subjectsFile + ".json"; // TODO: CAMBIAR NOMBRE DE FICHEROS
-        String classroomsFileName = "classrooms" + classroomsFile + ".json";
-
-        ctrlDomain.createScenario(classroomsFileName, strSubjectsFileName);
+        ctrlDomain.createScenario(classroomsFile, subjectsFile);
 
         System.out.println("List of restrictions that will apply:\n");
         System.out.println("\n1.");                                    // TODO: LISTAR LAS RESTRICCIONES

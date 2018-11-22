@@ -46,7 +46,7 @@ public class CtrlDomain {
      * @param file name of the file to import
      * @return true if the import is successful
      */
-    private boolean importClassroom(String file) throws Exception{
+    private boolean importClassroom(int file) throws Exception{
 
         Vector<Vector<String >> classrooms = dManager.importClassrooms(file);
         if (classrooms != null) {
@@ -61,7 +61,7 @@ public class CtrlDomain {
      * @param file name of the file to import
      * @return true if the import is successful
      */
-    private boolean importSubject(String file) throws Exception{
+    private boolean importSubject(int file) throws Exception{
         Vector< Vector <String > > subjects = dManager.importSubjects(file);
         if (subjects != null){
             subjectsSet = new SubjectsSet (subjects);
@@ -78,14 +78,14 @@ public class CtrlDomain {
      * @param subjectFile name of the subjects file to import
      * @return true if the import is successful
      */
-    public boolean createScenario(String classroomFile, String subjectFile) throws Exception {
+    public boolean createScenario(int classroomFile, int subjectFile) throws Exception {
         boolean c = importClassroom(classroomFile);
         boolean s = importSubject(subjectFile);
         if (c && s ) {
             classSet = new ClassSet(subjectsSet);
             classroomSession = new ClassroomSession(classroomsSet);
-            this.classroomFile = classroomFile;
-            this.subjectFile = subjectFile;
+            this.classroomFile = listImportFiles().get(classroomFile);
+            this.subjectFile = listImportFiles().get(subjectFile);
             return true;
         }
         else return false;
@@ -151,6 +151,14 @@ public class CtrlDomain {
      */
     public ArrayList<String> listScheduleFiles(){
         return dManager.listScheduleFiles();
+    }
+
+    /**
+     * List of import files.
+     * @return A list of files
+     */
+    public ArrayList<String> listImportFiles(){
+        return dManager.listImportFiles();
     }
 
 
