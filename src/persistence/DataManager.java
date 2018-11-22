@@ -45,7 +45,7 @@ public class DataManager {
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
-            JSONArray classroomList = (JSONArray) rootJSON.get("Classrooms List");
+            JSONArray classroomList = (JSONArray) rootJSON.get("Classrooms n");
             Iterator<JSONObject> iterator = classroomList.iterator();
 
             int i = 0;
@@ -84,7 +84,7 @@ public class DataManager {
     public Vector <Vector< String>> importSubjects(int fileNumber) throws IOException {
 
         JSONParser parser = new JSONParser();
-        Vector <Vector< String>> subjects = new Vector <Vector< String>>();
+        Vector <Vector< String>> subjects = new Vector <>();
 
         try {
             Object obj = parser.parse(new FileReader(listImportFiles().get(fileNumber)));

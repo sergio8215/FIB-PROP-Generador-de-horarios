@@ -122,8 +122,7 @@ public class CtrlPresenter {
         Collections.sort(filesList);
         int i = 0;
         for (String f : filesList ){
-            List<String> myFile = Arrays.asList(f.split("/"));
-            System.out.println(i+". "+myFile.get(myFile.size()-1));
+            System.out.println(i+". "+f);
             i++;
         }
 
