@@ -140,52 +140,14 @@ public class DataManager {
         return subjects;
     }
 
-    public Schedule loadSchedule( int fileNum ) throws IOException {
+    public List<String> loadSchedule( int fileNum ) throws IOException {
 
         ArrayList<String> fileList = listScheduleFiles();
         Path file = Paths.get( fileList.get(fileNum));
 
         List<String> stringSchedule = Files.readAllLines(file, Charset.forName("UTF-8"));
-        String classroomFile = stringSchedule.get(0);
-        String subjectFile = stringSchedule.get(1);
-        HashMap<String, ArrayList<MUS> > timetable = new HashMap<>();
-        String[] separated;
-        MUS myMUS;
-        ArrayList<MUS> arrayMUS = new ArrayList<>();
 
-        // We read the first class
-        separated = stringSchedule.get(2).split("\\*");
-        String subjectName = ClassClass.fromStr(new Vector(Arrays.asList(separated))).getSubject().getName();
-
-        for( int i = 2; i < stringSchedule.size(); i+=3 ){
-
-            // We read the class
-            separated = stringSchedule.get(i).split("\\*");
-            ClassClass classClass = ClassClass.fromStr(new Vector(Arrays.asList(separated)));
-
-            // We read the classroom
-            separated = stringSchedule.get(i+1).split("\\*");
-            Classroom classroom = Classroom.fromStr(new Vector(Arrays.asList(separated)));
-
-            // We read the session
-            separated = stringSchedule.get(i+2).split("\\*");
-            Session session = new Session(new Vector(Arrays.asList(separated)));
-            myMUS = new MUS( classClass, classroom, session );
-
-            // If the class before it's same subject we add it to the array list
-            if ( subjectName.equalsIgnoreCase(classClass.getSubject().getName()) ){
-
-                arrayMUS.add(myMUS);
-
-            }else{  // if not we add it to the hashmap
-                timetable.put(subjectName, arrayMUS );
-                arrayMUS = new ArrayList<>();
-                arrayMUS.add(myMUS);
-                subjectName = classClass.getSubject().getName();
-            }
-        }
-        Schedule schedule = new Schedule(classroomFile, subjectFile, timetable);
-        return schedule;
+        return stringSchedule;
     }
 
     public ArrayList<String> listScheduleFiles() {
@@ -233,38 +195,11 @@ public class DataManager {
     }
 
 
-    public void saveSchedule( String fileName, Schedule schedule ) throws Exception {
+    public void saveSchedule( String fileName, List<String> schedule ) throws Exception {
 
         Path file = Paths.get("./data/load/"+fileName);
 
-        List<String> lines = new ArrayList<>();
-
-        lines.add(schedule.getClassroomFile());
-        lines.add(schedule.getSubjectFile());
-
-        // I get an array list of MUS's
-        for ( MUS mus: schedule.unset() ) {
-
-            // For each mus I pass all his attributes to string
-
-            Vector<Vector<String>> musAttributes;
-            musAttributes = mus.toStr();
-            String result;
-
-            // for each attribute of the MUS
-            for (Vector<String> eachAttribute : musAttributes) {
-
-                result = "";
-
-                for (String objectAttribute : eachAttribute) {
-                    result = result + objectAttribute + "*";
-                }
-                lines.add(result);
-
-            }
-        }
-
-        Files.write(file, lines, Charset.forName("UTF-8"));
+        Files.write(file, schedule, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
 }

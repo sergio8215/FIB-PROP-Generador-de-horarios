@@ -119,10 +119,10 @@ public class CtrlPresenter {
         scheduleGenerationMenu();
         System.out.println("\n");
         ArrayList<String> filesList = ctrlDomain.listImportFiles();
-
+        Collections.sort(filesList);
         int i = 0;
         for (String f : filesList ){
-            List<String> myFile = Arrays.asList(f.split("\\\\"));
+            List<String> myFile = Arrays.asList(f.split("/"));
             System.out.println(i+". "+myFile.get(myFile.size()-1));
             i++;
         }
@@ -132,8 +132,8 @@ public class CtrlPresenter {
 
         boolean inputCorrect = false;
         while (!inputCorrect) {
-            subjectsFile = s.nextInt();
             classroomsFile = s.nextInt();
+            subjectsFile = s.nextInt();
 
             if (subjectsFile <= filesList.size() && classroomsFile <= filesList.size())   inputCorrect = true;
             else {
@@ -161,7 +161,7 @@ public class CtrlPresenter {
                 if (ss.contentEquals("S")){
                     System.out.print("Name of the file: ");
                     String fileName = s.next();
-                    ctrlDomain.saveSchedule(fileName, sch);
+                    ctrlDomain.saveSchedule(fileName, sch.toStr());
                 }
 
                 clearConsole();
@@ -181,13 +181,9 @@ public class CtrlPresenter {
      */
     private static void scheduleGenerationMenu() {
         System.out.println("To generate the schedule it is necessary to indicate: \n " +
-                "\tSet of Subjects:\n" +
-                "\t\t1. subjects1.json\n" +
-                "\t\t2. subjects2.json\n" +
-                "\tSet of Classrooms.\n" +
-                "\t\t1. classrooms1.json\n" +
-                "\t\t2. classrooms2.json\n");
-        System.out.println("Indicates following the schema: numOfSubjectsFile numOfClassroomsFile; i.e: 1 1");
+                "\tChoose a Classrooms file number\n" +
+                "\tChoose a Subject file number:\n");
+        System.out.println("Indicates following the schema: numOfClassroomsFile numOfSubjectsFile; i.e: 1 4");
         System.out.print("Option: ");
     }
 

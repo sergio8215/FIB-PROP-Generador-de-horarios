@@ -12,6 +12,7 @@ import src.domain.utils.UtilsDomain;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -140,7 +141,7 @@ public class CtrlDomain {
      * @param schedule Schedule to save
      * @throws Exception If file can't be created
      */
-    public void saveSchedule( String newFileName, Schedule schedule ) throws Exception {
+    public void saveSchedule( String newFileName, List<String> schedule ) throws Exception {
 
         dManager.saveSchedule(newFileName, schedule);
     }
@@ -168,7 +169,7 @@ public class CtrlDomain {
      * @throws IOException if file it's not found
      */
     public void loadSchedule(int fileNum) throws IOException {
-        schedule = dManager.loadSchedule(fileNum);
+        dManager.loadSchedule(fileNum);
     }
 }
 
