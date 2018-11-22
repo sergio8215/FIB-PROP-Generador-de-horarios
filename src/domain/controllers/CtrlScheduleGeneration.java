@@ -98,6 +98,7 @@ public class CtrlScheduleGeneration {
                         return solution;
                     } else {
                         solution.delete(currentVar);
+                        solution.setFail(false);
                     }
 
                 } else {
@@ -106,6 +107,7 @@ public class CtrlScheduleGeneration {
             }
 
             solution.fail();
+            futureVars.add(currentVar);
             return solution;
         }
     }
