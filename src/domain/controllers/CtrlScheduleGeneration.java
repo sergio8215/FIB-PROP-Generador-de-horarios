@@ -85,8 +85,7 @@ public class CtrlScheduleGeneration {
     private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
         if (futureVars.isEmpty()) 	return solution;
         else {
-            MUS currentVar = futureVars.getFirst();
-            futureVars.remove(0);
+            MUS currentVar = futureVars.pollFirst();
 
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
                 currentVar.assign(currentVar.getValueDomain(i));
@@ -104,10 +103,10 @@ public class CtrlScheduleGeneration {
                 } else {
                     solution.delete(currentVar);
                 }
-
             }
 
             solution.fail();
+            futureVars.add(currentVar);
             return solution;
         }
     }
