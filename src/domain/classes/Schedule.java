@@ -147,7 +147,6 @@ public class Schedule {
                 found = true;
             }
         }
-        if(!found) v.add(mus);
     }
 
     /**
