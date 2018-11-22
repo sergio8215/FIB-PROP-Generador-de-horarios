@@ -134,7 +134,7 @@ public class CtrlPresenter {
             classroomsFile = s.nextInt();
             subjectsFile = s.nextInt();
 
-            if (subjectsFile <= filesList.size() && classroomsFile <= filesList.size())   inputCorrect = true;
+            if (subjectsFile < filesList.size() && classroomsFile < filesList.size())   inputCorrect = true;
             else {
                 System.out.println("Input error. Try it again. \n");
                 s.next();

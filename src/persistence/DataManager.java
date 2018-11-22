@@ -1,4 +1,3 @@
-
 package src.persistence;
 
 import java.io.FileNotFoundException;
@@ -17,7 +16,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import src.domain.classes.*;
 import src.domain.utils.inout;
 
 /**
@@ -38,14 +36,13 @@ public class DataManager {
     public Vector <Vector< String>> importClassrooms(int fileNumber) throws IOException {
 
         JSONParser parser = new JSONParser();
-        Vector <Vector< String>> classrooms = new Vector <Vector< String>>();
+        Vector <Vector< String>> classrooms = new Vector <>();
         try {
-
             Object obj = parser.parse(new FileReader(listImportFiles().get(fileNumber)));
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
-            JSONArray classroomList = (JSONArray) rootJSON.get("Classrooms n");
+            JSONArray classroomList = (JSONArray) rootJSON.get("Classrooms List");
             Iterator<JSONObject> iterator = classroomList.iterator();
 
             int i = 0;
@@ -173,9 +170,8 @@ public class DataManager {
     }
 
     public ArrayList<String> listImportFiles() {
-        inout i = new inout();
 
-        ArrayList<String> myFiles = new ArrayList<String>();
+        ArrayList<String> myFiles = new ArrayList<>();
         Path dir = Paths.get("./data/import/");
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 
