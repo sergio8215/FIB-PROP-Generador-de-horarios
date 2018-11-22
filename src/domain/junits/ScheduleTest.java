@@ -1,13 +1,13 @@
 package src.domain.junits;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import src.domain.classes.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class ScheduleTest {
 
@@ -58,83 +58,83 @@ public class ScheduleTest {
         return new MUS(mus);
     }
 
-    @org.junit.Test
+    @Test
     public void getClassroomFile() {
         Schedule s = scheduleConstructor();
         String cf = s.getClassroomFile();
         assertEquals("getClassroomFile - Ok", "file1.txt", cf);
     }
 
-    @org.junit.Test
+    @Test
     public void setClassroomFile() {
         Schedule s = scheduleConstructor();
         s.setClassroomFile("file3.txt");
         assertEquals("setClassroomFile - Ok", "file3.txt", s.getClassroomFile());
     }
 
-    @org.junit.Test
+    @Test
     public void getSubjectFile() {
         Schedule s = scheduleConstructor();
         String sf = s.getClassroomFile();
         assertEquals("getClassroomFile - Ok", "file1.txt", sf);
     }
 
-    @org.junit.Test
+    @Test
     public void setSubjectFile() {
         Schedule s = scheduleConstructor();
         s.setClassroomFile("file3.txt");
         assertEquals("setClassroomFile - Ok", "file3.txt", s.getClassroomFile());
     }
 
-    @org.junit.Test
+    @Test
     public void isFail() {
         Schedule s = scheduleConstructor();
         boolean fail = s.isFail();
         assertTrue("isFail - Ok", !fail);
     }
 
-    @org.junit.Test
+    @Test
     public void setFail() {
         Schedule s = scheduleConstructor();
         s.setFail(false);
         assertTrue("setFail - Ok", s.isFail());
     }
 
-    @org.junit.Test
+    @Test
     public void fail() {
         Schedule s = scheduleConstructor();
         s.fail();
         assertTrue("fail - Ok", s.isFail());
     }
 
-    @org.junit.Test
+    @Test
     public void getTimetable() {
         Schedule s = scheduleConstructor();
         HashMap<String, ArrayList<MUS>> hm = s.getTimetable();
 
     }
 
-    @org.junit.Test
+    @Test
     public void setTimetable() {
         Schedule s = scheduleConstructor();
         s.setTimetable(new HashMap<String, ArrayList<MUS>>());
         assertTrue("setTimetable - Ok", s.isEmpty());
     }
 
-    @org.junit.Test
+    @Test
     public void isEmpty() {
         Schedule s = scheduleConstructor();
         boolean empty = s.isEmpty();
         assertTrue("isEmpty - Ok", empty);
     }
 
-    @org.junit.Test
+    @Test
     public void size() {
         Schedule s = scheduleConstructor();
         assertEquals("size - Ok", s.size(), 0);
     }
 
-    @org.junit.Test
+    @Test
     public void add() {
         Schedule s = scheduleConstructor();
         MUS m = MUSConstructor();
@@ -142,7 +142,7 @@ public class ScheduleTest {
         assertEquals("add - Ok", s.size(), 1);
     }
 
-    @org.junit.Test
+    @Test
     public void delete() {
         Schedule s = scheduleConstructor();
         MUS m = MUSConstructor();
@@ -151,7 +151,7 @@ public class ScheduleTest {
         assertEquals("add - Ok", s.size(), 0);
     }
 
-    @org.junit.Test
+    @Test
     public void unset() {
         Schedule s = scheduleConstructor();
         MUS m = MUSConstructor();
@@ -160,7 +160,7 @@ public class ScheduleTest {
         assertEquals("add - Ok", a.size(), 1);
     }
 
-    @org.junit.Test
+    @Test
     public void valid() {
         Schedule s = scheduleConstructor();
         assertTrue("valida - OK", true);

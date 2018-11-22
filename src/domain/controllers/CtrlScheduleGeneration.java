@@ -93,7 +93,7 @@ public class CtrlScheduleGeneration {
                 solution.add(currentVar);
 
                 if (solution.valid()) {
-                    solution = chronologicalBacktracking(new LinkedList<>(futureVars), new Schedule(solution));
+                    solution = chronologicalBacktracking(futureVars, solution);
 
                     if (!solution.isFail()) {
                         return solution;

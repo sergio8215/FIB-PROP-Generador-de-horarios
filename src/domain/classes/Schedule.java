@@ -9,7 +9,7 @@ public class Schedule {
 
     private String classroomFile;
     private String subjectFile;
-    private boolean correct;
+    private boolean fail;
     //ArrayList< ArrayList<MUS> > timetable;
     private HashMap<String, ArrayList<MUS> > timetable;
 
@@ -30,7 +30,7 @@ public class Schedule {
     public Schedule(String classroomFile, String subjectFile) {
         this.classroomFile = classroomFile;
         this.subjectFile = subjectFile;
-        correct = true;
+        fail = false;
         timetable = new HashMap<String, ArrayList<MUS>>();
     }
 
@@ -53,7 +53,7 @@ public class Schedule {
     public Schedule(Schedule sched) {
         this.classroomFile = sched.getClassroomFile();
         this.subjectFile = sched.getSubjectFile();
-        this.correct = !sched.isFail();
+        this.fail = sched.isFail();
         this.timetable = new HashMap<String, ArrayList<MUS>>(sched.getTimetable());
     }
 
@@ -96,7 +96,7 @@ public class Schedule {
      * @return returns if the Schedule is correct(false) or not(false)
      */
     public boolean isFail(){
-        return !correct;
+        return fail;
     }
 
     /**
@@ -104,14 +104,14 @@ public class Schedule {
      * @param correct boolean that informs if the Schedule is correct(true) or not(false)
      */
     public void setFail(boolean correct) {
-        this.correct = correct;
+        this.fail = correct;
     }
 
     /**
      * Setter to false of the correct attribute
      */
     public void fail() {
-        correct = false;
+        fail = true;
     }
 
     /**
@@ -249,4 +249,5 @@ public class Schedule {
         }
         return true;
     }
+
 }
