@@ -144,10 +144,10 @@ public class Schedule {
 
     /**
      * Basic setter of the correct attribute
-     * @param correct boolean that informs if the Schedule is correct(true) or not(false)
+     * @param fail boolean that informs if the Schedule is correct(true) or not(false)
      */
-    public void setFail(boolean correct) {
-        this.fail = correct;
+    public void setFail(boolean fail) {
+        this.fail = fail;
     }
 
     /**
