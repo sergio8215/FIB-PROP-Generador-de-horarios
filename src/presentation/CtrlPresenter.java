@@ -119,7 +119,7 @@ public class CtrlPresenter {
         scheduleGenerationMenu();
         System.out.println("\n");
         ArrayList<String> filesList = ctrlDomain.listImportFiles();
-        Collections.sort(filesList);
+        
         int i = 0;
         for (String f : filesList ){
             System.out.println(i+". "+f);
