@@ -122,8 +122,7 @@ public class CtrlPresenter {
         Collections.sort(filesList);
         int i = 0;
         for (String f : filesList ){
-            List<String> myFile = Arrays.asList(f.split("/"));
-            System.out.println(i+". "+myFile.get(myFile.size()-1));
+            System.out.println(i+". "+f);
             i++;
         }
 
@@ -135,7 +134,7 @@ public class CtrlPresenter {
             classroomsFile = s.nextInt();
             subjectsFile = s.nextInt();
 
-            if (subjectsFile <= filesList.size() && classroomsFile <= filesList.size())   inputCorrect = true;
+            if (subjectsFile < filesList.size() && classroomsFile < filesList.size())   inputCorrect = true;
             else {
                 System.out.println("Input error. Try it again. \n");
                 s.next();
