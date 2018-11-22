@@ -104,8 +104,8 @@ public class Session {
     public static boolean compare( Session s1, String op, Session s2  ) {
         if (op.equals("<"))     return ( s1.getDay().ordinal() < s2.getDay().ordinal() ) || ( s1.getHour() < s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
         if (op.equals(">"))     return ( s1.getDay().ordinal() > s2.getDay().ordinal() ) || ( s1.getHour() > s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
-        if (op.equals("<="))    return ( s1.getDay().ordinal() <= s2.getDay().ordinal() ) || ( s1.getHour() <= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
-        if (op.equals(">="))    return ( s1.getDay().ordinal() >= s2.getDay().ordinal() ) || ( s1.getHour() >= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
+        if (op.equals("<="))    return ( s1.getDay().ordinal() < s2.getDay().ordinal() ) || ( s1.getHour() <= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
+        if (op.equals(">="))    return ( s1.getDay().ordinal() > s2.getDay().ordinal() ) || ( s1.getHour() >= s2.getHour() && s1.getDay().ordinal() == s2.getDay().ordinal() );
         if (op.equals("!="))    return s1.getDay().ordinal() != s2.getDay().ordinal() || s1.getHour() != s2.getHour();
         if (op.equals("=="))    return s1.getDay().ordinal() == s2.getDay().ordinal() && s1.getHour() == s2.getHour();
 
