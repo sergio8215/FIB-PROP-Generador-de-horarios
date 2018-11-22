@@ -49,9 +49,9 @@ public class DataManager {
 
             while (iterator.hasNext()) {
 
-                JSONObject classroomJSON = (JSONObject) iterator.next();
+                JSONObject classroomJSON = iterator.next();
 
-                classrooms.add(new Vector<String>());
+                classrooms.add(new Vector<>());
                 classrooms.elementAt(i).add((String)classroomJSON.get("Classroom"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Quantity"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Type"));
@@ -101,9 +101,9 @@ public class DataManager {
 
             while (iterator2.hasNext()) {
 
-                JSONObject subjectJSON = (JSONObject) iterator2.next();
+                JSONObject subjectJSON = iterator2.next();
 
-                subjects.add(new Vector<String>());
+                subjects.add(new Vector<>());
                 subjects.elementAt(i).add((String)subjectJSON.get("Subject"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Num_students"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Level"));
