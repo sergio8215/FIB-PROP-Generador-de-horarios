@@ -106,7 +106,6 @@ public class CtrlScheduleGeneration {
             }
 
             solution.fail();
-            futureVars.add(currentVar);
             return solution;
         }
     }
