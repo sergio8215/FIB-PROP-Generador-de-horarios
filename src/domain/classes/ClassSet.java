@@ -152,7 +152,7 @@ public class ClassSet {
                         subGroup = i*10+subGroupCount;
                         subGroupCount++;
                         identifier = ""+subject.getName()+subGroup;
-                        quantityStudents = ((groups[0] != 0)?(int)Math.ceil(subject.getNumberStudents()/groups[1]): 0);
+                        quantityStudents = ((groups[0] != 0)?(int)Math.ceil( (subject.getNumberStudents()/groups[0])/groups[1]): 0);
                         c = new LaboratoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                         this.addClass( identifier, c);
                     }
@@ -162,7 +162,7 @@ public class ClassSet {
                         subGroup = i*10+subGroupCount;
                         subGroupCount++;
                         identifier = ""+subject.getName()+subGroup;
-                        quantityStudents = ((groups[0] != 0)?(int)Math.ceil(subject.getNumberStudents()/groups[1]): 0);
+                        quantityStudents = ((groups[0] != 0)?(int)Math.ceil( (subject.getNumberStudents()/groups[0])/groups[1]): 0);
                         c = new ProblemsClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
                         this.addClass( identifier, c);
                     }
