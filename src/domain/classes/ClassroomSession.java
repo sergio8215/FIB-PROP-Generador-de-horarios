@@ -78,8 +78,8 @@ public class ClassroomSession {
     }
 
     /**
-     * returns the size of the classroomSessionSet
-     * @return returns an int with the size of the classroomSessionSet
+     * returns the sizeTimetable of the classroomSessionSet
+     * @return returns an int with the sizeTimetable of the classroomSessionSet
      */
     public int size(){
         return classroomSessionSet.size();

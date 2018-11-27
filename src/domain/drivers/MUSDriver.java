@@ -366,7 +366,7 @@ public class MUSDriver {
         System.out.println("\t10 -> Classroom-Session Pair Getter");
         System.out.println("\t11 -> Subject getter");
         System.out.println("\t12 -> Domain getter");
-        System.out.println("\t13 -> Domain size");
+        System.out.println("\t13 -> Domain sizeTimetable");
         System.out.println("\t14 -> Assign");
         System.out.println("\t15 -> Value from domain getter");
         System.out.println("\t16 -> Delete value from domain");

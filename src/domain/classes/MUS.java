@@ -149,8 +149,8 @@ public class MUS {
     }
 
     /**
-     * It returns the size of the domain.
-     * @return domain of the size.
+     * It returns the sizeTimetable of the domain.
+     * @return domain of the sizeTimetable.
      */
     public int domainSize() {
         return domain.size();
