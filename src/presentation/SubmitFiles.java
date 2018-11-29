@@ -1,5 +1,7 @@
 package src.presentation;
 
+import src.domain.controllers.CtrlDomain;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
@@ -14,10 +16,15 @@ public class SubmitFiles extends JFrame{
     private JPanel rootPanel;
 
     public  SubmitFiles(){
+
+        CtrlDomain controlDomain = new CtrlDomain();
+
+        
         add(rootPanel);
         setTitle("Submit Files");
         setSize(400,500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         // We add a Listener to make the button do something
         selectClassroomsFileButton.addActionListener(new ActionListener() {
             @Override
@@ -33,6 +40,7 @@ public class SubmitFiles extends JFrame{
                             fc.getSelectedFile().getName());
 
                 }
+                controlDomain.createScenario();
             }
         });
         selectSubjectsFileButton.addActionListener(new ActionListener() {
