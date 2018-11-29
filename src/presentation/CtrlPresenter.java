@@ -153,19 +153,26 @@ public class CtrlPresenter {
         switch (s.next().toUpperCase()) {
             case "S":
                 ctrlDomain.generateSchedule();
-                Schedule sch = ctrlDomain.showSchedule().result;
-                showSchedule(sch);
+                if(ctrlDomain.showSchedule().queryTest){
+                    Schedule sch = ctrlDomain.showSchedule().result;
+                    showSchedule(sch);
 
-                System.out.print("Save schedule?: [S/N] "); // TODO: PROBAR GUARDAR HORARIO
-                String ss = s.next().toUpperCase();
+                    System.out.print("Save schedule?: [S/N] "); // TODO: PROBAR GUARDAR HORARIO
+                    String ss = s.next().toUpperCase();
 
-                if (ss.contentEquals("S")){
-                    System.out.print("Name of the file: ");
-                    String fileName = s.next();
-                    ctrlDomain.saveSchedule(fileName, sch.toStr());
+                    if (ss.contentEquals("S")){
+                        System.out.print("Name of the file: ");
+                        String fileName = s.next();
+                        ctrlDomain.saveSchedule(fileName, sch.toStr());
+                    }
+
+                    clearConsole();
+                }
+                else{
+                    clearConsole();
+                    System.out.println("It has not been possible to generate an Schedule");
                 }
 
-                clearConsole();
                 break;
 
             case "N":
