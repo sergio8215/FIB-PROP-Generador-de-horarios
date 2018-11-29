@@ -247,7 +247,7 @@ public class ClassSet {
     public static void classSort(ArrayList<ClassClass> set) {
         // Mergesort Implementation
         // Worst-case complexity: O(n log n) ; Worst-case space complexity: O(n)
-        rClassSort(set, 0, set.size());
+        rClassSort(set, 0, set.sizeTimetable());
     }
 
 

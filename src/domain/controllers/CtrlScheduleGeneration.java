@@ -70,7 +70,7 @@ public class CtrlScheduleGeneration {
                 } else      ++j;
 
             }
-
+            if(vars.get(i).domainSize() == 0) System.out.println("DOMAIN 0 : " + vars.get(i).getClassClass().getIdentifier() + "-----------------------");
         }
 
     }
@@ -83,7 +83,7 @@ public class CtrlScheduleGeneration {
      * @return Final solution (successful or not).
      */
     private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
-        int sum = futureVars.size() + solution.size();
+        int sum = futureVars.size() + solution.sizeTimetable();
         if (futureVars.isEmpty()) 	return solution;
         else {
             MUS currentVar = futureVars.pollFirst();
@@ -91,7 +91,7 @@ public class CtrlScheduleGeneration {
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
-
+                System.out.println(currentVar.getClassClass().getIdentifier() + "  " + i);
 
                 if (solution.valid()) {
                     solution = chronologicalBacktracking(futureVars, solution);
@@ -109,7 +109,7 @@ public class CtrlScheduleGeneration {
             }
 
             solution.fail();
-            futureVars.add(currentVar);
+            futureVars.add(0, currentVar);
             return solution;
         }
     }

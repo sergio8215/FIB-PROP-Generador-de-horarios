@@ -120,7 +120,7 @@ public class SubjectsSetDriver {
         if (!interactive)   System.out.println("Name of the subject: ");
         String name = sc.next();
 
-        UtilsDomain.ResoultOfQuery<Subject> res = ss.getSubject(name);
+        UtilsDomain.ResultOfQuery<Subject> res = ss.getSubject(name);
 
         System.out.println(res.queryTest);
     }
