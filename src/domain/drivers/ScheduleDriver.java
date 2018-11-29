@@ -195,7 +195,7 @@ public class ScheduleDriver {
         System.out.println(schedule.isEmpty()?"empty":"not empty");
     }
     public static void testSize(){
-        System.out.println(schedule.sizeTimetable());
+        System.out.println(schedule.size());
     }
     public static void testAdd(){
         schedule.add(enterMUS());
