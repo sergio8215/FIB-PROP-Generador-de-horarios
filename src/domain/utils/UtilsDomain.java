@@ -2,7 +2,7 @@ package src.domain.utils;
 
 public final class UtilsDomain {
 
-    public static final class ResultOfQuery<T> {
+    public static final class ResoultOfQuery<T> {
         public boolean queryTest;
         public T result;
     }
@@ -27,6 +27,11 @@ public final class UtilsDomain {
         FRIDAY,     // ordinal value: 4
         SATURDAY,   // ordinal value: 5
         SUNDAY      // ordinal value: 6
+    }
+
+    public static final class ResultOfQuery<T> { // TODO: REVISAR STATIC Y FINAL
+        public boolean queryTest;
+        public T result;
     }
 
     public static final class Pair<T, U> {

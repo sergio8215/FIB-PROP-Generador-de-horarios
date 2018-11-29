@@ -1,6 +1,5 @@
 package src.domain.classes;
 
-import src.domain.utils.UtilsDomain;
 import src.domain.utils.UtilsDomain.*;
 
 /**
@@ -28,8 +27,7 @@ public class Constraints {
      * @return True if satisfied constraint.
      */
     public static boolean typeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
-        return cs.first.getType() == m.getClassClass().getType() ||
-                (m.getClassClass().getType().ordinal() == UtilsDomain.ClassType.PROBLEMS.ordinal() && cs.first.getType().ordinal() == UtilsDomain.ClassType.LABORATORY.ordinal());
+        return cs.first.getType() == m.getClassClass().getType();
     }
 
     /**

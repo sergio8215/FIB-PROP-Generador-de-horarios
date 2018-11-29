@@ -131,7 +131,7 @@ public class ScheduleTest {
     @Test
     public void size() {
         Schedule s = scheduleConstructor();
-        assertEquals("sizeTimetable - Ok", s.sizeTimetable(), 0);
+        assertEquals("size - Ok", s.size(), 0);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class ScheduleTest {
         Schedule s = scheduleConstructor();
         MUS m = MUSConstructor();
         s.add(m);
-        assertEquals("add - Ok", s.sizeTimetable(), 1);
+        assertEquals("add - Ok", s.size(), 1);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ScheduleTest {
         MUS m = MUSConstructor();
         s.add(m);
         s.delete(m);
-        assertEquals("add - Ok", s.sizeTimetable(), 0);
+        assertEquals("add - Ok", s.size(), 0);
     }
 
     @Test

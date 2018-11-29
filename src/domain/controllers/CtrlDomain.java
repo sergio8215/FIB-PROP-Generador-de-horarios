@@ -115,7 +115,7 @@ public class CtrlDomain {
      */
     public UtilsDomain.ResultOfQuery<Schedule> showSchedule() {
         UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
-        s.queryTest = !(schedule.isEmpty() || schedule.isFail());
+        s.queryTest = !schedule.isEmpty();
         s.result = schedule;
         return s;
      }
