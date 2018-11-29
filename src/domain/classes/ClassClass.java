@@ -57,7 +57,7 @@ public abstract class ClassClass {
         this.shift  = UtilsDomain.typeShift.valueOf(myStringVector.get(4));  // Shift;
         this.quantityStudents = Integer.parseInt(myStringVector.get(5));  // quantityStudents
 
-        // We initialize the vector to the subject string vector sizeTimetable:
+        // We initialize the vector to the subject string vector size:
         // [0]identifier => [1]group => [2]subGroup => [3]type of group => [4]shift => [5]quantityStudents
         Vector<String> subjectVector = new Vector<>(myStringVector.size() - 6);
         int j = 0;

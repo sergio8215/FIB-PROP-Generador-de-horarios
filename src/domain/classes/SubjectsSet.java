@@ -57,7 +57,7 @@ public final class SubjectsSet {
      * @param subjects Set of subjects.
      */
     public void setSet(ArrayList<Subject> subjects) {
-       // for (int i = 0; i < subjects.sizeTimetable(); i++)   set.put(subjects.get(i).getName(), subjects.get(i));
+       // for (int i = 0; i < subjects.size(); i++)   set.put(subjects.get(i).getName(), subjects.get(i));
         for (Subject s : subjects)   set.put(s.getName(), s);
     }
 
@@ -90,8 +90,8 @@ public final class SubjectsSet {
      * @param name Name of the subject.
      * @return Return a ResoultSubjectPair with the resoult.
      */
-    public UtilsDomain.ResultOfQuery<Subject> getSubject(String name) {
-        UtilsDomain.ResultOfQuery<Subject> res = new UtilsDomain.ResultOfQuery<>();
+    public UtilsDomain.ResoultOfQuery<Subject> getSubject(String name) {
+        UtilsDomain.ResoultOfQuery<Subject> res = new UtilsDomain.ResoultOfQuery<>();
         res.result = new Subject();
         res.queryTest = false;
 
@@ -129,7 +129,7 @@ public final class SubjectsSet {
     }
 
     /**
-     * Returns the sizeTimetable of the set.
+     * Returns the size of the set.
      * @return Size of the set.
      */
     public int length() {

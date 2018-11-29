@@ -214,14 +214,14 @@ public class Schedule {
      * @return returns a boolean that indicates is the timetable is empty
      */
     public boolean isEmpty() {
-        return sizeTimetable() == 0;
+        return timetable.isEmpty();
     }
 
     /**
-     * Returns the sizeTimetable of the timetable attribute
-     * @return returns the sizeTimetable of the timetable attribute
+     * Returns the size of the timetable attribute
+     * @return returns the size of the timetable attribute
      */
-    public int sizeTimetable(){
+    public int size(){
         int sum = 0;
         ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
         for (ArrayList<MUS> subArr : musArray) {
