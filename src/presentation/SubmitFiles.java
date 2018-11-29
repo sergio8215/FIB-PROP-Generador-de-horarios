@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 
 public class SubmitFiles extends JFrame{
     private JButton selectClassroomsFileButton;
@@ -14,12 +15,16 @@ public class SubmitFiles extends JFrame{
     private JLabel ClassroomsJSONFileLabel;
     private JLabel SubjectsJSONFileLabel;
     private JPanel rootPanel;
+    private JButton nextbutton;
+
+    private String classroomsFile;
+    private String subjectsFile;
 
     public  SubmitFiles(){
 
         CtrlDomain controlDomain = new CtrlDomain();
 
-        
+
         add(rootPanel);
         setTitle("Submit Files");
         setSize(400,500);
@@ -38,9 +43,9 @@ public class SubmitFiles extends JFrame{
                     System.out.println("You chose to open this file: " +
                             fc.getCurrentDirectory().getAbsolutePath()+
                             fc.getSelectedFile().getName());
-
+                    classroomsFile = fc.getCurrentDirectory().getAbsolutePath()+ fc.getSelectedFile().getName();
                 }
-                controlDomain.createScenario();
+
             }
         });
         selectSubjectsFileButton.addActionListener(new ActionListener() {
@@ -55,8 +60,29 @@ public class SubmitFiles extends JFrame{
                     System.out.println("You chose to open this file: " +
                             fc.getCurrentDirectory().getAbsolutePath()+
                             fc.getSelectedFile().getName());
+                    subjectsFile = fc.getCurrentDirectory().getAbsolutePath()+ fc.getSelectedFile().getName();
                 }
             }
+        });
+
+
+
+        nextbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlDomain.createScenario(classroomsFile, subjectsFile);
+            }
+
+            public void itemStateChanged(ItemEvent e) {
+                goNext();
+                {
+                    private void goNext(){
+                    schedueleView = new schedueleView(null);
+                    schedueleView.setVisible(true);
+                }
+            }
+
+            });
         });
     }
 }
