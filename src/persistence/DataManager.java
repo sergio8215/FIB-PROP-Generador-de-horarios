@@ -20,7 +20,7 @@ import src.domain.utils.inout;
 
 /**
  *
- * @author Sergio
+ * @author Sergio Mazzariol
  */
 public class DataManager {
 
@@ -30,15 +30,15 @@ public class DataManager {
 
     /**
      * Reading from JSON file
-     * @param fileNumber
+     * @param file
      * @throws java.io.IOException
      */
-    public Vector <Vector< String>> importClassrooms(int fileNumber) throws IOException {
+    public Vector <Vector< String>> importClassrooms(String file) throws IOException {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> classrooms = new Vector <>();
         try {
-            Object obj = parser.parse(new FileReader(listImportFiles().get(fileNumber)));
+            Object obj = parser.parse(new FileReader(file));
             JSONObject rootJSON = (JSONObject) obj;
 
             // loop array to find values of classrooms
@@ -57,12 +57,7 @@ public class DataManager {
                 classrooms.elementAt(i).add((String)classroomJSON.get("Type"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Audiovisual"));
                 classrooms.elementAt(i).add((String)classroomJSON.get("Num_computers"));
-                /*
-                System.out.println("Classroom: "+   classrooms.elementAt(i).get(0));
-                System.out.println("Quantity: "+    classrooms.elementAt(i).get(1));
-                System.out.println("Type: "+        classrooms.elementAt(i).get(2));
-                System.out.println("Audiovisual: "+ classrooms.elementAt(i).get(3));
-                System.out.println("Num Computers: "+classrooms.elementAt(i).get(4)+"\n");*/
+
                 i++;
             }
 
@@ -75,23 +70,17 @@ public class DataManager {
 
     /**
      * Reading from JSON file
-     * @param fileNumber
+     * @param file
      * @throws java.io.IOException
      */
-    public Vector <Vector< String>> importSubjects(int fileNumber) throws IOException {
+    public Vector <Vector< String>> importSubjects(String file) throws IOException {
 
         JSONParser parser = new JSONParser();
         Vector <Vector< String>> subjects = new Vector <>();
 
         try {
-            Object obj = parser.parse(new FileReader(listImportFiles().get(fileNumber)));
+            Object obj = parser.parse(new FileReader(file));
             JSONObject rootJSON = (JSONObject) obj;
-
-            String  subject;
-            Long    weekHours;
-            Long    numStudents;
-            Long    level;
-            Long    maxCapacity;
 
             // loop array to find values of Subjects
             JSONArray subjectsList = (JSONArray) rootJSON.get("Subjects List");
@@ -114,17 +103,6 @@ public class DataManager {
                 subjects.elementAt(i).add((String)subjectJSON.get("Number_of_subgroups"));
                 subjects.elementAt(i).add((String)subjectJSON.get("Shift"));
 
-
-                /*
-                System.out.println("Subject: "+         subjects.elementAt(i).get(0));
-                System.out.println("Num_students: "+    subjects.elementAt(i).get(1));
-                System.out.println("Level: "+           subjects.elementAt(i).get(2));
-                System.out.println("Theory_hours: "+    subjects.elementAt(i).get(3));
-                System.out.println("Laboratory_hours: "+subjects.elementAt(i).get(4));
-                System.out.println("Problems_hours: "+  subjects.elementAt(i).get(5));
-                System.out.println("Number_of_groups: "+subjects.elementAt(i).get(6));
-                System.out.println("Number_of_subgroups: "+subjects.elementAt(i).get(7));
-                System.out.println("Shift: "+           subjects.elementAt(i).get(8)+"\n");*/
                 i++;
             }
 
@@ -137,16 +115,16 @@ public class DataManager {
         return subjects;
     }
 
-    public List<String> loadSchedule( int fileNum ) throws IOException {
+    public List<String> loadSchedule( String fileName ) throws IOException {
 
-        ArrayList<String> fileList = listScheduleFiles();
-        Path file = Paths.get( fileList.get(fileNum));
+        Path file = Paths.get( fileName );
 
         List<String> stringSchedule = Files.readAllLines(file, Charset.forName("UTF-8"));
 
         return stringSchedule;
     }
 
+    /*
     public ArrayList<String> listScheduleFiles() {
         inout i = new inout();
 
@@ -190,10 +168,10 @@ public class DataManager {
         return myFiles;
     }
 
+*/
+    public void saveSchedule( String fileNamePath, List<String> schedule ) throws Exception {
 
-    public void saveSchedule( String fileName, List<String> schedule ) throws Exception {
-
-        Path file = Paths.get("./data/load/"+fileName);
+        Path file = Paths.get( fileNamePath );
 
         Files.write(file, schedule, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
