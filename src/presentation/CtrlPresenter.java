@@ -1,10 +1,6 @@
 package src.presentation;
 
-import src.domain.classes.MUS;
-import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
-
-import java.util.*;
 
 
 /**
@@ -25,26 +21,23 @@ public class CtrlPresenter {
         ctrlDomain = new CtrlDomain();
         initView = new InitView(this);
         initView.setVisible(true);
-        //scheduleManagerMenu = new ScheduleManagerMenu(this);
     }
 
-
-    public void setScheduleManagerMenu() {
-        initView.setVisible(false);
-
+    public void setScenario(String classroomsFile, String subjectsFile) throws Exception {
+        //ctrlDomain.createScenario(classroomsFile, subjectsFile);
     }
 
-
-
-
-    public void setScenario() {
-        //ArrayList<String> filesList = ctrlDomain.listImportFiles();
-        //ctrlDomain.createScenario(/*FICHEROS DE ESCENARIO*/);
+    public void loadSchedule(String scheduleFile) throws Exception {
+        ctrlDomain.loadSchedule(scheduleFile);
     }
 
     public void scheduleGeneration() {
+        initView.setVisible(false);
+        initView.setEnabled(false);
         ctrlDomain.generateSchedule();
-        Schedule sch = ctrlDomain.showSchedule().result;
+        // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
+        // TODO: GESTIONAR SCHEDUL GENERADO
+        //Schedule sch = ctrlDomain.showSchedule().result;
     }
 
 

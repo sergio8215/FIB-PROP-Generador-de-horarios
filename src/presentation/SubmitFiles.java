@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 
-public class SubmitFiles extends JFrame{
+public class SubmitFiles extends JDialog {
+    private CtrlPresenter ctrlPresenter;
+
     private JButton selectClassroomsFileButton;
     private JButton selectSubjectsFileButton;
     private JLabel SelectScenarioLabel;
@@ -20,15 +22,13 @@ public class SubmitFiles extends JFrame{
     private String classroomsFile;
     private String subjectsFile;
 
-    public  SubmitFiles(){
+    public SubmitFiles(CtrlPresenter ctrlPresenter){
 
-        CtrlDomain controlDomain = new CtrlDomain();
-
+        this.ctrlPresenter = ctrlPresenter;
 
         add(rootPanel);
         setTitle("Submit Files");
         setSize(400,500);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // We add a Listener to make the button do something
         selectClassroomsFileButton.addActionListener(new ActionListener() {
@@ -70,19 +70,17 @@ public class SubmitFiles extends JFrame{
         nextbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlDomain.createScenario(classroomsFile, subjectsFile);
-            }
-
-            public void itemStateChanged(ItemEvent e) {
-                goNext();
-                {
-                    private void goNext(){
-                    schedueleView = new schedueleView(null);
-                    schedueleView.setVisible(true);
+                try {
+                    if (true /*classroomsFile != null && subjectsFile != null*/) {
+                        ctrlPresenter.setScenario(classroomsFile, subjectsFile);
+                        ctrlPresenter.scheduleGeneration();
+                        setVisible(false);
+                        setEnabled(false);
+                    }
+                } catch (Exception exc) {
+                    System.out.println(exc);
                 }
             }
-
-            });
         });
     }
 }
