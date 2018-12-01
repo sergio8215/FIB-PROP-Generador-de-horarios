@@ -70,7 +70,11 @@ public class SubmitFiles extends JFrame{
         nextbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlDomain.createScenario(classroomsFile, subjectsFile);
+                try {
+                    controlDomain.createScenario(classroomsFile, subjectsFile);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
 
             public void itemStateChanged(ItemEvent e) {
