@@ -22,10 +22,8 @@ public class ShowSchedule extends JFrame {
     private JTable schedule;
     private JPanel rootPanel;
 
-    public ShowSchedule(CtrlPresenter ctrlPresenter) {
+    public ShowSchedule(CtrlPresenter ctrlPresenter, List<String> schedule) {
         this.ctrlPresenter = ctrlPresenter;
-
-
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(rootPanel);
@@ -35,10 +33,18 @@ public class ShowSchedule extends JFrame {
 
         // Get schedule options
         ctrlPresenter.getClass();
+        String[] columnNames = {"Column1", "Column2"};
+        Object[][] data = {{"lunes","martes"},{"miercoles,jueves"},{"viernes","sabado"}};
+        JTable table = new JTable(data, columnNames);
+        JScrollPane scrollPane = new JScrollPane(table);
+        table.setFillsViewportHeight(true);
 
-        JTable table = new JTable(new DefaultTableModel(new Object[]{"Column1", "Column2"}));
+        
+        /*JTable table = new JTable(new DefaultTableModel(new Object[]{"Column1", "Column2"}, 5));
+        JScrollPane stblCalendar = new JScrollPane(table); //The scrollpane of the above table
+        pnlCalendar = new JPanel(null); //Create the "panel" to place components
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});
+        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});*/
     }
 
 }

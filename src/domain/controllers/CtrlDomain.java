@@ -123,7 +123,7 @@ public class CtrlDomain {
     /**
      * Generates the schedule based on the generated scenario
      */
-    public void generateSchedule(){
+    public List<String> generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
         ArrayList<ClassClass> cc = classSet.unset();
@@ -133,6 +133,7 @@ public class CtrlDomain {
             linkedList.add(mus);
         }
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
+        return schedule.toStr();
     }
 
     /**

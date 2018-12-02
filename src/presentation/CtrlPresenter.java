@@ -2,6 +2,8 @@ package src.presentation;
 
 import src.domain.controllers.CtrlDomain;
 
+import java.util.List;
+
 
 /**
  * Presentation Controller
@@ -31,10 +33,10 @@ public class CtrlPresenter {
         ctrlDomain.loadSchedule(scheduleFile);
     }
 
-    public void scheduleGeneration() {
+    public List<String> scheduleGeneration() {
         initView.setVisible(false);
         initView.setEnabled(false);
-        ctrlDomain.generateSchedule();
+        return ctrlDomain.generateSchedule();
         // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
         // TODO: GESTIONAR SCHEDUL GENERADO
         //Schedule sch = ctrlDomain.showSchedule().result;

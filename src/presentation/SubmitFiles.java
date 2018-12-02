@@ -7,11 +7,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.util.List;
 
 public class SubmitFiles extends JDialog {
     private CtrlPresenter vCtrlPresenter;
-    private  ShowSchedule showSchedule;
-
+    private ShowSchedule showSchedule;
+    private List<String> schedule;
     private JButton selectClassroomsFileButton;
     private JButton selectSubjectsFileButton;
     private JLabel SelectScenarioLabel;
@@ -74,11 +75,11 @@ public class SubmitFiles extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ctrlPresenter.setScenario(classroomsFile, subjectsFile);
-                    ctrlPresenter.scheduleGeneration();
+                    schedule = ctrlPresenter.scheduleGeneration();
                     rootPanel.setVisible(false);
                     rootPanel.setEnabled(false);
 
-                    showSchedule = new ShowSchedule(vCtrlPresenter);
+                    showSchedule = new ShowSchedule(vCtrlPresenter, schedule);
 
                     showSchedule.setEnabled(true);
                     showSchedule.setVisible(true);
