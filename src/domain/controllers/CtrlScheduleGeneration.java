@@ -120,4 +120,48 @@ public class CtrlScheduleGeneration {
             return solution;
         }
     }
+
+    private Schedule forwardChecking(LinkedList<MUS> futureVars, Schedule solution) {
+        if (futureVars.isEmpty()) 	return solution;
+        else {
+            MUS currentVar = futureVars.pollFirst();
+
+            for (int i = 0; i < currentVar.domainSize(); i++) {
+                currentVar.assign(currentVar.getValueDomain(i));
+                solution.add(currentVar);
+
+                propagateConstraints(futureVars, currentVar);
+
+                if (!someDomainEmpty(futureVars)) {
+                    solution = forwardChecking(futureVars, solution);
+
+                    if (!solution.isFail()) 	return solution;
+                    else {
+                        solution.delete(currentVar);
+                        solution.setFail(false);
+                    }
+                } else
+                    solution.delete(currentVar);
+            }
+
+            solution.fail();
+            futureVars.add(currentVar);
+            return solution;
+        }
+    }
+
+    private void propagateConstraints(LinkedList<MUS> futureVars, MUS currentVar) {
+
+    }
+
+    private boolean someDomainEmpty(LinkedList<MUS> vars){
+        int i = 0;
+        boolean oneEmpty = false;
+        while (i < vars.size() && !oneEmpty){
+            if (vars.get(i).domainSize() == 0)  oneEmpty = !oneEmpty;
+            else    i++;
+        }
+
+        return oneEmpty;
+    }
 }
