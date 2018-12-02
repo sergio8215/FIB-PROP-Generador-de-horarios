@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 
 public class SubmitFiles extends JDialog {
-    private CtrlPresenter ctrlPresenter;
+    private CtrlPresenter vCtrlPresenter;
+    private  ShowSchedule showSchedule;
 
     private JButton selectClassroomsFileButton;
     private JButton selectSubjectsFileButton;
@@ -24,7 +25,8 @@ public class SubmitFiles extends JDialog {
 
     public SubmitFiles(CtrlPresenter ctrlPresenter){
 
-        this.ctrlPresenter = ctrlPresenter;
+        vCtrlPresenter = ctrlPresenter;
+
 
         add(rootPanel);
         setTitle("Submit Files");
@@ -41,9 +43,9 @@ public class SubmitFiles extends JDialog {
                 int returnVal = fc.showOpenDialog(rootPanel);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to open this file: " +
-                            fc.getCurrentDirectory().getAbsolutePath()+
+                            fc.getCurrentDirectory().getAbsolutePath()+ "/" +
                             fc.getSelectedFile().getName());
-                    classroomsFile = fc.getCurrentDirectory().getAbsolutePath()+ fc.getSelectedFile().getName();
+                    classroomsFile = fc.getCurrentDirectory().getAbsolutePath()+ "/" + fc.getSelectedFile().getName();
                 }
 
             }
@@ -58,9 +60,9 @@ public class SubmitFiles extends JDialog {
                 int returnVal = fc.showOpenDialog(rootPanel);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to open this file: " +
-                            fc.getCurrentDirectory().getAbsolutePath()+
+                            fc.getCurrentDirectory().getAbsolutePath()+ "/" +
                             fc.getSelectedFile().getName());
-                    subjectsFile = fc.getCurrentDirectory().getAbsolutePath()+ fc.getSelectedFile().getName();
+                    subjectsFile = fc.getCurrentDirectory().getAbsolutePath()+ "/" + fc.getSelectedFile().getName();
                 }
             }
         });
@@ -71,12 +73,18 @@ public class SubmitFiles extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (true /*classroomsFile != null && subjectsFile != null*/) {
-                        ctrlPresenter.setScenario(classroomsFile, subjectsFile);
-                        ctrlPresenter.scheduleGeneration();
-                        setVisible(false);
-                        setEnabled(false);
-                    }
+                    ctrlPresenter.setScenario(classroomsFile, subjectsFile);
+                    ctrlPresenter.scheduleGeneration();
+                    rootPanel.setVisible(false);
+                    rootPanel.setEnabled(false);
+
+                    showSchedule = new ShowSchedule(vCtrlPresenter);
+
+                    showSchedule.setEnabled(true);
+                    showSchedule.setVisible(true);
+
+
+
                 } catch (Exception exc) {
                     System.out.println(exc);
                 }

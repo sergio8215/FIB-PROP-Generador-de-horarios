@@ -152,7 +152,7 @@ public class CtrlDomain {
      * @throws IOException if file it's not found
      */
     public void loadSchedule(String fileNum) throws IOException {
-        dManager.loadSchedule(fileNum);
+        schedule = new Schedule(dManager.loadSchedule(fileNum));
     }
 }
 

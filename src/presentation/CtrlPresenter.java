@@ -24,7 +24,7 @@ public class CtrlPresenter {
     }
 
     public void setScenario(String classroomsFile, String subjectsFile) throws Exception {
-        //ctrlDomain.createScenario(classroomsFile, subjectsFile);
+        ctrlDomain.createScenario(classroomsFile, subjectsFile);
     }
 
     public void loadSchedule(String scheduleFile) throws Exception {
@@ -39,7 +39,6 @@ public class CtrlPresenter {
         // TODO: GESTIONAR SCHEDUL GENERADO
         //Schedule sch = ctrlDomain.showSchedule().result;
     }
-
 
 
     /**

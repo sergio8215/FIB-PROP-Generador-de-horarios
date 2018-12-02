@@ -11,7 +11,8 @@ public class MainSubmitFiles {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                SubmitFiles submitFiles = new SubmitFiles();
+                CtrlPresenter ctrlPresenter = new CtrlPresenter();
+                SubmitFiles submitFiles = new SubmitFiles(ctrlPresenter);
                 submitFiles.setVisible(true);
             }
         });

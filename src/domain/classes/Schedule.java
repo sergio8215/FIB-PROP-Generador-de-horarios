@@ -61,6 +61,8 @@ public class Schedule {
 
         classroomFile = stringSchedule.get(0);
         subjectFile = stringSchedule.get(1);
+
+
         timetable = new HashMap<>();
         String[] separated;
         MUS myMUS;
