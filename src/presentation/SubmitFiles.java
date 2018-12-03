@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SubmitFiles extends JDialog {
     private CtrlPresenter vCtrlPresenter;
-    private ShowSchedule showSchedule;
+    private DisplaySchedule dS;
     private List<String> schedule;
     private JButton selectClassroomsFileButton;
     private JButton selectSubjectsFileButton;
@@ -79,10 +79,11 @@ public class SubmitFiles extends JDialog {
                     rootPanel.setVisible(false);
                     rootPanel.setEnabled(false);
 
-                    showSchedule = new ShowSchedule(vCtrlPresenter, schedule);
+                    dS = new DisplaySchedule(vCtrlPresenter, schedule);
+                    dS.setEnabled(true);
+                    dS.setVisible(true);
 
-                    showSchedule.setEnabled(true);
-                    showSchedule.setVisible(true);
+
 
 
 
