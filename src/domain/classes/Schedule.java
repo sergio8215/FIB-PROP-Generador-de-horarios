@@ -331,4 +331,26 @@ public class Schedule {
         }
         return lines;
     }
+
+    /**
+     *
+     * @return
+     */
+    public HashMap< String, ArrayList<Vector<Vector<String>>> > toHashMapString() { // TODO: IMPLEMENTAR EN CTRLDOMAIN
+        HashMap<String, ArrayList<Vector<Vector<String>>>> timetable = new HashMap<>();
+
+        Set<String> keys = this.timetable.keySet();
+
+        for (String k : keys) {
+            ArrayList<Vector<Vector<String>>> setSubject = new ArrayList<>();
+
+            for (MUS m : this.timetable.get(k)){
+                setSubject.add(m.toStr());
+            }
+
+            timetable.put(k, setSubject);
+        }
+
+        return timetable;
+    }
 }
