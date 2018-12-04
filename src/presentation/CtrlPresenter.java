@@ -2,7 +2,10 @@ package src.presentation;
 
 import src.domain.controllers.CtrlDomain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 
 
 /**
@@ -15,6 +18,7 @@ public class CtrlPresenter {
 
     private CtrlDomain ctrlDomain;
     private InitView initView;
+    private DisplaySchedule dS;
 
 
     // Methods
@@ -33,10 +37,17 @@ public class CtrlPresenter {
         ctrlDomain.loadSchedule(scheduleFile);
     }
 
-    public List<String> scheduleGeneration() {
-        initView.setVisible(false);
+    public void scheduleGeneration() {
+        initView.setVisibleF(false);
         initView.setEnabled(false);
-        return ctrlDomain.generateSchedule();
+
+        HashMap<String, ArrayList<Vector<Vector<String>>>> h = ctrlDomain.generateSchedule();
+
+        dS = new DisplaySchedule(this, h);
+
+        dS.setEnabled(true);
+        dS.setVisible(true);
+
         // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
         // TODO: GESTIONAR SCHEDUL GENERADO
         //Schedule sch = ctrlDomain.showSchedule().result;

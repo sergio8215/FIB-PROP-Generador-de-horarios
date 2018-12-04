@@ -10,10 +10,7 @@ import src.persistence.DataManager;
 import src.domain.utils.UtilsDomain;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * CtrlDomain Class, it's part of one of the layers of the program. On charge of controlling the domain and data classes
@@ -123,7 +120,7 @@ public class CtrlDomain {
     /**
      * Generates the schedule based on the generated scenario
      */
-    public List<String> generateSchedule(){
+    public HashMap<String, ArrayList<Vector<Vector<String>>>> generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
         ArrayList<ClassClass> cc = classSet.unset();
@@ -133,7 +130,7 @@ public class CtrlDomain {
             linkedList.add(mus);
         }
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
-        return schedule.toStr();
+        return schedule.toHashMapString();
     }
 
     /**

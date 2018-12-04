@@ -1,7 +1,10 @@
 package src.presentation;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 
 public class DisplaySchedule extends JFrame{
 
@@ -12,7 +15,7 @@ public class DisplaySchedule extends JFrame{
     private JTable jTable;
 
 
-    public DisplaySchedule(CtrlPresenter ctrlPresenter, List<String> schedule) {
+    public DisplaySchedule(CtrlPresenter ctrlPresenter, HashMap<String, ArrayList<Vector<Vector<String>>>> schedule) {
         this.ctrlPresenter = ctrlPresenter;
 
         int hoursPerDay = 12;

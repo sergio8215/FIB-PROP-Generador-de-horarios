@@ -28,7 +28,6 @@ public class SubmitFiles extends JDialog {
 
         vCtrlPresenter = ctrlPresenter;
 
-
         add(rootPanel);
         setTitle("Submit Files");
         setSize(400,500);
@@ -75,17 +74,9 @@ public class SubmitFiles extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ctrlPresenter.setScenario(classroomsFile, subjectsFile);
-                    schedule = ctrlPresenter.scheduleGeneration();
+                    ctrlPresenter.scheduleGeneration();
                     rootPanel.setVisible(false);
                     rootPanel.setEnabled(false);
-
-                    dS = new DisplaySchedule(vCtrlPresenter, schedule);
-                    dS.setEnabled(true);
-                    dS.setVisible(true);
-
-
-
-
 
                 } catch (Exception exc) {
                     System.out.println(exc);

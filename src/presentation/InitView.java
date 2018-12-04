@@ -86,4 +86,11 @@ public class InitView extends JFrame {
             }
         });
     }
+
+    public void setVisibleF(boolean b) {
+        submitFiles.setVisible(false);
+        submitFiles.setEnabled(false);
+
+        super.setVisible(false);
+    }
 }
