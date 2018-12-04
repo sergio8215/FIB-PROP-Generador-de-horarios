@@ -68,7 +68,7 @@ public class InitView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
                 fc.setFileFilter(filter);
                 int returnVal = fc.showOpenDialog(scheduleManagerMenu);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {

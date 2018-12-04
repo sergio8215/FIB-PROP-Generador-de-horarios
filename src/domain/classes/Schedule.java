@@ -353,4 +353,35 @@ public class Schedule {
 
         return timetable;
     }
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
+    public boolean moveSession(Vector<String> from, Vector<String> to) { // TODO: FORMA MAS EFECTIVA
+        MUS f = getMUSOf(from);
+        MUS t = getMUSOf(to);
+
+        this.delete(f);
+        this.add(t);
+
+        if (!this.valid()){
+            delete(t);
+            add(f);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     * @param vs
+     * @return
+     */
+    private MUS getMUSOf(Vector<String> vs) {
+        // TODO: IMPLEMENTAR SEGUN COMO ESTAN LOS DATOS EN EL from Y EL to
+    }
 }

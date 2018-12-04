@@ -34,7 +34,15 @@ public class CtrlPresenter {
     }
 
     public void loadSchedule(String scheduleFile) throws Exception {
-        ctrlDomain.loadSchedule(scheduleFile);
+        initView.setVisibleF(false);
+        initView.setEnabled(false);
+
+        HashMap<String, ArrayList<Vector<Vector<String>>>> h = ctrlDomain.loadSchedule(scheduleFile);
+
+        dS = new DisplaySchedule(this, h);
+
+        dS.setEnabled(true);
+        dS.setVisible(true);
     }
 
     public void scheduleGeneration() {
@@ -53,27 +61,8 @@ public class CtrlPresenter {
         //Schedule sch = ctrlDomain.showSchedule().result;
     }
 
-
-    /**
-     * Print the schedule on the screen.
-     * @param s Schedule to be printed.
-     */
-    /*private void showSchedule(Schedule s) {
-        HashMap<String, ArrayList<MUS> > timetable = s.getTimetable();
-
-        Set<String> keys = timetable.keySet();
-
-        for (String nameSubject : keys) {
-            System.out.println("\n SUBJECT - " + nameSubject.toUpperCase());
-
-            ArrayList<MUS> elems = timetable.get(nameSubject);
-
-            for (MUS m : elems) {
-                System.out.println(m.getClassClass().getIdentifier() + ": " + m.getClassroom().getName() + " - " + m.getSession().getDay() + " " + m.getSession().getHour());
-            }
-
-            System.out.print("\n");
-        }
-    }*/
+    public boolean moveSession(Vector<String> from, Vector<String> to) {
+        return ctrlDomain.moveSession(from, to);
+    }
 
 }

@@ -149,8 +149,13 @@ public class CtrlDomain {
      * @param fileNum path of the schedule file to import
      * @throws IOException if file it's not found
      */
-    public void loadSchedule(String fileNum) throws IOException {
+    public HashMap<String, ArrayList<Vector<Vector<String>>>> loadSchedule(String fileNum) throws IOException {
         schedule = new Schedule(dManager.loadSchedule(fileNum));
+        return schedule.toHashMapString();
+    }
+
+    public boolean moveSession(Vector<String> from, Vector<String> to) {
+        return schedule.moveSession(from, to);
     }
 }
 
