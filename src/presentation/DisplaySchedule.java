@@ -1,6 +1,7 @@
 package src.presentation;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +31,9 @@ public class DisplaySchedule extends JFrame{
         String[] week = { "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday" };
 
         add(rootPanel);
-        add(panelCheckbox);
-        add(panelButton);
+        rootPanel.add(panelTable,0);
+        rootPanel.add(panelCheckbox,1);
+        rootPanel.add(panelButton,2);
 
         pack();
 
@@ -54,6 +56,8 @@ public class DisplaySchedule extends JFrame{
         for(int i = 0; i < daysOfTheWeek ; i++ ){
             header[i+1] = week[i];
         }
+
+
 
         Object[][] data = new Object[][]{{"A","1","B","2","C","D"}};
         panelTable = new JTable(data, header);
