@@ -79,13 +79,12 @@ public class SubmitFiles extends JDialog {
                     rootPanel.setVisible(false);
                     rootPanel.setEnabled(false);
 
+
                     dS = new DisplaySchedule(vCtrlPresenter, schedule);
                     dS.setEnabled(true);
                     dS.setVisible(true);
 
-
-
-
+                    //ctrlPresenter.closeWindow();
 
                 } catch (Exception exc) {
                     System.out.println(exc);

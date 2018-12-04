@@ -8,8 +8,14 @@ public class DisplaySchedule extends JFrame{
     private CtrlPresenter ctrlPresenter;
 
     private JPanel rootPanel;
-    private JPanel tablePanel;
-    private JTable jTable;
+    private JPanel headerPanel;
+    private JTable panelTable;
+    private JCheckBox checkBox1;
+    private JCheckBox checkBox2;
+    private JCheckBox checkBox3;
+    private JButton guardarButton;
+    private JPanel panelCheckbox;
+    private JPanel panelButton;
 
 
     public DisplaySchedule(CtrlPresenter ctrlPresenter, List<String> schedule) {
@@ -21,10 +27,22 @@ public class DisplaySchedule extends JFrame{
         String[] week = { "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday" };
 
         add(rootPanel);
+        add(panelCheckbox);
+        add(panelButton);
+
+        pack();
+
+        panelCheckbox.setEnabled(true);
+        panelCheckbox.setVisible(true);
+
+        panelButton.setEnabled(true);
+        panelButton.setVisible(true);
+
         setTitle("Schedule");
         setSize(800,600);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        tablePanel = new JPanel();
+        // Just for the header we create another panel
+        headerPanel = new JPanel();
 
         String[] header = new String[daysOfTheWeek+1];
         header[0] = "Hour";
@@ -34,12 +52,10 @@ public class DisplaySchedule extends JFrame{
             header[i+1] = week[i];
         }
 
-
-
-        Object[][] data = new Object[][]{{"A","1"},{"B","2"},{"C","3"}};
-        jTable = new JTable(data, header);
-        tablePanel.add(new JScrollPane(jTable));
-        getContentPane().add(tablePanel);
+        Object[][] data = new Object[][]{{"A","1","B","2","C","D"}};
+        panelTable = new JTable(data, header);
+        headerPanel.add(new JScrollPane(panelTable));
+        getContentPane().add(headerPanel);
     }
 
 
