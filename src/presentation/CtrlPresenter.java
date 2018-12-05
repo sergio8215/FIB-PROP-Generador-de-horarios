@@ -4,7 +4,6 @@ import src.domain.controllers.CtrlDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -37,7 +36,7 @@ public class CtrlPresenter {
         initView.setVisibleF(false);
         initView.setEnabled(false);
 
-        HashMap<String, ArrayList<Vector<Vector<String>>>> h = ctrlDomain.loadSchedule(scheduleFile);
+        HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.loadSchedule(scheduleFile);
 
         dS = new DisplaySchedule(this, h);
 
@@ -49,7 +48,7 @@ public class CtrlPresenter {
         initView.setVisibleF(false);
         initView.setEnabled(false);
 
-        HashMap<String, ArrayList<Vector<Vector<String>>>> h = ctrlDomain.generateSchedule();
+        HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.generateSchedule();
 
         dS = new DisplaySchedule(this, h);
 

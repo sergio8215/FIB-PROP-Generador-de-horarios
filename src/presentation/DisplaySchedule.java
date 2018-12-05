@@ -18,7 +18,7 @@ public class DisplaySchedule extends JFrame{
     private JPanel panelButton;
 
 
-    public DisplaySchedule(CtrlPresenter ctrlPresenter, HashMap<String, ArrayList<Vector<Vector<String>>>> schedule) {
+    public DisplaySchedule(CtrlPresenter ctrlPresenter, HashMap<String, ArrayList<Vector<String>>> schedule) {
         this.ctrlPresenter = ctrlPresenter;
 
         int hoursPerDay = 12;
@@ -29,14 +29,12 @@ public class DisplaySchedule extends JFrame{
         add(rootPanel);
         rootPanel.add(panelTable,0);
 
-        setSize(1000,1000);
-        pack();
-
         setTitle("Schedule");
-        setSize(800,600);
+        setSize(1000,1000);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Just for the header we create another panel
         headerPanel = new JPanel();
+
 
         String[] header = new String[daysOfTheWeek+1];
         header[0] = "Hour";
@@ -48,29 +46,25 @@ public class DisplaySchedule extends JFrame{
 
         int j;
         int i=0;
-        Object[][] data = new Object[100][daysOfTheWeek+1];
+        Object[][] data = new Object[70][daysOfTheWeek+1];
 
-        for (ArrayList<Vector<Vector< String>>> mus : schedule.values()){
-            for ( Vector<Vector< String>> m : mus){
+        for (ArrayList<Vector< String>> subject : schedule.values()){
+            for ( Vector< String> m : subject ){
 
-                data[i][0] = m.get(2).get(0);
-
-                String dia = m.get(2).get(1).toUpperCase();
-                int temp = Day.valueOf(m.get(2).get(1).toUpperCase()).ordinal();
-
-                data[i][Day.valueOf(m.get(2).get(1).toUpperCase()).ordinal() + 1] = m.get(0).get(6) + " " + m.get(1).get(0) + " " + m.get(0).get(2);
-
+                data[i][0] = m.get(3);                              // Hour
+                int day = Integer.parseInt(m.get(4));               // Day (ordinal)
+                data[i][day+1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
                 i++;
             }
         }
 
 
-
-
-
         panelTable = new JTable(data, header);
         headerPanel.add(new JScrollPane(panelTable));
         getContentPane().add(headerPanel);
+        pack();
+        setVisible(true);
+
     }
 
     public enum Day {
