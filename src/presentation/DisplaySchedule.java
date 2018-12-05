@@ -1,6 +1,8 @@
 package src.presentation;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,8 +16,6 @@ public class DisplaySchedule extends JFrame{
     private JPanel rootPanel;
     private JPanel headerPanel;
     private JTable panelTable;
-    private JPanel panelCheckbox;
-    private JPanel panelButton;
 
 
     public DisplaySchedule(CtrlPresenter ctrlPresenter, HashMap<String, ArrayList<Vector<String>>> schedule) {
@@ -31,6 +31,8 @@ public class DisplaySchedule extends JFrame{
 
         setTitle("Schedule");
         setSize(1000,1000);
+        setLocationRelativeTo(null);
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Just for the header we create another panel
         headerPanel = new JPanel();
@@ -58,22 +60,15 @@ public class DisplaySchedule extends JFrame{
             }
         }
 
+        TableModel model;
+        model = new DefaultTableModel(data, header);
 
-        panelTable = new JTable(data, header);
-        headerPanel.add(new JScrollPane(panelTable));
+        panelTable = new JTable(model);
+        headerPanel.add(new JScrollPane(panelTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);
         getContentPane().add(headerPanel);
         pack();
         setVisible(true);
 
     }
 
-    public enum Day {
-        MONDAY,     // ordinal value: 0
-        TUESDAY,    // ordinal value: 1
-        WEDNESDAY,  // ordinal value: 2
-        THURSDAY,   // ordinal value: 3
-        FRIDAY,     // ordinal value: 4
-        SATURDAY,   // ordinal value: 5
-        SUNDAY      // ordinal value: 6
-    }
 }
