@@ -336,16 +336,26 @@ public class Schedule {
      *
      * @return
      */
-    public HashMap< String, ArrayList<Vector<Vector<String>>> > toHashMapString() { // TODO: IMPLEMENTAR EN CTRLDOMAIN
-        HashMap<String, ArrayList<Vector<Vector<String>>>> timetable = new HashMap<>();
+    public HashMap< String, ArrayList<Vector<String>> > toHashMapString() { // TODO: IMPLEMENTAR EN CTRLDOMAIN
+        HashMap<String, ArrayList<Vector<String>>> timetable = new HashMap<>();
 
         Set<String> keys = this.timetable.keySet();
 
         for (String k : keys) {
-            ArrayList<Vector<Vector<String>>> setSubject = new ArrayList<>();
 
+            ArrayList<Vector<String>> setSubject = new ArrayList<>();
+            int i = 0;
             for (MUS m : this.timetable.get(k)){
-                setSubject.add(m.toStr());
+                Vector<String> vec = new Vector<>(5);
+
+                vec.add(0, m.getClassClass().getSubject().getName());               // Subject name
+                vec.add(1, Integer.toString(m.getClassClass().getSubGroup()));      // Subgroup (if it's theory will be same as group)
+                vec.add(2, m.getClassroom().getName());                             // Classroom ID
+                vec.add(3, Integer.toString(m.getSession().getHour()));             // Hour
+                vec.add(4, Integer.toString(m.getSession().getDay().ordinal()));    // Day (ordinal)
+
+                setSubject.add(i, vec);
+                i++;
             }
 
             timetable.put(k, setSubject);
@@ -383,5 +393,6 @@ public class Schedule {
      */
     private MUS getMUSOf(Vector<String> vs) {
         // TODO: IMPLEMENTAR SEGUN COMO ESTAN LOS DATOS EN EL from Y EL to
+        return null;
     }
 }

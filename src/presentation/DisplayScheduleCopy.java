@@ -1,24 +1,26 @@
 package src.presentation;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 
-public class DisplaySchedule extends JFrame{
+public class DisplayScheduleCopy extends JFrame{
 
     private CtrlPresenter ctrlPresenter;
 
     private JPanel rootPanel;
     private JPanel headerPanel;
     private JTable panelTable;
+    private JCheckBox checkBox1;
+    private JCheckBox checkBox2;
+    private JCheckBox checkBox3;
+    private JButton guardarButton;
     private JPanel panelCheckbox;
     private JPanel panelButton;
 
 
-    public DisplaySchedule(CtrlPresenter ctrlPresenter, HashMap<String, ArrayList<Vector<Vector<String>>>> schedule) {
+    public DisplayScheduleCopy(CtrlPresenter ctrlPresenter, HashMap<String, ArrayList<Vector<Vector<String>>>> schedule) {
         this.ctrlPresenter = ctrlPresenter;
 
         int hoursPerDay = 12;
@@ -28,9 +30,18 @@ public class DisplaySchedule extends JFrame{
 
         add(rootPanel);
         rootPanel.add(panelTable,0);
+        //rootPanel.add(panelButton,1);
+        rootPanel.add(panelCheckbox,2);
 
         setSize(1000,1000);
+
         pack();
+
+        panelCheckbox.setEnabled(true);
+        panelCheckbox.setVisible(true);
+
+        panelButton.setEnabled(true);
+        panelButton.setVisible(true);
 
         setTitle("Schedule");
         setSize(800,600);

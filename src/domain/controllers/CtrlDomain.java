@@ -120,7 +120,7 @@ public class CtrlDomain {
     /**
      * Generates the schedule based on the generated scenario
      */
-    public HashMap<String, ArrayList<Vector<Vector<String>>>> generateSchedule(){
+    public HashMap<String, ArrayList<Vector<String>>> generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
         ArrayList<ClassClass> cc = classSet.unset();
@@ -149,7 +149,7 @@ public class CtrlDomain {
      * @param fileNum path of the schedule file to import
      * @throws IOException if file it's not found
      */
-    public HashMap<String, ArrayList<Vector<Vector<String>>>> loadSchedule(String fileNum) throws IOException {
+    public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String fileNum) throws IOException {
         schedule = new Schedule(dManager.loadSchedule(fileNum));
         return schedule.toHashMapString();
     }
