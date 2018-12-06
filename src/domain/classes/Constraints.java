@@ -50,6 +50,17 @@ public class Constraints {
 
     // N-ARY CONSTRAINTS
 
+    //MODIFIED LINE
+    public static boolean satisfiesConstraints(MUS m1, MUS m2){
+        if(!(Constraints.notSameClassroomAndSession(m1, m2) &&
+                Constraints.theoryAndLabsOfClassNoTogether(m1, m2) &&
+                Constraints.theorysOfSubjectsOfSameLevelNoTogether(m1, m2) &&
+                Constraints.theoryOfSubjectFromDifferentClassesNoTogether(m1, m2) &&
+                Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2)))
+            return false;
+        return true;
+    }
+
     /**
      * N-ary Constraint: Not Same Classroom snd Session.
      * @param m1 First MUS to try the constraint.

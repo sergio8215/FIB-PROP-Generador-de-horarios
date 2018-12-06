@@ -47,7 +47,7 @@ public class CtrlScheduleGeneration {
 
         UtilsDomain.ResultOfQuery<MUS> notPossible = filterUnaryConstraints(this.vars);
 
-        if(!notPossible.queryTest) schedule = chronologicalBacktracking(new LinkedList<>(vars), schedule);
+        if(!notPossible.queryTest) schedule = forwardChecking(new LinkedList<>(vars), schedule);
         return schedule;
     }
 
@@ -151,7 +151,18 @@ public class CtrlScheduleGeneration {
     }
 
     private void propagateConstraints(LinkedList<MUS> futureVars, MUS currentVar) {
-
+        for(MUS var : futureVars) {
+            if(var != currentVar) {
+                int i = 0;
+                while(i < var.domainSize()){
+                    var.assign(var.getValueDomain(i));
+                    if(! Constraints.satisfiesConstraints(currentVar, var)) {
+                        var.deleteFromDomain(i);
+                    }
+                    else ++i;
+                }
+            }
+        }
     }
 
     private boolean someDomainEmpty(LinkedList<MUS> vars){
