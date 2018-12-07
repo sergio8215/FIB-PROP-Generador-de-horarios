@@ -2,9 +2,12 @@ package src.presentation;
 
 import src.domain.controllers.CtrlDomain;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 
 /**
@@ -38,10 +41,8 @@ public class CtrlPresenter {
 
         HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.loadSchedule(scheduleFile);
 
-        dS = new DisplaySchedule(this, h);
-
-        dS.setEnabled(true);
-        dS.setVisible(true);
+        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        DisplaySchedule.createAndShowGUI(h);
     }
 
     public void scheduleGeneration() {
@@ -50,10 +51,12 @@ public class CtrlPresenter {
 
         HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.generateSchedule();
 
-        dS = new DisplaySchedule(this, h);
+        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        DisplaySchedule.createAndShowGUI(h);
 
-        dS.setEnabled(true);
-        dS.setVisible(true);
+
+        //DisplaySchedule frame = new DisplaySchedule(this, h);
+        //frame.setVisible(true);
 
         // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
         // TODO: GESTIONAR SCHEDUL GENERADO
