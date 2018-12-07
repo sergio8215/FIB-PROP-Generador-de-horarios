@@ -91,7 +91,6 @@ public class CtrlScheduleGeneration {
      * @return Final solution (successful or not).
      */
     private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
-        int sum = futureVars.size() + solution.size();
         if (futureVars.isEmpty()) 	return solution;
         else {
             MUS currentVar = futureVars.pollFirst();
@@ -116,7 +115,7 @@ public class CtrlScheduleGeneration {
             }
 
             solution.fail();
-            futureVars.add(currentVar);
+            futureVars.add(0, currentVar);
             return solution;
         }
     }
@@ -145,7 +144,7 @@ public class CtrlScheduleGeneration {
             }
 
             solution.fail();
-            futureVars.add(currentVar);
+            futureVars.add(0, currentVar);
             return solution;
         }
     }

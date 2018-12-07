@@ -214,7 +214,10 @@ public class Schedule {
      * @return returns a boolean that indicates is the timetable is empty
      */
     public boolean isEmpty() {
-        return timetable.isEmpty();
+        for (String k : timetable.keySet()){
+            if(!timetable.get(k).isEmpty()) return false;
+        }
+        return true;
     }
 
     /**

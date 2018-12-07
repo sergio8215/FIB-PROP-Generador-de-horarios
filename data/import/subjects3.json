@@ -1,0 +1,181 @@
+{
+  "Subjects List": [
+    {
+      "Subject":"LP",
+      "Num_students": "90",
+      "Level": "2",
+      "Theory_hours":"3",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "3",
+      "Shift":"MORNING"
+    },
+    {
+      "Subject":"AC2",
+      "Num_students": "110",
+      "Level":  "3",
+      "Theory_hours":"4",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "4",
+      "Number_of_subgroups": "2",
+      "Shift":"BOTH"
+    },
+    {
+      "Subject":"ASO",
+      "Num_students": "60",
+      "Level":  "5",
+      "Theory_hours":"4",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Shift":"MORNING"
+    },
+    {
+      "Subject":"M2",
+      "Num_students": "210",
+      "Level":  "2",
+      "Theory_hours":"4",
+      "Laboratory_hours": "0",
+      "Problems_hours": "2",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "3",
+      "Shift":"BOTH"
+    },
+    {
+      "Subject":"SO",
+      "Num_students": "80",
+      "Level": "5",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+    {
+      "Subject":"CASO",
+      "Num_students": "70",
+      "Level": "6",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+    {
+      "Subject":"IA",
+      "Num_students": "90",
+      "Level": "2",
+      "Theory_hours":"3",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "3",
+      "Shift":"MORNING"
+    },
+    {
+      "Subject":"AS",
+      "Num_students": "110",
+      "Level":  "3",
+      "Theory_hours":"4",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "4",
+      "Number_of_subgroups": "2",
+      "Shift":"BOTH"
+    },
+    {
+      "Subject":"M1",
+      "Num_students": "60",
+      "Level":  "5",
+      "Theory_hours":"4",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Shift":"MORNING"
+    },
+    {
+      "Subject":"BD",
+      "Num_students": "210",
+      "Level":  "2",
+      "Theory_hours":"4",
+      "Laboratory_hours": "0",
+      "Problems_hours": "2",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "3",
+      "Shift":"BOTH"
+    },
+    {
+      "Subject":"G",
+      "Num_students": "80",
+      "Level": "5",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+    {
+      "Subject":"PE",
+      "Num_students": "70",
+      "Level": "6",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+
+    {
+      "Subject":"A",
+      "Num_students": "80",
+      "Level": "5",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+    {
+      "Subject":"ROB",
+      "Num_students": "70",
+      "Level": "6",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+    {
+      "Subject":"LI",
+      "Num_students": "80",
+      "Level": "5",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    },
+    {
+      "Subject":"DM",
+      "Num_students": "70",
+      "Level": "6",
+      "Theory_hours":"2",
+      "Laboratory_hours": "2",
+      "Problems_hours": "0",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Shift":"AFTERNOON"
+    }
+  ]
+}
