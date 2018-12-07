@@ -51,6 +51,13 @@ public class Constraints {
     // N-ARY CONSTRAINTS
 
     //MODIFIED LINE
+
+    /**
+     * Checks if m1 and m2 satisfy all the compulsory constraints
+     * @param m1 First MUS to try the constraints.
+     * @param m2 Second MUS to try the constraints.
+     * @return returns true if m1 and m2 satisfy all constraints, false otherwise;
+     */
     public static boolean satisfiesConstraints(MUS m1, MUS m2){
         if(!(Constraints.notSameClassroomAndSession(m1, m2) &&
                 Constraints.theoryAndLabsOfClassNoTogether(m1, m2) &&
