@@ -77,6 +77,6 @@ public class TheoryClass extends ClassClass{
         myAttributes.add(3, super.getType().toString());                        //type of group
         myAttributes.add(4, super.getShift().toString());                       //shift
         myAttributes.add(5, Integer.toString(super.getQuantityStudents()));     //quantityStudents
-        return mergeStringVector(myAttributes, super.getSubject().toStr());           // result vector
+        return mergeStringVector(myAttributes, super.getSubject().toStr());          // result vector
     }
 }

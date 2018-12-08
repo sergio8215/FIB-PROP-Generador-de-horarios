@@ -111,4 +111,13 @@ public class Session {
 
         return false;
     }
+
+    /**
+     * Check if to sessions are consecutive, same day an one hour of difference between them.
+     * @param s1 Second Session to compare whit
+     * @return true if the session are consecutive with 1 hour of difference, false if they are equal or not consecutive
+     */
+    public boolean neighbor(Session s1){
+        return day.ordinal() == s1.getDay().ordinal() && ( (hour-1) == s1.getHour() || (hour+1) == s1.getHour() );
+    }
 }
