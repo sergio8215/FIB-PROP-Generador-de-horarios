@@ -75,7 +75,7 @@ public class InitView extends JFrame {
                     System.out.println("You chose to open this file: " +
                             fc.getCurrentDirectory().getAbsolutePath()+
                             fc.getSelectedFile().getName());
-                    scheduleFile = fc.getCurrentDirectory().getAbsolutePath() + fc.getSelectedFile().getName();
+                    scheduleFile = fc.getCurrentDirectory().getAbsolutePath()+ "/" + fc.getSelectedFile().getName();
 
                     try {
                         vCtrlPresenter.loadSchedule(scheduleFile);

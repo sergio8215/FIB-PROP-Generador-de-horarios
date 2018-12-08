@@ -146,11 +146,11 @@ public class CtrlDomain {
 
     /**
      * Load a schedule from a file
-     * @param fileNum path of the schedule file to import
+     * @param filePath path of the schedule file to import
      * @throws IOException if file it's not found
      */
-    public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String fileNum) throws IOException {
-        schedule = new Schedule(dManager.loadSchedule(fileNum));
+    public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String filePath) throws IOException {
+        schedule = new Schedule(dManager.loadSchedule(filePath));
         return schedule.toHashMapString();
     }
 
