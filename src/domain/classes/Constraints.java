@@ -50,9 +50,7 @@ public class Constraints {
         return true;
     }
 
-
-
-    // N-ARY CONSTRAINTS
+    //CONSTRAINTS CHECKERS
 
     /**
      * Checks if m1 and m2 satisfy all the compulsory constraints
@@ -70,8 +68,6 @@ public class Constraints {
             return false;
         return true;
     }
-
-
 
     /**
      * checks if two MUSes with the same identifier and that are paired with each other, satisfy the constraints
@@ -93,10 +89,13 @@ public class Constraints {
      * @return true if MUSes are not in the same Day
      */
     public static boolean satisfiesSameClassPairedConditions(MUS m1, MUS m2) {
-        if(!(notSameDay(m1, m2)))
+        if((m1.getSession().getDay().ordinal() == m2.getSession().getDay().ordinal()))
             return false;
         return true;
     }
+
+
+    // N-ARY CONSTRAINTS
 
     /**
      * N-ary Constraint: Not Same Classroom and Session.
@@ -108,18 +107,6 @@ public class Constraints {
         /* Dos sesiones no pueden coincidir en la misma aula. */
         if((Session.compare(m1.getSession(), "==", m2.getSession())) &&
            (m1.getClassroom().getName().equals(m2.getClassroom().getName())))
-            return false;
-        return true;
-    }
-
-    /**
-     * Checks if the MUSes take place on the same Day
-     * @param m1 First MUS to try the constraint.
-     * @param m2 Second MUS to try the constraint.
-     * @return true if the MUSes not in the same Day
-     */
-    public static boolean notSameDay(MUS m1, MUS m2) {
-        if(m1.getSession().getDay().ordinal() == m2.getSession().getDay().ordinal())
             return false;
         return true;
     }
