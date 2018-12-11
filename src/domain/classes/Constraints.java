@@ -3,6 +3,9 @@ package src.domain.classes;
 import src.domain.utils.UtilsDomain;
 import src.domain.utils.UtilsDomain.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Constraints Class.
  * @author Joaquim Gómez & Mireia Cano
@@ -18,6 +21,7 @@ public class Constraints {
      * @return True if satisfied constraint.
      */
     public static boolean sizeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
+        /* Una clase debe tener un aula de tamaño mayor o igual que el número de alumnos de la clase. */
         return cs.first.getCapacity() >= m.getClassClass().getQuantityStudents();
     }
 
@@ -28,6 +32,7 @@ public class Constraints {
      * @return True if satisfied constraint.
      */
     public static boolean typeClassroomUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
+        /* Una clase de una asignatura de un tipo solo puede ir a un aula de dicho tipo. */
         return (cs.first.getType() == m.getClassClass().getType() ||
                 (m.getClassClass().getType().ordinal() == ClassType.PROBLEMS.ordinal()
                         && cs.first.getType().ordinal() == ClassType.LABORATORY.ordinal() ));
@@ -40,17 +45,15 @@ public class Constraints {
      * @return True if satisfied constraint.
      */
     public static boolean shiftClassUnaryConstraint(MUS m, Pair<Classroom, Session> cs) {
+        /* Las clases de asignaturas /del mismo nivel/ han de ser de mañanas o de tarde, pero no de ambas. */
         if (m.getClassClass().getShift() == typeShift.MORNING ) return cs.second.getHour() < 14;
         else if (m.getClassClass().getShift() == typeShift.AFTERNOON ) return cs.second.getHour() >= 14;
         return true;
     }
 
-     //BINARY CONSTRAINTS
 
 
     // N-ARY CONSTRAINTS
-
-    //MODIFIED LINE
 
     /**
      * Checks if m1 and m2 satisfy all the compulsory constraints
@@ -68,13 +71,16 @@ public class Constraints {
         return true;
     }
 
+
+
     /**
-     * N-ary Constraint: Not Same Classroom snd Session.
+     * N-ary Constraint: Not Same Classroom and Session.
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
     public static boolean notSameClassroomAndSession(MUS m1, MUS m2) {
+        /* Dos sesiones no pueden coincidir en la misma aula. */
         if((Session.compare(m1.getSession(), "==", m2.getSession())) &&
            (m1.getClassroom().getName().equals(m2.getClassroom().getName())))
             return false;
@@ -82,13 +88,14 @@ public class Constraints {
     }
 
     /**
-     * N-ary Constraint: Theory and Lab of Class no Together.
+     * N-ary Constraint: Theory and Lab/Problem of Class no Together.
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
-    public static boolean theoryAndLabsOfClassNoTogether(MUS m1, MUS m2) {
+    public static boolean theoryAndLabsOfClassNoTogether(MUS m1, MUS m2) { // TODO: REVISAR RESTRICCIÓN
         // Si m1 de un tipo(t/p/l) igual que el tipo de m2 (t/p/l) y en la misma sesion => false
+        /* */
         if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
                 m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
@@ -104,22 +111,23 @@ public class Constraints {
      * @return True if satisfied constraint.
      */
     public static boolean theorysOfSubjectsOfSameLevelNoTogether(MUS m1, MUS m2) {
+        /* Los grupos de teoría de asignaturas diferentes de un mismo nivel no pueden coincidir. */
         if (m1.getClassClass().getType() == ClassType.THEORY &&
                 m2.getClassClass().getType() == ClassType.THEORY &&
                 !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;
     }
 
     /**
-     * N-ary Constraint: Theory of Subject From Different Classes no Together
+     * N-ary Constraint: Theory Classes of Same Subject no Together.
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
     public static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
+        /* Los grupos de teoría de una asignatura no pueden coincidir. */
         if (m1.getClassClass().getType() == ClassType.THEORY &&
                 m2.getClassClass().getType() == ClassType.THEORY &&
                 m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
@@ -129,12 +137,13 @@ public class Constraints {
     }
 
     /**
-     * N-ary Constraint: Labs and Problems From Different Subjects of Same Group no Together
+     * N-ary Constraint: Labs and Problems From Different Subjects of Same Class no Together
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
     public static boolean LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(MUS m1, MUS m2) {
+        /* Los laboratorios/problemas de asignaturas diferentes de la misma clase y nivel no pueden coincidir. */
         if ((m1.getClassClass().getType() == ClassType.LABORATORY ||
                 m1.getClassClass().getType() == ClassType.PROBLEMS) &&
                 (m2.getClassClass().getType() == ClassType.LABORATORY ||
@@ -146,5 +155,10 @@ public class Constraints {
             return false;
         return true;
     }
+
+
+
+    // SPECIAL CONSTRAINTS
+
 
 }
