@@ -109,7 +109,7 @@ public class ConstraintsDriver {
     }
 
     public static void testtheoryAndLabsOfClassNoTogether() {
-        System.out.println(Constraints.theoryAndLabsOfClassNoTogether(constructorMUS(), constructorMUS()));
+        System.out.println(Constraints.classOfSameSubgroupAndLevelNoTogether(constructorMUS(), constructorMUS()));
     }
 
     public static void testtheorysOfSubjectsOfSameLevelNoTogether() {
@@ -121,7 +121,7 @@ public class ConstraintsDriver {
     }
 
     public static void testLabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether() {
-        System.out.println(Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(constructorMUS(), constructorMUS()));
+        System.out.println(Constraints.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(constructorMUS(), constructorMUS()));
     }
 
 

@@ -1,6 +1,5 @@
 package src.domain.classes;
 
-import src.domain.utils.UtilsDomain;
 import src.domain.utils.UtilsDomain.*;
 
 /**
@@ -59,11 +58,37 @@ public class Constraints {
      * @return returns true if m1 and m2 satisfy all constraints, false otherwise;
      */
     public static boolean satisfiesConstraints(MUS m1, MUS m2){
-        if(!(Constraints.notSameClassroomAndSession(m1, m2) &&
-                Constraints.theoryAndLabsOfClassNoTogether(m1, m2) &&
-                Constraints.theorysOfSubjectsOfSameLevelNoTogether(m1, m2) &&
-                Constraints.theoryOfSubjectFromDifferentClassesNoTogether(m1, m2) &&
-                Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2)))
+        if(!(notSameClassroomAndSession(m1, m2) &&
+                classOfSameSubgroupAndLevelNoTogether(m1, m2) &&
+                theorysOfSubjectsOfSameLevelNoTogether(m1, m2) &&
+                theoryOfSubjectFromDifferentClassesNoTogether(m1, m2) &&
+                labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2) &&
+                labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2)))
+            return false;
+        return true;
+    }
+
+    /**
+     * checks if two MUSes with the same identifier and that are paired with each other, satisfy the constraints
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return true if MUSes are in the same Classroom and consecutive Sessions
+     */
+    public static boolean satisfiesSameClassNotPairedConditions(MUS m1, MUS m2) {
+        if(!(m1.getClassroom().getName().equals(m2.getClassroom().getName()) &&
+                m1.getSession().neighbor(m2.getSession())))
+            return false;
+        return true;
+    }
+
+    /**
+     * Checks if two MUSes with the same identifier and that are paired with other MUSes, satisfy the constraints
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return true if MUSes are not in the same Day
+     */
+    public static boolean satisfiesSameClassPairedConditions(MUS m1, MUS m2) {
+        if(!(notSameDay(m1, m2)))
             return false;
         return true;
     }
@@ -82,12 +107,24 @@ public class Constraints {
     }
 
     /**
-     * N-ary Constraint: Theory and Lab of Class no Together.
+     * Checks if the MUSes take place on the same Day
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return true if the MUSes not in the same Day
+     */
+    public static boolean notSameDay(MUS m1, MUS m2) {
+        if(m1.getSession().getDay().ordinal() == m2.getSession().getDay().ordinal())
+            return false;
+        return true;
+    }
+
+    /**
+     * N-ary Constraint: Classes of the same subgroup and lever can't take place at the same time.
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
-    public static boolean theoryAndLabsOfClassNoTogether(MUS m1, MUS m2) {
+    public static boolean classOfSameSubgroupAndLevelNoTogether(MUS m1, MUS m2) {
         // Si m1 de un tipo(t/p/l) igual que el tipo de m2 (t/p/l) y en la misma sesion => false
         if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
                 m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
@@ -108,6 +145,7 @@ public class Constraints {
                 m2.getClassClass().getType() == ClassType.THEORY &&
                 !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
+                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;
@@ -134,7 +172,7 @@ public class Constraints {
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
-    public static boolean LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(MUS m1, MUS m2) {
+    public static boolean labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(MUS m1, MUS m2) {
         if ((m1.getClassClass().getType() == ClassType.LABORATORY ||
                 m1.getClassClass().getType() == ClassType.PROBLEMS) &&
                 (m2.getClassClass().getType() == ClassType.LABORATORY ||
@@ -142,6 +180,20 @@ public class Constraints {
                 !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
                 m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
+                Session.compare(m1.getSession(), "==", m2.getSession()))
+            return false;
+        return true;
+    }
+
+    public static boolean labsAndTheoryOfSameGroupAndSubjectNotTogether(MUS m1, MUS m2) {
+        if(m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
+                ((m1.getClassClass().getType() == ClassType.THEORY &&
+                        (m2.getClassClass().getType() == ClassType.LABORATORY ||
+                         m2.getClassClass().getType() == ClassType.PROBLEMS)) ||
+                  (m2.getClassClass().getType() == ClassType.THEORY &&
+                        (m1.getClassClass().getType() == ClassType.LABORATORY ||
+                         m1.getClassClass().getType() == ClassType.PROBLEMS))) &&
+                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;

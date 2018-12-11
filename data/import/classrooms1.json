@@ -16,7 +16,7 @@
 		},
 		{
 			"Classroom":"A5S101",
-			"Quantity":"40",
+			"Quantity":"100",
 			"Type": "LABORATORY",
 			"Audiovisual": "true",
 			"Num_computers": "20"

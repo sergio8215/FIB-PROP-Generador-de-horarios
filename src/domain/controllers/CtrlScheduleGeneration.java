@@ -124,11 +124,10 @@ public class CtrlScheduleGeneration {
         if (futureVars.isEmpty()) 	return solution;
         else {
             MUS currentVar = futureVars.pollFirst();
-
             for (int i = 0; i < currentVar.domainSize(); i++) {
+                LinkedList<MUS> copy =  duplicateFutureVars(futureVars);
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
-
                 propagateConstraints(futureVars, currentVar);
 
                 if (!someDomainEmpty(futureVars)) {
@@ -139,8 +138,10 @@ public class CtrlScheduleGeneration {
                         solution.delete(currentVar);
                         solution.setFail(false);
                     }
-                } else
+                } else {
                     solution.delete(currentVar);
+                    futureVars = copy;
+                }
             }
 
             solution.fail();
@@ -150,15 +151,34 @@ public class CtrlScheduleGeneration {
     }
 
     private void propagateConstraints(LinkedList<MUS> futureVars, MUS currentVar) {
-        for(MUS var : futureVars) {
-            if(var != currentVar) {
+        for (MUS var : futureVars) {
+            if (!var.getClassClass().getIdentifier().equals(currentVar.getClassClass().getIdentifier())) {
                 int i = 0;
-                while(i < var.domainSize()){
+                while (i < var.domainSize()) {
                     var.assign(var.getValueDomain(i));
-                    if(! Constraints.satisfiesConstraints(currentVar, var)) {
+                    if (!Constraints.satisfiesConstraints(currentVar, var)) {
                         var.deleteFromDomain(i);
+                    } else ++i;
+                }
+            }
+            else {
+                int i = 0;
+                while (i < var.domainSize()) {
+                    var.assign(var.getValueDomain(i));
+                    if(!currentVar.isPaired() && !var.isPaired()){
+                        if (!Constraints.satisfiesSameClassNotPairedConditions(currentVar, var)) {
+                            var.deleteFromDomain(i);
+                        } else ++i;
                     }
-                    else ++i;
+                    else{
+                        if (!Constraints.satisfiesSameClassPairedConditions(currentVar, var)) {
+                            var.deleteFromDomain(i);
+                        } else ++i;
+                    }
+                }
+                if(!currentVar.isPaired() && !var.isPaired()) {
+                    currentVar.setPaired(true);
+                    var.setPaired(true);
                 }
             }
         }
@@ -173,5 +193,14 @@ public class CtrlScheduleGeneration {
         }
 
         return oneEmpty;
+    }
+
+    private LinkedList<MUS> duplicateFutureVars(LinkedList<MUS> fV) {
+        LinkedList<MUS> l = new LinkedList<>();
+        for(MUS m : fV) {
+            MUS aux = new MUS(m);
+            l.add(aux);
+        }
+        return l;
     }
 }
