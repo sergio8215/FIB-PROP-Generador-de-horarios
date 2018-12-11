@@ -41,7 +41,7 @@ public class DisplaySchedule extends JPanel {
 
         //Add the scroll pane to this panel.
         add(scrollPane,"Center");
-        add(getCheckBoxPanel(schedule.keySet() ),"South");
+        add(getCheckBoxPanel(this.schedule.keySet() ),"South");
     }
 
     private JPanel getCheckBoxPanel(Set<String> subjects) {
