@@ -61,6 +61,8 @@ public class Schedule {
 
         classroomFile = stringSchedule.get(0);
         subjectFile = stringSchedule.get(1);
+
+
         timetable = new HashMap<>();
         String[] separated;
         MUS myMUS;
@@ -331,5 +333,69 @@ public class Schedule {
             }
         }
         return lines;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public HashMap< String, ArrayList<Vector<String>> > toHashMapString() { // TODO: IMPLEMENTAR EN CTRLDOMAIN
+        HashMap<String, ArrayList<Vector<String>>> timetable = new HashMap<>();
+
+        Set<String> keys = this.timetable.keySet();
+
+        for (String k : keys) {
+
+            ArrayList<Vector<String>> setSubject = new ArrayList<>();
+            int i = 0;
+            for (MUS m : this.timetable.get(k)){
+                Vector<String> vec = new Vector<>(5);
+
+                vec.add(0, m.getClassClass().getSubject().getName());               // Subject name
+                vec.add(1, Integer.toString(m.getClassClass().getSubGroup()));      // Subgroup (if it's theory will be same as group)
+                vec.add(2, m.getClassroom().getName());                             // Classroom ID
+                vec.add(3, Integer.toString(m.getSession().getHour()));             // Hour
+                vec.add(4, Integer.toString(m.getSession().getDay().ordinal()));    // Day (ordinal)
+
+                setSubject.add(i, vec);
+                i++;
+            }
+
+            timetable.put(k, setSubject);
+        }
+
+        return timetable;
+    }
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
+    public boolean moveSession(Vector<String> from, Vector<String> to) { // TODO: FORMA MAS EFECTIVA
+        MUS f = getMUSOf(from);
+        MUS t = getMUSOf(to);
+
+        this.delete(f);
+        this.add(t);
+
+        if (!this.valid()){
+            delete(t);
+            add(f);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     * @param vs
+     * @return
+     */
+    private MUS getMUSOf(Vector<String> vs) {
+        // TODO: IMPLEMENTAR SEGUN COMO ESTAN LOS DATOS EN EL from Y EL to
+        return null;
     }
 }

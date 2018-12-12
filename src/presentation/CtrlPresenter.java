@@ -1,11 +1,13 @@
 package src.presentation;
 
-import src.domain.classes.MUS;
-import src.domain.classes.Schedule;
 import src.domain.controllers.CtrlDomain;
-import src.domain.utils.UtilsDomain;
 
-import java.util.*;
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
+
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 
 /**
@@ -16,205 +18,53 @@ public class CtrlPresenter {
 
     // Members
 
-    private static CtrlDomain ctrlDomain;
+    private CtrlDomain ctrlDomain;
+    private InitView initView;
+    private DisplaySchedule dS;
 
 
     // Methods
 
-    /**
-     * Main method of the program.
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-
-        System.out.println("\t\t\t============ SCHEDULE GENERATOR ============");
-
+    public CtrlPresenter() {
         ctrlDomain = new CtrlDomain();
-
-        Scanner s = new Scanner(System.in);
-
-        boolean end = false;
-        while (!end){
-            mainMenu();
-
-
-            switch (s.nextInt()){
-                case 1:
-                    scheduleGeneration();
-                    break;
-
-                case 2:
-                    ArrayList<String> filesList = ctrlDomain.listScheduleFiles();
-
-                    int i = 0;
-                    for (String f : filesList ){
-                        System.out.println(i+". "+f);
-                        i++;
-                    }
-
-                    System.out.print("Please input the number of one saved files: ");
-
-                    ctrlDomain.loadSchedule(s.nextInt());
-
-                    UtilsDomain.ResultOfQuery<Schedule> rq = ctrlDomain.showSchedule();
-                    showSchedule(rq.result);
-
-                    System.out.println("\n Please press one key to continue");
-                    System.in.read();
-
-                case 3:
-                    end = !end;
-                    break;
-
-                default:
-                    clearConsole();
-
-                    System.out.println("Input error. Try it again!");
-                    mainMenu();
-
-                    break;
-            }
-
-            clearConsole();
-        }
-
+        initView = new InitView(this);
+        initView.setVisible(true);
     }
 
-    /**
-     * Print the menu on the screen.
-     */
-    private static void mainMenu() {
-        System.out.println("1. Generate Schedule.");
-        System.out.println("2. Load schedule.");
-        System.out.println("3. Exit.");
-        System.out.print("Option: ");
-    }
-
-    /**
-     * Clear the console.
-     */
-    private static void clearConsole() {
-        final String os = System.getProperty("os.name");
-
-        try {
-            if (os.contains("Windows")) {
-                String[] cls = new String[]{"cmd.exe", "/c", "cls"};
-                Runtime.getRuntime().exec(cls);
-            }
-            else    Runtime.getRuntime().exec("clear");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    /**
-     * Interaction with the user to pass to CtrlDomain the information to generate the schedule and start the generation.
-     * @throws Exception
-     */
-    private static void scheduleGeneration() throws Exception {
-
-        Scanner s = new Scanner(System.in);
-
-        scheduleGenerationMenu();
-        System.out.println("\n");
-        ArrayList<String> filesList = ctrlDomain.listImportFiles();
-
-
-        int i = 0;
-        for (String f : filesList ){
-            List<String> fileName = Arrays.asList(f.split("/"));
-            System.out.println(i+". "+ fileName.get(fileName.size()-1));
-            i++;
-        }
-
-        int subjectsFile = 0;
-        int classroomsFile = 0;
-
-        boolean inputCorrect = false;
-        while (!inputCorrect) {
-            classroomsFile = s.nextInt();
-            subjectsFile = s.nextInt();
-
-            if (subjectsFile < filesList.size() && classroomsFile < filesList.size())   inputCorrect = true;
-            else {
-                System.out.println("Input error. Try it again. \n");
-                s.next();
-                scheduleGenerationMenu();
-            }
-        }
-
+    public void setScenario(String classroomsFile, String subjectsFile) throws Exception {
         ctrlDomain.createScenario(classroomsFile, subjectsFile);
-
-        System.out.println("List of restrictions that will apply:\n");
-        System.out.println("\n1.");                                    // TODO: LISTAR LAS RESTRICCIONES
-        System.out.print("Do you want to continue with the schedule generation? [S/N]: ");
-
-        switch (s.next().toUpperCase()) {
-            case "S":
-                ctrlDomain.generateSchedule();
-                if(ctrlDomain.showSchedule().queryTest){
-                    Schedule sch = ctrlDomain.showSchedule().result;
-                    showSchedule(sch);
-
-                    System.out.print("Save schedule?: [S/N] "); // TODO: PROBAR GUARDAR HORARIO
-                    String ss = s.next().toUpperCase();
-
-                    if (ss.contentEquals("S")){
-                        System.out.print("Name of the file: ");
-                        String fileName = s.next();
-                        ctrlDomain.saveSchedule(fileName, sch.toStr());
-                    }
-
-                    clearConsole();
-                }
-                else{
-                    clearConsole();
-                    System.out.println("It has not been possible to generate an Schedule");
-                }
-
-                break;
-
-            case "N":
-                break;
-
-            default:
-                System.out.println("Input error. Try it again!");
-        }
-
     }
 
-    /**
-     * Print the menu of the Schedule Generation on the screen.
-     */
-    private static void scheduleGenerationMenu() {
-        System.out.println("To generate the schedule it is necessary to indicate: \n " +
-                "\tChoose a Classrooms file number\n" +
-                "\tChoose a Subject file number:\n");
-        System.out.println("Indicates following the schema: numOfClassroomsFile numOfSubjectsFile; i.e: 1 4");
-        System.out.print("Option: ");
+    public void loadSchedule(String scheduleFile) throws Exception {
+        initView.setVisibleF(false);
+        initView.setEnabled(false);
+
+        HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.loadSchedule(scheduleFile);
+
+        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        DisplaySchedule.createAndShowGUI(h);
     }
 
-    /**
-     * Print the schedule on the screen.
-     * @param s Schedule to be printed.
-     */
-    private static void showSchedule(Schedule s) {
-        HashMap<String, ArrayList<MUS> > timetable = s.getTimetable();
+    public void scheduleGeneration() {
+        initView.setVisibleF(false);
+        initView.setEnabled(false);
 
-        Set<String> keys = timetable.keySet();
+        HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.generateSchedule();
 
-        for (String nameSubject : keys) {
-            System.out.println("\n SUBJECT - " + nameSubject.toUpperCase());
+        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        DisplaySchedule.createAndShowGUI(h);
 
-            ArrayList<MUS> elems = timetable.get(nameSubject);
 
-            for (MUS m : elems) {
-                System.out.println(m.getClassClass().getIdentifier() + ": " + m.getClassroom().getName() + " - " + m.getSession().getDay() + " " + m.getSession().getHour());
-            }
+        //DisplaySchedule frame = new DisplaySchedule(this, h);
+        //frame.setVisible(true);
 
-            System.out.print("\n");
-        }
+        // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
+        // TODO: GESTIONAR SCHEDUL GENERADO
+        //Schedule sch = ctrlDomain.showSchedule().result;
+    }
+
+    public boolean moveSession(Vector<String> from, Vector<String> to) {
+        return ctrlDomain.moveSession(from, to);
     }
 
 }

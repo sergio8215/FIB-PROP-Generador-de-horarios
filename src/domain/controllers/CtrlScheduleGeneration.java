@@ -98,7 +98,6 @@ public class CtrlScheduleGeneration {
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
-              
                 if (solution.valid()) {
                     solution = chronologicalBacktracking(futureVars, solution);
 
@@ -115,7 +114,7 @@ public class CtrlScheduleGeneration {
             }
 
             solution.fail();
-            futureVars.add(0, currentVar);
+            futureVars.add(currentVar);
             return solution;
         }
     }
