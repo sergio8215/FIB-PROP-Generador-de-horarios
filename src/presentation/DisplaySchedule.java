@@ -81,7 +81,7 @@ public class DisplaySchedule extends JPanel {
         }
 
         int i = 0;
-        Object[][] data = new Object[200][daysOfTheWeek + 1];  // PONER CANTIDAD DE FILAS DINAMICAS
+        Object[][] data = new Object[500][daysOfTheWeek + 1];  // PONER CANTIDAD DE FILAS DINAMICAS
 
         for (ArrayList<Vector<String>> subject : schedule.values()) {
             for (Vector<String> m : subject) {

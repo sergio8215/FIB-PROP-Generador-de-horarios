@@ -1,6 +1,7 @@
 package src.presentation;
 
 import src.domain.controllers.CtrlDomain;
+import src.domain.utils.UtilsDomain;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class CtrlPresenter {
     private CtrlDomain ctrlDomain;
     private InitView initView;
     private DisplaySchedule dS;
+    private NotPossibleSchedule nps;
 
 
     // Methods
@@ -49,18 +51,28 @@ public class CtrlPresenter {
         initView.setVisibleF(false);
         initView.setEnabled(false);
 
-        HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.generateSchedule();
+        ctrlDomain.generateSchedule();
 
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-        DisplaySchedule.createAndShowGUI(h);
+        UtilsDomain.ResultOfQuery<HashMap<String, ArrayList<Vector<String>>>> h = ctrlDomain.showSchedule();
+
+        if (h.queryTest) {
+            UIManager.put("swing.boldMetal", Boolean.FALSE);
+            DisplaySchedule.createAndShowGUI(h.result);
 
 
-        //DisplaySchedule frame = new DisplaySchedule(this, h);
-        //frame.setVisible(true);
+            //DisplaySchedule frame = new DisplaySchedule(this, h);
+            //frame.setVisible(true);
 
-        // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
-        // TODO: GESTIONAR SCHEDUL GENERADO
-        //Schedule sch = ctrlDomain.showSchedule().result;
+            // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
+            // TODO: GESTIONAR SCHEDUL GENERADO
+            //Schedule sch = ctrlDomain.showSchedule().result;
+        } else {
+            nps = new NotPossibleSchedule();
+            nps.setEnabled(true);
+            nps.setVisible(true);
+        }
+
+
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {

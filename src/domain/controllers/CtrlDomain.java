@@ -110,17 +110,17 @@ public class CtrlDomain {
     /**
      *  Shows the generated schedule
      */
-    public UtilsDomain.ResultOfQuery<Schedule> showSchedule() {
+    public UtilsDomain.ResultOfQuery<HashMap<String, ArrayList<Vector<String>>>> showSchedule() {
         UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
         s.queryTest = !schedule.isEmpty();
-        s.result = schedule;
+        s.result = schedule.toHashMapString();
         return s;
      }
 
     /**
      * Generates the schedule based on the generated scenario
      */
-    public HashMap<String, ArrayList<Vector<String>>> generateSchedule(){
+    public void generateSchedule(){
         CtrlScheduleGeneration ctrlScheduleGeneration = new CtrlScheduleGeneration(classroomFile, subjectFile);
         LinkedList<MUS> linkedList = new LinkedList<MUS>();
         ArrayList<ClassClass> cc = classSet.unset();
@@ -130,7 +130,7 @@ public class CtrlDomain {
             linkedList.add(mus);
         }
         schedule = ctrlScheduleGeneration.generateSchedule(linkedList, classroomSession);
-        return schedule.toHashMapString();
+        //return schedule.toHashMapString();
     }
 
     /**
