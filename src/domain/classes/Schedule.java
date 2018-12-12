@@ -216,7 +216,10 @@ public class Schedule {
      * @return returns a boolean that indicates is the timetable is empty
      */
     public boolean isEmpty() {
-        return timetable.isEmpty();
+        for (String k : timetable.keySet()){
+            if(!timetable.get(k).isEmpty()) return false;
+        }
+        return true;
     }
 
     /**
@@ -286,10 +289,10 @@ public class Schedule {
         for(int i = 0; i < arrMUS.size();++i) {
             for (int j = i+1; j < arrMUS.size(); ++j) {
                 if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.theoryAndLabsOfClassNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
+                        Constraints.classOfSameSubgroupAndLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
                         Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
                         Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.LabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))))
+                        Constraints.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))))
                     return false;
             }
         }

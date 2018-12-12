@@ -17,6 +17,7 @@ public class MUS {
     private Classroom classroom;
     private Session session;
     private ClassroomSession domain; // No added in constructors and toStr because it's not mandatory.
+    private boolean paired;
 
 
     // Constructors
@@ -39,6 +40,7 @@ public class MUS {
         this.classroom = classroom;
         this.session = session;
         domain = new ClassroomSession();
+        paired = false;
     }
 
     /**
@@ -51,6 +53,7 @@ public class MUS {
         this.classroom = classroomSessionpair.first;
         this.session = classroomSessionpair.second;
         domain = new ClassroomSession();
+        paired = false;
     }
 
     /**
@@ -62,6 +65,20 @@ public class MUS {
         classroom = Classroom.fromStr(mus.get(1));
         session = new Session(mus.get(2));
         domain = new ClassroomSession();
+        //TODO: el paired que també vingui per String (?)
+        paired = false;
+    }
+
+    /**
+     * Class constructor by copy
+     * @param m MUS we want to duplicate
+     */
+    public MUS(MUS m) {
+        classclass = m.getClassClass();
+        classroom = m.getClassroom();
+        session = m.getSession();
+        domain = new ClassroomSession(m.getDomain());
+        paired = m.isPaired();
     }
 
 
@@ -123,6 +140,23 @@ public class MUS {
         UtilsDomain.Pair<Classroom, Session> res = new UtilsDomain.Pair<Classroom, Session>(classroom, session);
         return res;
     }
+
+    /**
+     * Getter of the paired attribute
+     * @return returns true if the MUS Object is paired to another MUS Object, false otherwise
+     */
+    public boolean isPaired() {
+        return paired;
+    }
+
+    /**
+     * Setter of the paired attribute
+     * @param paired boolean that indicates if the MUS Object is paired to another MUS Object
+     */
+    public void setPaired(boolean paired) {
+        this.paired = paired;
+    }
+
 
     /**
      * It returns the subject associated with the MUS.

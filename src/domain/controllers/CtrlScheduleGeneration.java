@@ -4,6 +4,7 @@ import src.domain.classes.ClassroomSession;
 import src.domain.classes.Constraints;
 import src.domain.classes.MUS;
 import src.domain.classes.Schedule;
+import src.domain.utils.UtilsDomain;
 
 import java.util.LinkedList;
 
@@ -16,9 +17,9 @@ public class CtrlScheduleGeneration {
 
     // Members
 
-    Schedule schedule;
-    ClassroomSession classroomSession;
-    LinkedList<MUS> vars; // PARA CADA MUS UNA VARIABLE DOMINIO (== classroomSesion correspondiente (flitrado))
+    private Schedule schedule;
+    private ClassroomSession classroomSession;
+    private LinkedList<MUS> vars; // PARA CADA MUS UNA VARIABLE DOMINIO (== classroomSesion correspondiente (flitrado))
 
 
     // Constructors
@@ -44,9 +45,9 @@ public class CtrlScheduleGeneration {
         this.vars = new LinkedList<MUS>(vars);
         this.classroomSession = classroomSession;
 
-        filterUnaryConstraints(this.vars);
+        UtilsDomain.ResultOfQuery<MUS> notPossible = filterUnaryConstraints(this.vars);
 
-        schedule = chronologicalBacktracking(new LinkedList<>(vars), schedule);
+        if(!notPossible.queryTest) schedule = forwardChecking(new LinkedList<>(vars), schedule);
         return schedule;
     }
 
@@ -54,7 +55,9 @@ public class CtrlScheduleGeneration {
      * It filter unary restrictions.
      * @param vars Variables to be filtered.
      */
-    private void filterUnaryConstraints(LinkedList<MUS> vars) {
+    private UtilsDomain.ResultOfQuery<MUS> filterUnaryConstraints(LinkedList<MUS> vars) {
+
+        UtilsDomain.ResultOfQuery<MUS> notPossible = new UtilsDomain.ResultOfQuery<MUS>();
 
         for (int i = 0; i < vars.size(); i++) {
 
@@ -70,9 +73,14 @@ public class CtrlScheduleGeneration {
                 } else      ++j;
 
             }
-
+            if(vars.get(i).domainSize() == 0) {
+                notPossible.queryTest = true;
+                notPossible.result = vars.get(i);
+                return notPossible;
+            }
         }
-
+        notPossible.queryTest = false;
+        return notPossible;
     }
 
 
@@ -83,7 +91,6 @@ public class CtrlScheduleGeneration {
      * @return Final solution (successful or not).
      */
     private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
-        int sum = futureVars.size() + solution.size();
         if (futureVars.isEmpty()) 	return solution;
         else {
             MUS currentVar = futureVars.pollFirst();
@@ -91,8 +98,6 @@ public class CtrlScheduleGeneration {
             for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
-
-
                 if (solution.valid()) {
                     solution = chronologicalBacktracking(futureVars, solution);
 
@@ -112,5 +117,89 @@ public class CtrlScheduleGeneration {
             futureVars.add(currentVar);
             return solution;
         }
+    }
+
+    private Schedule forwardChecking(LinkedList<MUS> futureVars, Schedule solution) {
+        if (futureVars.isEmpty()) 	return solution;
+        else {
+            MUS currentVar = futureVars.pollFirst();
+            for (int i = 0; i < currentVar.domainSize(); i++) {
+                LinkedList<MUS> copy =  duplicateFutureVars(futureVars);
+                currentVar.assign(currentVar.getValueDomain(i));
+                solution.add(currentVar);
+                propagateConstraints(futureVars, currentVar);
+
+                if (!someDomainEmpty(futureVars)) {
+                    solution = forwardChecking(futureVars, solution);
+
+                    if (!solution.isFail()) 	return solution;
+                    else {
+                        solution.delete(currentVar);
+                        solution.setFail(false);
+                    }
+                } else {
+                    solution.delete(currentVar);
+                    futureVars = copy;
+                }
+            }
+
+            solution.fail();
+            futureVars.add(0, currentVar);
+            return solution;
+        }
+    }
+
+    private void propagateConstraints(LinkedList<MUS> futureVars, MUS currentVar) {
+        for (MUS var : futureVars) {
+            if (!var.getClassClass().getIdentifier().equals(currentVar.getClassClass().getIdentifier())) {
+                int i = 0;
+                while (i < var.domainSize()) {
+                    var.assign(var.getValueDomain(i));
+                    if (!Constraints.satisfiesConstraints(currentVar, var)) {
+                        var.deleteFromDomain(i);
+                    } else ++i;
+                }
+            }
+            else {
+                int i = 0;
+                while (i < var.domainSize()) {
+                    var.assign(var.getValueDomain(i));
+                    if(!currentVar.isPaired() && !var.isPaired()){
+                        if (!Constraints.satisfiesSameClassNotPairedConditions(currentVar, var)) {
+                            var.deleteFromDomain(i);
+                        } else ++i;
+                    }
+                    else{
+                        if (!Constraints.satisfiesSameClassPairedConditions(currentVar, var)) {
+                            var.deleteFromDomain(i);
+                        } else ++i;
+                    }
+                }
+                if(!currentVar.isPaired() && !var.isPaired()) {
+                    currentVar.setPaired(true);
+                    var.setPaired(true);
+                }
+            }
+        }
+    }
+
+    private boolean someDomainEmpty(LinkedList<MUS> vars){
+        int i = 0;
+        boolean oneEmpty = false;
+        while (i < vars.size() && !oneEmpty){
+            if (vars.get(i).domainSize() == 0)  oneEmpty = !oneEmpty;
+            else    i++;
+        }
+
+        return oneEmpty;
+    }
+
+    private LinkedList<MUS> duplicateFutureVars(LinkedList<MUS> fV) {
+        LinkedList<MUS> l = new LinkedList<>();
+        for(MUS m : fV) {
+            MUS aux = new MUS(m);
+            l.add(aux);
+        }
+        return l;
     }
 }

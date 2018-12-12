@@ -140,8 +140,10 @@ public class ClassSet {
                     identifier = ""+subject.getName()+subGroup;
                     // identifier, subGroup, subject, group, quantityStudents, UtilsDomain.TimeZone shift)
                     quantityStudents = ((groups[0] != 0)?(int)Math.ceil(subject.getNumberStudents()/groups[0]): 0);
-                    c = new TheoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
-                    this.addClass( identifier, c);
+                    for(int k = 0; k < hoursOfClass[0]; ++k) {
+                        c = new TheoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
+                        this.addClass( identifier + String.valueOf(k), c);
+                    }
                     subGroupCount++;
                 }
 
@@ -153,8 +155,10 @@ public class ClassSet {
                         subGroupCount++;
                         identifier = ""+subject.getName()+subGroup;
                         quantityStudents = ((groups[0] != 0)?(int)Math.ceil( (subject.getNumberStudents()/groups[0])/groups[1]): 0);
-                        c = new LaboratoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
-                        this.addClass( identifier, c);
+                        for(int k = 0 ; k < hoursOfClass[1]; ++k) {
+                            c = new LaboratoryClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
+                            this.addClass( identifier + String.valueOf(k), c);
+                        }
                     }
 
                     // If there is ProblemsHours we create the class
@@ -163,8 +167,10 @@ public class ClassSet {
                         subGroupCount++;
                         identifier = ""+subject.getName()+subGroup;
                         quantityStudents = ((groups[0] != 0)?(int)Math.ceil( (subject.getNumberStudents()/groups[0])/groups[1]): 0);
-                        c = new ProblemsClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
-                        this.addClass( identifier, c);
+                        for(int k = 0; k < hoursOfClass[2]; ++k) {
+                            c = new ProblemsClass( identifier, subject, i*10, quantityStudents, shiftA , subGroup  );
+                            this.addClass( identifier + String.valueOf(k), c);
+                        }
                     }
                 }
             }

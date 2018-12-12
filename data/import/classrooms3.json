@@ -1,0 +1,116 @@
+{
+  "Classrooms List": [
+    {
+      "Classroom":"A6201",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A6202",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A5S101",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A5S102",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A6204",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A6205",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A5S103",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A5S104",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A6206",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A6207",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A5S105",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A5S106",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A6203",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A6208",
+      "Quantity":"100",
+      "Type": "THEORY",
+      "Audiovisual": "true",
+      "Num_computers": "0"
+    },
+    {
+      "Classroom":"A5S107",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    },
+    {
+      "Classroom":"A5S108",
+      "Quantity":"100",
+      "Type": "LABORATORY",
+      "Audiovisual": "true",
+      "Num_computers": "20"
+    }
+  ]
+}
