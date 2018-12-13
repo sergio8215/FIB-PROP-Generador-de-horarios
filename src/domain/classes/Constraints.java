@@ -177,14 +177,33 @@ public class Constraints {
      * @return True if satisfied constraint.
      */
     public static boolean classOfSameSubgroupAndLevelNoTogether(MUS m1, MUS m2) {
-        /* Las teorías y los laboratorios/problemas de una misma clase del mismo nivel no pueden coincidir.  */
-        if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
-                m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
+        /* Clases del mismo subgrupo y mismo nivel no pueden coincidir. */
+        if (m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;
     }
+
+    /**
+     * N-ary Constraint: Theory Classes of Same Subject no Together.
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return True if satisfied constraint.
+     */
+    public static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
+        /* Teorías de una misma asignatura no pueden coincidir. */
+        if (m1.getClassClass().getType() == ClassType.THEORY &&
+                m2.getClassClass().getType() == ClassType.THEORY &&
+                m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
+                Session.compare(m1.getSession(), "==", m2.getSession()))
+            return false;
+        return true;
+    }
+
+   // -------------------------------------------------
+
+
 
     /**
      * N-ary Constraint: Theorys of Subjects Of Same Level no Together.
@@ -204,21 +223,7 @@ public class Constraints {
         return true;
     }
 
-    /**
-     * N-ary Constraint: Theory Classes of Same Subject no Together.
-     * @param m1 First MUS to try the constraint.
-     * @param m2 Second MUS to try the constraint.
-     * @return True if satisfied constraint.
-     */
-    public static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
-        /* Los grupos de teoría de una asignatura no pueden coincidir. */
-        if (m1.getClassClass().getType() == ClassType.THEORY &&
-                m2.getClassClass().getType() == ClassType.THEORY &&
-                m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                Session.compare(m1.getSession(), "==", m2.getSession()))
-            return false;
-        return true;
-    }
+
 
     /**
      * N-ary Constraint: Labs and Problems From Different Subjects of Same Class no Together
