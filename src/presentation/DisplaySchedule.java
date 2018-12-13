@@ -9,16 +9,14 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 import java.util.List;
 
 public class DisplaySchedule extends JPanel {
 
     private int size;
     private int daysOfTheWeek = 5;
+    private int startHour = 8;
     private static JFrame frame;
     private JTable table;
     private JCheckBox checkValidate;
@@ -47,22 +45,13 @@ public class DisplaySchedule extends JPanel {
         table.setAutoCreateRowSorter(true);
 
         TableColumn column = table.getColumnModel().getColumn(0);
-        column.setPreferredWidth(5); //sport column is bigger
+        column.setPreferredWidth(5); //hour column is smaller
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
 
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
-        table.setRowSorter(sorter);
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-
-        int columnIndexToSort = 0;
-        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-
-        sorter.setSortKeys(sortKeys);
-        sorter.sort();
-
+        sortTable();
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -115,10 +104,15 @@ public class DisplaySchedule extends JPanel {
         }
 
         int i = 0;
-        Object[][] data = new Object[size][daysOfTheWeek + 1];
+
+        Object[][] data = new Object[scheduleSize(schedule.values())][daysOfTheWeek + 1];
 
         for (ArrayList<Vector<String>> subject : schedule.values()) {
             for (Vector<String> m : subject) {
+
+                if ( startHour+i == Integer.parseInt(m.get(3)) ){
+
+                }
 
                 data[i][0] = Integer.parseInt(m.get(3));            // Hour
                 int day = Integer.parseInt(m.get(4));               // Day (ordinal)
@@ -144,11 +138,30 @@ public class DisplaySchedule extends JPanel {
     private void removeFilter(String subject){
         filter.remove(subject);
         table.setModel(makeSchedule(filter));
+        sortTable();
     }
 
     private void addFilter(String subject){
         filter.put(subject, schedule.get(subject));
         table.setModel(makeSchedule(filter));
+        sortTable();
     }
 
+    private void sortTable(){
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+        table.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+        int columnIndexToSort = 0;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
+    }
+
+    private int scheduleSize(Collection<ArrayList<Vector< String>>> schedule){
+        int count = 0;
+        for ( ArrayList<Vector<String>> s: schedule) count += s.size();
+        return count;
+    }
 }
