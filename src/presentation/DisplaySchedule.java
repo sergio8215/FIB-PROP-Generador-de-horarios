@@ -5,9 +5,7 @@ package src.presentation;
  */
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +18,12 @@ import java.util.List;
 public class DisplaySchedule extends JPanel {
 
     private int size;
-    private JCheckBox checkValidate;
+    private int daysOfTheWeek = 5;
     private static JFrame frame;
     private JTable table;
-    private int daysOfTheWeek = 5;
-    private HashMap<String, ArrayList<Vector<String>>> schedule;
+    private JCheckBox checkValidate;
     private HashMap<String, ArrayList<Vector< String>>> filter;
+    private HashMap<String, ArrayList<Vector< String>>> schedule;
 
 
     public DisplaySchedule(HashMap<String, ArrayList<Vector<String>>> schedule, int size) {
@@ -48,6 +46,13 @@ public class DisplaySchedule extends JPanel {
         table.setFillsViewportHeight(true);
         table.setAutoCreateRowSorter(true);
 
+        TableColumn column = table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(5); //sport column is bigger
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
         table.setRowSorter(sorter);
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
@@ -57,6 +62,7 @@ public class DisplaySchedule extends JPanel {
 
         sorter.setSortKeys(sortKeys);
         sorter.sort();
+
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -109,19 +115,29 @@ public class DisplaySchedule extends JPanel {
         }
 
         int i = 0;
-        Object[][] data = new Object[size][daysOfTheWeek + 1];  // PONER CANTIDAD DE FILAS DINAMICAS
+        Object[][] data = new Object[size][daysOfTheWeek + 1];
 
         for (ArrayList<Vector<String>> subject : schedule.values()) {
             for (Vector<String> m : subject) {
 
-                data[i][0] = Integer.parseInt(m.get(3));                              // Hour
+                data[i][0] = Integer.parseInt(m.get(3));            // Hour
                 int day = Integer.parseInt(m.get(4));               // Day (ordinal)
                 data[i][day + 1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
                 i++;
             }
         }
 
-        DefaultTableModel table = new DefaultTableModel(data, header);
+        DefaultTableModel table = new DefaultTableModel(data, header) {
+            @Override
+            public Class getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return Integer.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
         return table;
     }
 
