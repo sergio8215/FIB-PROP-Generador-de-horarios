@@ -155,6 +155,10 @@ public class CtrlDomain {
         return schedule.toHashMapString();
     }
 
+    public int scheduleSize(){
+        return schedule.timetableSize();
+    }
+
     public void setConstraints(boolean[] c){
         constraints.setContraints(c);
     }

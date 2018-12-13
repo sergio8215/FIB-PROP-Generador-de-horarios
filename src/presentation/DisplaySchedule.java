@@ -5,30 +5,31 @@ package src.presentation;
  */
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
+import java.util.List;
 
 public class DisplaySchedule extends JPanel {
 
-    private JCheckBox checkValidate, checkReValidate, checkRepaint, checkPack;
+    private int size;
+    private int daysOfTheWeek = 5;
     private static JFrame frame;
     private JTable table;
-    private int daysOfTheWeek = 5;
-    private HashMap<String, ArrayList<Vector<String>>> schedule;
-    HashMap<String, ArrayList<Vector< String>>> filter;
+    private JCheckBox checkValidate;
+    private HashMap<String, ArrayList<Vector< String>>> filter;
+    private HashMap<String, ArrayList<Vector< String>>> schedule;
 
 
-    public DisplaySchedule(HashMap<String, ArrayList<Vector<String>>> schedule, boolean init) {
+    public DisplaySchedule(HashMap<String, ArrayList<Vector<String>>> schedule, int size) {
         super(new GridLayout(0,1));
-        if (init) this.schedule = schedule;
+        this.schedule = schedule;
+        this.size = size;
         filter = (HashMap<String, ArrayList<Vector<String>>>) schedule.clone();
 
         //Create and set up the window.
@@ -43,6 +44,25 @@ public class DisplaySchedule extends JPanel {
         table = new JTable(makeSchedule(schedule));
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
+        table.setAutoCreateRowSorter(true);
+
+        TableColumn column = table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(5); //sport column is bigger
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+        table.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+        int columnIndexToSort = 0;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
+
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -95,19 +115,29 @@ public class DisplaySchedule extends JPanel {
         }
 
         int i = 0;
-        Object[][] data = new Object[500][daysOfTheWeek + 1];  // PONER CANTIDAD DE FILAS DINAMICAS
+        Object[][] data = new Object[size][daysOfTheWeek + 1];
 
         for (ArrayList<Vector<String>> subject : schedule.values()) {
             for (Vector<String> m : subject) {
 
-                data[i][0] = m.get(3);                              // Hour
+                data[i][0] = Integer.parseInt(m.get(3));            // Hour
                 int day = Integer.parseInt(m.get(4));               // Day (ordinal)
                 data[i][day + 1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
                 i++;
             }
         }
 
-        DefaultTableModel table = new DefaultTableModel(data, header);
+        DefaultTableModel table = new DefaultTableModel(data, header) {
+            @Override
+            public Class getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return Integer.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
         return table;
     }
 
@@ -121,49 +151,4 @@ public class DisplaySchedule extends JPanel {
         table.setModel(makeSchedule(filter));
     }
 
-    private void printDebugData(JTable table) {
-        int numRows = table.getRowCount();
-        int numCols = table.getColumnCount();
-        javax.swing.table.TableModel model = table.getModel();
-
-        System.out.println("Value of data: ");
-        for (int i=0; i < numRows; i++) {
-            System.out.print("    row " + i + ":");
-            for (int j=0; j < numCols; j++) {
-                System.out.print("  " + model.getValueAt(i, j));
-            }
-            System.out.println();
-        }
-        System.out.println("--------------------------");
-    }
-
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
-    protected static void createAndShowGUI(HashMap<String, ArrayList<Vector<String>>> schedule) {
-        //Create and set up the window.
-        JFrame frame = new JFrame("DisplaySchedule");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Create and set up the content pane.
-        DisplaySchedule newContentPane = new DisplaySchedule(schedule,true);
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                //createAndShowGUI();
-            }
-        });
-    }
 }

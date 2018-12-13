@@ -42,9 +42,10 @@ public class CtrlPresenter {
         initView.setEnabled(false);
 
         HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.loadSchedule(scheduleFile);
+        int size = ctrlDomain.scheduleSize();
 
         UIManager.put("swing.boldMetal", Boolean.FALSE);
-        new DisplaySchedule(h,true);
+        new DisplaySchedule(h, size);
     }
 
     public void scheduleGeneration() {
@@ -57,7 +58,8 @@ public class CtrlPresenter {
 
         if (h.queryTest) {
             UIManager.put("swing.boldMetal", Boolean.FALSE);
-            DisplaySchedule.createAndShowGUI(h.result);
+            int size = ctrlDomain.scheduleSize();
+            new DisplaySchedule(h.result, size);
 
 
             //DisplaySchedule frame = new DisplaySchedule(this, h);

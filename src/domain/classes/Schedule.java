@@ -223,10 +223,10 @@ public class Schedule {
     }
 
     /**
-     * Returns the size of the timetable attribute
-     * @return returns the size of the timetable attribute
+     * Returns the timetableSize of the timetable attribute
+     * @return returns the timetableSize of the timetable attribute
      */
-    public int size(){
+    public int timetableSize(){
         int sum = 0;
         ArrayList< ArrayList<MUS> > musArray = new ArrayList<>(timetable.values());
         for (ArrayList<MUS> subArr : musArray) {
