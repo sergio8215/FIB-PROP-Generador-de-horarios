@@ -120,9 +120,10 @@ public class ConstraintsDriver {
         System.out.println(Constraints.theoryOfSubjectFromDifferentClassesNoTogether(constructorMUS(), constructorMUS()));
     }
 
-    public static void testLabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether() {
+    // TODO: CONTROLADOR
+    /*public static void testLabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether() {
         System.out.println(Constraints.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(constructorMUS(), constructorMUS()));
-    }
+    }*/
 
 
     public static void main(String args[]) throws FileNotFoundException {
@@ -173,7 +174,7 @@ public class ConstraintsDriver {
                     testtheoryOfSubjectFromDifferentClassesNoTogether();
                     break;
                 case 7:
-                    testLabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether();
+                    //testLabsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether();
                     break;
                 case 99:
                     eof = true;

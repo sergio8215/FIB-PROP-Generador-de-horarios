@@ -37,6 +37,10 @@ public class CtrlPresenter {
         ctrlDomain.createScenario(classroomsFile, subjectsFile);
     }
 
+    public void setConstraints(boolean[] sc){
+        ctrlDomain.setConstraints(sc);
+    }
+
     public void loadSchedule(String scheduleFile) throws Exception {
         initView.setVisibleF(false);
         initView.setEnabled(false);
@@ -73,7 +77,6 @@ public class CtrlPresenter {
             nps.setEnabled(true);
             nps.setVisible(true);
         }
-
 
     }
 

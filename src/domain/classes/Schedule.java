@@ -282,8 +282,8 @@ public class Schedule {
      *
      * @return
      */
-    public boolean valid(){
-
+    public boolean valid(){ // TODO: REIMPLEMENTAR
+        /*
         ArrayList<MUS> arrMUS = this.unset();
 
         for(int i = 0; i < arrMUS.size();++i) {
@@ -295,7 +295,7 @@ public class Schedule {
                         Constraints.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))))
                     return false;
             }
-        }
+        }*/
         return true;
     }
 
