@@ -11,6 +11,32 @@ import java.util.HashMap;
  */
 public class Constraints {
 
+    // Structure to save the enabled constraints
+
+    private static class ConstraintsSet {
+        static boolean notSameClassroomAndSessionEnabled                                   = false;
+        static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = false;
+        static boolean theorysOfSubjectsOfSameLevelNoTogetherEnabled                       = false;
+        static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = false;
+        static boolean labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled    = false;
+        static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = false;
+
+
+        private static void setContraints(boolean[] sc){
+            notSameClassroomAndSessionEnabled = sc[0];
+            classOfSameSubgroupAndLevelNoTogetherEnabled = sc[1];
+            theorysOfSubjectsOfSameLevelNoTogetherEnabled = sc[2];
+            theoryOfSubjectFromDifferentClassesNoTogetherEnabled = sc[3];
+            labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled = sc[4];
+            labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled = sc[5];
+        }
+    }
+
+    public void setContraints(boolean[] sc){
+        ConstraintsSet.setContraints(sc);
+    }
+
+
     // UNARY CONSTRAINTS
 
     /**
@@ -50,6 +76,8 @@ public class Constraints {
         return true;
     }
 
+
+
     //CONSTRAINTS CHECKERS
 
     /**
@@ -59,14 +87,23 @@ public class Constraints {
      * @return returns true if m1 and m2 satisfy all constraints, false otherwise;
      */
     public static boolean satisfiesConstraints(MUS m1, MUS m2){
-        if(!(notSameClassroomAndSession(m1, m2) &&
+        if(!((!ConstraintsSet.notSameClassroomAndSessionEnabled || notSameClassroomAndSession(m1, m2)) &&
+                (!ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled || classOfSameSubgroupAndLevelNoTogether(m1, m2)) &&
+                (!ConstraintsSet.theorysOfSubjectsOfSameLevelNoTogetherEnabled || theorysOfSubjectsOfSameLevelNoTogether(m1, m2)) &&
+                (!ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled || theoryOfSubjectFromDifferentClassesNoTogether(m1, m2)) &&
+                (!ConstraintsSet.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled || labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2)) &&
+                (!ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled || labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2))))
+            return true;
+        return false;
+
+        /*if(!(notSameClassroomAndSession(m1, m2) &&
                 classOfSameSubgroupAndLevelNoTogether(m1, m2) &&
                 theorysOfSubjectsOfSameLevelNoTogether(m1, m2) &&
                 theoryOfSubjectFromDifferentClassesNoTogether(m1, m2) &&
                 labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2) &&
                 labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2)))
             return false;
-        return true;
+        return true;*/
     }
 
     /**
@@ -93,6 +130,7 @@ public class Constraints {
             return false;
         return true;
     }
+
 
 
     // N-ARY CONSTRAINTS

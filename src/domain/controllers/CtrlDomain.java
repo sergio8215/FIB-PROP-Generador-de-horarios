@@ -22,6 +22,7 @@ public class CtrlDomain {
     private Schedule schedule;
     private ClassroomSet classroomsSet;
     private SubjectsSet subjectsSet;
+    private Constraints constraints;
     private ClassSet classSet;
     private ClassroomSession classroomSession;
     private String classroomFile;
@@ -152,6 +153,10 @@ public class CtrlDomain {
     public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String filePath) throws IOException {
         schedule = new Schedule(dManager.loadSchedule(filePath));
         return schedule.toHashMapString();
+    }
+
+    public void setConstraints(boolean[] c){
+        constraints.setContraints(c);
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {
