@@ -4,6 +4,7 @@ import src.domain.controllers.CtrlDomain;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -46,6 +47,9 @@ public class SubmitFiles extends JDialog {
                             fc.getCurrentDirectory().getAbsolutePath()+ "/" +
                             fc.getSelectedFile().getName());
                     classroomsFile = fc.getCurrentDirectory().getAbsolutePath()+ "/" + fc.getSelectedFile().getName();
+                    selectClassroomsFileButton.setForeground(Color.green);
+                } else {
+                    selectClassroomsFileButton.setForeground(Color.red);
                 }
 
             }
@@ -63,6 +67,9 @@ public class SubmitFiles extends JDialog {
                             fc.getCurrentDirectory().getAbsolutePath()+ "/" +
                             fc.getSelectedFile().getName());
                     subjectsFile = fc.getCurrentDirectory().getAbsolutePath()+ "/" + fc.getSelectedFile().getName();
+                    selectSubjectsFileButton.setForeground(Color.green);
+                }else {
+                    selectClassroomsFileButton.setForeground(Color.red);
                 }
             }
         });
