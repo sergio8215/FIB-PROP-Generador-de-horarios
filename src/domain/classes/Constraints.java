@@ -2,8 +2,6 @@ package src.domain.classes;
 
 import src.domain.utils.UtilsDomain.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Constraints Class.
@@ -14,21 +12,16 @@ public class Constraints {
     // Structure to save the enabled constraints
 
     private static class ConstraintsSet {
-        static boolean notSameClassroomAndSessionEnabled                                   = false;
-        static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = false;
-        static boolean theorysOfSubjectsOfSameLevelNoTogetherEnabled                       = false;
-        static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = false;
-        static boolean labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled    = false;
-        static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = false;
-
+        static boolean notSameClassroomAndSessionEnabled                                   = true;
+        static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = true;
+        static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = true;
+        static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = true;
 
         private static void setContraints(boolean[] sc){
             notSameClassroomAndSessionEnabled = sc[0];
-            classOfSameSubgroupAndLevelNoTogetherEnabled = sc[1];
-            theorysOfSubjectsOfSameLevelNoTogetherEnabled = sc[2];
+            labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled = sc[1];
+            classOfSameSubgroupAndLevelNoTogetherEnabled = sc[2];
             theoryOfSubjectFromDifferentClassesNoTogetherEnabled = sc[3];
-            labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled = sc[4];
-            labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled = sc[5];
         }
     }
 
@@ -88,22 +81,12 @@ public class Constraints {
      */
     public static boolean satisfiesConstraints(MUS m1, MUS m2){
         if(!((!ConstraintsSet.notSameClassroomAndSessionEnabled || notSameClassroomAndSession(m1, m2)) &&
+                (!ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled || labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2)) &&
                 (!ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled || classOfSameSubgroupAndLevelNoTogether(m1, m2)) &&
-                (!ConstraintsSet.theorysOfSubjectsOfSameLevelNoTogetherEnabled || theorysOfSubjectsOfSameLevelNoTogether(m1, m2)) &&
-                (!ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled || theoryOfSubjectFromDifferentClassesNoTogether(m1, m2)) &&
-                (!ConstraintsSet.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled || labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2)) &&
-                (!ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled || labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2))))
-            return true;
-        return false;
-
-        /*if(!(notSameClassroomAndSession(m1, m2) &&
-                classOfSameSubgroupAndLevelNoTogether(m1, m2) &&
-                theorysOfSubjectsOfSameLevelNoTogether(m1, m2) &&
-                theoryOfSubjectFromDifferentClassesNoTogether(m1, m2) &&
-                labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2) &&
-                labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2)))
+                (!ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled || theoryOfSubjectFromDifferentClassesNoTogether(m1, m2))))
             return false;
-        return true;*/
+        return true;
+
     }
 
     /**
@@ -201,49 +184,8 @@ public class Constraints {
         return true;
     }
 
-   // -------------------------------------------------
 
 
-
-    /**
-     * N-ary Constraint: Theorys of Subjects Of Same Level no Together.
-     * @param m1 First MUS to try the constraint.
-     * @param m2 Second MUS to try the constraint.
-     * @return True if satisfied constraint.
-     */
-    public static boolean theorysOfSubjectsOfSameLevelNoTogether(MUS m1, MUS m2) {
-        /* Los grupos de teoría de asignaturas diferentes de un mismo nivel no pueden coincidir. */
-        if (m1.getClassClass().getType() == ClassType.THEORY &&
-                m2.getClassClass().getType() == ClassType.THEORY &&
-                !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
-                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
-                Session.compare(m1.getSession(), "==", m2.getSession()))
-            return false;
-        return true;
-    }
-
-
-
-    /**
-     * N-ary Constraint: Labs and Problems From Different Subjects of Same Class no Together
-     * @param m1 First MUS to try the constraint.
-     * @param m2 Second MUS to try the constraint.
-     * @return True if satisfied constraint.
-     */
-    public static boolean labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(MUS m1, MUS m2) {
-        if ((m1.getClassClass().getType() == ClassType.LABORATORY ||
-                m1.getClassClass().getType() == ClassType.PROBLEMS) &&
-                (m2.getClassClass().getType() == ClassType.LABORATORY ||
-                m2.getClassClass().getType() == ClassType.PROBLEMS) &&
-                !m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
-                m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
-                Session.compare(m1.getSession(), "==", m2.getSession()))
-            return false;
-        return true;
-    }
-
-
+    // SPECIAL CONSTRAINTS
 
 }
