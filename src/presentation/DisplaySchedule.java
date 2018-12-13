@@ -4,13 +4,8 @@ package src.presentation;
  * DisplaySchedule.java requires no other files.
  */
 
-import javafx.event.EventHandler;
-import src.domain.classes.Schedule;
-
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,24 +19,43 @@ import java.util.Vector;
 public class DisplaySchedule extends JPanel {
 
     private JCheckBox checkValidate, checkReValidate, checkRepaint, checkPack;
-    private static JFrame f;
+    private static JFrame frame;
+    private JTable table;
     private int daysOfTheWeek = 5;
     private HashMap<String, ArrayList<Vector<String>>> schedule;
     HashMap<String, ArrayList<Vector< String>>> filter;
-    private boolean DEBUG = false;
 
-    public DisplaySchedule(HashMap<String, ArrayList<Vector<String>>> schedule) {
+
+    public DisplaySchedule(HashMap<String, ArrayList<Vector<String>>> schedule, boolean init) {
         super(new GridLayout(0,1));
-        this.schedule = schedule;
-        filter = schedule;
+        if (init) this.schedule = schedule;
+        filter = (HashMap<String, ArrayList<Vector<String>>>) schedule.clone();
+
+        //Create and set up the window.
+        frame = new JFrame("DisplaySchedule");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Create and set up the content pane.
+
         setPreferredSize(new Dimension(900, 500));
 
         //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(makeSchedule(schedule));
+        table = new JTable(makeSchedule(schedule));
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+
+        JScrollPane scrollPane = new JScrollPane(table);
 
         //Add the scroll pane to this panel.
         add(scrollPane,"Center");
         add(getCheckBoxPanel(this.schedule.keySet() ),"South");
+
+        this.setOpaque(true); //content panes must be opaque
+        frame.setContentPane(this);
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
     }
 
     private JPanel getCheckBoxPanel(Set<String> subjects) {
@@ -60,7 +74,7 @@ public class DisplaySchedule extends JPanel {
                     if (!cb.isSelected()) {
                         removeFilter(s);
                     } else {
-                        
+                        addFilter(s);
                     }
                 }
             });
@@ -68,7 +82,7 @@ public class DisplaySchedule extends JPanel {
         return panel2;
     }
 
-    private JTable makeSchedule(HashMap<String, ArrayList<Vector<String>>> schedule){
+    private DefaultTableModel makeSchedule(HashMap<String, ArrayList<Vector<String>>> schedule){
 
         String[] week = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
@@ -93,28 +107,18 @@ public class DisplaySchedule extends JPanel {
             }
         }
 
-        JTable table = new JTable(data, header);
-        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-        table.setFillsViewportHeight(true);
-
-        if (DEBUG) {
-            table.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    printDebugData(table);
-                }
-            });
-        }
+        DefaultTableModel table = new DefaultTableModel(data, header);
         return table;
     }
 
     private void removeFilter(String subject){
         filter.remove(subject);
-        createAndShowGUI(filter);
+        table.setModel(makeSchedule(filter));
     }
 
     private void addFilter(String subject){
         filter.put(subject, schedule.get(subject));
-        createAndShowGUI(filter);
+        table.setModel(makeSchedule(filter));
     }
 
     private void printDebugData(JTable table) {
@@ -142,9 +146,9 @@ public class DisplaySchedule extends JPanel {
         //Create and set up the window.
         JFrame frame = new JFrame("DisplaySchedule");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f = frame;
+
         //Create and set up the content pane.
-        DisplaySchedule newContentPane = new DisplaySchedule(schedule);
+        DisplaySchedule newContentPane = new DisplaySchedule(schedule,true);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 
