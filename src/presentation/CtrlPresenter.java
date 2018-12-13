@@ -44,7 +44,7 @@ public class CtrlPresenter {
         HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.loadSchedule(scheduleFile);
 
         UIManager.put("swing.boldMetal", Boolean.FALSE);
-        DisplaySchedule.createAndShowGUI(h);
+        new DisplaySchedule(h,true);
     }
 
     public void scheduleGeneration() {
