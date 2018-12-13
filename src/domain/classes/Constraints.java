@@ -150,14 +150,34 @@ public class Constraints {
     }
 
     /**
+     * N-ary Constraint: Theory sessions can't collapse with laboratory/problems sessions of the same group.
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return True if satisfied constraint.
+     */
+    public static boolean labsAndTheoryOfSameGroupAndSubjectNotTogether(MUS m1, MUS m2) {
+        /* La teoría de los grupos de una asignatura no puede coincidir con sus laboratorios/problemas. */
+        if(m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
+                ((m1.getClassClass().getType() == ClassType.THEORY &&
+                        (m2.getClassClass().getType() == ClassType.LABORATORY ||
+                                m2.getClassClass().getType() == ClassType.PROBLEMS)) ||
+                        (m2.getClassClass().getType() == ClassType.THEORY &&
+                                (m1.getClassClass().getType() == ClassType.LABORATORY ||
+                                        m1.getClassClass().getType() == ClassType.PROBLEMS))) &&
+                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
+                Session.compare(m1.getSession(), "==", m2.getSession()))
+            return false;
+        return true;
+    }
+
+    /**
      * N-ary Constraint: Classes of the same subgroup and lever can't take place at the same time.
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
     public static boolean classOfSameSubgroupAndLevelNoTogether(MUS m1, MUS m2) {
-        // Si m1 de un tipo(t/p/l) igual que el tipo de m2 (t/p/l) y en la misma sesion => false
-        /* */
+        /* Las teorías y los laboratorios/problemas de una misma clase del mismo nivel no pueden coincidir.  */
         if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
                 m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
@@ -219,18 +239,6 @@ public class Constraints {
         return true;
     }
 
-    public static boolean labsAndTheoryOfSameGroupAndSubjectNotTogether(MUS m1, MUS m2) {
-        if(m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                ((m1.getClassClass().getType() == ClassType.THEORY &&
-                        (m2.getClassClass().getType() == ClassType.LABORATORY ||
-                         m2.getClassClass().getType() == ClassType.PROBLEMS)) ||
-                  (m2.getClassClass().getType() == ClassType.THEORY &&
-                        (m1.getClassClass().getType() == ClassType.LABORATORY ||
-                         m1.getClassClass().getType() == ClassType.PROBLEMS))) &&
-                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
-                Session.compare(m1.getSession(), "==", m2.getSession()))
-            return false;
-        return true;
-    }
+
 
 }
