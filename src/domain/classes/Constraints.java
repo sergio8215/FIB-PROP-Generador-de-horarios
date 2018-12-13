@@ -11,6 +11,32 @@ import java.util.HashMap;
  */
 public class Constraints {
 
+    // Structure to save the enabled constraints
+
+    private static class ConstraintsSet {
+        static boolean notSameClassroomAndSessionEnabled                                   = false;
+        static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = false;
+        static boolean theorysOfSubjectsOfSameLevelNoTogetherEnabled                       = false;
+        static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = false;
+        static boolean labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled    = false;
+        static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = false;
+
+
+        private static void setContraints(boolean[] sc){
+            notSameClassroomAndSessionEnabled = sc[0];
+            classOfSameSubgroupAndLevelNoTogetherEnabled = sc[1];
+            theorysOfSubjectsOfSameLevelNoTogetherEnabled = sc[2];
+            theoryOfSubjectFromDifferentClassesNoTogetherEnabled = sc[3];
+            labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled = sc[4];
+            labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled = sc[5];
+        }
+    }
+
+    public void setContraints(boolean[] sc){
+        ConstraintsSet.setContraints(sc);
+    }
+
+
     // UNARY CONSTRAINTS
 
     /**
@@ -50,6 +76,8 @@ public class Constraints {
         return true;
     }
 
+
+
     //CONSTRAINTS CHECKERS
 
     /**
@@ -59,14 +87,23 @@ public class Constraints {
      * @return returns true if m1 and m2 satisfy all constraints, false otherwise;
      */
     public static boolean satisfiesConstraints(MUS m1, MUS m2){
-        if(!(notSameClassroomAndSession(m1, m2) &&
+        if(!((!ConstraintsSet.notSameClassroomAndSessionEnabled || notSameClassroomAndSession(m1, m2)) &&
+                (!ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled || classOfSameSubgroupAndLevelNoTogether(m1, m2)) &&
+                (!ConstraintsSet.theorysOfSubjectsOfSameLevelNoTogetherEnabled || theorysOfSubjectsOfSameLevelNoTogether(m1, m2)) &&
+                (!ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled || theoryOfSubjectFromDifferentClassesNoTogether(m1, m2)) &&
+                (!ConstraintsSet.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogetherEnabled || labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2)) &&
+                (!ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled || labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2))))
+            return true;
+        return false;
+
+        /*if(!(notSameClassroomAndSession(m1, m2) &&
                 classOfSameSubgroupAndLevelNoTogether(m1, m2) &&
                 theorysOfSubjectsOfSameLevelNoTogether(m1, m2) &&
                 theoryOfSubjectFromDifferentClassesNoTogether(m1, m2) &&
                 labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(m1, m2) &&
                 labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2)))
             return false;
-        return true;
+        return true;*/
     }
 
     /**
@@ -95,6 +132,7 @@ public class Constraints {
     }
 
 
+
     // N-ARY CONSTRAINTS
 
     /**
@@ -112,21 +150,60 @@ public class Constraints {
     }
 
     /**
+     * N-ary Constraint: Theory sessions can't collapse with laboratory/problems sessions of the same group.
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return True if satisfied constraint.
+     */
+    public static boolean labsAndTheoryOfSameGroupAndSubjectNotTogether(MUS m1, MUS m2) {
+        /* La teoría de los grupos de una asignatura no puede coincidir con sus laboratorios/problemas. */
+        if(m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
+                ((m1.getClassClass().getType() == ClassType.THEORY &&
+                        (m2.getClassClass().getType() == ClassType.LABORATORY ||
+                                m2.getClassClass().getType() == ClassType.PROBLEMS)) ||
+                        (m2.getClassClass().getType() == ClassType.THEORY &&
+                                (m1.getClassClass().getType() == ClassType.LABORATORY ||
+                                        m1.getClassClass().getType() == ClassType.PROBLEMS))) &&
+                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
+                Session.compare(m1.getSession(), "==", m2.getSession()))
+            return false;
+        return true;
+    }
+
+    /**
      * N-ary Constraint: Classes of the same subgroup and lever can't take place at the same time.
      * @param m1 First MUS to try the constraint.
      * @param m2 Second MUS to try the constraint.
      * @return True if satisfied constraint.
      */
     public static boolean classOfSameSubgroupAndLevelNoTogether(MUS m1, MUS m2) {
-        // Si m1 de un tipo(t/p/l) igual que el tipo de m2 (t/p/l) y en la misma sesion => false
-        /* */
-        if (m1.getClassClass().getType() == m2.getClassClass().getType() &&
-                m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
+        /* Clases del mismo subgrupo y mismo nivel no pueden coincidir. */
+        if (m1.getClassClass().getSubGroup() == m2.getClassClass().getSubGroup() &&
                 m1.getClassClass().getSubject().getLevel() == m2.getClassClass().getSubject().getLevel() &&
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;
     }
+
+    /**
+     * N-ary Constraint: Theory Classes of Same Subject no Together.
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return True if satisfied constraint.
+     */
+    public static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
+        /* Teorías de una misma asignatura no pueden coincidir. */
+        if (m1.getClassClass().getType() == ClassType.THEORY &&
+                m2.getClassClass().getType() == ClassType.THEORY &&
+                m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
+                Session.compare(m1.getSession(), "==", m2.getSession()))
+            return false;
+        return true;
+    }
+
+   // -------------------------------------------------
+
+
 
     /**
      * N-ary Constraint: Theorys of Subjects Of Same Level no Together.
@@ -146,21 +223,7 @@ public class Constraints {
         return true;
     }
 
-    /**
-     * N-ary Constraint: Theory Classes of Same Subject no Together.
-     * @param m1 First MUS to try the constraint.
-     * @param m2 Second MUS to try the constraint.
-     * @return True if satisfied constraint.
-     */
-    public static boolean theoryOfSubjectFromDifferentClassesNoTogether(MUS m1, MUS m2) {
-        /* Los grupos de teoría de una asignatura no pueden coincidir. */
-        if (m1.getClassClass().getType() == ClassType.THEORY &&
-                m2.getClassClass().getType() == ClassType.THEORY &&
-                m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                Session.compare(m1.getSession(), "==", m2.getSession()))
-            return false;
-        return true;
-    }
+
 
     /**
      * N-ary Constraint: Labs and Problems From Different Subjects of Same Class no Together
@@ -181,18 +244,6 @@ public class Constraints {
         return true;
     }
 
-    public static boolean labsAndTheoryOfSameGroupAndSubjectNotTogether(MUS m1, MUS m2) {
-        if(m1.getClassClass().getSubject().getName().equals(m2.getClassClass().getSubject().getName()) &&
-                ((m1.getClassClass().getType() == ClassType.THEORY &&
-                        (m2.getClassClass().getType() == ClassType.LABORATORY ||
-                         m2.getClassClass().getType() == ClassType.PROBLEMS)) ||
-                  (m2.getClassClass().getType() == ClassType.THEORY &&
-                        (m1.getClassClass().getType() == ClassType.LABORATORY ||
-                         m1.getClassClass().getType() == ClassType.PROBLEMS))) &&
-                m1.getClassClass().getGroup() == m2.getClassClass().getGroup() &&
-                Session.compare(m1.getSession(), "==", m2.getSession()))
-            return false;
-        return true;
-    }
+
 
 }

@@ -22,6 +22,7 @@ public class CtrlDomain {
     private Schedule schedule;
     private ClassroomSet classroomsSet;
     private SubjectsSet subjectsSet;
+    private Constraints constraints;
     private ClassSet classSet;
     private ClassroomSession classroomSession;
     private String classroomFile;
@@ -156,6 +157,10 @@ public class CtrlDomain {
 
     public int scheduleSize(){
         return schedule.timetableSize();
+    }
+
+    public void setConstraints(boolean[] c){
+        constraints.setContraints(c);
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {
