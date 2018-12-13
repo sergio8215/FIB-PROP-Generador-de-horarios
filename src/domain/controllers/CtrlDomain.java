@@ -154,6 +154,10 @@ public class CtrlDomain {
         return schedule.toHashMapString();
     }
 
+    public int scheduleSize(){
+        return schedule.timetableSize();
+    }
+
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         return schedule.moveSession(from, to);
     }
