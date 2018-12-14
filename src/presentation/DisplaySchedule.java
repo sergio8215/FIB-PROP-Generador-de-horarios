@@ -105,15 +105,11 @@ public class DisplaySchedule extends JPanel {
     private DefaultTableModel makeSchedule(HashMap<String, ArrayList<Vector<String>>> schedule){
 
         String[] week = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-
         String[] header = new String[daysOfTheWeek + 1];
         header[0] = "Hour";
 
         // Initialize days of the week
-        for (int i = 0; i < daysOfTheWeek; i++) {
-            header[i + 1] = week[i];
-        }
-
+        for (int i = 0; i < daysOfTheWeek; i++) header[i + 1] = week[i];
         int i = 0;
 
         Object[][] data = new Object[scheduleSize(schedule.values())][daysOfTheWeek + 1];

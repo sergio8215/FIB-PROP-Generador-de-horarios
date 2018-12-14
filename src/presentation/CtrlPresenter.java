@@ -65,6 +65,9 @@ public class CtrlPresenter {
             File fileToSave = fileChooser.getSelectedFile();
             System.out.println("Save as file: " + fileToSave.getAbsolutePath());
             ctrlDomain.saveSchedule(fileToSave.getAbsolutePath());
+            JOptionPane.showMessageDialog(parentFrame, "Schedule saved.");
+        }else{
+            JOptionPane.showMessageDialog(parentFrame, "Error.");
         }
     }
 
