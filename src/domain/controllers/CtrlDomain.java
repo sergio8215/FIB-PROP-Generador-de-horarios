@@ -137,12 +137,11 @@ public class CtrlDomain {
     /**
      * Saves the generated schedule on a file with the name that the user wants.
      * @param newFileName Name of the file to create
-     * @param schedule Schedule to save
      * @throws Exception If file can't be created
      */
-    public void saveSchedule( String newFileName, List<String> schedule ) throws Exception {
+    public void saveSchedule( String newFileName) throws Exception {
 
-        dManager.saveSchedule(newFileName, schedule);
+        dManager.saveSchedule(newFileName, schedule.toStr());
     }
 
     /**

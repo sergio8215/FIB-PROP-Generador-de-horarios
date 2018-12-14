@@ -124,51 +124,6 @@ public class DataManager {
         return stringSchedule;
     }
 
-    /*
-    public ArrayList<String> listScheduleFiles() {
-        inout i = new inout();
-
-        ArrayList<String> myFiles = new ArrayList<String>();
-        Path dir = Paths.get("./data/load/");
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
-
-            for (Path entry : stream) {
-                myFiles.add(entry.toString());
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            myFiles = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            myFiles = null;
-        }
-        return myFiles;
-    }
-
-    public ArrayList<String> listImportFiles() {
-
-        ArrayList<String> myFiles = new ArrayList<>();
-        Path dir = Paths.get("./data/import/");
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
-
-            for (Path entry : stream) {
-                myFiles.add(entry.toString());
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            myFiles = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            myFiles = null;
-        }
-        return myFiles;
-    }
-
-*/
     public void saveSchedule( String fileNamePath, List<String> schedule ) throws Exception {
 
         Path file = Paths.get( fileNamePath );

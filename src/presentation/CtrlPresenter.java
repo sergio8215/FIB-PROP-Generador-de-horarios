@@ -4,6 +4,7 @@ import src.domain.controllers.CtrlDomain;
 import src.domain.utils.UtilsDomain;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
@@ -46,10 +47,25 @@ public class CtrlPresenter {
         initView.setEnabled(false);
 
         HashMap<String, ArrayList<Vector<String>>> h = ctrlDomain.loadSchedule(scheduleFile);
-        int size = ctrlDomain.scheduleSize();
 
         UIManager.put("swing.boldMetal", Boolean.FALSE);
-        new DisplaySchedule(h, size);
+        new DisplaySchedule(this,h);
+    }
+
+    public void saveSchedule() throws Exception {
+        // parent component of the dialog
+        JFrame parentFrame = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            ctrlDomain.saveSchedule(fileToSave.getAbsolutePath());
+        }
     }
 
     public void scheduleGeneration() {
@@ -62,8 +78,7 @@ public class CtrlPresenter {
 
         if (h.queryTest) {
             UIManager.put("swing.boldMetal", Boolean.FALSE);
-            int size = ctrlDomain.scheduleSize();
-            new DisplaySchedule(h.result, size);
+            new DisplaySchedule(this, h.result);
 
 
             //DisplaySchedule frame = new DisplaySchedule(this, h);

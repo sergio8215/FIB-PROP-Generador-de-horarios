@@ -14,7 +14,6 @@ import java.util.List;
 
 public class DisplaySchedule extends JPanel {
 
-    private int size;
     private int daysOfTheWeek = 5;
     private int startHour = 8;
     private static JFrame frame;
@@ -24,10 +23,9 @@ public class DisplaySchedule extends JPanel {
     private HashMap<String, ArrayList<Vector< String>>> schedule;
 
 
-    public DisplaySchedule(HashMap<String, ArrayList<Vector<String>>> schedule, int size) {
+    public DisplaySchedule(CtrlPresenter ctrlP, HashMap<String, ArrayList<Vector<String>>> schedule) {
         super(new GridLayout(0,1));
         this.schedule = schedule;
-        this.size = size;
         filter = (HashMap<String, ArrayList<Vector<String>>>) schedule.clone();
 
         //Create and set up the window.
@@ -50,14 +48,27 @@ public class DisplaySchedule extends JPanel {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-
         sortTable();
-
         JScrollPane scrollPane = new JScrollPane(table);
+
+        JButton saveButton = new JButton("Save");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ctrlP.saveSchedule();
+
+                } catch (Exception exc) {
+                    System.out.println(exc);
+                }
+            }
+        });
+
 
         //Add the scroll pane to this panel.
         add(scrollPane,"Center");
         add(getCheckBoxPanel(this.schedule.keySet() ),"South");
+        add(saveButton,BorderLayout.CENTER);
 
         this.setOpaque(true); //content panes must be opaque
         frame.setContentPane(this);
