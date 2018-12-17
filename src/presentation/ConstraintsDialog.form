@@ -1,76 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="src.presentation.ConstraintsDialog">
-  <grid id="27dc6" layout-manager="GridBagLayout">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="15860" class="javax.swing.JCheckBox" binding="checkBox1" default-binding="true">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="CheckBox"/>
-        </properties>
-      </component>
-      <hspacer id="83fe4">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-      </hspacer>
       <vspacer id="926f2">
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
-      <component id="c91f" class="javax.swing.JCheckBox" binding="checkBox2" default-binding="true">
+      <component id="c91f" class="javax.swing.JCheckBox" binding="constraint3">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="CheckBox"/>
+          <text value="theoryOfSubjectFromDifferentClassesNoTogether"/>
         </properties>
       </component>
-      <component id="1b372" class="javax.swing.JCheckBox" binding="checkBox3" default-binding="true">
+      <component id="1b372" class="javax.swing.JCheckBox" binding="constraint2">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="CheckBox"/>
+          <text value="classOfSameSubgroupAndLevelNoTogether"/>
         </properties>
       </component>
-      <component id="bfd37" class="javax.swing.JCheckBox" binding="restricción2CheckBox" default-binding="true">
+      <component id="bfd37" class="javax.swing.JCheckBox" binding="constraint1">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Restricción 2"/>
+          <text value="labsAndTheoryOfSameGroupAndSubjectNotTogether"/>
         </properties>
       </component>
-      <component id="73476" class="javax.swing.JCheckBox" binding="restricción1CheckBox" default-binding="true">
+      <component id="73476" class="javax.swing.JCheckBox" binding="constraint0">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Restricción 1"/>
-        </properties>
-      </component>
-      <component id="b793" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="RESTRICCIONES:"/>
+          <text value="notSameClassroomAndSession"/>
         </properties>
       </component>
       <component id="24930" class="javax.swing.JLabel">
@@ -91,6 +67,18 @@
           <text value="Continue"/>
         </properties>
       </component>
+      <vspacer id="e7dbe">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="f8aef">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>

@@ -81,9 +81,9 @@ public class SubmitFiles extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ctrlPresenter.setScenario(classroomsFile, subjectsFile);
-                    ctrlPresenter.scheduleGeneration();
-                    rootPanel.setVisible(false);
-                    rootPanel.setEnabled(false);
+                    ctrlPresenter.selectConstraints();
+                    //ctrlPresenter.scheduleGeneration();
+
 
                 } catch (Exception exc) {
                     System.out.println(exc);

@@ -46,6 +46,10 @@ public class CtrlPresenter {
         ctrlDomain.setClassrooms(classroomsFile);
     }
 
+    public void selectConstraints() {
+        initView.selectConstraints();
+    }
+
     public void setConstraints(boolean[] sc){
         ctrlDomain.setConstraints(sc);
     }

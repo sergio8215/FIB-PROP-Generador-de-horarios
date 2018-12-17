@@ -36,6 +36,7 @@ public class CtrlDomain {
      */
     public CtrlDomain(){
         dManager = new DataManager();
+        constraints = new Constraints();
     }
 
     //PRIVATE METHODS--------------------------------------------------

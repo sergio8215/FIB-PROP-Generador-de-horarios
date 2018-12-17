@@ -9,6 +9,7 @@ public class InitView extends JFrame {
     private CtrlPresenter vCtrlPresenter;
 
     private SubmitFiles submitFiles;
+    private ConstraintsDialog constraintsDialog;
 
     private JPanel rootPanel;
     private JPanel initViewPanel;
@@ -37,6 +38,7 @@ public class InitView extends JFrame {
         vCtrlPresenter = ctrlPresenter;
 
         submitFiles = new SubmitFiles(vCtrlPresenter);
+        constraintsDialog = new ConstraintsDialog(vCtrlPresenter);
 
         initComponents();
 
@@ -210,10 +212,18 @@ public class InitView extends JFrame {
         });
     }
 
-    public void setVisibleF(boolean b) {
+    public void setVisibleF(boolean b) {    // TODO: RECONSIDERAR
+        constraintsDialog.setVisible(false);
+        constraintsDialog.setEnabled(false);
+
+        super.setVisible(false);
+    }
+
+    public void selectConstraints(){
         submitFiles.setVisible(false);
         submitFiles.setEnabled(false);
 
-        super.setVisible(false);
+        constraintsDialog.setEnabled(true);
+        constraintsDialog.setVisible(true);
     }
 }
