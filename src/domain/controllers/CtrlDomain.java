@@ -90,6 +90,21 @@ public class CtrlDomain {
         else return false;
     }
 
+    public boolean setSubjects(String subjectsFile) throws Exception {
+        boolean s = importSubject(subjectsFile);
+        if (s) {
+            subjectFile = subjectsFile;
+            return true;
+        } else return false;
+    }
+
+    public boolean setClassrooms(String classroomsFile) throws Exception {
+        boolean c = importClassroom(classroomsFile);
+        if (c) {
+            classroomsFile = classroomsFile;
+            return true;
+        } else return false;
+    }
 
     /**
      * List of all the subjects of the created Scenario, one subject per position

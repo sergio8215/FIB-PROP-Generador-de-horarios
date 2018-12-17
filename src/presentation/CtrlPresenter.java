@@ -38,6 +38,14 @@ public class CtrlPresenter {
         ctrlDomain.createScenario(classroomsFile, subjectsFile);
     }
 
+    public void loadSubjects(String subjectsFile) throws Exception {
+        ctrlDomain.setSubjects(subjectsFile);
+    }
+
+    public void loadClassrooms(String classroomsFile) throws Exception {
+        ctrlDomain.setClassrooms(classroomsFile);
+    }
+
     public void setConstraints(boolean[] sc){
         ctrlDomain.setConstraints(sc);
     }

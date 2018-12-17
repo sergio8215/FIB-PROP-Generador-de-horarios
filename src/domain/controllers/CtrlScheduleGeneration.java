@@ -85,7 +85,7 @@ public class CtrlScheduleGeneration {
 
 
     /**
-     * Implementation of the Chronological Backtracking Algorithm for satisfaction of constraints.
+     * Implementation of the Chronological Backtracking Algorithm for satisfaction of constraints. NOT USED!
      * @param futureVars Variables to which a domain value must be assigned.
      * @param solution Partial solution of the assignment of values to the variables.
      * @return Final solution (successful or not).
