@@ -110,21 +110,30 @@ public class DisplaySchedule extends JPanel {
 
         // Initialize days of the week
         for (int i = 0; i < daysOfTheWeek; i++) header[i + 1] = week[i];
-        int i = 0;
 
-        Object[][] data = new Object[scheduleSize(schedule.values())][daysOfTheWeek + 1];
+        int i;
+
+        Object[][] data = new Object[scheduleSize(schedule.values())+10][daysOfTheWeek + 1];
 
         for (ArrayList<Vector<String>> subject : schedule.values()) {
+
             for (Vector<String> m : subject) {
+                i = 0;
+                boolean added = false;
+                while(!added){
+                    // column 0 is equal to my subject hour and my week column it's empty
+                    if ( (data[i][0] == null) ||
+                            ( ((Integer)data[i][0] == Integer.parseInt(m.get(3)) ) &&
+                                    ( data[i][Integer.parseInt(m.get(4))+1] == null ) )){
 
-                if ( startHour+i == Integer.parseInt(m.get(3)) ){
+                        data[i][0] = Integer.parseInt(m.get(3));            // Hour
+                        int day = Integer.parseInt(m.get(4));               // Day (ordinal)
+                        data[i][day + 1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
+                        added = true;
 
+                    }
+                    i++;
                 }
-
-                data[i][0] = Integer.parseInt(m.get(3));            // Hour
-                int day = Integer.parseInt(m.get(4));               // Day (ordinal)
-                data[i][day + 1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
-                i++;
             }
         }
 
@@ -167,8 +176,15 @@ public class DisplaySchedule extends JPanel {
     }
 
     private int scheduleSize(Collection<ArrayList<Vector< String>>> schedule){
-        int count = 0;
-        for ( ArrayList<Vector<String>> s: schedule) count += s.size();
-        return count;
+        Vector<Integer> count = new Vector<>(daysOfTheWeek);
+        for(int i=0; i< daysOfTheWeek; i++) count.add(i,0);
+
+        for ( ArrayList<Vector<String>> s: schedule){
+            for( Vector<String> ss: s){
+                count.set(Integer.parseInt(ss.get(4)), count.get(Integer.parseInt(ss.get(4)))+1);
+            }
+        }
+        Object obj = Collections.max(count);
+        return (Integer)obj;
     }
 }
