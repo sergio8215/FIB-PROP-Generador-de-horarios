@@ -12,10 +12,13 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
+import static sun.swing.MenuItemLayoutHelper.max;
+
 public class DisplaySchedule extends JPanel {
 
     private int daysOfTheWeek = 5;
     private int startHour = 8;
+    private int hoursPerDay = 12;
     private static JFrame frame;
     private JTable table;
     private JCheckBox checkValidate;
@@ -113,7 +116,7 @@ public class DisplaySchedule extends JPanel {
 
         int i;
 
-        Object[][] data = new Object[scheduleSize(schedule.values())+10][daysOfTheWeek + 1];
+        Object[][] data = new Object[scheduleSize(schedule.values())][daysOfTheWeek + 1];
 
         for (ArrayList<Vector<String>> subject : schedule.values()) {
 
@@ -129,8 +132,8 @@ public class DisplaySchedule extends JPanel {
                         data[i][0] = Integer.parseInt(m.get(3));            // Hour
                         int day = Integer.parseInt(m.get(4));               // Day (ordinal)
                         data[i][day + 1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
-                        added = true;
 
+                        added = true;
                     }
                     i++;
                 }
@@ -175,16 +178,46 @@ public class DisplaySchedule extends JPanel {
         sorter.sort();
     }
 
-    private int scheduleSize(Collection<ArrayList<Vector< String>>> schedule){
+    private int scheduleSize(Collection<ArrayList<Vector< String>>> schedule) {
+
+        int[][] scheduleSize = new int[hoursPerDay][daysOfTheWeek];
+        // initialize my matrix
+        for(int i=0; i<hoursPerDay; i++){
+            for(int j=0; j<daysOfTheWeek;j++){
+                scheduleSize[i][j] = 0;
+            }
+        }
+
+        // count size per day
+        for (ArrayList<Vector<String>> subject : schedule) {
+            for (Vector<String> m : subject) {
+                scheduleSize[Integer.parseInt(m.get(3))-startHour][Integer.parseInt(m.get(4))]++;  // [Hour][day]
+            }
+        }
+
+        // search for max
+        int acum = 0;
+        int[] maximum = new int[hoursPerDay];
+        for (int i=0; i<daysOfTheWeek; i++) maximum[i] = 0;
+        for (int i=0; i<hoursPerDay;   i++) {
+            for (int j = 0; j < daysOfTheWeek; j++) {
+                maximum[i] = max(maximum[i], scheduleSize[i][j]);
+            }
+            acum += maximum[i];
+        }
+        return acum;
+
+        /*
         Vector<Integer> count = new Vector<>(daysOfTheWeek);
         for(int i=0; i< daysOfTheWeek; i++) count.add(i,0);
 
         for ( ArrayList<Vector<String>> s: schedule){
             for( Vector<String> ss: s){
+                // ss.get(4) return day ordinal
                 count.set(Integer.parseInt(ss.get(4)), count.get(Integer.parseInt(ss.get(4)))+1);
             }
         }
         Object obj = Collections.max(count);
-        return (Integer)obj;
+        return (Integer)obj;*/
     }
 }
