@@ -175,7 +175,7 @@ public class CtrlScheduleGeneration {
                         } else ++i;
                     }
                 }
-                if(!currentVar.isPaired() && !var.isPaired()) {
+                if(!currentVar.isPaired() && !var.isPaired() && var.domainSize() != 0) {
                     currentVar.setPaired(true);
                     var.setPaired(true);
                 }
