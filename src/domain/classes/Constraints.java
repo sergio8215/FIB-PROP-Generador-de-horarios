@@ -12,16 +12,18 @@ public class Constraints {
     // Structure to save the enabled constraints
 
     private static class ConstraintsSet {
-        static boolean notSameClassroomAndSessionEnabled                                   = true;
-        static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = true;
-        static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = true;
-        static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = true;
+        static boolean notSameClassroomAndSessionEnabled                                   = false;
+        static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = false;
+        static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = false;
+        static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = false;
+        static boolean theorysOfSameLevelNoTogetherEnabled                                 = false;
 
         private static void setContraints(boolean[] sc){
             notSameClassroomAndSessionEnabled = sc[0];
             labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled = sc[1];
             classOfSameSubgroupAndLevelNoTogetherEnabled = sc[2];
             theoryOfSubjectFromDifferentClassesNoTogetherEnabled = sc[3];
+            theorysOfSameLevelNoTogetherEnabled = sc[4];
         }
     }
 
@@ -83,7 +85,8 @@ public class Constraints {
         if(!((!ConstraintsSet.notSameClassroomAndSessionEnabled || notSameClassroomAndSession(m1, m2)) &&
                 (!ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled || labsAndTheoryOfSameGroupAndSubjectNotTogether(m1, m2)) &&
                 (!ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled || classOfSameSubgroupAndLevelNoTogether(m1, m2)) &&
-                (!ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled || theoryOfSubjectFromDifferentClassesNoTogether(m1, m2))))
+                (!ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled || theoryOfSubjectFromDifferentClassesNoTogether(m1, m2))) &&
+                (!ConstraintsSet.theorysOfSameLevelNoTogetherEnabled || theorysOfSameLevelNoTogether(m1, m2)))
             return false;
         return true;
 
@@ -187,5 +190,13 @@ public class Constraints {
 
 
     // SPECIAL CONSTRAINTS
-
+    public static boolean theorysOfSameLevelNoTogether(MUS m1, MUS m2) {
+        /* Teorias del mismo nivel no pueden coincidir. */
+        if (m1.getClassClass().getType() == ClassType.THEORY &&
+                m2.getClassClass().getType() == ClassType.THEORY &&
+                m1.getSubject().getLevel() == m2.getSubject().getLevel() &&
+                Session.compare(m1.getSession(), "==", m2.getSession()))
+            return false;
+        return true;
+    }
 }

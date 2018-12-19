@@ -13,8 +13,10 @@ public class ConstraintsDialog extends JDialog {
     private JCheckBox constraint0;
     private JButton continueButton;
     private JPanel rootPanel;
+    private JCheckBox constraint4;
+    private JButton selectAllButton;
 
-    private boolean[] enb = new boolean[4]; // TODO: NUMERO A CONCRETAR
+    private boolean[] enb = new boolean[5]; // TODO: NUMERO A CONCRETAR
 
     public ConstraintsDialog(CtrlPresenter ctrlPresenter){
         this.ctrlPresenter = ctrlPresenter;
@@ -24,6 +26,7 @@ public class ConstraintsDialog extends JDialog {
         add(rootPanel);
 
         initComponents();
+
     }
 
     private void initComponents() {
@@ -55,6 +58,29 @@ public class ConstraintsDialog extends JDialog {
             }
         });
 
+        constraint4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                enb[4] = constraint4.isSelected();
+            }
+        });
+
+
+        selectAllButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                constraint0.setSelected(true);
+                constraint1.setSelected(true);
+                constraint2.setSelected(true);
+                constraint3.setSelected(true);
+                constraint4.setSelected(true);
+                enb[0] = constraint0.isSelected();
+                enb[1] = constraint1.isSelected();
+                enb[2] = constraint2.isSelected();
+                enb[3] = constraint3.isSelected();
+                enb[4] = constraint4.isSelected();
+            }
+        });
 
         continueButton.addActionListener(new ActionListener() {
             @Override

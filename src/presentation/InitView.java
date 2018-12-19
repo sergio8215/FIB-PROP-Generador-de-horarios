@@ -212,7 +212,7 @@ public class InitView extends JFrame {
         });
     }
 
-    public void setVisibleF(boolean b) {    // TODO: RECONSIDERAR
+    public void setVisibleF(boolean b) {
         constraintsDialog.setVisible(false);
         constraintsDialog.setEnabled(false);
 
