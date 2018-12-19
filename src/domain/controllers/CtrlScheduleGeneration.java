@@ -139,6 +139,7 @@ public class CtrlScheduleGeneration {
                     }
                 } else {
                     solution.delete(currentVar);
+                    currentVar.setPaired(false);
                     futureVars = copy;
                 }
             }

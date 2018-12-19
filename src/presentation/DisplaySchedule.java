@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-import static sun.swing.MenuItemLayoutHelper.max;
 
 public class DisplaySchedule extends JPanel {
 
@@ -213,7 +212,7 @@ public class DisplaySchedule extends JPanel {
         for (int i=0; i<daysOfTheWeek; i++) maximum[i] = 0;
         for (int i=0; i<hoursPerDay;   i++) {
             for (int j = 0; j < daysOfTheWeek; j++) {
-                maximum[i] = max(maximum[i], scheduleSize[i][j]);
+                maximum[i] = Math.max(maximum[i], scheduleSize[i][j]);
             }
             acum += maximum[i];
         }
