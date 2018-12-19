@@ -55,7 +55,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Select the contraints that it should be guaranteed:"/>
+          <text value="Select the contraints that should be guaranteed:"/>
         </properties>
       </component>
       <component id="3e43f" class="javax.swing.JButton" binding="continueButton" default-binding="true">
