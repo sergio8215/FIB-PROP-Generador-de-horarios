@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
 
 /**
  * Presentation Controller
@@ -25,6 +23,10 @@ public class CtrlPresenter {
     private DisplaySchedule dS;
     private NotPossibleSchedule nps;
     private SubjectsManager sm;
+    private ClassroomsManager cm;
+
+    private Vector<Vector<String>> subjectsSet = new Vector<>();
+    private Vector<Vector<String>> classroomsSet = new Vector<>();
 
 
     // Methods
@@ -149,11 +151,26 @@ public class CtrlPresenter {
 
     }
 
+    public void setSubjectsSet() {
+        subjectsSet = ctrlDomain.getSubjectsString();
+    }
+
+    public void setClassroomsSet() {
+        classroomsSet = ctrlDomain.getClassroomsString();
+    }
+
     public void subjectsManagerEnabled() {
-        sm = new SubjectsManager(this, ctrlDomain.getSubjectsString());
-        // TODO: RECIBIR DATOS Y ENVIAR
+        sm = new SubjectsManager(this, subjectsSet);
+
         sm.setEnabled(true);
         sm.setVisible(true);
+    }
+
+    public void classroomsManagerEnabled() {
+        cm = new ClassroomsManager(this, classroomsSet);
+
+        cm.setEnabled(true);
+        cm.setVisible(true);
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {

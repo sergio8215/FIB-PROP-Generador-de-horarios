@@ -166,6 +166,13 @@ public class InitView extends JFrame {
             }
         });
 
+        newSubjectsFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vCtrlPresenter.subjectsManagerEnabled();
+            }
+        });
+
         loadSubjectsFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -181,6 +188,7 @@ public class InitView extends JFrame {
 
                     try {
                         vCtrlPresenter.loadSubjects(subjectsFile);
+                        vCtrlPresenter.setSubjectsSet();
                     } catch (Exception exc) {
                         System.out.println(exc);
                     }
@@ -188,6 +196,13 @@ public class InitView extends JFrame {
                 }
             }
 
+        });
+
+        newClassroomsFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vCtrlPresenter.classroomsManagerEnabled();
+            }
         });
 
         loadClassroomsFileButton.addActionListener(new ActionListener() {
@@ -205,9 +220,11 @@ public class InitView extends JFrame {
 
                     try {
                         vCtrlPresenter.loadClassrooms(classroomsFile);
+                        vCtrlPresenter.setClassroomsSet();
                     } catch (Exception exc) {
                         System.out.println(exc);
                     }
+                    vCtrlPresenter.classroomsManagerEnabled();
                 }
             }
         });

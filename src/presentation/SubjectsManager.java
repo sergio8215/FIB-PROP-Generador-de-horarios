@@ -51,7 +51,19 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
 
         this.subjects = new ArrayList<>(subjects);
 
-        initList(this.subjects);
+        if (subjects.isEmpty()){
+            Vector<String> v = new Vector<>(9);
+            subjects.add(0, v);
+            for (int i = 0; i < 9; i++) {
+                subjects.get(0).add(i, "");
+            }
+
+            model.add(0,"SUBJECT");
+            list.setModel(model);
+            list.setSelectedIndex(0);
+        } else {
+            initList(this.subjects);
+        }
 
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addListSelectionListener(this);
@@ -71,8 +83,8 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
     public void initList(ArrayList<Vector<String>> subjects) {
         for(Vector<String> v : subjects) {
             model.addElement(v.get(0));
-            list.setModel(model);
         }
+        list.setModel(model);
     }
 
 
@@ -82,10 +94,15 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     JDialog d = new JDialog();
-                    if (valid()){
-                        ctrlPresenter.saveSubjectSet(new Vector<>(subjects));
+
+                    if (subjects.isEmpty()) {
+                        JOptionPane.showMessageDialog(d, "You don't have any subject to save.");
                     } else {
-                        JOptionPane.showMessageDialog(d, "Error.");
+                        if (valid()){
+                            ctrlPresenter.saveSubjectSet(new Vector<>(subjects));
+                        } else {
+                            JOptionPane.showMessageDialog(d, "Error.");
+                        }
                     }
                 } catch (Exception exc) {
                     System.out.println(exc);

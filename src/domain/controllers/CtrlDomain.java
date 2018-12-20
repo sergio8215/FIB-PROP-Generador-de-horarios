@@ -202,6 +202,10 @@ public class CtrlDomain {
         return subjectsSet.toStr();
     }
 
+    public Vector<Vector<String>> getClassroomsString() {
+        return classroomsSet.toStr();
+    }
+
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         return schedule.moveSession(from, to);
     }
