@@ -184,6 +184,7 @@ public class InitView extends JFrame {
                     } catch (Exception exc) {
                         System.out.println(exc);
                     }
+                    vCtrlPresenter.subjectsManagerEnabled();
                 }
             }
 

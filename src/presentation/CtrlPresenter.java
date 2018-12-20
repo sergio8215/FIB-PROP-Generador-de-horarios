@@ -24,6 +24,7 @@ public class CtrlPresenter {
     private InitView initView;
     private DisplaySchedule dS;
     private NotPossibleSchedule nps;
+    private SubjectsManager sm;
 
 
     // Methods
@@ -108,6 +109,13 @@ public class CtrlPresenter {
             nps.setVisible(true);
         }
 
+    }
+
+    public void subjectsManagerEnabled() {
+        sm = new SubjectsManager(this, ctrlDomain.getSubjectsString());
+        // TODO: RECIBIR DATOS Y ENVIAR
+        sm.setEnabled(true);
+        sm.setVisible(true);
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {

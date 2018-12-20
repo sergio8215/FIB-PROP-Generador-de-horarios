@@ -178,6 +178,10 @@ public class CtrlDomain {
         constraints.setContraints(c);
     }
 
+    public Vector<Vector<String>> getSubjectsString() {
+        return subjectsSet.toStr();
+    }
+
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         return schedule.moveSession(from, to);
     }
