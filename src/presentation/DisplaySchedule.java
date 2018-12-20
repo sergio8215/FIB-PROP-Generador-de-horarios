@@ -64,7 +64,6 @@ public class DisplaySchedule extends JPanel {
         table.setRowSelectionAllowed(false);
         table.setCellSelectionEnabled(true);
 
-
         TableColumn column = table.getColumnModel().getColumn(0);
         column.setPreferredWidth(5); //hour column is smaller
 
@@ -480,6 +479,7 @@ public class DisplaySchedule extends JPanel {
         public boolean canImport(TransferSupport support) {
             // Reject the import by default...
             boolean canImport = false;
+            boolean canImport2 = false;
             // Can only import into another JTable
             Component comp = support.getComponent();
             if (comp instanceof JTable) {
@@ -505,8 +505,6 @@ public class DisplaySchedule extends JPanel {
                                     String[] to2   = destiny.toString().split(" ");     // 0 Subject, 1 Subgroup, 2 Classroom
                                     String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
 
-
-
                                     Vector<String> to  = new Vector(Arrays.asList(to2));
                                     Vector<String> from = new Vector(Arrays.asList(from2));
 
@@ -522,17 +520,17 @@ public class DisplaySchedule extends JPanel {
                                     to.add(Integer.toString((Integer)hourFrom));    // 3 hour
                                     from.add(Integer.toString(dayFrom));            // 4 day
 
-                                    // TODO JOA necesitas usar los vectores to y from
+                                    //canImport = // TODO FUNCION RETORNA TRUE O FALSE
                                 }
                             }
-                            canImport = true;
+                            canImport2 = true && canImport;
                         }
                     }
                 } catch (UnsupportedFlavorException | IOException ex) {
                     ex.printStackTrace();
                 }
             }
-            return canImport;
+            return canImport2;
         }
 
         /**
