@@ -85,6 +85,7 @@ public class InitView extends JFrame {
                 JFileChooser fc = new JFileChooser();
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
                 fc.setFileFilter(filter);
+                fc.setCurrentDirectory(new java.io.File("./data/load"));
                 int returnVal = fc.showOpenDialog(scheduleManagerMenu);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to open this file: " +
@@ -179,6 +180,7 @@ public class InitView extends JFrame {
                 JFileChooser fc = new JFileChooser();
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
                 fc.setFileFilter(filter);
+                fc.setCurrentDirectory(new java.io.File("./data/load"));
                 int returnVal = fc.showOpenDialog(scheduleManagerMenu);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to open this file: " +
@@ -211,6 +213,7 @@ public class InitView extends JFrame {
                 JFileChooser fc = new JFileChooser();
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
                 fc.setFileFilter(filter);
+                fc.setCurrentDirectory(new java.io.File("./data/load"));
                 int returnVal = fc.showOpenDialog(scheduleManagerMenu);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                     System.out.println("You chose to open this file: " +

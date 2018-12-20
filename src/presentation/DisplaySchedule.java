@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.List;
 
 /**
-* DisplaySchedule class show the schedule with all it's functionalities.
+* DisplaySchedule class that shows the schedule with all it's functionalities.
 * @author Sergio Mazzariol
  */
 public class DisplaySchedule extends JPanel {
@@ -34,7 +34,11 @@ public class DisplaySchedule extends JPanel {
 
     GridBagConstraints gbc = new GridBagConstraints();
 
-
+    /**
+     * DisplaySchedule show the schedule on a table withe the drag and drop function
+     * @param ctrlP Control Presenter
+     * @param schedule Schedule to show on the table
+     */
     public DisplaySchedule(CtrlPresenter ctrlP, HashMap<String, ArrayList<Vector<String>>> schedule) {
         super(new GridBagLayout());
         this.schedule = schedule;
@@ -138,6 +142,11 @@ public class DisplaySchedule extends JPanel {
         frame.setVisible(true);
     }
 
+    /**
+     * getCheckBoxPanel creates a panel with 1 checkbox for each subject
+     * @param subjects Subjects to create and add a checkbox to the panel
+     * @return  panel with all checkbox
+     */
     private JPanel getCheckBoxPanel(Set<String> subjects) {
 
         JPanel panel2 = new JPanel();
@@ -162,6 +171,11 @@ public class DisplaySchedule extends JPanel {
         return panel2;
     }
 
+    /**
+     * makeSchedule creates a new table with days, hours, subjects, groups, for the given schedule
+     * @param schedule data to show on the table
+     * @return a Table with all the subjects on it
+     */
     private DefaultTableModel makeSchedule(HashMap<String, ArrayList<Vector<String>>> schedule){
 
         String[] week = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
@@ -211,18 +225,29 @@ public class DisplaySchedule extends JPanel {
         return table;
     }
 
+    /**
+     * removeFilter Removes the subject passed by parameter from the schedule
+     * @param subject Subject to be remove from the schedule
+     */
     private void removeFilter(String subject){
         filter.remove(subject);
         table.setModel(makeSchedule(filter));
         sortTable();
     }
 
+    /**
+     * addFilter Adds the subject passed by parameter to the schedule
+     * @param subject Subject to be added to the schedule
+     */
     private void addFilter(String subject){
         filter.put(subject, schedule.get(subject));
         table.setModel(makeSchedule(filter));
         sortTable();
     }
 
+    /**
+     * SortTable sort the table per hours
+     */
     private void sortTable(){
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
         table.setRowSorter(sorter);
@@ -235,6 +260,11 @@ public class DisplaySchedule extends JPanel {
         sorter.sort();
     }
 
+    /**
+     * scheduleSize calculate the size of the schedule
+     * @param schedule Schedule to make the size calculation
+     * @return the size of the schedule
+     */
     private int scheduleSize(Collection<ArrayList<Vector< String>>> schedule) {
 
         int[][] scheduleSize = new int[hoursPerDay][daysOfTheWeek];
@@ -263,24 +293,14 @@ public class DisplaySchedule extends JPanel {
             acum += maximum[i];
         }
         return acum;
-
-        /*
-        Vector<Integer> count = new Vector<>(daysOfTheWeek);
-        for(int i=0; i< daysOfTheWeek; i++) count.add(i,0);
-
-        for ( ArrayList<Vector<String>> s: schedule){
-            for( Vector<String> ss: s){
-                // ss.get(4) return day ordinal
-                count.set(Integer.parseInt(ss.get(4)), count.get(Integer.parseInt(ss.get(4)))+1);
-            }
-        }
-        Object obj = Collections.max(count);
-        return (Integer)obj;*/
     }
 
 
     // Drag and drop table
 
+    /**
+     * CellData Class that allow us to get information from one cell
+     */
     public class CellData {
 
         private final Object value;
@@ -288,6 +308,10 @@ public class DisplaySchedule extends JPanel {
         private final JTable table;
         private final int row;
 
+        /**
+         * CellData constructor for the class
+         * @param source Table to get the data from
+         */
         public CellData(JTable source) {
             this.col = source.getSelectedColumn();
             this.row = source.getSelectedRow();
@@ -295,18 +319,36 @@ public class DisplaySchedule extends JPanel {
             this.table = source;
         }
 
+        /**
+         * getColumn return the actual column number
+         * @return the number of col for the cell
+         */
         public int getColumn() {
             return col;
         }
 
+        /**
+         * getValue return the value of the cell
+         * @return the value of the cell
+         */
         public Object getValue() {
             return value;
         }
 
+        /**
+         * getTable
+         * @return this table
+         */
         public JTable getTable() {
             return table;
         }
 
+        /**
+         * swapValuesWith swaps two different cells
+         * @param targetRow target row to move the cell
+         * @param targetCol target col to move the cell
+         * @return true
+         */
         public boolean swapValuesWith(int targetRow, int targetCol) {
 
             boolean swapped = false;
@@ -326,12 +368,22 @@ public class DisplaySchedule extends JPanel {
 
     }
 
+    /**
+     * DataFlavor class applies the flavor pattern
+     */
     public static final DataFlavor CELL_DATA_FLAVOR = createConstant(CellData.class, "application/x-java-celldata");
 
+    /**
+     * CellDataTransferable class make the necessary
+     */
     public class CellDataTransferable implements Transferable {
 
         private CellData cellData;
 
+        /**
+         * CellDataTransferable constructor of the class
+         * @param cellData initialize the variables
+         */
         public CellDataTransferable(CellData cellData) {
             this.cellData = cellData;
         }
@@ -359,6 +411,7 @@ public class DisplaySchedule extends JPanel {
 
     }
 
+
     static protected DataFlavor createConstant(Class clazz, String name) {
         try {
             return new DataFlavor(clazz, name);
@@ -368,18 +421,34 @@ public class DisplaySchedule extends JPanel {
         }
     }
 
+    /**
+     * TransferHelper class, helps to transfer the data from one cell to another
+     */
     public class TransferHelper extends TransferHandler {
 
         private static final long serialVersionUID = 1L;
 
+        /**
+         * Empty constructor
+         */
         public TransferHelper() {
         }
 
+        /**
+         * getSourceActions return the action
+         * @param c component
+         * @return the action
+         */
         @Override
         public int getSourceActions(JComponent c) {
             return MOVE;
         }
 
+        /**
+         * createTransferable creates a new transferable cell
+         * @param source source of the movemente
+         * @return the cell to transfer
+         */
         @Override
         protected Transferable createTransferable(JComponent source) {
             // Create the transferable
@@ -390,10 +459,21 @@ public class DisplaySchedule extends JPanel {
             return new CellDataTransferable(new CellData(table));
         }
 
+        /**
+         * exportDone empty function
+         * @param source
+         * @param data
+         * @param action
+         */
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
         }
 
+        /**
+         * canImport checks if the cell drag and drop it's possible
+         * @param support cells of the drag
+         * @return true if it's possible to import the cell, false otherwise
+         */
         @Override
         public boolean canImport(TransferSupport support) {
             // Reject the import by default...
@@ -453,6 +533,11 @@ public class DisplaySchedule extends JPanel {
             return canImport;
         }
 
+        /**
+         * importData moves the into the cell
+         * @param support cell to be imported
+         * @return true on success
+         */
         @Override
         public boolean importData(TransferSupport support) {
             // Import failed for some reason...

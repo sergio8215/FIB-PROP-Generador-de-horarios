@@ -72,8 +72,9 @@ public class CtrlPresenter {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify a file to save");
 
+        fileChooser.setDialogTitle("Specify a file to save");
+        fileChooser.setCurrentDirectory(new java.io.File("./data/import"));
         int userSelection = fileChooser.showSaveDialog(parentFrame);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -91,6 +92,7 @@ public class CtrlPresenter {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new java.io.File("./data/import"));
         fileChooser.setDialogTitle("Specify a file to save");
 
         int userSelection = fileChooser.showSaveDialog(parentFrame);
@@ -110,6 +112,7 @@ public class CtrlPresenter {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new java.io.File("./data/import"));
         fileChooser.setDialogTitle("Specify a file to save");
 
         int userSelection = fileChooser.showSaveDialog(parentFrame);

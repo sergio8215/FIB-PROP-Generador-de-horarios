@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.List;
 
+/**
+ * SubmitFiles Class allow us to submit files to the program
+ */
 public class SubmitFiles extends JDialog {
     private CtrlPresenter vCtrlPresenter;
     private DisplaySchedule dS;
@@ -25,6 +28,10 @@ public class SubmitFiles extends JDialog {
     private String classroomsFile;
     private String subjectsFile;
 
+    /**
+     * SubmitFiles constructor for the class
+     * @param ctrlPresenter CtrlPresenter object, that makes the connection with the other classes through CtrlDomain
+     */
     public SubmitFiles(CtrlPresenter ctrlPresenter){
 
         vCtrlPresenter = ctrlPresenter;

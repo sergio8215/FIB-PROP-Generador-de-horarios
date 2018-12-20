@@ -60,7 +60,7 @@ public class CtrlScheduleGeneration {
         UtilsDomain.ResultOfQuery<MUS> notPossible = new UtilsDomain.ResultOfQuery<MUS>();
 
         for (int i = 0; i < vars.size(); i++) {
-
+            System.out.println(i);
             vars.get(i).setDomain(new ClassroomSession(classroomSession));
 
             int j = 0;
@@ -124,6 +124,7 @@ public class CtrlScheduleGeneration {
         else {
             MUS currentVar = futureVars.pollFirst();
             for (int i = 0; i < currentVar.domainSize(); i++) {
+                System.out.println("Forwardcheking: "+i);
                 LinkedList<MUS> copy =  duplicateFutureVars(futureVars);
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
