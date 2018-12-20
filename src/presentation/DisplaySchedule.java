@@ -361,6 +361,9 @@ public class DisplaySchedule extends JPanel {
                 Point dp = dl.getDropPoint();
                 // Get the column at the drop point
                 int dragColumn = target.columnAtPoint(dp);
+                int dragRow = target.rowAtPoint(dp);
+                Object destiny = target.getValueAt(dragRow, dragColumn);
+
                 try {
                     // Get the Transferable, we need to check
                     // the constraints
@@ -368,7 +371,32 @@ public class DisplaySchedule extends JPanel {
                     CellData cd = (CellData) t.getTransferData(CELL_DATA_FLAVOR);
                     // Make sure we're not dropping onto ourselves...
                     if (cd.getTable() == target) {
-                        if (dragColumn == cd.getColumn()) {
+                        if (dragColumn != 0 && cd.getColumn() != 0){
+                            if (destiny != null ) {
+                                if ( !cd.value.toString().equalsIgnoreCase(destiny.toString()) ){
+                                    String[] to2   = destiny.toString().split(" ");     // 0 Subject, 1 Subgroup, 2 Classroom
+                                    String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
+
+
+
+                                    Vector<String> to  = new Vector(Arrays.asList(to2));
+                                    Vector<String> from = new Vector(Arrays.asList(from2));
+
+                                    int dayTo = target.columnAtPoint(dp)-1;
+                                    int dragR = target.rowAtPoint(dp);
+                                    Object hourTo = target.getValueAt( dragR, 0);
+                                    to.add(Integer.toString((Integer)hourTo));  // 3 hour
+                                    to.add(Integer.toString(dayTo));            // 4 day
+
+                                    int dayFrom   = cd.col-1;
+                                    int dragRFrom = cd.row;
+                                    Object hourFrom = target.getValueAt( dragRFrom, 0);
+                                    to.add(Integer.toString((Integer)hourFrom));    // 3 hour
+                                    from.add(Integer.toString(dayFrom));            // 4 day
+
+                                    // TODO JOA necesitas usar los vectores to y from
+                                }
+                            }
                             canImport = true;
                         }
                     }
