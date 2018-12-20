@@ -38,6 +38,7 @@ public class SubmitFiles extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
+                fc.setCurrentDirectory(new java.io.File("./data/import"));
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
                         "JSON Files", "json");
                 fc.setFileFilter(filter);
@@ -58,6 +59,7 @@ public class SubmitFiles extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
+                fc.setCurrentDirectory(new java.io.File("./data/import"));
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
                         "JSON Files", "json");
                 fc.setFileFilter(filter);
