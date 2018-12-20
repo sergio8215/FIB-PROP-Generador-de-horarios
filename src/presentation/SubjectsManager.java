@@ -1,5 +1,7 @@
 package src.presentation;
 
+import jdk.nashorn.internal.scripts.JD;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -29,7 +31,6 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
     private JTextArea shiftArea;
     private JPanel listPanel;
     private JTextArea levelArea;
-    private JButton saveSubjectButton;
     private JButton saveSetOfSubjectsButton;
     private JButton deleteButton;
     private JButton addButton;
@@ -76,43 +77,16 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
 
 
     public void initComponents() {
-        saveSubjectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog soonDialog = new JDialog();
-
-                int index = list.getSelectedIndex();
-
-                if (!nameArea.getText().equals(nameAreaString) &&
-                        !levelArea.getText().equals(levelAreaString) &&
-                        !numStudentsArea.getText().equals(numStudentsAreaString) &&
-                        !theoryHoursArea.getText().equals(numberOfTheoryHoursAreaString) &&
-                        !laboratoryHoursArea.getText().equals(numberOfLaboratoryHoursAreaString) &&
-                        !problemsHoursArea.getText().equals(numberOfProblemsHoursAreaString) &&
-                        !numberOfGroupsArea.getText().equals(numberOfGroupsAreaString) &&
-                        !numberOfSubgrupsArea.getText().equals(numberOfSubgroupsAreaString) &&
-                        !shiftArea.getText().equals(shiftAreaString)) {
-                    subjects.get(index).set(0, nameArea.getText());
-                    subjects.get(index).set(1, levelArea.getText());
-                    subjects.get(index).set(2, numStudentsArea.getText());
-                    subjects.get(index).set(3, theoryHoursArea.getText());
-                    subjects.get(index).set(4, laboratoryHoursArea.getText());
-                    subjects.get(index).set(5, problemsHoursArea.getText());
-                    subjects.get(index).set(6, numberOfGroupsArea.getText());
-                    subjects.get(index).set(7, numberOfSubgrupsArea.getText());
-                    subjects.get(index).set(8, shiftArea.getText());
-                    JOptionPane.showMessageDialog(soonDialog, "Subject saved.");
-                } else {
-                    JOptionPane.showMessageDialog(soonDialog, "Change default fields.");
-                }
-            }
-        });
-
         saveSetOfSubjectsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ctrlPresenter.saveSubjectSet(new Vector<>(subjects));
+                    JDialog d = new JDialog();
+                    if (valid()){
+                        ctrlPresenter.saveSubjectSet(new Vector<>(subjects));
+                    } else {
+                        JOptionPane.showMessageDialog(d, "Error.");
+                    }
                 } catch (Exception exc) {
                     System.out.println(exc);
                 }
@@ -163,12 +137,93 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             @Override
             public void focusLost(FocusEvent e) {
                 super.focusLost(e);
-                if (!nameArea.getText().equals("Name")) {
+                if (!nameArea.getText().equals(nameAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(0, nameArea.getText());
                     model.set(list.getSelectedIndex(), nameArea.getText());
                 }
             }
         });
 
+        levelArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!levelArea.getText().equals(levelAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(1, levelArea.getText());
+                }
+            }
+        });
+
+        numStudentsArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!numStudentsArea.getText().equals(numStudentsAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(2, numStudentsArea.getText());
+                }
+            }
+        });
+
+        theoryHoursArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!theoryHoursArea.getText().equals(numberOfTheoryHoursAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(3, theoryHoursArea.getText());
+                }
+            }
+        });
+
+        laboratoryHoursArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!laboratoryHoursArea.getText().equals(numberOfLaboratoryHoursAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(4, laboratoryHoursArea.getText());
+                }
+            }
+        });
+
+        problemsHoursArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!problemsHoursArea.getText().equals(numberOfProblemsHoursAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(5, problemsHoursArea.getText());
+                }
+            }
+        });
+
+        numberOfGroupsArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!numberOfGroupsArea.getText().equals(numberOfGroupsAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(5, numberOfGroupsArea.getText());
+                }
+            }
+        });
+
+        numberOfSubgrupsArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!numberOfSubgrupsArea.getText().equals(numberOfSubgroupsAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(6, numberOfSubgrupsArea.getText());
+                }
+            }
+        });
+
+        shiftArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                super.focusLost(e);
+                if (!shiftArea.getText().equals(shiftAreaString)) {
+                    subjects.get(list.getSelectedIndex()).set(6, shiftArea.getText());
+
+                }
+            }
+        });
 
     }
 
@@ -198,5 +253,21 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
                 shiftArea.setText(subjects.get(index).get(8));
             }
         }
+    }
+
+    public boolean valid(){
+        for(Vector<String> v : subjects) {
+            if (v.get(0).equals("") ||
+                    v.get(1).equals("") ||
+                    v.get(2).equals("") ||
+                    v.get(3).equals("") ||
+                    v.get(4).equals("") ||
+                    v.get(5).equals("") ||
+                    v.get(6).equals("") ||
+                    v.get(7).equals("") ||
+                    v.get(8).equals(""))
+                return false;
+        }
+        return true;
     }
 }
