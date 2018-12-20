@@ -29,9 +29,11 @@ public class DisplaySchedule extends JPanel {
     private HashMap<String, ArrayList<Vector< String>>> filter;
     private HashMap<String, ArrayList<Vector< String>>> schedule;
 
+    GridBagConstraints gbc = new GridBagConstraints();
+
 
     public DisplaySchedule(CtrlPresenter ctrlP, HashMap<String, ArrayList<Vector<String>>> schedule) {
-        super(new GridLayout(0,1));
+        super(new GridBagLayout());
         this.schedule = schedule;
         filter = (HashMap<String, ArrayList<Vector<String>>>) schedule.clone();
 
@@ -65,7 +67,44 @@ public class DisplaySchedule extends JPanel {
         sortTable();
         JScrollPane scrollPane = new JScrollPane(table);
 
-        JButton saveButton = new JButton("Save");
+        gbc.insets = new Insets(5,5,5,5);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        add(scrollPane, gbc);
+
+        //CHECKBOX PANEL
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.gridheight = 1;
+        add(getCheckBoxPanel(this.schedule.keySet() ), gbc);
+
+        //SAVE BUTTON
+        JButton returnButton = new JButton("Back to START");
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO: que vuelva a la pestaña de inicio
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(returnButton, gbc);
+
+        //BACK TO START BUTTON
+        JButton saveButton = new JButton("SAVE");
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,12 +116,16 @@ public class DisplaySchedule extends JPanel {
                 }
             }
         });
+        gbc.gridx = 1;
+        gbc.gridy = 7;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(saveButton, gbc);
 
 
-        //Add the scroll pane to this panel.
-        add(scrollPane,"Center");
-        add(getCheckBoxPanel(this.schedule.keySet() ),"South");
-        add(saveButton,BorderLayout.CENTER);
 
         this.setOpaque(true); //content panes must be opaque
         frame.setContentPane(this);
