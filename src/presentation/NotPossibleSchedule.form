@@ -7,12 +7,6 @@
     <properties/>
     <border type="none"/>
     <children>
-      <vspacer id="ff75d">
-        <constraints border-constraint="North"/>
-      </vspacer>
-      <hspacer id="38827">
-        <constraints border-constraint="West"/>
-      </hspacer>
       <component id="7eb2c" class="javax.swing.JLabel">
         <constraints border-constraint="Center"/>
         <properties>
@@ -21,10 +15,10 @@
           <text value="Horario no posible!"/>
         </properties>
       </component>
-      <component id="53d24" class="javax.swing.JButton" binding="okButton" default-binding="true">
+      <component id="53d24" class="javax.swing.JButton" binding="relaxConstraintsButton">
         <constraints border-constraint="South"/>
         <properties>
-          <text value="Ok"/>
+          <text value="Relax Constraints"/>
         </properties>
       </component>
     </children>
