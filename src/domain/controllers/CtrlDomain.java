@@ -171,6 +171,16 @@ public class CtrlDomain {
     }
 
     /**
+     * Saves the Classroom Set on a JSON file with the name that the user wants.
+     * @param newFileName Name of the file to create
+     * @throws Exception If file can't be created
+     */
+    public void saveClassroomSet( String newFileName, Vector<Vector<String>> classroomSetModif) throws Exception {
+
+        dManager.saveClassrooms(newFileName, classroomSetModif);
+    }
+
+    /**
      * Load a schedule from a file
      * @param filePath path of the schedule file to import
      * @throws IOException if file it's not found

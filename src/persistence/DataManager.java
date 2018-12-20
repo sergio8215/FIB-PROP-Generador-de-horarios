@@ -133,39 +133,55 @@ public class DataManager {
     }
 
     public void saveSubjects(String fileNamePath, Vector< Vector< String>> subjectSet){
-
-
         JSONObject obj = new JSONObject();
+        JSONArray subjects = new JSONArray();
 
         for (Vector<String> s : subjectSet){
-            JSONArray subject = new JSONArray();
-            subject.add("Subject:" +     s.get(0));
-            subject.add("Num_students:"+ s.get(1));
-            subject.add("Level:"+        s.get(2));
-            subject.add("Theory_hours" + s.get(3));
-            subject.add("Laboratory_hours:"+s.get(4));
-            subject.add("Problems_hours:"+s.get(5));
-            subject.add("Number_of_groups:"+s.get(6));
-            subject.add("Number_of_subgroups:"+s.get(7));
-            obj.put(s.get(0),subject);
+            JSONObject subject =  new JSONObject();
+            subject.put("Subject:",     s.get(0));
+            subject.put("Num_students:", s.get(1));
+            subject.put("Level:",        s.get(2));
+            subject.put("Theory_hours",  s.get(3));
+            subject.put("Laboratory_hours:",s.get(4));
+            subject.put("Problems_hours:",s.get(5));
+            subject.put("Number_of_groups:",s.get(6));
+            subject.put("Number_of_subgroups:",s.get(7));
+            subject.put("Shift:",           s.get(8));
+            subjects.add(subject);
         }
+        obj.put("Subjects List" ,subjects);
 
         // try-with-resources statement based on post comment below :)
         try (FileWriter file = new FileWriter(fileNamePath)) {
             file.write(obj.toJSONString());
             System.out.println("Successfully Copied JSON Object to File...");
-            System.out.println("\nJSON Object: " + obj);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //Path file = Paths.get( fileNamePath );
-        //Files.write(file, subjectSet, Charset.forName("UTF-8"));
-        //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
 
     public void saveClassrooms(String fileNamePath, Vector< Vector <String>> classroomSet){
+        JSONObject obj = new JSONObject();
+        JSONArray classrooms = new JSONArray();
 
+        for (Vector<String> c : classroomSet){
+            JSONObject classroom =  new JSONObject();
+            classroom.put("Classroom",  c.get(0));
+            classroom.put("Quantity",   c.get(1));
+            classroom.put("Type",       c.get(2));
+            classroom.put("Audiovisual",c.get(3));
+            classroom.put("Num_computers",c.get(4));
+            classrooms.add(classroom);
+        }
+        obj.put("Classrooms List" ,classrooms);
+
+        // try-with-resources statement based on post comment below :)
+        try (FileWriter file = new FileWriter(fileNamePath)) {
+            file.write(obj.toJSONString());
+            System.out.println("Successfully Copied JSON Object to File...");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
