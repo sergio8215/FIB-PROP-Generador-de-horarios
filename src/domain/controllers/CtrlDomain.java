@@ -206,6 +206,14 @@ public class CtrlDomain {
         return classroomsSet.toStr();
     }
 
+    public void cleanSubjectsSet(){
+        subjectsSet = new SubjectsSet();
+    }
+
+    public void cleanClassroomsSet() {
+        classroomsSet = new ClassroomSet();
+    }
+
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         return schedule.moveSession(from, to);
     }

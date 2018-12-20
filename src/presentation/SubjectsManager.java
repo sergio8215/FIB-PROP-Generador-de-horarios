@@ -145,8 +145,10 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
                 list.setSelectedIndex(index+1);
-                subjects.remove(index);
-                model.remove(index);
+                if (!subjects.isEmpty()){
+                    subjects.remove(index);
+                    model.remove(index);
+                }
             }
         });
 
@@ -242,6 +244,11 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             }
         });
 
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ctrlPresenter.cleanSubjectsSet();
+            }
+        });
     }
 
     public void valueChanged(ListSelectionEvent e) {
