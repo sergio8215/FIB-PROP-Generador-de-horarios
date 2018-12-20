@@ -17,7 +17,10 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-
+/**
+* DisplaySchedule class show the schedule with all it's functionalities.
+* @author Sergio Mazzariol
+ */
 public class DisplaySchedule extends JPanel {
 
     private int daysOfTheWeek = 5;

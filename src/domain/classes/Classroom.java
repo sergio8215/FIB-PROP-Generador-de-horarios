@@ -14,7 +14,7 @@ public abstract class Classroom {
     //ATTRIBUTES
     private String name;
     private int capacity;
-    private UtilsDomain.ClassType type; //crear ints pels tipus (LABORATORI, TEORIA)
+    private UtilsDomain.ClassType type; //(LABORATORY, THEORY)
     private boolean multimedia;
 
     //CONSTRUCTOR
