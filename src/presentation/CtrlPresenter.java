@@ -137,17 +137,9 @@ public class CtrlPresenter {
 
         if (h.queryTest) {
             UIManager.put("swing.boldMetal", Boolean.FALSE);
-            new DisplaySchedule(this, h.result);
-
-
-            //DisplaySchedule frame = new DisplaySchedule(this, h);
-            //frame.setVisible(true);
-
-            // TODO: VENTANA/BARRA DE PROGRESO/ALGO DE "GENERANDO HORARO"
-            // TODO: GESTIONAR SCHEDUL GENERADO
-            //Schedule sch = ctrlDomain.showSchedule().result;
+            dS = new DisplaySchedule(this, h.result);
         } else {
-            nps = new NotPossibleSchedule();
+            nps = new NotPossibleSchedule(this);
             nps.setEnabled(true);
             nps.setVisible(true);
         }
@@ -184,6 +176,17 @@ public class CtrlPresenter {
     public void cleanClassroomsSet() {
         classroomsSet = new Vector<>();
         ctrlDomain.cleanClassroomsSet();
+    }
+
+    public void notPossibleSchedule() {
+        initView.selectConstraints();
+    }
+
+    public void backToInit() {
+        initView.setEnabled(true);
+        initView.setVisible(true);
+        dS.setEnabled(false);
+        dS.setVisible(false);
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {

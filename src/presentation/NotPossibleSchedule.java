@@ -5,22 +5,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NotPossibleSchedule extends JDialog {
-    private JPanel rootPanel;
-    private JButton okButton;
+    CtrlPresenter ctrlPresenter;
 
-    public NotPossibleSchedule() {
+    private JPanel rootPanel;
+    private JButton relaxConstraintsButton;
+
+    public NotPossibleSchedule(CtrlPresenter ctrlPresenter) {
+        this.ctrlPresenter = ctrlPresenter;
+
         add(rootPanel);
         setSize(400,500);
         initComponents();
-
     }
 
-
     private void initComponents(){
-        okButton.addActionListener(new ActionListener() {
+        relaxConstraintsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                ctrlPresenter.notPossibleSchedule();
+                setVisible(false);
+                setEnabled(false);
             }
         });
     }

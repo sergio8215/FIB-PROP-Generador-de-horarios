@@ -60,7 +60,6 @@ public class CtrlScheduleGeneration {
         UtilsDomain.ResultOfQuery<MUS> notPossible = new UtilsDomain.ResultOfQuery<MUS>();
 
         for (int i = 0; i < vars.size(); i++) {
-            System.out.println(i);
             vars.get(i).setDomain(new ClassroomSession(classroomSession));
 
             int j = 0;
@@ -90,7 +89,7 @@ public class CtrlScheduleGeneration {
      * @param solution Partial solution of the assignment of values to the variables.
      * @return Final solution (successful or not).
      */
-    private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
+    /*private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
         if (futureVars.isEmpty()) 	return solution;
         else {
             MUS currentVar = futureVars.pollFirst();
@@ -117,14 +116,13 @@ public class CtrlScheduleGeneration {
             futureVars.add(currentVar);
             return solution;
         }
-    }
+    }*/
 
     private Schedule forwardChecking(LinkedList<MUS> futureVars, Schedule solution) {
         if (futureVars.isEmpty()) 	return solution;
         else {
             MUS currentVar = futureVars.pollFirst();
             for (int i = 0; i < currentVar.domainSize(); i++) {
-                System.out.println("Forwardcheking: "+i);
                 LinkedList<MUS> copy =  duplicateFutureVars(futureVars);
                 currentVar.assign(currentVar.getValueDomain(i));
                 solution.add(currentVar);
