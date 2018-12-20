@@ -32,15 +32,15 @@ public class RandomFiles {
 
         for (int i=0; i<size; i++){
             JSONObject subject =  new JSONObject();
-            subject.put("Subject:",     RandomStrings(3));
-            subject.put("Num_students:", Integer.toString((int)(Math.random() * 150 + 10)));
-            subject.put("Level:",        Integer.toString((int)(Math.random() * 8 + 1)));
+            subject.put("Subject",     RandomStrings(3));
+            subject.put("Num_students", Integer.toString((int)(Math.random() * 150 + 10)));
+            subject.put("Level",        Integer.toString((int)(Math.random() * 8 + 1)));
             subject.put("Theory_hours",  Integer.toString((int)(Math.random() * 10 + 1)));
-            subject.put("Laboratory_hours:",Integer.toString((int)(Math.random() * 10 + 0)));
-            subject.put("Problems_hours:",Integer.toString((int)(Math.random() * 10 + 0)));
-            subject.put("Number_of_groups:",Integer.toString((int)(Math.random() * 10 + 0)));
-            subject.put("Number_of_subgroups:",Integer.toString((int)(Math.random() * 10 + 0)));
-            subject.put("Shift:",           Shift[(int)(Math.random() * 2 + 0)]);
+            subject.put("Laboratory_hours",Integer.toString((int)(Math.random() * 10 + 0)));
+            subject.put("Problems_hours",Integer.toString((int)(Math.random() * 10 + 0)));
+            subject.put("Number_of_groups",Integer.toString((int)(Math.random() * 10 + 0)));
+            subject.put("Number_of_subgroups",Integer.toString((int)(Math.random() * 10 + 0)));
+            subject.put("Shift",           Shift[(int)(Math.random() * 3 + 0)]);
             subjects.add(subject);
         }
         obj.put("Subjects List" ,subjects);
@@ -71,8 +71,8 @@ public class RandomFiles {
             tmp += Integer.toString((int)(Math.random() * 300 + 100));
             classroom.put("Classroom",  tmp);
             classroom.put("Quantity",   Integer.toString((int)(Math.random() * 150 + 10)));
-            classroom.put("Type",       type[(int)(Math.random() * 1 + 0)]);
-            classroom.put("Audiovisual", aud[(int)(Math.random() * 1 + 0)]);
+            classroom.put("Type",       type[(int)(Math.random() * 2 + 0)]);
+            classroom.put("Audiovisual", aud[(int)(Math.random() * 2 + 0)]);
             classroom.put("Num_computers",Integer.toString((int)(Math.random() * 80 + 0)));
 
             classrooms.add(classroom);
