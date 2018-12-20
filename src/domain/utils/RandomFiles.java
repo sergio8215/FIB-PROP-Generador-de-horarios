@@ -39,7 +39,7 @@ public class RandomFiles {
             subject.put("Laboratory_hours",Integer.toString((int)(Math.random() * 2 + 0)));
             subject.put("Problems_hours",Integer.toString((int)(Math.random() * 2 + 0)));
             subject.put("Number_of_groups",Integer.toString((int)(Math.random() * 3 + 1)));
-            subject.put("Number_of_subgroups",Integer.toString((int)(Math.random() * 2 + 0)));
+            subject.put("Number_of_subgroups",Integer.toString((int)(Math.random() * 2 + 2)));
             subject.put("Shift",          "BOTH" );//Shift[(int)(Math.random() * 3 + 0)]);
             subjects.add(subject);
         }
@@ -57,9 +57,14 @@ public class RandomFiles {
     public void classrooms(int size) {
         JSONObject obj = new JSONObject();
         JSONArray classrooms = new JSONArray();
-        String[] type = new String[2];
+        String[] type = new String[6];
         type[0]="THEORY";
         type[1]="LABORATORY";
+        type[2]="THEORY";
+        type[3]="THEORY";
+        type[4]="THEORY";
+        type[5]="THEORY";
+
         String[] aud = new String[2];
         aud[0]="true";
         aud[1]="false";
@@ -71,8 +76,8 @@ public class RandomFiles {
             tmp += Integer.toString((int)(Math.random() * 300 + 100));
             classroom.put("Classroom",  tmp);
             classroom.put("Quantity",   Integer.toString((int)(Math.random() * 200 + 70)));
-            classroom.put("Type",       type[(int)(Math.random() * 2 + 0)]);
-            classroom.put("Audiovisual", aud[(int)(Math.random() * 2 + 0)]);
+            classroom.put("Type",       type[(int)(Math.random() * 6 + 0)]);
+            classroom.put("Audiovisual", "true");
             classroom.put("Num_computers",Integer.toString((int)(Math.random() * 40 + 0)));
 
             classrooms.add(classroom);
