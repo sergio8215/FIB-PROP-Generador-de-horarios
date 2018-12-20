@@ -74,7 +74,7 @@ public class CtrlPresenter {
         JFileChooser fileChooser = new JFileChooser();
 
         fileChooser.setDialogTitle("Specify a file to save");
-        fileChooser.setCurrentDirectory(new java.io.File("./data/import"));
+        fileChooser.setCurrentDirectory(new java.io.File("./data/load"));
         int userSelection = fileChooser.showSaveDialog(parentFrame);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {

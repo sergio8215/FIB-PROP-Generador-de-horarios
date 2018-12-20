@@ -1,1 +1,704 @@
-{"Classrooms List":[{"Audiovisual":"false","Type":"LABORATORY","Classroom":"R186","Quantity":"21","Num_computers":"23"},{"Audiovisual":"false","Type":"THEORY","Classroom":"S381","Quantity":"50","Num_computers":"30"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"L220","Quantity":"76","Num_computers":"8"},{"Audiovisual":"false","Type":"THEORY","Classroom":"G332","Quantity":"125","Num_computers":"27"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"F282","Quantity":"64","Num_computers":"26"},{"Audiovisual":"false","Type":"THEORY","Classroom":"V311","Quantity":"96","Num_computers":"32"},{"Audiovisual":"true","Type":"THEORY","Classroom":"C161","Quantity":"21","Num_computers":"17"},{"Audiovisual":"true","Type":"THEORY","Classroom":"O185","Quantity":"111","Num_computers":"31"},{"Audiovisual":"true","Type":"THEORY","Classroom":"D215","Quantity":"22","Num_computers":"30"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"Q354","Quantity":"76","Num_computers":"20"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"N358","Quantity":"24","Num_computers":"8"},{"Audiovisual":"true","Type":"THEORY","Classroom":"K328","Quantity":"129","Num_computers":"13"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"F166","Quantity":"15","Num_computers":"34"},{"Audiovisual":"false","Type":"THEORY","Classroom":"Z370","Quantity":"116","Num_computers":"3"},{"Audiovisual":"false","Type":"THEORY","Classroom":"U278","Quantity":"43","Num_computers":"12"},{"Audiovisual":"false","Type":"THEORY","Classroom":"X238","Quantity":"109","Num_computers":"34"},{"Audiovisual":"false","Type":"THEORY","Classroom":"Z181","Quantity":"32","Num_computers":"24"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"H153","Quantity":"114","Num_computers":"9"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"L278","Quantity":"54","Num_computers":"9"},{"Audiovisual":"true","Type":"THEORY","Classroom":"N194","Quantity":"105","Num_computers":"11"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"H321","Quantity":"50","Num_computers":"31"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"M356","Quantity":"122","Num_computers":"23"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"Q249","Quantity":"68","Num_computers":"32"},{"Audiovisual":"true","Type":"THEORY","Classroom":"D174","Quantity":"34","Num_computers":"17"},{"Audiovisual":"true","Type":"THEORY","Classroom":"D256","Quantity":"24","Num_computers":"32"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"J121","Quantity":"17","Num_computers":"34"},{"Audiovisual":"true","Type":"THEORY","Classroom":"S187","Quantity":"72","Num_computers":"10"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"P186","Quantity":"114","Num_computers":"35"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"S383","Quantity":"38","Num_computers":"10"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"N356","Quantity":"38","Num_computers":"6"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"H253","Quantity":"10","Num_computers":"2"},{"Audiovisual":"true","Type":"THEORY","Classroom":"H341","Quantity":"55","Num_computers":"22"},{"Audiovisual":"false","Type":"THEORY","Classroom":"I214","Quantity":"67","Num_computers":"37"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"N327","Quantity":"27","Num_computers":"17"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"J335","Quantity":"16","Num_computers":"13"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"T214","Quantity":"71","Num_computers":"22"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"A236","Quantity":"54","Num_computers":"39"},{"Audiovisual":"false","Type":"THEORY","Classroom":"U228","Quantity":"91","Num_computers":"25"},{"Audiovisual":"false","Type":"THEORY","Classroom":"X245","Quantity":"16","Num_computers":"20"},{"Audiovisual":"true","Type":"THEORY","Classroom":"L221","Quantity":"90","Num_computers":"18"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"K181","Quantity":"38","Num_computers":"29"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"X249","Quantity":"78","Num_computers":"24"},{"Audiovisual":"false","Type":"THEORY","Classroom":"G193","Quantity":"94","Num_computers":"34"},{"Audiovisual":"false","Type":"THEORY","Classroom":"R347","Quantity":"90","Num_computers":"8"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"C318","Quantity":"55","Num_computers":"28"},{"Audiovisual":"true","Type":"THEORY","Classroom":"R100","Quantity":"84","Num_computers":"2"},{"Audiovisual":"true","Type":"THEORY","Classroom":"V149","Quantity":"78","Num_computers":"18"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"X265","Quantity":"59","Num_computers":"25"},{"Audiovisual":"true","Type":"THEORY","Classroom":"L279","Quantity":"74","Num_computers":"14"},{"Audiovisual":"false","Type":"THEORY","Classroom":"G384","Quantity":"87","Num_computers":"35"},{"Audiovisual":"true","Type":"THEORY","Classroom":"A240","Quantity":"23","Num_computers":"25"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"E285","Quantity":"34","Num_computers":"10"},{"Audiovisual":"true","Type":"THEORY","Classroom":"Q249","Quantity":"86","Num_computers":"17"},{"Audiovisual":"false","Type":"THEORY","Classroom":"O323","Quantity":"49","Num_computers":"38"},{"Audiovisual":"false","Type":"THEORY","Classroom":"X251","Quantity":"43","Num_computers":"7"},{"Audiovisual":"true","Type":"THEORY","Classroom":"C226","Quantity":"95","Num_computers":"15"},{"Audiovisual":"false","Type":"THEORY","Classroom":"X168","Quantity":"113","Num_computers":"39"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"H107","Quantity":"71","Num_computers":"19"},{"Audiovisual":"false","Type":"THEORY","Classroom":"L376","Quantity":"121","Num_computers":"15"},{"Audiovisual":"true","Type":"THEORY","Classroom":"J258","Quantity":"35","Num_computers":"27"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"Z177","Quantity":"23","Num_computers":"4"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"P321","Quantity":"38","Num_computers":"9"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"W338","Quantity":"85","Num_computers":"8"},{"Audiovisual":"false","Type":"THEORY","Classroom":"T382","Quantity":"17","Num_computers":"27"},{"Audiovisual":"false","Type":"THEORY","Classroom":"D208","Quantity":"58","Num_computers":"29"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"Z251","Quantity":"51","Num_computers":"21"},{"Audiovisual":"true","Type":"THEORY","Classroom":"D107","Quantity":"116","Num_computers":"25"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"P137","Quantity":"115","Num_computers":"14"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"D232","Quantity":"125","Num_computers":"37"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"O376","Quantity":"95","Num_computers":"33"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"J366","Quantity":"78","Num_computers":"4"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"G393","Quantity":"112","Num_computers":"27"},{"Audiovisual":"false","Type":"THEORY","Classroom":"J279","Quantity":"72","Num_computers":"38"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"W386","Quantity":"72","Num_computers":"2"},{"Audiovisual":"true","Type":"THEORY","Classroom":"K341","Quantity":"128","Num_computers":"22"},{"Audiovisual":"true","Type":"THEORY","Classroom":"J256","Quantity":"121","Num_computers":"28"},{"Audiovisual":"false","Type":"THEORY","Classroom":"G232","Quantity":"23","Num_computers":"5"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"N241","Quantity":"56","Num_computers":"15"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"E142","Quantity":"28","Num_computers":"17"},{"Audiovisual":"true","Type":"THEORY","Classroom":"T200","Quantity":"75","Num_computers":"39"},{"Audiovisual":"false","Type":"THEORY","Classroom":"P225","Quantity":"60","Num_computers":"36"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"S343","Quantity":"110","Num_computers":"32"},{"Audiovisual":"false","Type":"THEORY","Classroom":"P115","Quantity":"114","Num_computers":"34"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"M295","Quantity":"80","Num_computers":"9"},{"Audiovisual":"true","Type":"THEORY","Classroom":"H293","Quantity":"127","Num_computers":"0"},{"Audiovisual":"false","Type":"THEORY","Classroom":"U263","Quantity":"33","Num_computers":"27"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"C358","Quantity":"57","Num_computers":"30"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"T277","Quantity":"15","Num_computers":"14"},{"Audiovisual":"true","Type":"THEORY","Classroom":"P227","Quantity":"80","Num_computers":"21"},{"Audiovisual":"true","Type":"THEORY","Classroom":"N279","Quantity":"40","Num_computers":"0"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"P229","Quantity":"22","Num_computers":"25"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"J165","Quantity":"92","Num_computers":"29"},{"Audiovisual":"false","Type":"THEORY","Classroom":"Z113","Quantity":"119","Num_computers":"10"},{"Audiovisual":"true","Type":"THEORY","Classroom":"M277","Quantity":"79","Num_computers":"10"},{"Audiovisual":"true","Type":"LABORATORY","Classroom":"V220","Quantity":"11","Num_computers":"11"},{"Audiovisual":"false","Type":"THEORY","Classroom":"S398","Quantity":"66","Num_computers":"34"},{"Audiovisual":"false","Type":"THEORY","Classroom":"S107","Quantity":"69","Num_computers":"11"},{"Audiovisual":"true","Type":"THEORY","Classroom":"J290","Quantity":"67","Num_computers":"22"},{"Audiovisual":"true","Type":"THEORY","Classroom":"C355","Quantity":"107","Num_computers":"16"},{"Audiovisual":"false","Type":"LABORATORY","Classroom":"G302","Quantity":"56","Num_computers":"38"}]}
+{
+  "Classrooms List": [
+    {
+      "Audiovisual": "true",
+      "Classroom": "A159",
+      "Num_computers": "3",
+      "Quantity": "145",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q298",
+      "Num_computers": "16",
+      "Quantity": "96",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "H303",
+      "Num_computers": "17",
+      "Quantity": "174",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "H130",
+      "Num_computers": "3",
+      "Quantity": "72",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "F212",
+      "Num_computers": "15",
+      "Quantity": "260",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "T218",
+      "Num_computers": "29",
+      "Quantity": "103",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "T309",
+      "Num_computers": "5",
+      "Quantity": "85",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "M306",
+      "Num_computers": "16",
+      "Quantity": "110",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "V254",
+      "Num_computers": "24",
+      "Quantity": "135",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "F365",
+      "Num_computers": "15",
+      "Quantity": "90",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A231",
+      "Num_computers": "3",
+      "Quantity": "166",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "W304",
+      "Num_computers": "12",
+      "Quantity": "243",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "R201",
+      "Num_computers": "4",
+      "Quantity": "161",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "M356",
+      "Num_computers": "31",
+      "Quantity": "80",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G185",
+      "Num_computers": "8",
+      "Quantity": "262",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G160",
+      "Num_computers": "16",
+      "Quantity": "212",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "W204",
+      "Num_computers": "31",
+      "Quantity": "197",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "K301",
+      "Num_computers": "29",
+      "Quantity": "161",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "K117",
+      "Num_computers": "20",
+      "Quantity": "183",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G280",
+      "Num_computers": "18",
+      "Quantity": "206",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J224",
+      "Num_computers": "2",
+      "Quantity": "126",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "K129",
+      "Num_computers": "39",
+      "Quantity": "109",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A320",
+      "Num_computers": "36",
+      "Quantity": "193",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G381",
+      "Num_computers": "0",
+      "Quantity": "215",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J331",
+      "Num_computers": "25",
+      "Quantity": "89",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X280",
+      "Num_computers": "35",
+      "Quantity": "96",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A353",
+      "Num_computers": "1",
+      "Quantity": "207",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Z174",
+      "Num_computers": "2",
+      "Quantity": "119",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G386",
+      "Num_computers": "26",
+      "Quantity": "79",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "R326",
+      "Num_computers": "16",
+      "Quantity": "199",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y127",
+      "Num_computers": "38",
+      "Quantity": "211",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Z151",
+      "Num_computers": "29",
+      "Quantity": "238",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "P162",
+      "Num_computers": "36",
+      "Quantity": "209",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "C150",
+      "Num_computers": "16",
+      "Quantity": "197",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "R289",
+      "Num_computers": "34",
+      "Quantity": "202",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "P205",
+      "Num_computers": "4",
+      "Quantity": "208",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "D337",
+      "Num_computers": "7",
+      "Quantity": "151",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "D254",
+      "Num_computers": "8",
+      "Quantity": "168",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A273",
+      "Num_computers": "17",
+      "Quantity": "151",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "E157",
+      "Num_computers": "35",
+      "Quantity": "121",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y327",
+      "Num_computers": "33",
+      "Quantity": "239",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y134",
+      "Num_computers": "17",
+      "Quantity": "179",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J150",
+      "Num_computers": "21",
+      "Quantity": "76",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y219",
+      "Num_computers": "10",
+      "Quantity": "188",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "B302",
+      "Num_computers": "22",
+      "Quantity": "148",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "K275",
+      "Num_computers": "9",
+      "Quantity": "170",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "S138",
+      "Num_computers": "9",
+      "Quantity": "143",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X356",
+      "Num_computers": "29",
+      "Quantity": "268",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "H326",
+      "Num_computers": "5",
+      "Quantity": "240",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Z115",
+      "Num_computers": "21",
+      "Quantity": "130",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "B324",
+      "Num_computers": "15",
+      "Quantity": "86",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "T191",
+      "Num_computers": "1",
+      "Quantity": "126",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "E393",
+      "Num_computers": "23",
+      "Quantity": "77",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "C229",
+      "Num_computers": "37",
+      "Quantity": "73",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "E136",
+      "Num_computers": "24",
+      "Quantity": "239",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A209",
+      "Num_computers": "39",
+      "Quantity": "141",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X279",
+      "Num_computers": "10",
+      "Quantity": "207",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "W188",
+      "Num_computers": "24",
+      "Quantity": "107",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "C128",
+      "Num_computers": "17",
+      "Quantity": "100",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X198",
+      "Num_computers": "21",
+      "Quantity": "159",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y291",
+      "Num_computers": "10",
+      "Quantity": "116",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "C326",
+      "Num_computers": "24",
+      "Quantity": "91",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "O222",
+      "Num_computers": "11",
+      "Quantity": "102",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "S194",
+      "Num_computers": "23",
+      "Quantity": "193",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G342",
+      "Num_computers": "36",
+      "Quantity": "256",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X394",
+      "Num_computers": "15",
+      "Quantity": "196",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "D250",
+      "Num_computers": "16",
+      "Quantity": "110",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "D166",
+      "Num_computers": "8",
+      "Quantity": "258",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "F207",
+      "Num_computers": "16",
+      "Quantity": "235",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X315",
+      "Num_computers": "28",
+      "Quantity": "255",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "V269",
+      "Num_computers": "23",
+      "Quantity": "138",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "S394",
+      "Num_computers": "22",
+      "Quantity": "265",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J213",
+      "Num_computers": "29",
+      "Quantity": "80",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J224",
+      "Num_computers": "29",
+      "Quantity": "210",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J162",
+      "Num_computers": "1",
+      "Quantity": "184",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q300",
+      "Num_computers": "1",
+      "Quantity": "245",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "F113",
+      "Num_computers": "23",
+      "Quantity": "71",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "K223",
+      "Num_computers": "20",
+      "Quantity": "150",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "B220",
+      "Num_computers": "32",
+      "Quantity": "83",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "P360",
+      "Num_computers": "13",
+      "Quantity": "227",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A192",
+      "Num_computers": "17",
+      "Quantity": "240",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "S301",
+      "Num_computers": "24",
+      "Quantity": "247",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q110",
+      "Num_computers": "25",
+      "Quantity": "83",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "L379",
+      "Num_computers": "28",
+      "Quantity": "257",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "I253",
+      "Num_computers": "3",
+      "Quantity": "247",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "K281",
+      "Num_computers": "4",
+      "Quantity": "87",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "F316",
+      "Num_computers": "0",
+      "Quantity": "236",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q244",
+      "Num_computers": "5",
+      "Quantity": "264",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q237",
+      "Num_computers": "35",
+      "Quantity": "115",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "S233",
+      "Num_computers": "38",
+      "Quantity": "90",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q179",
+      "Num_computers": "37",
+      "Quantity": "114",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "W334",
+      "Num_computers": "18",
+      "Quantity": "265",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Q227",
+      "Num_computers": "21",
+      "Quantity": "147",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "N310",
+      "Num_computers": "18",
+      "Quantity": "133",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "X198",
+      "Num_computers": "35",
+      "Quantity": "142",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "B215",
+      "Num_computers": "30",
+      "Quantity": "222",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "O280",
+      "Num_computers": "29",
+      "Quantity": "99",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Z148",
+      "Num_computers": "4",
+      "Quantity": "260",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "H335",
+      "Num_computers": "6",
+      "Quantity": "246",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "J293",
+      "Num_computers": "27",
+      "Quantity": "238",
+      "Type": "THEORY"
+    }
+  ]
+}

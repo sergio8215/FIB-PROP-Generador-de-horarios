@@ -17,6 +17,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import src.domain.controllers.CtrlDomain;
 import src.domain.utils.inout;
 
 /**
@@ -119,14 +120,14 @@ public class DataManager {
     public List<String> loadSchedule( String fileName ) throws IOException {
 
         Path file = Paths.get( fileName );
-
         List<String> stringSchedule = Files.readAllLines(file, Charset.forName("UTF-8"));
-
         return stringSchedule;
     }
 
-    public void saveSchedule( String fileNamePath, List<String> schedule ) throws Exception {
-
+    public void saveSchedule( String fileNamePath, List<String> schedule, Vector<String> constraints ) throws Exception {
+        for( int i=0; i<constraints.size();i++ ){
+            schedule.add(0,constraints.get(i));
+        }
         Path file = Paths.get( fileNamePath );
         Files.write(file, schedule, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);

@@ -2,6 +2,8 @@ package src.domain.classes;
 
 import src.domain.utils.UtilsDomain.*;
 
+import java.util.Vector;
+
 
 /**
  * Constraints Class.
@@ -198,5 +200,25 @@ public class Constraints {
                 Session.compare(m1.getSession(), "==", m2.getSession()))
             return false;
         return true;
+    }
+
+    public Boolean[] getConstraints(){
+        Boolean[] sc = new Boolean[5];
+        sc[0] = ConstraintsSet.notSameClassroomAndSessionEnabled;
+        sc[1] = ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled;
+        sc[2] = ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled;
+        sc[3] = ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled;
+        sc[4] = ConstraintsSet.theorysOfSameLevelNoTogetherEnabled;
+        return sc;
+    }
+
+    public Vector<String> toStr(){
+        Vector<String> c = new Vector<>(5);
+        c.add(Boolean.toString(ConstraintsSet.notSameClassroomAndSessionEnabled));
+        c.add(Boolean.toString(ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled));
+        c.add(Boolean.toString(ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled));
+        c.add(Boolean.toString(ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled));
+        c.add(Boolean.toString(ConstraintsSet.theorysOfSameLevelNoTogetherEnabled));
+        return c;
     }
 }
