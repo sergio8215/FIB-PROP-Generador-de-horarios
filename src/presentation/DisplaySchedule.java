@@ -98,7 +98,9 @@ public class DisplaySchedule extends JPanel {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: que vuelva a la pestaña de inicio
+                frame.setEnabled(false);
+                frame.setVisible(false);
+                ctrlP.backToInit();
             }
         });
         gbc.gridx = 0;
