@@ -2,6 +2,7 @@ package src.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.DirectoryStream;
@@ -127,9 +128,44 @@ public class DataManager {
     public void saveSchedule( String fileNamePath, List<String> schedule ) throws Exception {
 
         Path file = Paths.get( fileNamePath );
-
         Files.write(file, schedule, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+    }
+
+    public void saveSubjects(String fileNamePath, Vector< Vector< String>> subjectSet){
+
+
+        JSONObject obj = new JSONObject();
+
+        for (Vector<String> s : subjectSet){
+            JSONArray subject = new JSONArray();
+            subject.add("Subject:" +     s.get(0));
+            subject.add("Num_students:"+ s.get(1));
+            subject.add("Level:"+        s.get(2));
+            subject.add("Theory_hours" + s.get(3));
+            subject.add("Laboratory_hours:"+s.get(4));
+            subject.add("Problems_hours:"+s.get(5));
+            subject.add("Number_of_groups:"+s.get(6));
+            subject.add("Number_of_subgroups:"+s.get(7));
+            obj.put(s.get(0),subject);
+        }
+
+        // try-with-resources statement based on post comment below :)
+        try (FileWriter file = new FileWriter(fileNamePath)) {
+            file.write(obj.toJSONString());
+            System.out.println("Successfully Copied JSON Object to File...");
+            System.out.println("\nJSON Object: " + obj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Path file = Paths.get( fileNamePath );
+        //Files.write(file, subjectSet, Charset.forName("UTF-8"));
+        //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+    }
+
+    public void saveClassrooms(String fileNamePath, Vector< Vector <String>> classroomSet){
+
     }
 }
 

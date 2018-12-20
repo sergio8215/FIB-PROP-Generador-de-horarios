@@ -83,6 +83,25 @@ public class CtrlPresenter {
         }
     }
 
+    public void saveSubjectSet(Vector<Vector<String>> subjectSet) throws Exception {
+        // parent component of the dialog
+        JFrame parentFrame = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            ctrlDomain.saveSubjectSet(fileToSave.getAbsolutePath(), subjectSet);
+            JOptionPane.showMessageDialog(parentFrame, "Schedule saved.");
+        }else{
+            JOptionPane.showMessageDialog(parentFrame, "Error.");
+        }
+    }
+
     public void scheduleGeneration() {
         initView.setVisibleF(false);
         initView.setEnabled(false);

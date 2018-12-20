@@ -161,6 +161,16 @@ public class CtrlDomain {
     }
 
     /**
+     * Saves the Subjects Set on a JSON file with the name that the user wants.
+     * @param newFileName Name of the file to create
+     * @throws Exception If file can't be created
+     */
+    public void saveSubjectSet( String newFileName, Vector<Vector<String>> subjectSetModif) throws Exception {
+
+        dManager.saveSubjects(newFileName, subjectSetModif);
+    }
+
+    /**
      * Load a schedule from a file
      * @param filePath path of the schedule file to import
      * @throws IOException if file it's not found
