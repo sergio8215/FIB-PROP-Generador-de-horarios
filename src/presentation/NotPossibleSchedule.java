@@ -10,6 +10,10 @@ public class NotPossibleSchedule extends JDialog {
     private JPanel rootPanel;
     private JButton relaxConstraintsButton;
 
+    /**
+     * NotPossibleSchedule class constructor.
+     * @param ctrlPresenter CtrlPresenter object, that makes the connection with the other classes through.
+     */
     public NotPossibleSchedule(CtrlPresenter ctrlPresenter) {
         this.ctrlPresenter = ctrlPresenter;
 
@@ -18,6 +22,9 @@ public class NotPossibleSchedule extends JDialog {
         initComponents();
     }
 
+    /**
+     * Initialize the components.
+     */
     private void initComponents(){
         relaxConstraintsButton.addActionListener(new ActionListener() {
             @Override

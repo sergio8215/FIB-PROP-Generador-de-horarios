@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * Classrooms Manager UI Class.
+ */
 public class ClassroomsManager extends JDialog implements ListSelectionListener {
     private CtrlPresenter ctrlPresenter;
 
@@ -35,7 +38,11 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
     private static final String numberOfComputersAreaString = "Number of Computers";
 
 
-
+    /**
+     * ClassroomsManager class constructor.
+     * @param ctrlPresenter CtrlPresenter object, that makes the connection with the other classes through.
+     * @param classrooms Set of classrooms loaded.
+     */
     public ClassroomsManager(CtrlPresenter ctrlPresenter, Vector<Vector<String>> classrooms) {
         this.ctrlPresenter = ctrlPresenter;
 
@@ -70,6 +77,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
     }
 
+    /**
+     * Initialize the list of classrooms.
+     * @param classroom Set of classrooms.
+     */
     public void initList(ArrayList<Vector<String>> classroom) {
         for(Vector<String> v : classroom) {
             model.addElement(v.get(0));
@@ -77,7 +88,9 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         list.setModel(model);
     }
 
-
+    /**
+     * Initialize the components.
+     */
     public void initComponents() {
         saveSetOfClassroomsButton.addActionListener(new ActionListener() {
             @Override
@@ -198,6 +211,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
     }
 
+    /**
+     * Detects changes in the input data.
+     * @param e
+     */
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
             int index = list.getSelectedIndex();
@@ -218,6 +235,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         }
     }
 
+    /**
+     * Check the validity of the subject vectors.
+     * @return True if valid.
+     */
     public boolean valid(){
         for(Vector<String> v : classrooms) {
             if (v.get(0).equals("") ||

@@ -5,6 +5,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Initial View of the UI.
+ */
 public class InitView extends JFrame {
     private CtrlPresenter vCtrlPresenter;
 
@@ -34,6 +37,10 @@ public class InitView extends JFrame {
     private String subjectsFile;
     private String classroomsFile;
 
+    /**
+     * InitView class constructor.
+     * @param ctrlPresenter CtrlPresenter object, that makes the connection with the other classes through.
+     */
     public InitView(CtrlPresenter ctrlPresenter) {
         vCtrlPresenter = ctrlPresenter;
 
@@ -56,6 +63,9 @@ public class InitView extends JFrame {
         initViewPanel.setVisible(true);
     }
 
+    /**
+     * Initialize the components.
+     */
     private void initComponents() {
         scheduleManagerButton.addActionListener(new ActionListener() {
             @Override
@@ -233,6 +243,10 @@ public class InitView extends JFrame {
         });
     }
 
+    /**
+     * Back from the constraints panel.
+     * @param b
+     */
     public void setVisibleF(boolean b) {
         constraintsDialog.setVisible(false);
         constraintsDialog.setEnabled(false);
@@ -240,6 +254,9 @@ public class InitView extends JFrame {
         super.setVisible(false);
     }
 
+    /**
+     * Shows the user the constraints panel.
+     */
     public void selectConstraints(){
         submitFiles.setVisible(false);
         submitFiles.setEnabled(false);
