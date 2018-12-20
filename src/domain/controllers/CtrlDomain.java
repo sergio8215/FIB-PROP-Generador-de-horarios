@@ -157,7 +157,7 @@ public class CtrlDomain {
      */
     public void saveSchedule( String newFileName) throws Exception {
 
-        dManager.saveSchedule(newFileName, schedule.toStr());
+        dManager.saveSchedule(newFileName, schedule.toStr(), constraints.toStr());
     }
 
     /**
@@ -186,6 +186,11 @@ public class CtrlDomain {
      * @throws IOException if file it's not found
      */
     public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String filePath) throws IOException {
+        List<String> stringSchedule = dManager.loadSchedule(filePath);
+        Boolean[] b = new  Boolean[5];
+        for(int i = 0; i<5; i++){
+            b[i] = Boolean.valueOf(stringSchedule.get(i));
+        }
         schedule = new Schedule(dManager.loadSchedule(filePath));
         return schedule.toHashMapString();
     }
@@ -197,6 +202,8 @@ public class CtrlDomain {
     public void setConstraints(boolean[] c){
         constraints.setContraints(c);
     }
+
+    public Vector<String> getConstraints(){ return constraints.toStr(); }
 
     public Vector<Vector<String>> getSubjectsString() {
         return subjectsSet.toStr();
