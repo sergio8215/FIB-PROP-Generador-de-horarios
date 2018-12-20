@@ -111,7 +111,12 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
         saveSetOfSubjectsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: GUARDAR TODO
+                try {
+                    ctrlPresenter.saveSubjectSet(new Vector<>(subjects));
+                } catch (Exception exc) {
+                    System.out.println(exc);
+                }
+
             }
         });
 
