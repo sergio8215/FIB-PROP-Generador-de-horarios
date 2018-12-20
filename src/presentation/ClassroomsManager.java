@@ -23,7 +23,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
     private JTextArea audiovisualsArea;
     private JTextArea numberOfComputersArea;
     private JTextArea maxNumberOfStudentsArea;
-    private JButton saveSetOfSubjectsButton;
+    private JButton saveSetOfClassroomsButton;
     private JButton deleteButton;
     private JButton addButton;
     private JPanel listPanel;
@@ -44,7 +44,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         if (classrooms.isEmpty()){
             Vector<String> v = new Vector<>(9);
             classrooms.add(0, v);
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 5; i++) {
                 classrooms.get(0).add(i, "");
             }
 
@@ -61,7 +61,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         initComponents();
 
         setSize(600,500);
-        setTitle("SUBJECTS MANAGER");
+        setTitle("CLASSROOMS MANAGER");
 
         add(rootPanel);
 
@@ -79,7 +79,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
 
     public void initComponents() {
-        saveSetOfSubjectsButton.addActionListener(new ActionListener() {
+        saveSetOfClassroomsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -89,7 +89,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
                         JOptionPane.showMessageDialog(d, "You don't have any classroom to save.");
                     } else {
                         if (valid()){
-                            ctrlPresenter.saveSubjectSet(new Vector<>(classrooms));
+                            ctrlPresenter.saveClassroomSet(new Vector<>(classrooms));
                         } else {
                             JOptionPane.showMessageDialog(d, "Error.");
                         }
@@ -113,7 +113,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
                     classrooms.get(index).add(i, "");
                 }
 
-                model.add(index,"SUBJECT");
+                model.add(index,"CLASSROOM");
                 list.setSelectedIndex(index);
 
                 identifierArea.setText(identifierAreaString);
@@ -131,8 +131,11 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
                 list.setSelectedIndex(index+1);
-                classrooms.remove(index);
-                model.remove(index);
+                if (!classrooms.isEmpty()){
+                    classrooms.remove(index);
+                    model.remove(index);
+                }
+
             }
         });
 
@@ -187,13 +190,19 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
             }
         });
 
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ctrlPresenter.cleanClassroomsSet();
+            }
+        });
+
     }
 
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
             int index = list.getSelectedIndex();
 
-            if (model.get(index).equals("SUBJECT")){
+            if (model.get(index).equals("CLASSROOM")){
                 identifierArea.setText(identifierAreaString);
                 maxNumberOfStudentsArea.setText(numStudentsAreaString);
                 typeOfClassroomArea.setText(typeOfClassroomAreaString);
@@ -220,4 +229,6 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         }
         return true;
     }
+
+
 }

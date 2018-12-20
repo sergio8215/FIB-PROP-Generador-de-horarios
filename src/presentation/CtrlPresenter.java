@@ -176,6 +176,16 @@ public class CtrlPresenter {
         cm.setVisible(true);
     }
 
+    public void cleanSubjectsSet() {
+        subjectsSet = new Vector<>();
+        ctrlDomain.cleanSubjectsSet();
+    }
+
+    public void cleanClassroomsSet() {
+        classroomsSet = new Vector<>();
+        ctrlDomain.cleanClassroomsSet();
+    }
+
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         return ctrlDomain.moveSession(from, to);
     }
