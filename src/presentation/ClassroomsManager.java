@@ -143,10 +143,23 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
-                list.setSelectedIndex(index+1);
-                if (!classrooms.isEmpty()){
-                    classrooms.remove(index);
+
+                if (!classrooms.isEmpty()) {
+                    if (classrooms.size() == 1){
+                        Vector<String> v = new Vector<>(9);
+                        classrooms.add(1, v);
+
+                        for (int i = 0; i < 9; i++) {
+                            classrooms.get(index).add(i, "");
+                        }
+
+                        model.add(1,"CLASSROOM");
+                    }
+
                     model.remove(index);
+                    classrooms.remove(index);
+                    if (index == model.size())  list.setSelectedIndex(index - 1);
+                    else    list.setSelectedIndex(index);
                 }
 
             }
@@ -216,7 +229,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
      * @param e
      */
     public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
+        if (e.getValueIsAdjusting() == false && list.getSelectedIndex() != -1) {
             int index = list.getSelectedIndex();
 
             if (model.get(index).equals("CLASSROOM")){
