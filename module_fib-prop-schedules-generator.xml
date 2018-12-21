@@ -58,9 +58,14 @@
     <patternset refid="ignored.files"/>
     <exclude name="out/**"/>
     <exclude name="out/artifacts/**"/>
+    <exclude name="out/artifacts/Final_schedule_jar/**"/>
     <exclude name="out/artifacts/FIB_PROP_Schedules_Generator_jar/**"/>
     <exclude name="out/production/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/com/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/com/intellij/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/com/intellij/uiDesigner/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/com/intellij/uiDesigner/core/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/**"/>
@@ -84,9 +89,7 @@
     <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/controllers/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/src/persistence/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/src/presentation/**"/>
-    <exclude name="out/production/FIB-PROP-Schedules-Generator/tmp/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/data/**"/>
-    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/tmp/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/data/load/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/data/import/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/data/drivers/**"/>
@@ -95,11 +98,14 @@
     <exclude name="out/production/FIB-PROP-Schedules-Generator/libs/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/load/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/.idea/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/.idea/artifacts/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/.idea/libraries/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/.idea/dictionaries/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/import/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/drivers/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/drivers/in/**"/>
     <exclude name="out/production/FIB-PROP-Schedules-Generator/drivers/out/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/META-INF/**"/>
   </patternset>
   
   <patternset id="excluded.from.compilation.fib-prop-schedules-generator">

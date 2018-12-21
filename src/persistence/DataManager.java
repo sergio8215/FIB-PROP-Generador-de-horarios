@@ -142,10 +142,13 @@ public class DataManager {
      * saveSchedule allow us to save the schedule on a file
      * @param fileNamePath name of the file to save
      * @param schedule schedule to save on the file
+     * @param constraints Constraints that will be saved on the file
      * @throws Exception exception on file error
      */
-    public void saveSchedule( String fileNamePath, List<String> schedule ) throws Exception {
-
+    public void saveSchedule( String fileNamePath, List<String> schedule, Vector<String> constraints ) throws Exception {
+        for( int i=0; i<constraints.size();i++ ){
+            schedule.add(0,constraints.get(i));
+        }
         Path file = Paths.get( fileNamePath );
         Files.write(file, schedule, Charset.forName("UTF-8"));
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);

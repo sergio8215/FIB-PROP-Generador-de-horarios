@@ -39,7 +39,7 @@ public class SubmitFiles extends JDialog {
         add(rootPanel);
         setTitle("Submit Files");
         setSize(400,500);
-        setLocationRelativeTo(null);
+
         // We add a Listener to make the button do something
         selectClassroomsFileButton.addActionListener(new ActionListener() {
             @Override
