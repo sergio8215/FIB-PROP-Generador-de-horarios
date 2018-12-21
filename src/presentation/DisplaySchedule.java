@@ -503,7 +503,7 @@ public class DisplaySchedule extends JPanel {
                     if (cd.getTable() == target) {
                         if (dragColumn != 0 && cd.getColumn() != 0){
                             // If my destiny its not null
-                            if ( destiny != null ) {
+                            if ( destiny != null && cd.value != null) {
                                 if ( !cd.value.toString().equalsIgnoreCase(destiny.toString()) ){
                                     String[] to2   = destiny.toString().split(" ");     // 0 Subject, 1 Subgroup, 2 Classroom
                                     String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
@@ -528,7 +528,7 @@ public class DisplaySchedule extends JPanel {
                                     canImport = true;//presenter.moveSession(from, to);
                                 }
                                 // if my destiny it's a empty cell
-                            }else{
+                            }else if (cd.value != null){
                                 canImport= true;
                             }/*else {
                                 String[] to2   = new String[5];     // 0 Subject, 1 Subgroup, 2 Classroom
