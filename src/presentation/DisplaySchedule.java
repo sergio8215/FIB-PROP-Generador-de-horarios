@@ -81,7 +81,7 @@ public class DisplaySchedule extends JPanel {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.weightx = 1;
-        gbc.weighty = 1;
+        gbc.weighty = 10;
         gbc.fill = GridBagConstraints.BOTH;
         add(scrollPane, gbc);
 
@@ -89,14 +89,15 @@ public class DisplaySchedule extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 6;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridheight = 2;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 0;
-        gbc.weighty = 0;
+        gbc.weighty = 1;
         gbc.gridheight = 1;
         JScrollPane scrollCheckboxPane = new JScrollPane(getCheckBoxPanel(this.schedule.keySet()));
         add( scrollCheckboxPane , gbc);
 
-        //SAVE BUTTON
+        //RETURN BUTTON
         JButton returnButton = new JButton("Back to START");
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -107,7 +108,7 @@ public class DisplaySchedule extends JPanel {
             }
         });
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 9;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
@@ -115,7 +116,7 @@ public class DisplaySchedule extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(returnButton, gbc);
 
-        //BACK TO START BUTTON
+        //SAVE BUTTON
         JButton saveButton = new JButton("SAVE");
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -129,7 +130,7 @@ public class DisplaySchedule extends JPanel {
             }
         });
         gbc.gridx = 1;
-        gbc.gridy = 7;
+        gbc.gridy = 9;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 0;
