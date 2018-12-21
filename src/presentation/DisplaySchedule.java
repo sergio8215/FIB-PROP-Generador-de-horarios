@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class DisplaySchedule extends JPanel {
 
+    private CtrlPresenter presenter;
     private int daysOfTheWeek = 5;
     private int startHour = 8;
     private int hoursPerDay = 12;
@@ -42,6 +43,8 @@ public class DisplaySchedule extends JPanel {
     public DisplaySchedule(CtrlPresenter ctrlP, HashMap<String, ArrayList<Vector<String>>> schedule) {
         super(new GridBagLayout());
         this.schedule = schedule;
+        presenter = ctrlP;
+
         filter = (HashMap<String, ArrayList<Vector<String>>>) schedule.clone();
 
         //Create and set up the window.
@@ -98,7 +101,7 @@ public class DisplaySchedule extends JPanel {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: que vuelva a la pestaña de inicio
+                //TODO: que vuelva a la pestaña de iniciop
             }
         });
         gbc.gridx = 0;
@@ -520,7 +523,9 @@ public class DisplaySchedule extends JPanel {
                                     to.add(Integer.toString((Integer)hourFrom));    // 3 hour
                                     from.add(Integer.toString(dayFrom));            // 4 day
 
-                                    // TODO JOA necesitas usar los vectores to y from
+                                    /*if(from.get(0).equals("")) canImport = false; //the from vector can't be from an empty box
+                                    else */
+                                    canImport = presenter.moveSession(from, to);
                                 }
                             }
                             canImport = true;

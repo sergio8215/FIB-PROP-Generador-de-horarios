@@ -1,6 +1,5 @@
 package src.presentation;
 
-import jdk.nashorn.internal.scripts.JD;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

@@ -84,41 +84,6 @@ public class CtrlScheduleGeneration {
     }
 
 
-    /**
-     * Implementation of the Chronological Backtracking Algorithm for satisfaction of constraints. NOT USED!
-     * @param futureVars Variables to which a domain value must be assigned.
-     * @param solution Partial solution of the assignment of values to the variables.
-     * @return Final solution (successful or not).
-     */
-    private Schedule chronologicalBacktracking(LinkedList<MUS> futureVars, Schedule solution) {
-        if (futureVars.isEmpty()) 	return solution;
-        else {
-            MUS currentVar = futureVars.pollFirst();
-
-            for (int i = 0; i < currentVar.domainSize(); i++){ 	// i = id/posición pair classroom-sesion
-                currentVar.assign(currentVar.getValueDomain(i));
-                solution.add(currentVar);
-                if (solution.valid()) {
-                    solution = chronologicalBacktracking(futureVars, solution);
-
-                    if (!solution.isFail()) {
-                        return solution;
-                    } else {
-                        solution.delete(currentVar);
-                        solution.setFail(false);
-                    }
-
-                } else {
-                    solution.delete(currentVar);
-                }
-            }
-
-            solution.fail();
-            futureVars.add(currentVar);
-            return solution;
-        }
-    }
-
     private Schedule forwardChecking(LinkedList<MUS> futureVars, Schedule solution) {
         if (futureVars.isEmpty()) 	return solution;
         else {
