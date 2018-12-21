@@ -89,11 +89,13 @@ public class SubmitFiles extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ctrlPresenter.setScenario(classroomsFile, subjectsFile);
-                    ctrlPresenter.selectConstraints();
-                    //ctrlPresenter.scheduleGeneration();
-
-
+                    if (ctrlPresenter.setScenario(classroomsFile, subjectsFile)){
+                        ctrlPresenter.selectConstraints();
+                    }else{
+                        setEnabled(false);
+                        setVisible(false);
+                        vCtrlPresenter.backToInit();
+                    }
                 } catch (Exception exc) {
                     System.out.println(exc);
                 }

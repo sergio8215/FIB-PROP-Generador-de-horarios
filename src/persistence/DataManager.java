@@ -45,23 +45,28 @@ public class DataManager {
 
             // loop array to find values of classrooms
             JSONArray classroomList = (JSONArray) rootJSON.get("Classrooms List");
-            Iterator<JSONObject> iterator = classroomList.iterator();
+            if (classroomList.size() != 0){
+                Iterator<JSONObject> iterator = classroomList.iterator();
 
-            int i = 0;
+                int i = 0;
 
-            while (iterator.hasNext()) {
+                while (iterator.hasNext()) {
 
-                JSONObject classroomJSON = iterator.next();
+                    JSONObject classroomJSON = iterator.next();
 
-                classrooms.add(new Vector<>());
-                classrooms.elementAt(i).add((String)classroomJSON.get("Classroom"));
-                classrooms.elementAt(i).add((String)classroomJSON.get("Quantity"));
-                classrooms.elementAt(i).add((String)classroomJSON.get("Type"));
-                classrooms.elementAt(i).add((String)classroomJSON.get("Audiovisual"));
-                classrooms.elementAt(i).add((String)classroomJSON.get("Num_computers"));
+                    classrooms.add(new Vector<>());
+                    classrooms.elementAt(i).add((String)classroomJSON.get("Classroom"));
+                    classrooms.elementAt(i).add((String)classroomJSON.get("Quantity"));
+                    classrooms.elementAt(i).add((String)classroomJSON.get("Type"));
+                    classrooms.elementAt(i).add((String)classroomJSON.get("Audiovisual"));
+                    classrooms.elementAt(i).add((String)classroomJSON.get("Num_computers"));
 
-                i++;
+                    i++;
+                }
+            }else{
+                return null;
             }
+
 
         } catch (FileNotFoundException | ParseException ex) {
             classrooms = null;
@@ -86,30 +91,31 @@ public class DataManager {
 
             // loop array to find values of Subjects
             JSONArray subjectsList = (JSONArray) rootJSON.get("Subjects List");
-            Iterator<JSONObject> iterator2 = subjectsList.iterator();
+            if (subjectsList.size() != 0) {
+                Iterator<JSONObject> iterator2 = subjectsList.iterator();
 
-            int i=0;
+                int i = 0;
 
-            while (iterator2.hasNext()) {
+                while (iterator2.hasNext()) {
 
-                JSONObject subjectJSON = iterator2.next();
+                    JSONObject subjectJSON = iterator2.next();
 
-                subjects.add(new Vector<>());
-                subjects.elementAt(i).add((String)subjectJSON.get("Subject"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Num_students"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Level"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Theory_hours"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Laboratory_hours"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Problems_hours"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Number_of_groups"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Number_of_subgroups"));
-                subjects.elementAt(i).add((String)subjectJSON.get("Shift"));
+                    subjects.add(new Vector<>());
+                    subjects.elementAt(i).add((String) subjectJSON.get("Subject"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Num_students"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Level"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Theory_hours"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Laboratory_hours"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Problems_hours"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Number_of_groups"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Number_of_subgroups"));
+                    subjects.elementAt(i).add((String) subjectJSON.get("Shift"));
 
-                i++;
+                    i++;
+                }
+            }else{
+                return null;
             }
-
-
-
         } catch (FileNotFoundException | ParseException ex) {
             subjects = null;
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, null, ex);

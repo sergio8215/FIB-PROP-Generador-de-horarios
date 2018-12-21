@@ -46,8 +46,13 @@ public class CtrlPresenter {
      * @param subjectsFile Subjects File.
      * @throws Exception
      */
-    public void setScenario(String classroomsFile, String subjectsFile) throws Exception {
-        ctrlDomain.createScenario(classroomsFile, subjectsFile);
+    public Boolean setScenario(String classroomsFile, String subjectsFile) throws Exception {
+        if (!ctrlDomain.createScenario(classroomsFile, subjectsFile)){
+            JDialog parentFrame = new JDialog();
+            JOptionPane.showMessageDialog(parentFrame, "Classroom or Subject File empty, please try again.");
+            return false;
+        }
+        return true;
     }
 
     /**
