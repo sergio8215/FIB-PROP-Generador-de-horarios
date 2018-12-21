@@ -4,6 +4,10 @@ import src.domain.utils.UtilsDomain;
 
 import java.util.ArrayList;
 
+/**
+ * Classroom-Session Class
+ * @author Mireia Cano
+ */
 public class ClassroomSession {
 
     //ATTRIBUTES
