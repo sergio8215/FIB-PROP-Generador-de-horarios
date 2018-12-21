@@ -290,7 +290,7 @@ public class CtrlDomain {
      * @return returns true if the schedule after the move of the MUS is valid, false otherwise
      */
     public boolean moveSession(Vector<String> from, Vector<String> to) {
-        Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(6))], Integer.parseInt(to.get(5)));
+        Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
         Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
 
         Schedule schedToCheck = new Schedule(schedule);

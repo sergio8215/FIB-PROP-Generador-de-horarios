@@ -529,7 +529,7 @@ public class DisplaySchedule extends JPanel {
                             }else if (cd.value != null){
                                 canImport= true;
 
-                                String[] to2   = new String[5];     // 0 Subject, 1 Subgroup, 2 Classroom
+                                String[] to2   = new String[3];     // 0 Subject, 1 Subgroup, 2 Classroom
                                 to2[0] = null;
                                 to2[1] = null;
                                 to2[2] = null;
