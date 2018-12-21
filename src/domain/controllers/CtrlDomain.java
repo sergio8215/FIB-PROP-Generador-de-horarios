@@ -91,6 +91,12 @@ public class CtrlDomain {
         else return false;
     }
 
+    /**
+     * Set the subjects set.
+     * @param subjectsFile Subjects Set.
+     * @return True if possible.
+     * @throws Exception
+     */
     public boolean setSubjects(String subjectsFile) throws Exception {
         boolean s = importSubject(subjectsFile);
         if (s) {
@@ -99,6 +105,12 @@ public class CtrlDomain {
         } else return false;
     }
 
+    /**
+     * Set the classrooms set.
+     * @param classroomsFile Classroom Set.
+     * @return True if possible.
+     * @throws Exception
+     */
     public boolean setClassrooms(String classroomsFile) throws Exception {
         boolean c = importClassroom(classroomsFile);
         if (c) {
