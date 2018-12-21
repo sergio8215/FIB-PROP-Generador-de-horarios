@@ -363,11 +363,11 @@ public class Schedule {
     }
 
     /**
-     *
-     * @return
+     * Converts the timetable into a HashMap of Strings
+     * @return returns a HashMap of Strings which represents the timetable attribute
      */
-    public HashMap< String, ArrayList<Vector<String>> > toHashMapString() { // TODO: IMPLEMENTAR EN CTRLDOMAIN
-        HashMap<String, ArrayList<Vector<String>>> timetable = new HashMap<>();
+    public HashMap< String, ArrayList<Vector<String>> > toHashMapString() {
+        HashMap<String, ArrayList<Vector<String>>> ttble = new HashMap<>();
 
         Set<String> keys = this.timetable.keySet();
 
@@ -388,9 +388,9 @@ public class Schedule {
                 i++;
             }
 
-            timetable.put(k, setSubject);
+            ttble.put(k, setSubject);
         }
 
-        return timetable;
+        return ttble;
     }
 }
