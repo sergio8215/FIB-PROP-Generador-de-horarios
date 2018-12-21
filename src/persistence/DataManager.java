@@ -21,7 +21,7 @@ import src.domain.controllers.CtrlDomain;
 import src.domain.utils.inout;
 
 /**
- *
+ * DataManager manage all files functions and methods
  * @author Sergio Mazzariol
  */
 public class DataManager {
@@ -32,8 +32,8 @@ public class DataManager {
 
     /**
      * Reading from JSON file
-     * @param file
-     * @throws java.io.IOException
+     * @param file name to import
+     * @throws java.io.IOException error on read
      */
     public Vector <Vector< String>> importClassrooms(String file) throws IOException {
 
@@ -77,8 +77,8 @@ public class DataManager {
 
     /**
      * Reading from JSON file
-     * @param file
-     * @throws java.io.IOException
+     * @param file name to import
+     * @throws java.io.IOException error on file read
      */
     public Vector <Vector< String>> importSubjects(String file) throws IOException {
 
@@ -123,6 +123,12 @@ public class DataManager {
         return subjects;
     }
 
+    /**
+     * loadSchedule load a schedule from a file
+     * @param fileName Name of the file to import
+     * @return a List of string that contains all schedule values
+     * @throws IOException exception on file error
+     */
     public List<String> loadSchedule( String fileName ) throws IOException {
 
         Path file = Paths.get( fileName );
@@ -130,6 +136,13 @@ public class DataManager {
         return stringSchedule;
     }
 
+    /**
+     * saveSchedule allow us to save the schedule on a file
+     * @param fileNamePath name of the file to save
+     * @param schedule schedule to save on the file
+     * @param constraints Constraints that will be saved on the file
+     * @throws Exception exception on file error
+     */
     public void saveSchedule( String fileNamePath, List<String> schedule, Vector<String> constraints ) throws Exception {
         for( int i=0; i<constraints.size();i++ ){
             schedule.add(0,constraints.get(i));
@@ -139,6 +152,11 @@ public class DataManager {
         //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
     }
 
+    /**
+     * saveSubjects Save subjects set on a JSON file
+     * @param fileNamePath name of the file to save
+     * @param subjectSet set of subject to save
+     */
     public void saveSubjects(String fileNamePath, Vector< Vector< String>> subjectSet){
         JSONObject obj = new JSONObject();
         JSONArray subjects = new JSONArray();
@@ -167,6 +185,11 @@ public class DataManager {
         }
     }
 
+    /**
+     * saveClassroom Save classroom set on a JSON file
+     * @param fileNamePath name of the file to save
+     * @param classroomSet set of classroom to save
+     */
     public void saveClassrooms(String fileNamePath, Vector< Vector <String>> classroomSet){
         JSONObject obj = new JSONObject();
         JSONArray classrooms = new JSONArray();
