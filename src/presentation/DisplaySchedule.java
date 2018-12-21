@@ -530,7 +530,7 @@ public class DisplaySchedule extends JPanel {
                                 // if my destiny it's a empty cell
                             }else if (cd.value != null){
                                 canImport= true;
-                            }/*else {
+
                                 String[] to2   = new String[5];     // 0 Subject, 1 Subgroup, 2 Classroom
                                 to2[0] = null;
                                 to2[1] = null;
@@ -553,8 +553,8 @@ public class DisplaySchedule extends JPanel {
                                 from.add(Integer.toString((Integer)hourFrom));    // 3 hour
                                 from.add(Integer.toString(dayFrom));            // 4 day
 
-                                canImport = presenter.moveSession(from, to);
-                            }*/
+                                //canImport = presenter.moveSession(from, to);
+                            }
                         }
                     }
                 } catch (UnsupportedFlavorException | IOException ex) {
