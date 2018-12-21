@@ -66,8 +66,8 @@ public class Schedule {
      */
     public Schedule(List<String> stringSchedule){
 
-        classroomFile = stringSchedule.get(5);
-        subjectFile = stringSchedule.get(6);
+        classroomFile = stringSchedule.get(0);
+        subjectFile = stringSchedule.get(1);
 
 
         timetable = new HashMap<>();
@@ -76,10 +76,10 @@ public class Schedule {
         ArrayList<MUS> arrayMUS = new ArrayList<>();
 
         // We read the first class
-        separated = stringSchedule.get(7).split("\\*");
+        separated = stringSchedule.get(2).split("\\*");
         String subjectName = ClassClass.fromStr(new Vector(Arrays.asList(separated))).getSubject().getName();
 
-        for( int i = 7; i < stringSchedule.size(); i+=3 ){
+        for( int i = 2; i < stringSchedule.size(); i+=3 ){
 
             // We read the class
             separated = stringSchedule.get(i).split("\\*");
