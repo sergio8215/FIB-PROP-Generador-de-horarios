@@ -502,7 +502,8 @@ public class DisplaySchedule extends JPanel {
                     // Make sure we're not dropping onto ourselves...
                     if (cd.getTable() == target) {
                         if (dragColumn != 0 && cd.getColumn() != 0){
-                            if ( destiny.toString() != null ) {
+                            // If my destiny its not null
+                            if ( destiny != null ) {
                                 if ( !cd.value.toString().equalsIgnoreCase(destiny.toString()) ){
                                     String[] to2   = destiny.toString().split(" ");     // 0 Subject, 1 Subgroup, 2 Classroom
                                     String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
@@ -524,9 +525,12 @@ public class DisplaySchedule extends JPanel {
 
                                     /*if(from.get(0).equals("")) canImport = false; //the from vector can't be from an empty box
                                     else */
-                                    canImport = presenter.moveSession(from, to);
+                                    canImport = true;//presenter.moveSession(from, to);
                                 }
-                            }else if (cd.value.toString() != null){
+                                // if my destiny it's a empty cell
+                            }else{
+                                canImport= true;
+                            }/*else {
                                 String[] to2   = new String[5];     // 0 Subject, 1 Subgroup, 2 Classroom
                                 to2[0] = null;
                                 to2[1] = null;
@@ -549,10 +553,8 @@ public class DisplaySchedule extends JPanel {
                                 from.add(Integer.toString((Integer)hourFrom));    // 3 hour
                                 from.add(Integer.toString(dayFrom));            // 4 day
 
-                                    /*if(from.get(0).equals("")) canImport = false; //the from vector can't be from an empty box
-                                    else */
                                 canImport = presenter.moveSession(from, to);
-                            }
+                            }*/
                         }
                     }
                 } catch (UnsupportedFlavorException | IOException ex) {
