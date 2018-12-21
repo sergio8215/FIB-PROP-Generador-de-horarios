@@ -46,7 +46,7 @@ public class InitView extends JFrame {
 
         submitFiles = new SubmitFiles(vCtrlPresenter);
         constraintsDialog = new ConstraintsDialog(vCtrlPresenter);
-
+        setLocationRelativeTo(null);
         initComponents();
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
