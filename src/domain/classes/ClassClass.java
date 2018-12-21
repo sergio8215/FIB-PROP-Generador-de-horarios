@@ -194,6 +194,7 @@ public abstract class ClassClass {
     /**
      * Class that creates an specific type class extracting the information from a vector string
      * @param c Vector with member's values
+     * @return return us a new object with the right class
      */
     public static ClassClass fromStr( Vector<String> c ){
         ClassClass auxClass;

@@ -14,7 +14,7 @@ import java.util.*;
 
 /**
  * CtrlDomain Class, it's part of one of the layers of the program. On charge of controlling the domain and data classes
- * @author Sergio Mazzariol & Mireia Cano
+ * @author Sergio Mazzariol and Mireia Cano
  */
 public class CtrlDomain {
 
@@ -45,6 +45,7 @@ public class CtrlDomain {
      * Method to import Classrooms from JSON file
      * @param file path of the file to import
      * @return true if the import is successful
+     * @throws Error on file import failure
      */
     private boolean importClassroom(String file) throws Exception{
 
@@ -60,6 +61,7 @@ public class CtrlDomain {
      * Method to import Subjects from JSON file
      * @param file path of the file to import
      * @return true if the import is successful
+     * @throws Error on file import failure
      */
     private boolean importSubject(String file) throws Exception{
         Vector< Vector <String > > subjects = dManager.importSubjects(file);
@@ -77,6 +79,7 @@ public class CtrlDomain {
      * @param classroomFile path of the Classroom file to import
      * @param subjectFile path of the subjects file to import
      * @return true if the import is successful
+     * @throws Error when the Scenario where not created successfully
      */
     public boolean createScenario(String classroomFile, String subjectFile) throws Exception {
         boolean c = importClassroom(classroomFile);
@@ -95,7 +98,7 @@ public class CtrlDomain {
      * Set the subjects set.
      * @param subjectsFile Subjects Set.
      * @return True if possible.
-     * @throws Exception
+     * @throws Exception Error when the set import wasn't successful
      */
     public boolean setSubjects(String subjectsFile) throws Exception {
         boolean s = importSubject(subjectsFile);
@@ -109,7 +112,7 @@ public class CtrlDomain {
      * Set the classrooms set.
      * @param classroomsFile Classroom Set.
      * @return True if possible.
-     * @throws Exception
+     * @throws Exception Error when the import wasn't successful
      */
     public boolean setClassrooms(String classroomsFile) throws Exception {
         boolean c = importClassroom(classroomsFile);
@@ -138,6 +141,7 @@ public class CtrlDomain {
 
     /**
      *  Shows the generated schedule
+     * @return the result schedule to show
      */
     public UtilsDomain.ResultOfQuery<HashMap<String, ArrayList<Vector<String>>>> showSchedule() {
         UtilsDomain.ResultOfQuery s = new UtilsDomain.ResultOfQuery();
@@ -175,6 +179,7 @@ public class CtrlDomain {
     /**
      * Saves the Subjects Set on a JSON file with the name that the user wants.
      * @param newFileName Name of the file to create
+     * @param subjectSetModif Modified subject set
      * @throws Exception If file can't be created
      */
     public void saveSubjectSet( String newFileName, Vector<Vector<String>> subjectSetModif) throws Exception {
@@ -185,6 +190,7 @@ public class CtrlDomain {
     /**
      * Saves the Classroom Set on a JSON file with the name that the user wants.
      * @param newFileName Name of the file to create
+     * @param classroomSetModif Modified classrooms set
      * @throws Exception If file can't be created
      */
     public void saveClassroomSet( String newFileName, Vector<Vector<String>> classroomSetModif) throws Exception {
@@ -195,6 +201,7 @@ public class CtrlDomain {
     /**
      * Load a schedule from a file
      * @param filePath path of the schedule file to import
+     * @return return the loaded schedule
      * @throws IOException if file it's not found
      */
     public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String filePath) throws IOException {

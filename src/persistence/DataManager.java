@@ -33,6 +33,7 @@ public class DataManager {
     /**
      * Reading from JSON file
      * @param file name to import
+     * @return An Array with all imported classrooms, one per position and all attributes per each classrooms
      * @throws java.io.IOException error on read
      */
     public Vector <Vector< String>> importClassrooms(String file) throws IOException {
@@ -78,6 +79,7 @@ public class DataManager {
     /**
      * Reading from JSON file
      * @param file name to import
+     * @return An Array with all imported subjects, one per position and all attributes per each subjects
      * @throws java.io.IOException error on file read
      */
     public Vector <Vector< String>> importSubjects(String file) throws IOException {
