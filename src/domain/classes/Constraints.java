@@ -7,7 +7,7 @@ import java.util.Vector;
 
 /**
  * Constraints Class.
- * @author Joaquim Gómez & Mireia Cano
+ * @author Joaquim Gomez & Mireia Cano
  */
 public class Constraints {
 
@@ -25,7 +25,7 @@ public class Constraints {
 
         /**
          * Set the constraints to the intern state.
-         * @param sc
+         * @param sc Constraints.
          */
         private static void setContraints(boolean[] sc){
             notSameClassroomAndSessionEnabled = sc[0];
@@ -60,7 +60,7 @@ public class Constraints {
 
     /**
      * Convert the restrictions to strings.
-     * @return
+     * @return Constraints formated to string.
      */
     public Vector<String> toStr(){
         Vector<String> c = new Vector<>(5);
