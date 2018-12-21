@@ -104,7 +104,7 @@ public class DisplaySchedule extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 frame.setEnabled(false);
                 frame.setVisible(false);
-                ctrlP.backToInit();
+                presenter.backToInit();
             }
         });
         gbc.gridx = 0;
@@ -122,7 +122,7 @@ public class DisplaySchedule extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ctrlP.saveSchedule();
+                    presenter.saveSchedule();
 
                 } catch (Exception exc) {
                     System.out.println(exc);
