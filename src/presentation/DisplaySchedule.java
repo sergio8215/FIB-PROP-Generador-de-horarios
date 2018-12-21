@@ -525,7 +525,7 @@ public class DisplaySchedule extends JPanel {
 
                                     /*if(from.get(0).equals("")) canImport = false; //the from vector can't be from an empty box
                                     else */
-                                    canImport = presenter.swapSession(from, to);//presenter.moveSession(from, to);
+                                    canImport = true;//presenter.moveSession(from, to);
                                 }
                                 // if my destiny it's a empty cell
                             }else if (cd.value != null){
@@ -553,7 +553,7 @@ public class DisplaySchedule extends JPanel {
                                 from.add(Integer.toString((Integer)hourFrom));    // 3 hour
                                 from.add(Integer.toString(dayFrom));            // 4 day
 
-                                canImport = presenter.moveSession(from, to);
+                                //canImport = presenter.moveSession(from, to);
                             }
                         }
                     }

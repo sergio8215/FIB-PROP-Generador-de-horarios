@@ -272,16 +272,6 @@ public class CtrlPresenter {
      * @param to Destination session.
      * @return True if possible.
      */
-    public boolean swapSession(Vector<String> from, Vector<String> to) {
-        return ctrlDomain.swapSession(from, to);
-    }
-
-    /**
-     * Report a movement.
-     * @param from Session of origin.
-     * @param to Destination session.
-     * @return True if possible.
-     */
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         return ctrlDomain.moveSession(from, to);
     }

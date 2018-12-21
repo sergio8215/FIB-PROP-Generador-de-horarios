@@ -82,12 +82,7 @@ public class CtrlScheduleGeneration {
         return notPossible;
     }
 
-    /**
-     * Forward Checking Algorithm.
-     * @param futureVars Future variables.
-     * @param solution Solution.
-     * @return Solution Schedule.
-     */
+
     private Schedule forwardChecking(LinkedList<MUS> futureVars, Schedule solution) {
         if (futureVars.isEmpty()) 	return solution;
         else {
@@ -119,11 +114,6 @@ public class CtrlScheduleGeneration {
         }
     }
 
-    /**
-     * It propagates the constraints.
-     * @param futureVars Future variables.
-     * @param currentVar Current variable.
-     */
     private void propagateConstraints(LinkedList<MUS> futureVars, MUS currentVar) {
         for (MUS var : futureVars) {
             if (!var.getClassClass().getIdentifier().equals(currentVar.getClassClass().getIdentifier())) {
@@ -158,11 +148,6 @@ public class CtrlScheduleGeneration {
         }
     }
 
-    /**
-     * True if some variable is empty.
-     * @param vars Variables to check.
-     * @return True if some variable is empty.
-     */
     private boolean someDomainEmpty(LinkedList<MUS> vars){
         int i = 0;
         boolean oneEmpty = false;
@@ -174,11 +159,6 @@ public class CtrlScheduleGeneration {
         return oneEmpty;
     }
 
-    /**
-     * It duplicates the future variables.
-     * @param fV Future variables.
-     * @return Duplicated Resoult.
-     */
     private LinkedList<MUS> duplicateFutureVars(LinkedList<MUS> fV) {
         LinkedList<MUS> l = new LinkedList<>();
         for(MUS m : fV) {

@@ -19,7 +19,7 @@ public class ConstraintsDialog extends JDialog {
     private JCheckBox constraint4;
     private JButton selectAllButton;
 
-    private boolean[] enb = new boolean[5];
+    private boolean[] enb = new boolean[5]; // TODO: NUMERO A CONCRETAR
 
     /**
      * ConstraintsDialog class constructor.
