@@ -93,7 +93,8 @@ public class DisplaySchedule extends JPanel {
         gbc.weightx = 0;
         gbc.weighty = 0;
         gbc.gridheight = 1;
-        add(getCheckBoxPanel(this.schedule.keySet() ), gbc);
+        JScrollPane scrollCheckboxPane = new JScrollPane(getCheckBoxPanel(this.schedule.keySet()));
+        add( scrollCheckboxPane , gbc);
 
         //SAVE BUTTON
         JButton returnButton = new JButton("Back to START");
@@ -203,7 +204,6 @@ public class DisplaySchedule extends JPanel {
                     if ( (data[i][0] == null) ||
                             ( ((Integer)data[i][0] == Integer.parseInt(m.get(3)) ) &&
                                     ( data[i][Integer.parseInt(m.get(4))+1] == null ) )){
-
                         data[i][0] = Integer.parseInt(m.get(3));            // Hour
                         int day = Integer.parseInt(m.get(4));               // Day (ordinal)
                         data[i][day + 1] = m.get(0) + " " + m.get(1) + " " + m.get(2); // Subject name, subgroup, classroom
