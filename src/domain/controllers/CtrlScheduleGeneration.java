@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 /**
  * Controller for the generation of schedules.
- * @author Joaquim Gomez & Mireia Cano
+ * @author Joaquim Gomez y Mireia Cano
  */
 public class CtrlScheduleGeneration {
 
@@ -39,6 +39,7 @@ public class CtrlScheduleGeneration {
     /**
      * Generates the schedule for a given set of MUSs (the variables of the assign a value from the domain).
      * @param vars Variables to assign a value from the domain.
+     * @param classroomSession Classroom-Session pairs.
      * @return Generates Schedule.
      */
     public Schedule generateSchedule(LinkedList<MUS> vars, ClassroomSession classroomSession) {
