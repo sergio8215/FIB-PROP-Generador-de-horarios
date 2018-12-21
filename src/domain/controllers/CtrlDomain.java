@@ -20,6 +20,7 @@ public class CtrlDomain {
 
     private DataManager dManager;
     private Schedule schedule;
+    private Schedule schedToCheck;
     private ClassroomSet classroomsSet;
     private SubjectsSet subjectsSet;
     private Constraints constraints;
@@ -276,7 +277,7 @@ public class CtrlDomain {
         Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
         Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
 
-        Schedule schedToCheck = new Schedule(schedule);
+        schedToCheck = new Schedule(schedule);
         schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
         schedToCheck.changeSession(schedToCheck.getMUS(to.get(1), to.get(0), sTo), sFrom);
 
@@ -293,10 +294,14 @@ public class CtrlDomain {
         Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
         Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
 
-        Schedule schedToCheck = new Schedule(schedule);
+        schedToCheck = new Schedule(schedule);
         schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
 
         return valid(schedToCheck);
+    }
+
+    public void saveSwap(){
+        schedule = schedToCheck;
     }
 
     /**
