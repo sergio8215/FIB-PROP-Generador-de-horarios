@@ -223,7 +223,7 @@ public class CtrlDomain {
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {
         boolean emptyBox = false;
-        if(to.get(0).equals("")) emptyBox = true;
+        if(to.get(0) == null) emptyBox = true;
 
         Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
         Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
