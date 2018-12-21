@@ -27,6 +27,8 @@ public class DisplaySchedule extends JPanel {
     private int daysOfTheWeek = 5;
     private int startHour = 8;
     private int hoursPerDay = 12;
+    private int quantitySubjects = 0;
+    private int quantityFilter = 0;
     private static JFrame frame;
     private JTable table;
     private JCheckBox checkValidate;
@@ -96,6 +98,7 @@ public class DisplaySchedule extends JPanel {
         gbc.gridheight = 1;
         JScrollPane scrollCheckboxPane = new JScrollPane(getCheckBoxPanel(this.schedule.keySet()));
         add( scrollCheckboxPane , gbc);
+        quantityFilter = quantitySubjects;
 
         //RETURN BUTTON
         JButton returnButton = new JButton("Back to START");
@@ -158,6 +161,7 @@ public class DisplaySchedule extends JPanel {
         JPanel panel2 = new JPanel();
 
         for ( String s:  subjects){
+            quantitySubjects++;
             checkValidate = new JCheckBox(s);
             checkValidate.setSelected(true);
             panel2.add(checkValidate);
@@ -168,8 +172,10 @@ public class DisplaySchedule extends JPanel {
                     JCheckBox cb = (JCheckBox) event.getSource();
                     if (!cb.isSelected()) {
                         removeFilter(s);
+                        quantityFilter--;
                     } else {
                         addFilter(s);
+                        quantityFilter++;
                     }
                 }
             });
@@ -465,10 +471,10 @@ public class DisplaySchedule extends JPanel {
         }
 
         /**
-         * exportDone empty function
-         * @param source
-         * @param data
-         * @param action
+         * exportDone empty function that overrides the original function
+         * @param source source of the component
+         * @param data data to user
+         * @param action action to perform
          */
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
@@ -501,7 +507,7 @@ public class DisplaySchedule extends JPanel {
                     Transferable t = support.getTransferable();
                     CellData cd = (CellData) t.getTransferData(CELL_DATA_FLAVOR);
                     // Make sure we're not dropping onto ourselves...
-                    if (cd.getTable() == target) {
+                    if ( (cd.getTable() == target) && (quantityFilter == quantitySubjects)){
                         if (dragColumn != 0 && cd.getColumn() != 0){
                             // If my destiny its not null
                             if ( destiny != null && cd.value != null) {
