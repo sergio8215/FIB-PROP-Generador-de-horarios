@@ -91,6 +91,12 @@ public class CtrlDomain {
         else return false;
     }
 
+    /**
+     * Set the subjects set.
+     * @param subjectsFile Subjects Set.
+     * @return True if possible.
+     * @throws Exception
+     */
     public boolean setSubjects(String subjectsFile) throws Exception {
         boolean s = importSubject(subjectsFile);
         if (s) {
@@ -99,6 +105,12 @@ public class CtrlDomain {
         } else return false;
     }
 
+    /**
+     * Set the classrooms set.
+     * @param classroomsFile Classroom Set.
+     * @return True if possible.
+     * @throws Exception
+     */
     public boolean setClassrooms(String classroomsFile) throws Exception {
         boolean c = importClassroom(classroomsFile);
         if (c) {
@@ -195,47 +207,97 @@ public class CtrlDomain {
         return schedule.toHashMapString();
     }
 
+    /**
+     * Computes the size of the timetable
+     * @return returns the amount of MUSes of the schedule
+     */
     public int scheduleSize(){
         return schedule.timetableSize();
     }
 
+    /**
+     * Setter of the constraints variable
+     * @param c set of booleans that indicate the constraints to use
+     */
     public void setConstraints(boolean[] c){
         constraints.setContraints(c);
     }
 
+    /**
+     * Getter of the constraints variable as String
+     * @return returns the attribute converted into a vector of Strings
+     */
     public Vector<String> getConstraints(){ return constraints.toStr(); }
 
+    /**
+     * Getter of the subjectsSet attribute as String
+     * @return returns the attribute converted into a vector of Strings
+     */
     public Vector<Vector<String>> getSubjectsString() {
         return subjectsSet.toStr();
     }
 
+    /**
+     * Getter of the classroomSet attribute as String
+     * @return returns the attribute converted into a vector of Strings
+     */
     public Vector<Vector<String>> getClassroomsString() {
         return classroomsSet.toStr();
     }
 
+    /**
+     * Cleans the subjectsSet attribute
+     */
     public void cleanSubjectsSet(){
         subjectsSet = new SubjectsSet();
     }
 
+    /**
+     * Cleans the classroomSet attribute
+     */
     public void cleanClassroomsSet() {
         classroomsSet = new ClassroomSet();
     }
 
-    public boolean moveSession(Vector<String> from, Vector<String> to) {
-        boolean emptyBox = false;
-        if(to.get(0).equals("")) emptyBox = true;
-
+    /**
+     * Swaps the sessions of two MUSes and checks if the schedule is still valid
+     * @param from first MUS of the swap as String
+     * @param to second MUS of the swap as String
+     * @return returns true if the schedule after the swap of MUSes is valid, false otherwise
+     */
+    public boolean swapSession(Vector<String> from, Vector<String> to) {
         Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
         Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
 
         Schedule schedToCheck = new Schedule(schedule);
         schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
-        if (!emptyBox) schedToCheck.changeSession(schedToCheck.getMUS(to.get(1), to.get(0), sTo), sFrom);
+        schedToCheck.changeSession(schedToCheck.getMUS(to.get(1), to.get(0), sTo), sFrom);
 
-        return valida(schedToCheck);
+        return valid(schedToCheck);
     }
 
-    private boolean valida(Schedule schd){
+    /**
+     * Moves a MUS to another Session
+     * @param from MUS that we need to move as String
+     * @param to Session we want to move the MUS to, as String
+     * @return returns true if the schedule after the move of the MUS is valid, false otherwise
+     */
+    public boolean moveSession(Vector<String> from, Vector<String> to) {
+        Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(6))], Integer.parseInt(to.get(5)));
+        Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
+
+        Schedule schedToCheck = new Schedule(schedule);
+        schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
+
+        return valid(schedToCheck);
+    }
+
+    /**
+     * CHecks if schd is a valid Schedule
+     * @param schd Schedule Object to check
+     * @return returns true if the schd is valid, false otherwise
+     */
+    private boolean valid(Schedule schd){
         ArrayList<MUS> arrMUS = schd.unset();
 
         for(int i = 0; i < arrMUS.size(); ++i) {
