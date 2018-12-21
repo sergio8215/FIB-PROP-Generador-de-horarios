@@ -527,7 +527,7 @@ public class DisplaySchedule extends JPanel {
                                 }
                                 // if my destiny it's a empty cell
                             }else if (cd.value != null){
-                                //canImport= true;
+                                canImport= true;
 
                                 String[] to2   = new String[5];     // 0 Subject, 1 Subgroup, 2 Classroom
                                 to2[0] = null;

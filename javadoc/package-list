@@ -1,0 +1,8 @@
+src.domain.classes
+src.domain.comparators
+src.domain.controllers
+src.domain.drivers
+src.domain.junits
+src.domain.utils
+src.persistence
+src.presentation
