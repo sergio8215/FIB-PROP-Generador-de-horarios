@@ -71,12 +71,14 @@ public class MUS {
     /**
      * Class constructor by copy
      * @param m MUS we want to duplicate
+     * @param i 1 indicate that you want a literal copy. 0 indicates that you don't want to initialize the domain. 
      */
-    public MUS(MUS m) {
+    public MUS(MUS m, int i) {
         classclass = m.getClassClass();
         classroom = m.getClassroom();
         session = m.getSession();
-        domain = new ClassroomSession(m.getDomain());
+        if(i == 1 ) domain = new ClassroomSession(m.getDomain());
+        else domain = null;
         paired = m.isPaired();
     }
 

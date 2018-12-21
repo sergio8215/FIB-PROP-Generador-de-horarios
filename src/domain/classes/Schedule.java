@@ -248,7 +248,7 @@ public class Schedule {
         for(String s : t.keySet()) {
             ArrayList<MUS> aux = new ArrayList<>();
             for(int i = 0; i < t.get(s).size(); ++i) {
-                aux.add( new MUS(t.get(s).get(i)));
+                aux.add( new MUS(t.get(s).get(i), 0));
             }
             timetable.put(s, aux);
         }

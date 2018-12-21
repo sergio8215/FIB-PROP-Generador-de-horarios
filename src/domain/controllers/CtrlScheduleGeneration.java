@@ -183,7 +183,7 @@ public class CtrlScheduleGeneration {
     private LinkedList<MUS> duplicateFutureVars(LinkedList<MUS> fV) {
         LinkedList<MUS> l = new LinkedList<>();
         for(MUS m : fV) {
-            MUS aux = new MUS(m);
+            MUS aux = new MUS(m, 1);
             l.add(aux);
         }
         return l;
