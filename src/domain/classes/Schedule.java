@@ -55,8 +55,10 @@ public class Schedule {
         this.classroomFile = sched.getClassroomFile();
         this.subjectFile = sched.getSubjectFile();
         this.fail = sched.isFail();
-        this.timetable = new HashMap<String, ArrayList<MUS>>(sched.getTimetable());
+        duplicateTimetable(sched.timetable);
     }
+
+
 
     /**
      * Schedule constructor from String
@@ -230,6 +232,21 @@ public class Schedule {
         return -1;
     }
 
+    /**
+     * initializes the timetable attribute as a clone of t
+     * @param t HashMap we want to recreate
+     */
+    private void duplicateTimetable(HashMap<String, ArrayList<MUS>> t) {
+        timetable = new HashMap<String, ArrayList<MUS>> ();
+        for(String s : t.keySet()) {
+            ArrayList<MUS> aux = new ArrayList<>();
+            for(int i = 0; i < t.get(s).size(); ++i) {
+                aux.add( new MUS(t.get(s).get(i)));
+            }
+            timetable.put(s, aux);
+        }
+    }
+
     //PUBLIC METHODS
 
     /**
@@ -346,11 +363,11 @@ public class Schedule {
     }
 
     /**
-     *
-     * @return
+     * Converts the timetable into a HashMap of Strings
+     * @return returns a HashMap of Strings which represents the timetable attribute
      */
-    public HashMap< String, ArrayList<Vector<String>> > toHashMapString() { // TODO: IMPLEMENTAR EN CTRLDOMAIN
-        HashMap<String, ArrayList<Vector<String>>> timetable = new HashMap<>();
+    public HashMap< String, ArrayList<Vector<String>> > toHashMapString() {
+        HashMap<String, ArrayList<Vector<String>>> ttble = new HashMap<>();
 
         Set<String> keys = this.timetable.keySet();
 
@@ -371,9 +388,9 @@ public class Schedule {
                 i++;
             }
 
-            timetable.put(k, setSubject);
+            ttble.put(k, setSubject);
         }
 
-        return timetable;
+        return ttble;
     }
 }
