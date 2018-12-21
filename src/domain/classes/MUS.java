@@ -9,7 +9,6 @@ import java.util.Vector;
  * Minimum Unit of Schedule (MUS)
  * @author Joaquim Gomez
  */
-
 public class MUS {
 
     // Members

@@ -67,7 +67,6 @@ public class DisplaySchedule extends JPanel {
         table.setRowSelectionAllowed(false);
         table.setCellSelectionEnabled(true);
 
-
         TableColumn column = table.getColumnModel().getColumn(0);
         column.setPreferredWidth(5); //hour column is smaller
 
@@ -101,7 +100,9 @@ public class DisplaySchedule extends JPanel {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: que vuelva a la pestaña de iniciop
+                frame.setEnabled(false);
+                frame.setVisible(false);
+                ctrlP.backToInit();
             }
         });
         gbc.gridx = 0;
@@ -481,6 +482,7 @@ public class DisplaySchedule extends JPanel {
         public boolean canImport(TransferSupport support) {
             // Reject the import by default...
             boolean canImport = false;
+            boolean canImport2 = false;
             // Can only import into another JTable
             Component comp = support.getComponent();
             if (comp instanceof JTable) {
@@ -506,8 +508,6 @@ public class DisplaySchedule extends JPanel {
                                     String[] to2   = destiny.toString().split(" ");     // 0 Subject, 1 Subgroup, 2 Classroom
                                     String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
 
-
-
                                     Vector<String> to  = new Vector(Arrays.asList(to2));
                                     Vector<String> from = new Vector(Arrays.asList(from2));
 
@@ -528,14 +528,14 @@ public class DisplaySchedule extends JPanel {
                                     canImport = presenter.moveSession(from, to);
                                 }
                             }
-                            canImport = true;
+                            canImport2 = true && canImport;
                         }
                     }
                 } catch (UnsupportedFlavorException | IOException ex) {
                     ex.printStackTrace();
                 }
             }
-            return canImport;
+            return canImport2;
         }
 
         /**

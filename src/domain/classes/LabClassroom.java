@@ -4,12 +4,11 @@ import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
+/**
+ * Represents a laboratory classroom
+ * @author mireia
+ */
 public class LabClassroom extends Classroom {
-
-    /**
-     * Represents a laboratory classroom
-     * @author mireia
-     */
 
     //ATTRIBUTES
 

@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * ConstraintsDialog allows the user to select the restrictions to comply with.
+ */
 public class ConstraintsDialog extends JDialog {
     private CtrlPresenter ctrlPresenter;
 
@@ -18,6 +21,10 @@ public class ConstraintsDialog extends JDialog {
 
     private boolean[] enb = new boolean[5]; // TODO: NUMERO A CONCRETAR
 
+    /**
+     * ConstraintsDialog class constructor.
+     * @param ctrlPresenter CtrlPresenter object, that makes the connection with the other classes through.
+     */
     public ConstraintsDialog(CtrlPresenter ctrlPresenter){
         this.ctrlPresenter = ctrlPresenter;
 
@@ -29,6 +36,9 @@ public class ConstraintsDialog extends JDialog {
 
     }
 
+    /**
+     * Initialize the components.
+     */
     private void initComponents() {
         constraint0.addActionListener(new ActionListener() {
             @Override

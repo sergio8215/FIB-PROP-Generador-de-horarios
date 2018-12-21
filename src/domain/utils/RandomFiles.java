@@ -39,7 +39,7 @@ public class RandomFiles {
             subject.put("Laboratory_hours",Integer.toString((int)(Math.random() * 2 + 0)));
             subject.put("Problems_hours",Integer.toString((int)(Math.random() * 2 + 0)));
             subject.put("Number_of_groups",Integer.toString((int)(Math.random() * 3 + 1)));
-            subject.put("Number_of_subgroups",Integer.toString((int)(Math.random() * 2 + 2)));
+            subject.put("Number_of_subgroups",Integer.toString((int)(Math.random() * 2 + 1)));
             subject.put("Shift",          "BOTH" );//Shift[(int)(Math.random() * 3 + 0)]);
             subjects.add(subject);
         }
@@ -110,21 +110,27 @@ public class RandomFiles {
     }
 
     public static void main(String[] args){
-        System.out.println("Create: 1-Classrooms or 2-Subjects: ");
+
+        System.out.println("Create: 1-Classrooms, 2-Subjects, 3-exit: ");
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
-        if ( i == 2 ){
-            System.out.println("file name: ");
-            String name = sc.next();
-            System.out.println("size: ");
-            int size = sc.nextInt();
-            RandomFiles createFile = new RandomFiles(name+".json", size,2);
-        }else{
-            System.out.println("file name: ");
-            String name = sc.next();
-            System.out.println("size: ");
-            int size = sc.nextInt();
-            RandomFiles createFile = new RandomFiles(name+".json", size,1);
+
+        while(i != 3){
+            if ( i == 2 ){
+                System.out.println("file name: ");
+                String name = sc.next();
+                System.out.println("size: ");
+                int size = sc.nextInt();
+                RandomFiles createFile = new RandomFiles(name+".json", size,2);
+            }else{
+                System.out.println("file name: ");
+                String name = sc.next();
+                System.out.println("size: ");
+                int size = sc.nextInt();
+                RandomFiles createFile = new RandomFiles(name+".json", size,1);
+            }
+            System.out.println("Create: 1-Classrooms, 2-Subjects, 3-exit: ");
+            i = sc.nextInt();
         }
     }
 }

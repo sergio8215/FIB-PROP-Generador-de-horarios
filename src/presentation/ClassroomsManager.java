@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * Classrooms Manager UI Class.
+ */
 public class ClassroomsManager extends JDialog implements ListSelectionListener {
     private CtrlPresenter ctrlPresenter;
 
@@ -35,7 +38,11 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
     private static final String numberOfComputersAreaString = "Number of Computers";
 
 
-
+    /**
+     * ClassroomsManager class constructor.
+     * @param ctrlPresenter CtrlPresenter object, that makes the connection with the other classes through.
+     * @param classrooms Set of classrooms loaded.
+     */
     public ClassroomsManager(CtrlPresenter ctrlPresenter, Vector<Vector<String>> classrooms) {
         this.ctrlPresenter = ctrlPresenter;
 
@@ -70,6 +77,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
     }
 
+    /**
+     * Initialize the list of classrooms.
+     * @param classroom Set of classrooms.
+     */
     public void initList(ArrayList<Vector<String>> classroom) {
         for(Vector<String> v : classroom) {
             model.addElement(v.get(0));
@@ -77,7 +88,9 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         list.setModel(model);
     }
 
-
+    /**
+     * Initialize the components.
+     */
     public void initComponents() {
         saveSetOfClassroomsButton.addActionListener(new ActionListener() {
             @Override
@@ -130,10 +143,23 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
-                list.setSelectedIndex(index+1);
-                if (!classrooms.isEmpty()){
-                    classrooms.remove(index);
+
+                if (!classrooms.isEmpty()) {
+                    if (classrooms.size() == 1){
+                        Vector<String> v = new Vector<>(9);
+                        classrooms.add(1, v);
+
+                        for (int i = 0; i < 9; i++) {
+                            classrooms.get(index).add(i, "");
+                        }
+
+                        model.add(1,"CLASSROOM");
+                    }
+
                     model.remove(index);
+                    classrooms.remove(index);
+                    if (index == model.size())  list.setSelectedIndex(index - 1);
+                    else    list.setSelectedIndex(index);
                 }
 
             }
@@ -198,8 +224,12 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
     }
 
+    /**
+     * Detects changes in the input data.
+     * @param e
+     */
     public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
+        if (e.getValueIsAdjusting() == false && list.getSelectedIndex() != -1) {
             int index = list.getSelectedIndex();
 
             if (model.get(index).equals("CLASSROOM")){
@@ -218,6 +248,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         }
     }
 
+    /**
+     * Check the validity of the subject vectors.
+     * @return True if valid.
+     */
     public boolean valid(){
         for(Vector<String> v : classrooms) {
             if (v.get(0).equals("") ||

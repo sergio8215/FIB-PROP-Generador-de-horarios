@@ -2,6 +2,8 @@ package src.domain.classes;
 
 import src.domain.utils.UtilsDomain.*;
 
+import java.util.Vector;
+
 
 /**
  * Constraints Class.
@@ -9,15 +11,22 @@ import src.domain.utils.UtilsDomain.*;
  */
 public class Constraints {
 
-    // Structure to save the enabled constraints
-
+    /**
+     * Special class to maintain the status of restrictions.
+     */
     private static class ConstraintsSet {
+        // Structure to save the enabled constraints
+
         static boolean notSameClassroomAndSessionEnabled                                   = false;
         static boolean labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled                = false;
         static boolean classOfSameSubgroupAndLevelNoTogetherEnabled                        = false;
         static boolean theoryOfSubjectFromDifferentClassesNoTogetherEnabled                = false;
         static boolean theorysOfSameLevelNoTogetherEnabled                                 = false;
 
+        /**
+         * Set the constraints to the intern state.
+         * @param sc
+         */
         private static void setContraints(boolean[] sc){
             notSameClassroomAndSessionEnabled = sc[0];
             labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled = sc[1];
@@ -27,10 +36,41 @@ public class Constraints {
         }
     }
 
+    /**
+     * Set the constraints.
+     * @param sc Constraints.
+     */
     public void setContraints(boolean[] sc){
         ConstraintsSet.setContraints(sc);
     }
 
+    /**
+     * Returns the constraints.
+     * @return Constraints.
+     */
+    public Boolean[] getConstraints(){
+        Boolean[] sc = new Boolean[5];
+        sc[0] = ConstraintsSet.notSameClassroomAndSessionEnabled;
+        sc[1] = ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled;
+        sc[2] = ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled;
+        sc[3] = ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled;
+        sc[4] = ConstraintsSet.theorysOfSameLevelNoTogetherEnabled;
+        return sc;
+    }
+
+    /**
+     * Convert the restrictions to strings.
+     * @return
+     */
+    public Vector<String> toStr(){
+        Vector<String> c = new Vector<>(5);
+        c.add(Boolean.toString(ConstraintsSet.notSameClassroomAndSessionEnabled));
+        c.add(Boolean.toString(ConstraintsSet.labsAndTheoryOfSameGroupAndSubjectNotTogetherEnabled));
+        c.add(Boolean.toString(ConstraintsSet.classOfSameSubgroupAndLevelNoTogetherEnabled));
+        c.add(Boolean.toString(ConstraintsSet.theoryOfSubjectFromDifferentClassesNoTogetherEnabled));
+        c.add(Boolean.toString(ConstraintsSet.theorysOfSameLevelNoTogetherEnabled));
+        return c;
+    }
 
     // UNARY CONSTRAINTS
 
@@ -190,6 +230,13 @@ public class Constraints {
 
 
     // SPECIAL CONSTRAINTS
+
+    /**
+     * Special Constraint: Theories of the Same Level no Together.
+     * @param m1 First MUS to try the constraint.
+     * @param m2 Second MUS to try the constraint.
+     * @return True if satisfied constraint.
+     */
     public static boolean theorysOfSameLevelNoTogether(MUS m1, MUS m2) {
         /* Teorias del mismo nivel no pueden coincidir. */
         if (m1.getClassClass().getType() == ClassType.THEORY &&
@@ -199,4 +246,5 @@ public class Constraints {
             return false;
         return true;
     }
+
 }

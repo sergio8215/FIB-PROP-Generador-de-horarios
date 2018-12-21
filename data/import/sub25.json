@@ -1,1 +1,279 @@
-{"Subjects List":[{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"19","Number_of_groups":"2","Problems_hours":"0","Level":"6","Subject":"SRV","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"0","Num_students":"100","Number_of_groups":"1","Problems_hours":"1","Level":"5","Subject":"RTA","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"1","Num_students":"80","Number_of_groups":"2","Problems_hours":"1","Level":"2","Subject":"AGI","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"33","Number_of_groups":"3","Problems_hours":"1","Level":"3","Subject":"PBJ","Theory_hours":"3"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"0","Num_students":"44","Number_of_groups":"2","Problems_hours":"0","Level":"2","Subject":"VCD","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"1","Num_students":"67","Number_of_groups":"3","Problems_hours":"1","Level":"6","Subject":"XII","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"51","Number_of_groups":"2","Problems_hours":"1","Level":"6","Subject":"XSF","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"0","Num_students":"33","Number_of_groups":"2","Problems_hours":"0","Level":"7","Subject":"WBH","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"26","Number_of_groups":"2","Problems_hours":"1","Level":"6","Subject":"PCD","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"105","Number_of_groups":"1","Problems_hours":"0","Level":"4","Subject":"UJQ","Theory_hours":"3"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"40","Number_of_groups":"1","Problems_hours":"0","Level":"4","Subject":"FHH","Theory_hours":"3"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"26","Number_of_groups":"3","Problems_hours":"1","Level":"1","Subject":"SZH","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"1","Num_students":"58","Number_of_groups":"1","Problems_hours":"1","Level":"1","Subject":"FKJ","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"0","Num_students":"100","Number_of_groups":"3","Problems_hours":"0","Level":"2","Subject":"ZRH","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"91","Number_of_groups":"1","Problems_hours":"1","Level":"8","Subject":"CTE","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"0","Num_students":"64","Number_of_groups":"3","Problems_hours":"0","Level":"8","Subject":"RUS","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"0","Num_students":"73","Number_of_groups":"3","Problems_hours":"1","Level":"2","Subject":"ZLD","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"10","Number_of_groups":"2","Problems_hours":"1","Level":"6","Subject":"JOO","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"1","Num_students":"47","Number_of_groups":"1","Problems_hours":"0","Level":"1","Subject":"DAB","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"44","Number_of_groups":"1","Problems_hours":"1","Level":"2","Subject":"OTF","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"0","Num_students":"32","Number_of_groups":"3","Problems_hours":"1","Level":"6","Subject":"ATK","Theory_hours":"2"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"66","Number_of_groups":"2","Problems_hours":"0","Level":"7","Subject":"JDJ","Theory_hours":"3"},{"Shift":"BOTH","Number_of_subgroups":"3","Laboratory_hours":"1","Num_students":"38","Number_of_groups":"3","Problems_hours":"1","Level":"1","Subject":"MCP","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"101","Number_of_groups":"1","Problems_hours":"0","Level":"8","Subject":"IKF","Theory_hours":"1"},{"Shift":"BOTH","Number_of_subgroups":"2","Laboratory_hours":"1","Num_students":"40","Number_of_groups":"1","Problems_hours":"1","Level":"3","Subject":"IWY","Theory_hours":"2"}]}
+{
+  "Subjects List": [
+    {
+      "Laboratory_hours": "1",
+      "Level": "3",
+      "Num_students": "32",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "KME",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "4",
+      "Num_students": "16",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "KTV",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "6",
+      "Num_students": "99",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "YBI",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "6",
+      "Num_students": "86",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "KIW",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "6",
+      "Num_students": "99",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "DZG",
+      "Theory_hours": "3"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "8",
+      "Num_students": "72",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "PDT",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "3",
+      "Num_students": "55",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "NNS",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "4",
+      "Num_students": "84",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "DOF",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "1",
+      "Num_students": "71",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "PKT",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "4",
+      "Num_students": "63",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "HCT",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "2",
+      "Num_students": "91",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "SGE",
+      "Theory_hours": "3"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "6",
+      "Num_students": "91",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "JMY",
+      "Theory_hours": "3"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "1",
+      "Num_students": "29",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "RDT",
+      "Theory_hours": "3"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "6",
+      "Num_students": "61",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "GAS",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "5",
+      "Num_students": "96",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "FCV",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "6",
+      "Num_students": "94",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "AQH",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "7",
+      "Num_students": "41",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "GPO",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "2",
+      "Num_students": "64",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "PQD",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "4",
+      "Num_students": "10",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "TOY",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "8",
+      "Num_students": "75",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "2",
+      "Problems_hours": "0",
+      "Shift": "BOTH",
+      "Subject": "AGH",
+      "Theory_hours": "1"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "2",
+      "Num_students": "49",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "DBJ",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "6",
+      "Num_students": "87",
+      "Number_of_groups": "3",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "LZL",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "4",
+      "Num_students": "64",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "SRN",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "0",
+      "Level": "4",
+      "Num_students": "77",
+      "Number_of_groups": "2",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "IAX",
+      "Theory_hours": "2"
+    },
+    {
+      "Laboratory_hours": "1",
+      "Level": "8",
+      "Num_students": "97",
+      "Number_of_groups": "1",
+      "Number_of_subgroups": "1",
+      "Problems_hours": "1",
+      "Shift": "BOTH",
+      "Subject": "NWF",
+      "Theory_hours": "2"
+    }
+  ]
+}
