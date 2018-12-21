@@ -222,12 +222,28 @@ public class CtrlDomain {
     }
 
     public boolean moveSession(Vector<String> from, Vector<String> to) {
-        return schedule.moveSession(from, to);
+        boolean emptyBox = false;
+        if(to.get(0).equals("")) emptyBox = true;
+
+        Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
+        Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
+
+        Schedule schedToCheck = new Schedule(schedule);
+        schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
+        if (!emptyBox) schedToCheck.changeSession(schedToCheck.getMUS(to.get(1), to.get(0), sTo), sFrom);
+
+        return valida(schedToCheck);
+    }
+
+    private boolean valida(Schedule schd){
+        ArrayList<MUS> arrMUS = schd.unset();
+
+        for(int i = 0; i < arrMUS.size(); ++i) {
+            for(int j = i + 1; j < arrMUS.size(); ++j) {
+                if(!Constraints.satisfiesConstraints(arrMUS.get(i), arrMUS.get(j)))
+                    return false;
+            }
+        }
+        return true;
     }
 }
-
-
-
-
-
-

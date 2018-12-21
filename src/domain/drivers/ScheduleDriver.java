@@ -212,10 +212,6 @@ public class ScheduleDriver {
                     + " " + m.getSession().getHour());
         }
     }
-    public static void testValid(){
-        System.out.println(schedule.valid()?"valid":"not valid");
-    }
-
 
     public static void  main(String args[]) throws FileNotFoundException {
         final PrintStream oldStdout = System.out;
@@ -291,9 +287,6 @@ public class ScheduleDriver {
                     break;
                 case 16:
                     testUnset();
-                    break;
-                case 17:
-                    testValid();
                     break;
                 case 99:
                     eof = true;

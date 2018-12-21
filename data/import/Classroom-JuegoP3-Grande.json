@@ -1,0 +1,109 @@
+{
+  "Classrooms List": [
+    {
+      "Audiovisual": "true",
+      "Classroom": "O150",
+      "Num_computers": "4",
+      "Quantity": "151",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "A267",
+      "Num_computers": "25",
+      "Quantity": "95",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Z195",
+      "Num_computers": "38",
+      "Quantity": "171",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "R399",
+      "Num_computers": "38",
+      "Quantity": "267",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "P280",
+      "Num_computers": "29",
+      "Quantity": "247",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "U146",
+      "Num_computers": "32",
+      "Quantity": "225",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y172",
+      "Num_computers": "18",
+      "Quantity": "170",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "N205",
+      "Num_computers": "19",
+      "Quantity": "261",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "C362",
+      "Num_computers": "27",
+      "Quantity": "209",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "I198",
+      "Num_computers": "21",
+      "Quantity": "187",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "F354",
+      "Num_computers": "37",
+      "Quantity": "220",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "I195",
+      "Num_computers": "39",
+      "Quantity": "118",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "Y241",
+      "Num_computers": "6",
+      "Quantity": "79",
+      "Type": "LABORATORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "T196",
+      "Num_computers": "33",
+      "Quantity": "92",
+      "Type": "THEORY"
+    },
+    {
+      "Audiovisual": "true",
+      "Classroom": "G302",
+      "Num_computers": "28",
+      "Quantity": "175",
+      "Type": "THEORY"
+    }
+  ]
+}

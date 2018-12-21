@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class DisplaySchedule extends JPanel {
 
+    private CtrlPresenter presenter;
     private int daysOfTheWeek = 5;
     private int startHour = 8;
     private int hoursPerDay = 12;
@@ -42,6 +43,8 @@ public class DisplaySchedule extends JPanel {
     public DisplaySchedule(CtrlPresenter ctrlP, HashMap<String, ArrayList<Vector<String>>> schedule) {
         super(new GridBagLayout());
         this.schedule = schedule;
+        presenter = ctrlP;
+
         filter = (HashMap<String, ArrayList<Vector<String>>>) schedule.clone();
 
         //Create and set up the window.
@@ -479,7 +482,6 @@ public class DisplaySchedule extends JPanel {
         public boolean canImport(TransferSupport support) {
             // Reject the import by default...
             boolean canImport = false;
-            boolean canImport2 = false;
             // Can only import into another JTable
             Component comp = support.getComponent();
             if (comp instanceof JTable) {
@@ -500,7 +502,7 @@ public class DisplaySchedule extends JPanel {
                     // Make sure we're not dropping onto ourselves...
                     if (cd.getTable() == target) {
                         if (dragColumn != 0 && cd.getColumn() != 0){
-                            if (destiny != null ) {
+                            if ( destiny.toString() != null ) {
                                 if ( !cd.value.toString().equalsIgnoreCase(destiny.toString()) ){
                                     String[] to2   = destiny.toString().split(" ");     // 0 Subject, 1 Subgroup, 2 Classroom
                                     String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
@@ -517,20 +519,47 @@ public class DisplaySchedule extends JPanel {
                                     int dayFrom   = cd.col-1;
                                     int dragRFrom = cd.row;
                                     Object hourFrom = target.getValueAt( dragRFrom, 0);
-                                    to.add(Integer.toString((Integer)hourFrom));    // 3 hour
+                                    from.add(Integer.toString((Integer)hourFrom));    // 3 hour
                                     from.add(Integer.toString(dayFrom));            // 4 day
 
-                                    //canImport = // TODO FUNCION RETORNA TRUE O FALSE
+                                    /*if(from.get(0).equals("")) canImport = false; //the from vector can't be from an empty box
+                                    else */
+                                    canImport = presenter.moveSession(from, to);
                                 }
+                            }else if (cd.value.toString() != null){
+                                String[] to2   = new String[5];     // 0 Subject, 1 Subgroup, 2 Classroom
+                                to2[0] = null;
+                                to2[1] = null;
+                                to2[2] = null;
+
+                                String[] from2 = cd.value.toString().split(" ");    // 0 Subject, 1 Subgroup, 2 Classroom
+
+                                Vector<String> to  = new Vector(Arrays.asList(to2));
+                                Vector<String> from = new Vector(Arrays.asList(from2));
+
+                                int dayTo = target.columnAtPoint(dp)-1;
+                                int dragR = target.rowAtPoint(dp);
+                                Object hourTo = target.getValueAt( dragR, 0);
+                                to.add(Integer.toString((Integer)hourTo));  // 3 hour
+                                to.add(Integer.toString(dayTo));            // 4 day
+
+                                int dayFrom   = cd.col-1;
+                                int dragRFrom = cd.row;
+                                Object hourFrom = target.getValueAt( dragRFrom, 0);
+                                from.add(Integer.toString((Integer)hourFrom));    // 3 hour
+                                from.add(Integer.toString(dayFrom));            // 4 day
+
+                                    /*if(from.get(0).equals("")) canImport = false; //the from vector can't be from an empty box
+                                    else */
+                                canImport = presenter.moveSession(from, to);
                             }
-                            canImport2 = true && canImport;
                         }
                     }
                 } catch (UnsupportedFlavorException | IOException ex) {
                     ex.printStackTrace();
                 }
             }
-            return canImport2;
+            return canImport;
         }
 
         /**

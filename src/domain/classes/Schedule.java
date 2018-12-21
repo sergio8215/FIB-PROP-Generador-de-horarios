@@ -58,7 +58,10 @@ public class Schedule {
         this.timetable = new HashMap<String, ArrayList<MUS>>(sched.getTimetable());
     }
 
-
+    /**
+     * Schedule constructor from String
+     * @param stringSchedule a list of Strings that represent the Schedule Object
+     */
     public Schedule(List<String> stringSchedule){
 
         classroomFile = stringSchedule.get(5);
@@ -177,6 +180,23 @@ public class Schedule {
         this.timetable = timetable;
     }
 
+    /**
+     * Getter of an specific MUS from the timetable
+     * @param musID ID of the subgroup of the MUS we want
+     * @param musSubject name of the Subject of the MUS we want
+     * @param s session of the MUS we want
+     * @return returns a MUS with the name and sessions specified
+     */
+    public MUS getMUS(String musID, String musSubject, Session s) {
+        ArrayList<MUS> a = timetable.get(musSubject);
+        for(int i = 0; i < a.size(); ++i) {
+            if(a.get(i).getClassClass().getIdentifier().equals(musSubject+musID)
+               && Session.compare(s, "==", a.get(i).getSession()))
+                return a.get(i);
+        }
+        return null;
+    }
+
 
     //PRIVATE METHODS
 
@@ -210,7 +230,6 @@ public class Schedule {
         return -1;
     }
 
-    //PUBLIC METHODS
     //PUBLIC METHODS
 
     /**
@@ -281,26 +300,15 @@ public class Schedule {
     }
 
     /**
-     *
-     * @return
+     * Changes the session of a MUS from the timetable and adds it again in the correct position
+     * @param m MUS we want to modify
+     * @param s new Session for the MUS
      */
-    public boolean valid(){ // TODO: REIMPLEMENTAR
-        /*
-        ArrayList<MUS> arrMUS = this.unset();
-
-        for(int i = 0; i < arrMUS.size();++i) {
-            for (int j = i+1; j < arrMUS.size(); ++j) {
-                if(!(Constraints.notSameClassroomAndSession(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.classOfSameSubgroupAndLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.theorysOfSubjectsOfSameLevelNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.theoryOfSubjectFromDifferentClassesNoTogether(arrMUS.get(i), arrMUS.get(j)) &&
-                        Constraints.labsAndProblemsFromDifferentSubjectsOfSameGroupNoTogether(arrMUS.get(i), arrMUS.get(j))))
-                    return false;
-            }
-        }*/
-        return true;
+    public void changeSession(MUS m, Session s) {
+        delete(m);
+        m.setSession(s);
+        add(m);
     }
-
 
     /**
      * It returns the set as a list (of strings) with the members of the elements of the set.
@@ -367,37 +375,5 @@ public class Schedule {
         }
 
         return timetable;
-    }
-
-    /**
-     *
-     * @param from
-     * @param to
-     * @return
-     */
-    public boolean moveSession(Vector<String> from, Vector<String> to) { // TODO: FORMA MAS EFECTIVA
-        MUS f = getMUSOf(from);
-        MUS t = getMUSOf(to);
-
-        this.delete(f);
-        this.add(t);
-
-        if (!this.valid()){
-            delete(t);
-            add(f);
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     *
-     * @param vs
-     * @return
-     */
-    private MUS getMUSOf(Vector<String> vs) {
-        // TODO: IMPLEMENTAR SEGUN COMO ESTAN LOS DATOS EN EL from Y EL to
-        return null;
     }
 }
