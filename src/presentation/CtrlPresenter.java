@@ -286,6 +286,9 @@ public class CtrlPresenter {
         return ctrlDomain.moveSession(from, to);
     }
 
+    /**
+     * Saves the schedule after a movement
+     */
     public void saveSwap(){
         ctrlDomain.saveSwap();
     }

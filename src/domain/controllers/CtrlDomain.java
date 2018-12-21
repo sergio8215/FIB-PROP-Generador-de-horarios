@@ -300,6 +300,9 @@ public class CtrlDomain {
         return valid(schedToCheck);
     }
 
+    /**
+     * Saves the state of the schedule
+     */
     public void saveSwap(){
         schedule = schedToCheck;
     }
