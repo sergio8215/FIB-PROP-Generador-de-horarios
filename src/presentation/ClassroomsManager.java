@@ -153,7 +153,7 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
                         classrooms.add(1, v);
 
                         for (int i = 0; i < 5; i++) {
-                            classrooms.get(index).add(i, "");
+                            classrooms.get(1).add(i, "");
                         }
 
                         model.add(1,"CLASSROOM");

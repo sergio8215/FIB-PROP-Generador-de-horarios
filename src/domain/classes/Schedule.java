@@ -1,7 +1,5 @@
 package src.domain.classes;
 
-import src.domain.controllers.CtrlDomain;
-
 import java.util.*;
 
 public class Schedule {

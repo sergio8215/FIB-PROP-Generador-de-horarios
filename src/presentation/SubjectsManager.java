@@ -165,7 +165,7 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
                         subjects.add(1, v);
 
                         for (int i = 0; i < 9; i++) {
-                            subjects.get(index).add(i, "");
+                            subjects.get(1).add(i, "");
                         }
 
                         model.add(1,"SUBJECT");
