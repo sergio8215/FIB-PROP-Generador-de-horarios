@@ -221,20 +221,44 @@ public class CtrlDomain {
         classroomsSet = new ClassroomSet();
     }
 
-    public boolean moveSession(Vector<String> from, Vector<String> to) {
-        boolean emptyBox = false;
-        if(to.get(0) == null) emptyBox = true;
-
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
+    public boolean swapSession(Vector<String> from, Vector<String> to) {
         Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(4))], Integer.parseInt(to.get(3)));
         Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
 
         Schedule schedToCheck = new Schedule(schedule);
         schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
-        if (!emptyBox) schedToCheck.changeSession(schedToCheck.getMUS(to.get(1), to.get(0), sTo), sFrom);
+        schedToCheck.changeSession(schedToCheck.getMUS(to.get(1), to.get(0), sTo), sFrom);
 
         return valida(schedToCheck);
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @return
+     */
+    public boolean moveSession(Vector<String> from, Vector<String> to) {
+        Session sTo = new Session(UtilsDomain.Day.values()[Integer.parseInt(to.get(6))], Integer.parseInt(to.get(5)));
+        Session sFrom = new Session(UtilsDomain.Day.values()[Integer.parseInt(from.get(4))], Integer.parseInt(from.get(3)));
+
+        Schedule schedToCheck = new Schedule(schedule);
+        schedToCheck.changeSession(schedToCheck.getMUS(from.get(1), from.get(0), sFrom), sTo);
+
+        return valida(schedToCheck);
+    }
+
+    /**
+     *
+     * @param schd
+     * @return
+     */
     private boolean valida(Schedule schd){
         ArrayList<MUS> arrMUS = schd.unset();
 
