@@ -4,12 +4,11 @@ import src.domain.utils.UtilsDomain;
 
 import java.util.Vector;
 
+/**
+ * Represents a theory classroom
+ * @author mireia
+ */
 public class TheoryClassroom extends Classroom {
-
-    /**
-     * Represents a theory classroom
-     * @author mireia
-     */
 
     //CONSTRUCTOR
 

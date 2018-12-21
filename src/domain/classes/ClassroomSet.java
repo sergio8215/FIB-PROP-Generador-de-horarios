@@ -5,15 +5,15 @@ import src.domain.utils.UtilsDomain;
 
 import java.util.*;
 
+/**
+ * Represents an association of classrooms of type LABORATORY and THEORY
+ * @author mireia
+ */
+
 public class ClassroomSet {
 
     //constructror con solo Classrooms
     //
-
-    /**
-     * Represents an association of classrooms of type LABORATORY and THEORY
-     * @author mireia
-     */
 
     //ATTRIBUTES
 
