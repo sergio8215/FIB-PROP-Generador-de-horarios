@@ -1,5 +1,7 @@
 package src.presentation;
 
+import src.presentation.CtrlPresenter;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -37,8 +39,8 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
     private JButton addButton;
 
     private static final String nameAreaString = "Name";
-    private static final String levelAreaString = "Level";
     private static final String numStudentsAreaString = "Number of Students";
+    private static final String levelAreaString = "Level";
     private static final String numberOfTheoryHoursAreaString = "Number of Theory Hours";
     private static final String numberOfLaboratoryHoursAreaString = "Number of Laboratory Hours";
     private static final String numberOfProblemsHoursAreaString = "Number of Problems Hours";
@@ -59,9 +61,9 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
 
         if (subjects.isEmpty()){
             Vector<String> v = new Vector<>(9);
-            subjects.add(0, v);
+            this.subjects.add(0, v);
             for (int i = 0; i < 9; i++) {
-                subjects.get(0).add(i, "");
+                this.subjects.get(0).add(i, "");
             }
 
             model.add(0,"SUBJECT");
@@ -78,6 +80,8 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
 
         setSize(600,500);
         setTitle("SUBJECTS MANAGER");
+
+        list.setSelectedIndex(0);
 
         add(rootPanel);
 
@@ -128,7 +132,6 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
 
-
                 Vector<String> v = new Vector<>(9);
                 subjects.add(index, v);
                 for (int i = 0; i < 9; i++) {
@@ -139,8 +142,8 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
                 list.setSelectedIndex(index);
 
                 nameArea.setText(nameAreaString);
-                levelArea.setText(levelAreaString);
                 numStudentsArea.setText(numStudentsAreaString);
+                levelArea.setText(levelAreaString);
                 theoryHoursArea.setText(numberOfTheoryHoursAreaString);
                 laboratoryHoursArea.setText(numberOfLaboratoryHoursAreaString);
                 problemsHoursArea.setText(numberOfProblemsHoursAreaString);
@@ -242,7 +245,7 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             public void focusLost(FocusEvent e) {
                 super.focusLost(e);
                 if (!numberOfGroupsArea.getText().equals(numberOfGroupsAreaString)) {
-                    subjects.get(list.getSelectedIndex()).set(5, numberOfGroupsArea.getText());
+                    subjects.get(list.getSelectedIndex()).set(6, numberOfGroupsArea.getText());
                 }
             }
         });
@@ -252,7 +255,7 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             public void focusLost(FocusEvent e) {
                 super.focusLost(e);
                 if (!numberOfSubgrupsArea.getText().equals(numberOfSubgroupsAreaString)) {
-                    subjects.get(list.getSelectedIndex()).set(6, numberOfSubgrupsArea.getText());
+                    subjects.get(list.getSelectedIndex()).set(7, numberOfSubgrupsArea.getText());
                 }
             }
         });
@@ -262,7 +265,7 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
             public void focusLost(FocusEvent e) {
                 super.focusLost(e);
                 if (!shiftArea.getText().equals(shiftAreaString)) {
-                    subjects.get(list.getSelectedIndex()).set(6, shiftArea.getText());
+                    subjects.get(list.getSelectedIndex()).set(8, shiftArea.getText());
 
                 }
             }
@@ -285,8 +288,8 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
 
             if (model.get(index).equals("SUBJECT")){
                 nameArea.setText(nameAreaString);
-                levelArea.setText(levelAreaString);
                 numStudentsArea.setText(numStudentsAreaString);
+                levelArea.setText(levelAreaString);
                 theoryHoursArea.setText(numberOfTheoryHoursAreaString);
                 laboratoryHoursArea.setText(numberOfLaboratoryHoursAreaString);
                 problemsHoursArea.setText(numberOfProblemsHoursAreaString);
@@ -295,8 +298,8 @@ public class SubjectsManager extends JDialog implements ListSelectionListener {
                 shiftArea.setText(shiftAreaString);
             } else {
                 nameArea.setText(subjects.get(index).get(0));
-                levelArea.setText(subjects.get(index).get(1));
-                numStudentsArea.setText(subjects.get(index).get(2));
+                numStudentsArea.setText(subjects.get(index).get(1));
+                levelArea.setText(subjects.get(index).get(2));
                 theoryHoursArea.setText(subjects.get(index).get(3));
                 laboratoryHoursArea.setText(subjects.get(index).get(4));
                 problemsHoursArea.setText(subjects.get(index).get(5));

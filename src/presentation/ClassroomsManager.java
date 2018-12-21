@@ -1,5 +1,7 @@
 package src.presentation;
 
+import src.presentation.CtrlPresenter;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -49,10 +51,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
         this.classrooms = new ArrayList<>(classrooms);
 
         if (classrooms.isEmpty()){
-            Vector<String> v = new Vector<>(9);
-            classrooms.add(0, v);
+            Vector<String> v = new Vector<>(5);
+            this.classrooms.add(0, v);
             for (int i = 0; i < 5; i++) {
-                classrooms.get(0).add(i, "");
+                this.classrooms.get(0).add(i, "");
             }
 
             model.add(0,"CLASSROOM");
@@ -69,6 +71,8 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
         setSize(600,500);
         setTitle("CLASSROOMS MANAGER");
+
+        list.setSelectedIndex(0);
 
         add(rootPanel);
 
@@ -119,10 +123,9 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
 
-
                 Vector<String> v = new Vector<>(9);
                 classrooms.add(index, v);
-                for (int i = 0; i < 9; i++) {
+                for (int i = 0; i < 5; i++) {
                     classrooms.get(index).add(i, "");
                 }
 
@@ -146,10 +149,10 @@ public class ClassroomsManager extends JDialog implements ListSelectionListener 
 
                 if (!classrooms.isEmpty()) {
                     if (classrooms.size() == 1){
-                        Vector<String> v = new Vector<>(9);
+                        Vector<String> v = new Vector<>(5);
                         classrooms.add(1, v);
 
-                        for (int i = 0; i < 9; i++) {
+                        for (int i = 0; i < 5; i++) {
                             classrooms.get(index).add(i, "");
                         }
 
