@@ -88,7 +88,7 @@ public final class SubjectsSet {
     /**
      * Returns the requested subject.
      * @param name Name of the subject.
-     * @return Return a ResoultSubjectPair with the resoult.
+     * @return Return a ResoltSubjectPair with the result.
      */
     public UtilsDomain.ResoultOfQuery<Subject> getSubject(String name) {
         UtilsDomain.ResoultOfQuery<Subject> res = new UtilsDomain.ResoultOfQuery<>();
@@ -160,7 +160,7 @@ public final class SubjectsSet {
      * @param s1 First subject to compare.
      * @param op Operator of the comparison.
      * @param s2 Second subject to compare.
-     * @return Resoult of the comparison.
+     * @return Result of the comparison.
      */
     public static boolean compare(Subject s1, String op, Subject s2){
         if (op.equals("<"))     return s1.getLevel() < s2.getLevel() && s1.getName().compareTo(s2.getName()) > 0;
