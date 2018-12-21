@@ -4,6 +4,8 @@ package src.presentation;
  * DisplaySchedule.java requires no other files.
  */
 
+import src.presentation.CtrlPresenter;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import javax.swing.DropMode;
