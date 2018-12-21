@@ -207,10 +207,11 @@ public class CtrlDomain {
      */
     public HashMap<String, ArrayList<Vector<String>>> loadSchedule(String filePath) throws IOException {
         List<String> stringSchedule = dManager.loadSchedule(filePath);
-        Boolean[] b = new  Boolean[5];
+        boolean[] b = new  boolean[5];
         for(int i = 0; i<5; i++){
             b[i] = Boolean.valueOf(stringSchedule.get(i));
         }
+        constraints.setContraints(b);
         schedule = new Schedule(dManager.loadSchedule(filePath));
         return schedule.toHashMapString();
     }

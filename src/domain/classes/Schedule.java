@@ -78,8 +78,9 @@ public class Schedule {
         // We read the first class
         separated = stringSchedule.get(7).split("\\*");
         String subjectName = ClassClass.fromStr(new Vector(Arrays.asList(separated))).getSubject().getName();
+        int i;
+        for( i = 7; i < stringSchedule.size(); i+=3 ){
 
-        for( int i = 7; i < stringSchedule.size(); i+=3 ){
 
             // We read the class
             separated = stringSchedule.get(i).split("\\*");
@@ -94,16 +95,22 @@ public class Schedule {
             Session session = new Session(new Vector(Arrays.asList(separated)));
             myMUS = new MUS( classClass, classroom, session );
 
-            // If the class before it's same subject we add it to the array list
-            if ( subjectName.equalsIgnoreCase(classClass.getSubject().getName()) ){
-
+            // if it's last subject we add it to the hashmap
+            if ( i == (stringSchedule.size() - 3) ){
                 arrayMUS.add(myMUS);
+                timetable.put(subjectName, arrayMUS);
+            }else {
+                // If the class before it's same subject we add it to the array list
+                if (subjectName.equalsIgnoreCase(classClass.getSubject().getName())) {
 
-            }else{  // if not we add it to the hashmap
-                timetable.put(subjectName, arrayMUS );
-                arrayMUS = new ArrayList<>();
-                arrayMUS.add(myMUS);
-                subjectName = classClass.getSubject().getName();
+                    arrayMUS.add(myMUS);
+
+                } else {  // if not we add it to the hashmap
+                    timetable.put(subjectName, arrayMUS);
+                    arrayMUS = new ArrayList<>();
+                    arrayMUS.add(myMUS);
+                    subjectName = classClass.getSubject().getName();
+                }
             }
         }
     }

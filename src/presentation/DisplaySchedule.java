@@ -50,7 +50,7 @@ public class DisplaySchedule extends JPanel {
         //Create and set up the window.
         frame = new JFrame("DisplaySchedule");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
+
         //Create and set up the content pane.
 
         setPreferredSize(new Dimension(900, 500));
