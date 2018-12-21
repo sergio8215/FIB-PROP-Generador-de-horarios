@@ -1,0 +1,15 @@
+	Prueba 1 - Escenario Normal
+Objetivos: Probar todas las funcionalidades del proyecto en circunstancias normales,
+es decir, un horario ni muy grande ni muy pequeño.
+Entrada: De la carpeta data/import los ficheros Classroom-JuegoP1-Normal.json y Subjects-JuegoP1-Normal.json
+Salida: Se debe escoger guardar el horario para producir una salida externa.
+
+	Prueba 2 - Escenario Sin Ningun Horario
+Objetivos: Probar la situación donde no hay ningun horario y la funcionalidad de suavizar restricciones.
+Entrada: De la carpeta data/import los ficheros Classroom-JuegoP2-Vacio.json y Subjects-JuegoP2-Vacio.json
+Salida: El programa indica que no es posible generar el horario.
+
+	Prueba 3 - Escenario Grande
+Objetivos: Probar todas las funcionalidades del proyecto dado un escenario grande.
+Entrada: De la carpeta data/import los ficheros Classroom-JuegoP3-Grande.json y Subjects-JuegoP3-Grande.json
+Salida: Se debe escoger guardar el horario para producir una salida externa.
