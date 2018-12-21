@@ -585,6 +585,7 @@ public class DisplaySchedule extends JPanel {
                     Transferable t = support.getTransferable();
                     CellData cd = (CellData) t.getTransferData(CELL_DATA_FLAVOR);
                     if (cd.getTable() == target) {
+                        presenter.saveSwap();
                         if (cd.swapValuesWith(dropRow, dropCol)) {
                             imported = true;
                         }

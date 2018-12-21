@@ -286,4 +286,5 @@ public class CtrlPresenter {
         return ctrlDomain.moveSession(from, to);
     }
 
+    public void saveSwap(){};
 }

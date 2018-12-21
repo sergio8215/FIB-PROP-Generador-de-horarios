@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_fib-prop-schedules-generator" default="compile.module.fib-prop-schedules-generator">
+  <dirname property="module.fib-prop-schedules-generator.basedir" file="${ant.file.module_fib-prop-schedules-generator}"/>
+  
+  <property name="module.jdk.home.fib-prop-schedules-generator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.fib-prop-schedules-generator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.fib-prop-schedules-generator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.fib-prop-schedules-generator" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="fib-prop-schedules-generator.output.dir" value="${module.fib-prop-schedules-generator.basedir}/out/production/FIB-PROP-Schedules-Generator"/>
+  <property name="fib-prop-schedules-generator.testoutput.dir" value="${module.fib-prop-schedules-generator.basedir}/out/test/FIB-PROP-Schedules-Generator"/>
+  
+  <path id="fib-prop-schedules-generator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="fib-prop-schedules-generator.module.production.classpath">
+    <path refid="${module.jdk.classpath.fib-prop-schedules-generator}"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="fib-prop-schedules-generator.runtime.production.module.classpath">
+    <pathelement location="${fib-prop-schedules-generator.output.dir}"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="fib-prop-schedules-generator.module.classpath">
+    <path refid="${module.jdk.classpath.fib-prop-schedules-generator}"/>
+    <pathelement location="${fib-prop-schedules-generator.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <pathelement location="${basedir}/libs/hamcrest-core-1.3.jar"/>
+    <pathelement location="${basedir}/libs/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="fib-prop-schedules-generator.runtime.module.classpath">
+    <pathelement location="${fib-prop-schedules-generator.testoutput.dir}"/>
+    <pathelement location="${fib-prop-schedules-generator.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+    <path refid="library.json-simple-1.1.1.classpath"/>
+    <pathelement location="${basedir}/libs/hamcrest-core-1.3.jar"/>
+    <pathelement location="${basedir}/libs/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.fib-prop-schedules-generator">
+    <patternset refid="ignored.files"/>
+    <exclude name="out/**"/>
+    <exclude name="out/artifacts/**"/>
+    <exclude name="out/artifacts/FIB_PROP_Schedules_Generator_jar/**"/>
+    <exclude name="out/production/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/utils/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/junits/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/classes/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/drivers/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/comparators/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/domain/controllers/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/persistence/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/src/presentation/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/doc/javadoc/index-files/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/utils/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/junits/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/classes/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/drivers/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/comparators/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/domain/controllers/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/persistence/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/src/presentation/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/tmp/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/tmp/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/load/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/import/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/drivers/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/drivers/in/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/data/drivers/out/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/libs/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/load/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/.idea/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/.idea/libraries/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/import/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/drivers/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/drivers/in/**"/>
+    <exclude name="out/production/FIB-PROP-Schedules-Generator/drivers/out/**"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.fib-prop-schedules-generator">
+    <patternset refid="excluded.from.module.fib-prop-schedules-generator"/>
+  </patternset>
+  
+  <path id="fib-prop-schedules-generator.module.sourcepath">
+    <dirset dir="${module.fib-prop-schedules-generator.basedir}/../../proyecto">
+      <include name="FIB-PROP-Schedules-Generator"/>
+      <include name="FIB-PROP-Schedules-Generator/data"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.fib-prop-schedules-generator" depends="compile.module.fib-prop-schedules-generator.production,compile.module.fib-prop-schedules-generator.tests" description="Compile module FIB-PROP-Schedules-Generator"/>
+  
+  <target name="compile.module.fib-prop-schedules-generator.production" depends="register.custom.compilers" description="Compile module FIB-PROP-Schedules-Generator; production classes">
+    <mkdir dir="${fib-prop-schedules-generator.output.dir}"/>
+    <javac2 destdir="${fib-prop-schedules-generator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.fib-prop-schedules-generator}/javac">
+      <compilerarg line="${compiler.args.fib-prop-schedules-generator}"/>
+      <bootclasspath refid="fib-prop-schedules-generator.module.bootclasspath"/>
+      <classpath refid="fib-prop-schedules-generator.module.production.classpath"/>
+      <src refid="fib-prop-schedules-generator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.fib-prop-schedules-generator"/>
+    </javac2>
+    
+    <copy todir="${fib-prop-schedules-generator.output.dir}">
+      <fileset dir="${module.fib-prop-schedules-generator.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.fib-prop-schedules-generator.basedir}/data">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.fib-prop-schedules-generator.tests" depends="register.custom.compilers,compile.module.fib-prop-schedules-generator.production" description="compile module FIB-PROP-Schedules-Generator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.fib-prop-schedules-generator" description="cleanup module">
+    <delete dir="${fib-prop-schedules-generator.output.dir}"/>
+    <delete dir="${fib-prop-schedules-generator.testoutput.dir}"/>
+  </target>
+</project>
