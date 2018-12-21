@@ -28,7 +28,7 @@ public class ConstraintsDialog extends JDialog {
     public ConstraintsDialog(CtrlPresenter ctrlPresenter){
         this.ctrlPresenter = ctrlPresenter;
 
-        setSize(400,500);
+        setSize(600,500);
 
         add(rootPanel);
 
