@@ -17,4 +17,5 @@ build:
 run:
 	java -cp libs/json-simple-1.1.1.jar:bin src.presentation.Main
 
-runjar
+runjar:
+	java -jar FIB-PROP-Schedules-Generator.jar
